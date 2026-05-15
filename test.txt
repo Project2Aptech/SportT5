@@ -1,2 +1,1 @@
-ABC Commit 2K
-command shift k
+ABC Commit
