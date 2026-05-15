@@ -1,0 +1,103 @@
+/* =========================
+   MUSIC APP THEME
+========================= */
+
+.root {
+
+    /* ===== COLORS ===== */
+
+    -color-primary: #1DB954;
+    -color-primary-hover: #1ED760;
+
+    -color-secondary: #007AFF;
+
+    -color-bg: #121212;
+    -color-surface: #181818;
+    -color-surface-2: #222222;
+
+    -color-text: #FFFFFF;
+    -color-text-secondary: #B3B3B3;
+
+    -color-border: #333333;
+
+    /* ===== FONT ===== */
+
+    -fx-font-family: "Inter";
+
+    -font-title: 24px;
+    -font-body: 14px;
+    -font-small: 12px;
+}
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+.root {
+    -fx-background-color: -color-bg;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    -fx-background-color: -color-surface;
+    -fx-background-radius: 16px;
+    -fx-padding: 16px;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.title {
+    -fx-font-size: -font-title;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text;
+}
+
+.body-text {
+    -fx-font-size: -font-body;
+    -fx-text-fill: -color-text-secondary;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.button-primary {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-background-radius: 12px;
+    -fx-font-weight: bold;
+}
+
+.button-primary:hover {
+    -fx-background-color: -color-primary-hover;
+}
+
+.button-outline {
+    -fx-background-color: transparent;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 12px;
+    -fx-text-fill: -color-text;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.text-field {
+    -fx-background-color: -color-surface-2;
+    -fx-text-fill: -color-text;
+    -fx-background-radius: 10px;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 10px;
+    -fx-prompt-text-fill: -color-text-secondary;
+}
