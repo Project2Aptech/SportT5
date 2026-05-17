@@ -1,58 +1,41 @@
-/* =====================================================
-   Spotify-like App Seed Data
-   MySQL INSERT DATA - 100+ rows
-   Note: Run this after creating all tables.
-===================================================== */
+INSERT INTO roles (id, name)
+VALUES
+(1, 'admin'),
+(2, 'artist'),
+(3, 'listener'),
+(4, 'moderator');
 
-/* =========================
-   ROLES
-========================= */
+INSERT INTO users (id, role_id, username, email, password_hash, display_name, avatar_url, birth_date, is_active)
+VALUES
+(1, 1, 'admin_tuan', 'admin@sportt5.com', '$2y$10$adminhash', 'Tuan Admin', 'https://cdn.sportt5.com/avatar/admin.png', '1998-05-12', true),
+(2, 2, 'minhbeats', 'minhbeats@sportt5.com', '$2y$10$hash001', 'Minh Beats', 'https://cdn.sportt5.com/avatar/minh.png', '1999-01-21', true),
+(3, 2, 'linhvoice', 'linhvoice@sportt5.com', '$2y$10$hash002', 'Linh Voice', 'https://cdn.sportt5.com/avatar/linh.png', '2000-07-14', true),
+(4, 2, 'kaiwave', 'kaiwave@sportt5.com', '$2y$10$hash003', 'Kai Wave', 'https://cdn.sportt5.com/avatar/kai.png', '1997-11-03', true),
+(5, 2, 'soramusic', 'soramusic@sportt5.com', '$2y$10$hash004', 'Sora Music', 'https://cdn.sportt5.com/avatar/sora.png', '2001-04-25', true),
+(6, 2, 'neonfox', 'neonfox@sportt5.com', '$2y$10$hash005', 'Neon Fox', 'https://cdn.sportt5.com/avatar/neon.png', '1996-09-08', true),
+(7, 3, 'hieplistener', 'hiep@example.com', '$2y$10$hash006', 'Hiep Nguyen', 'https://cdn.sportt5.com/avatar/hiep.png', '2002-02-17', true),
+(8, 3, 'annamusic', 'anna@example.com', '$2y$10$hash007', 'Anna Tran', 'https://cdn.sportt5.com/avatar/anna.png', '2003-12-09', true),
+(9, 3, 'longplay', 'long@example.com', '$2y$10$hash008', 'Long Pham', 'https://cdn.sportt5.com/avatar/long.png', '2001-08-30', true),
+(10, 3, 'maichill', 'mai@example.com', '$2y$10$hash009', 'Mai Chill', 'https://cdn.sportt5.com/avatar/mai.png', '2004-06-11', true),
+(11, 3, 'duongbass', 'duong@example.com', '$2y$10$hash010', 'Duong Bass', 'https://cdn.sportt5.com/avatar/duong.png', '1999-10-19', true),
+(12, 4, 'mod_khanh', 'moderator@sportt5.com', '$2y$10$modhash', 'Khanh Moderator', 'https://cdn.sportt5.com/avatar/mod.png', '1995-03-03', true);
 
-INSERT INTO roles (id, name) VALUES
-                                 (1, 'admin'),
-                                 (2, 'artist'),
-                                 (3, 'listener'),
-                                 (4, 'moderator');
 
-/* =========================
-   USERS
-========================= */
+INSERT INTO artists (id, user_id, bio, is_verified)
+VALUES
+(1, 2, 'Producer focused on chill hip-hop and lo-fi beats.', true),
+(2, 3, 'Vietnamese pop vocalist with emotional acoustic songs.', true),
+(3, 4, 'Electronic artist creating future bass and synthwave tracks.', false),
+(4, 5, 'Indie songwriter mixing Japanese city pop and modern R&B.', false),
+(5, 6, 'Experimental EDM producer with dark cinematic sound.', true);
 
-INSERT INTO users (id, role_id, username, email, password_hash, display_name, avatar_url, birth_date, is_active) VALUES
-                                                                                                                     (1, 1, 'admin_tuan', 'admin@sportt5.com', '$2y$10$adminhash', 'Tuan Admin', 'https://cdn.sportt5.com/avatar/admin.png', '1998-05-12', true),
-                                                                                                                     (2, 2, 'minhbeats', 'minhbeats@sportt5.com', '$2y$10$hash001', 'Minh Beats', 'https://cdn.sportt5.com/avatar/minh.png', '1999-01-21', true),
-                                                                                                                     (3, 2, 'linhvoice', 'linhvoice@sportt5.com', '$2y$10$hash002', 'Linh Voice', 'https://cdn.sportt5.com/avatar/linh.png', '2000-07-14', true),
-                                                                                                                     (4, 2, 'kaiwave', 'kaiwave@sportt5.com', '$2y$10$hash003', 'Kai Wave', 'https://cdn.sportt5.com/avatar/kai.png', '1997-11-03', true),
-                                                                                                                     (5, 2, 'soramusic', 'soramusic@sportt5.com', '$2y$10$hash004', 'Sora Music', 'https://cdn.sportt5.com/avatar/sora.png', '2001-04-25', true),
-                                                                                                                     (6, 2, 'neonfox', 'neonfox@sportt5.com', '$2y$10$hash005', 'Neon Fox', 'https://cdn.sportt5.com/avatar/neon.png', '1996-09-08', true),
-                                                                                                                     (7, 3, 'hieplistener', 'hiep@example.com', '$2y$10$hash006', 'Hiep Nguyen', 'https://cdn.sportt5.com/avatar/hiep.png', '2002-02-17', true),
-                                                                                                                     (8, 3, 'annamusic', 'anna@example.com', '$2y$10$hash007', 'Anna Tran', 'https://cdn.sportt5.com/avatar/anna.png', '2003-12-09', true),
-                                                                                                                     (9, 3, 'longplay', 'long@example.com', '$2y$10$hash008', 'Long Pham', 'https://cdn.sportt5.com/avatar/long.png', '2001-08-30', true),
-                                                                                                                     (10, 3, 'maichill', 'mai@example.com', '$2y$10$hash009', 'Mai Chill', 'https://cdn.sportt5.com/avatar/mai.png', '2004-06-11', true),
-                                                                                                                     (11, 3, 'duongbass', 'duong@example.com', '$2y$10$hash010', 'Duong Bass', 'https://cdn.sportt5.com/avatar/duong.png', '1999-10-19', true),
-                                                                                                                     (12, 4, 'mod_khanh', 'moderator@sportt5.com', '$2y$10$modhash', 'Khanh Moderator', 'https://cdn.sportt5.com/avatar/mod.png', '1995-03-03', true);
-
-/* =========================
-   ARTISTS
-========================= */
-
-INSERT INTO artists (id, user_id, bio, is_verified) VALUES
-                                                        (1, 2, 'Producer focused on chill hip-hop and lo-fi beats.', true),
-                                                        (2, 3, 'Vietnamese pop vocalist with emotional acoustic songs.', true),
-                                                        (3, 4, 'Electronic artist creating future bass and synthwave tracks.', false),
-                                                        (4, 5, 'Indie songwriter mixing Japanese city pop and modern R&B.', false),
-                                                        (5, 6, 'Experimental EDM producer with dark cinematic sound.', true);
-
-/* =========================
-   ARTIST DASHBOARD STATS
-========================= */
-
-INSERT INTO artist_dashboard_stats (id, artist_id, total_songs, total_albums, total_plays, total_followers, monthly_listeners) VALUES
-                                                                                                                                   (1, 1, 6, 1, 24500, 1200, 4200),
-                                                                                                                                   (2, 2, 6, 1, 38900, 2100, 6500),
-                                                                                                                                   (3, 3, 6, 1, 17400, 800, 2600),
-                                                                                                                                   (4, 4, 6, 1, 20100, 950, 3100),
-                                                                                                                                   (5, 5, 6, 1, 45200, 2900, 7200);
+INSERT INTO artist_dashboard_stats (id, artist_id, total_songs, total_albums, total_plays, total_followers, monthly_listeners)
+VALUES
+(1, 1, 6, 1, 24500, 1200, 4200),
+(2, 2, 6, 1, 38900, 2100, 6500),
+(3, 3, 6, 1, 17400, 800, 2600),
+(4, 4, 6, 1, 20100, 950, 3100),
+(5, 5, 6, 1, 45200, 2900, 7200);
 
 /* =========================
    GENRES
