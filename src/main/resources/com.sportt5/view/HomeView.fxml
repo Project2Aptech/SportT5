@@ -1,14 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="HomeController"
-            prefHeight="400.0" prefWidth="600.0">
+<ScrollPane styleClass="home-scroll" fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sportt5.controller.HomeController">
 
-</AnchorPane>
+  <stylesheets>
+    <URL value="@../css/main.css"/>
+  </stylesheets>
+
+  <content>
+    <VBox styleClass="home-root">
+
+      <StackPane styleClass="hero-pane" prefHeight="300" prefWidth="1040">
+
+        <Pane styleClass="hero-bg-image" prefWidth="1040" prefHeight="300"
+              style="-fx-background-color: linear-gradient(from 30% 0% to 100% 100%, #1a0533 0%, #2e1065 50%, #0d2137 100%);"/>
+
+        <Pane styleClass="hero-gradient"/>
+
+        <VBox styleClass="hero-content" alignment="CENTER_LEFT" spacing="18"
+              StackPane.alignment="CENTER_LEFT">
+          <padding>
+            <Insets top="0" right="460" bottom="0" left="80"/>
+          </padding>
+          <Label text="WHAT'S NEW?" styleClass="hero-title"/>
+          <Label text="Discover the freshest releases,&#10;handpicked just for you."
+                 styleClass="hero-subtitle"/>
+          <Button text="START LISTENING" styleClass="hero-btn"
+                  onAction="#onStartListening"/>
+        </VBox>
+
+      </StackPane>
+
+      <VBox style="-fx-background-color: #1a1a1a;" spacing="0">
+        <padding>
+          <Insets top="36" right="40" bottom="0" left="40"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT">
+          <Label text="Top Albums" styleClass="section-heading"/>
+          <Region HBox.hgrow="ALWAYS"/>
+          <Button text="‹" styleClass="nav-arrow" fx:id="btnPrev" onAction="#onPrev"/>
+          <Region prefWidth="10"/>
+          <Button text="›" styleClass="nav-arrow" fx:id="btnNext" onAction="#onNext"/>
+        </HBox>
+
+        <Region prefHeight="18"/>
+
+        <HBox spacing="16" alignment="CENTER_LEFT">
+
+          <VBox styleClass="album-card" alignment="CENTER" spacing="10">
+            <StackPane prefWidth="166" prefHeight="166">
+              <Pane styleClass="album-cover-wrap" prefWidth="166" prefHeight="166"
+                    style="-fx-background-color: #2d1256;"/>
+              <StackPane styleClass="album-play-overlay" alignment="CENTER">
+                <Label text="▶" styleClass="play-icon"/>
+              </StackPane>
+            </StackPane>
+            <Label text="Midnight Echoes" styleClass="card-name" maxWidth="166"/>
+            <Label text="The Midnight" styleClass="card-artist" maxWidth="166"/>
+          </VBox>
+
+          <VBox styleClass="album-card" alignment="CENTER" spacing="10">
+            <StackPane prefWidth="166" prefHeight="166">
+              <Pane styleClass="album-cover-wrap" prefWidth="166" prefHeight="166"
+                    style="-fx-background-color: #0d3b2e;"/>
+              <StackPane styleClass="album-play-overlay" alignment="CENTER">
+                <Label text="▶" styleClass="play-icon"/>
+              </StackPane>
+            </StackPane>
+            <Label text="Neon Horizons" styleClass="card-name" maxWidth="166"/>
+            <Label text="Synthwave Drive" styleClass="card-artist" maxWidth="166"/>
+          </VBox>
+
+          <VBox styleClass="album-card" alignment="CENTER" spacing="10">
+            <StackPane prefWidth="166" prefHeight="166">
+              <Pane styleClass="album-cover-wrap" prefWidth="166" prefHeight="166"
+                    style="-fx-background-color: #3b1515;"/>
+              <StackPane styleClass="album-play-overlay" alignment="CENTER">
+                <Label text="▶" styleClass="play-icon"/>
+              </StackPane>
+            </StackPane>
+            <Label text="Solar Storm" styleClass="card-name" maxWidth="166"/>
+            <Label text="Aurora Collective" styleClass="card-artist" maxWidth="166"/>
+          </VBox>
+
+          <VBox styleClass="album-card" alignment="CENTER" spacing="10">
+            <StackPane prefWidth="166" prefHeight="166">
+              <Pane styleClass="album-cover-wrap" prefWidth="166" prefHeight="166"
+                    style="-fx-background-color: #1a2f3b;"/>
+              <StackPane styleClass="album-play-overlay" alignment="CENTER">
+                <Label text="▶" styleClass="play-icon"/>
+              </StackPane>
+            </StackPane>
+            <Label text="Ocean Drive" styleClass="card-name" maxWidth="166"/>
+            <Label text="Coastal Vibes" styleClass="card-artist" maxWidth="166"/>
+          </VBox>
+
+          <VBox styleClass="album-card" alignment="CENTER" spacing="10">
+            <StackPane prefWidth="166" prefHeight="166">
+              <Pane styleClass="album-cover-wrap" prefWidth="166" prefHeight="166"
+                    style="-fx-background-color: #2b2b0d;"/>
+              <StackPane styleClass="album-play-overlay" alignment="CENTER">
+                <Label text="▶" styleClass="play-icon"/>
+              </StackPane>
+            </StackPane>
+            <Label text="Golden Hour" styleClass="card-name" maxWidth="166"/>
+            <Label text="Dusk &amp; Dawn" styleClass="card-artist" maxWidth="166"/>
+          </VBox>
+
+        </HBox>
+
+        <Region prefHeight="36"/>
+
+        <HBox spacing="0">
+
+          <VBox HBox.hgrow="ALWAYS" spacing="0">
+
+            <HBox styleClass="list-header" alignment="CENTER_LEFT">
+              <Label text="Latest Albums" styleClass="section-heading"/>
+              <Region HBox.hgrow="ALWAYS"/>
+              <Label text="See all" styleClass="see-all"/>
+            </HBox>
+
+            <HBox styleClass="track-row" alignment="CENTER_LEFT" spacing="12">
+              <Label text="01" styleClass="track-num"/>
+              <StackPane styleClass="track-thumb-wrap">
+                <Pane style="-fx-background-color: #2d1256; -fx-background-radius: 6px;"
+                      prefWidth="52" prefHeight="52"/>
+              </StackPane>
+              <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Midnight Echo" styleClass="track-title"/>
+                <Label text="The Midnight" styleClass="track-artist"/>
+              </VBox>
+              <HBox spacing="2">
+                <Button text="♡" styleClass="icon-btn"/>
+                <Button text="···" styleClass="icon-btn"/>
+              </HBox>
+            </HBox>
+
+            <HBox styleClass="track-row" alignment="CENTER_LEFT" spacing="12">
+              <Label text="02" styleClass="track-num"/>
+              <StackPane styleClass="track-thumb-wrap">
+                <Pane style="-fx-background-color: #0d3b2e; -fx-background-radius: 6px;"
+                      prefWidth="52" prefHeight="52"/>
+              </StackPane>
+              <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Neon Shadows" styleClass="track-title"/>
+                <Label text="Synthwave Drive" styleClass="track-artist"/>
+              </VBox>
+              <HBox spacing="2">
+                <Button text="♡" styleClass="icon-btn"/>
+                <Button text="···" styleClass="icon-btn"/>
+              </HBox>
+            </HBox>
+
+            <HBox styleClass="track-row" alignment="CENTER_LEFT" spacing="12">
+              <Label text="03" styleClass="track-num"/>
+              <StackPane styleClass="track-thumb-wrap">
+                <Pane style="-fx-background-color: #3b1515; -fx-background-radius: 6px;"
+                      prefWidth="52" prefHeight="52"/>
+              </StackPane>
+              <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Solar Flare" styleClass="track-title"/>
+                <Label text="Aurora Collective" styleClass="track-artist"/>
+              </VBox>
+              <HBox spacing="2">
+                <Button text="♡" styleClass="icon-btn"/>
+                <Button text="···" styleClass="icon-btn"/>
+              </HBox>
+            </HBox>
+
+          </VBox>
+
+          <Pane styleClass="col-divider" prefWidth="1">
+            <HBox.margin>
+              <Insets left="32" right="32"/>
+            </HBox.margin>
+          </Pane>
+
+          <VBox HBox.hgrow="ALWAYS" spacing="0">
+
+            <HBox styleClass="list-header" alignment="CENTER_LEFT">
+              <Label text="Latest Singles" styleClass="section-heading"/>
+              <Region HBox.hgrow="ALWAYS"/>
+              <Label text="See all" styleClass="see-all"/>
+            </HBox>
+
+            <HBox styleClass="track-row" alignment="CENTER_LEFT" spacing="12">
+              <Label text="01" styleClass="track-num"/>
+              <StackPane styleClass="track-thumb-wrap">
+                <Pane style="-fx-background-color: #1a2f3b; -fx-background-radius: 6px;"
+                      prefWidth="52" prefHeight="52"/>
+              </StackPane>
+              <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Ocean Drift" styleClass="track-title"/>
+                <Label text="Coastal Vibes" styleClass="track-artist"/>
+              </VBox>
+              <HBox spacing="2">
+                <Button text="♡" styleClass="icon-btn"/>
+                <Button text="···" styleClass="icon-btn"/>
+              </HBox>
+            </HBox>
+
+            <HBox styleClass="track-row" alignment="CENTER_LEFT" spacing="12">
+              <Label text="02" styleClass="track-num"/>
+              <StackPane styleClass="track-thumb-wrap">
+                <Pane style="-fx-background-color: #2b2b0d; -fx-background-radius: 6px;"
+                      prefWidth="52" prefHeight="52"/>
+              </StackPane>
+              <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="Golden Sunset" styleClass="track-title"/>
+                <Label text="Dusk &amp; Dawn" styleClass="track-artist"/>
+              </VBox>
+              <HBox spacing="2">
+                <Button text="♡" styleClass="icon-btn"/>
+                <Button text="···" styleClass="icon-btn"/>
+              </HBox>
+            </HBox>
+
+            <HBox styleClass="track-row" alignment="CENTER_LEFT" spacing="12">
+              <Label text="03" styleClass="track-num"/>
+              <StackPane styleClass="track-thumb-wrap">
+                <Pane style="-fx-background-color: #1a1a3e; -fx-background-radius: 6px;"
+                      prefWidth="52" prefHeight="52"/>
+              </StackPane>
+              <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="City Lights" styleClass="track-title"/>
+                <Label text="Urban Echo" styleClass="track-artist"/>
+              </VBox>
+              <HBox spacing="2">
+                <Button text="♡" styleClass="icon-btn"/>
+                <Button text="···" styleClass="icon-btn"/>
+              </HBox>
+            </HBox>
+
+          </VBox>
+
+        </HBox>
+
+        <Region prefHeight="40"/>
+
+      </VBox>
+    </VBox>
+  </content>
+</ScrollPane>

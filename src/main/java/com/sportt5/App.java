@@ -14,12 +14,12 @@ public class App extends Application {
         URL fxml = getClass().getResource("/com.sportt5/view/HomeView.fxml");
         FXMLLoader loader = new FXMLLoader(fxml);
         Scene scene = new Scene(loader.load(), 1040, 870);
-        stage.setTitle("SportT5");
+        stage.setTitle("SportT5 - Home");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
