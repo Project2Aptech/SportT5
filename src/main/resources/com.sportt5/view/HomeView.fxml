@@ -17,7 +17,7 @@
             fx:controller="com.sportt5.controller.HomeController">
 
   <stylesheets>
-    <URL value="@../css/main.css"/>
+    <URL value="@../css/home_css.css"/>
   </stylesheets>
 
   <content>
