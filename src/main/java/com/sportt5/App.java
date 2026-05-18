@@ -11,7 +11,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        URL fxml = getClass().getResource("/com.sportt5/view/HomeView.fxml");
+        URL fxml = getClass().getResource("/com.sportt5/view/Album.fxml");
         FXMLLoader loader = new FXMLLoader(fxml);
         Scene scene = new Scene(loader.load(), 1040, 870);
         stage.setTitle("SportT5 - Home");

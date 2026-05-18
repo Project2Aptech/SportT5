@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+    album.fxml
+    Controller : com.sportt5.controller.AlbumController
+
+    fx:id bindings
+    ══════════════
+    topAlbumsRow      → HBox filled with Album cards (albums.cover_url, albums.title,
+                         users.display_name via artists join, albums.release_date year)
+    latestAlbumsList  → VBox of Album rows (albums table, most-recent release_date,
+                         total_tracks > 1 filtered in AlbumService)
+    latestSinglesList → VBox of Song rows  (songs table, album_id IS NULL,
+                         status = 'live', ordered by created_at DESC)
+-->
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="main-scroll" stylesheets="@../css/album.css" vbarPolicy="AS_NEEDED" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sportt5.controller.AlbumController">
+
+    <content>
+        <VBox spacing="0" styleClass="content-root">
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!--  HERO BANNER                                                -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <StackPane maxHeight="280" minHeight="280" styleClass="hero-pane">
+                <ImageView fitHeight="280" fitWidth="1040" preserveRatio="false" styleClass="hero-bg-image" />
+                <Region styleClass="hero-overlay" />
+                <VBox alignment="BOTTOM_LEFT" style="-fx-padding: 20px;" styleClass="hero-content">
+                    <Label styleClass="hero-title" text="WHAT'S NEW?" />
+                    <Label styleClass="hero-subtitle" text="Experience the latest sonic landscape curated just for you. From underground beats to chart-topping anthems, dive into the pulse of the contemporary music scene." wrapText="true" />
+                    <HBox spacing="12">
+                        <VBox.margin><Insets top="18" /></VBox.margin>
+                        <Button styleClass="hero-btn" text="▶  START LISTENING" />
+                    </HBox>
+                    <VBox.margin>
+                        <Insets bottom="32" left="40" right="40" top="0" />
+                    </VBox.margin>
+                </VBox>
+            </StackPane>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!--  TOP ALBUMS                                                 -->
+            <!--  Source: albums ORDER BY SUM(songs.play_count) DESC        -->
+            <!--  Card fields: albums.title, albums.cover_url,              -->
+            <!--               users.display_name (via artists),            -->
+            <!--               albums.release_date (year only)              -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <VBox spacing="16">
+                <VBox.margin>
+                    <Insets bottom="0" left="32" right="32" top="32" />
+                </VBox.margin>
+
+                <HBox alignment="CENTER_LEFT">
+                    <Label styleClass="section-title" text="Top Albums" HBox.hgrow="ALWAYS" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button styleClass="arrow-btn" text="❮" />
+                    <Button styleClass="arrow-btn" text="❯" />
+                </HBox>
+
+                <!-- Populated by AlbumController.buildTopAlbums(List<Album>) -->
+                <HBox fx:id="topAlbumsRow" alignment="CENTER_LEFT" spacing="16" />
+            </VBox>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!--  LATEST ALBUMS  |  LATEST SINGLES                          -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <HBox alignment="TOP_LEFT" spacing="32">
+                <VBox.margin>
+                    <Insets bottom="32" left="32" right="32" top="32" />
+                </VBox.margin>
+
+                <!-- ─── Latest Albums ──────────────────────────────────── -->
+                <!--  Source : albums WHERE total_tracks > 1                -->
+                <!--           ORDER BY release_date DESC LIMIT 5           -->
+                <!--  Row fields : albums.title, users.display_name,        -->
+                <!--               albums.total_tracks, albums.cover_url    -->
+                <VBox spacing="12" HBox.hgrow="ALWAYS">
+                    <Label styleClass="section-title" text="Latest Albums" />
+                    <!-- Populated by AlbumController.buildAlbumList(List<Album>) -->
+                    <VBox fx:id="latestAlbumsList" spacing="4" />
+                </VBox>
+
+                <!-- ─── Latest Singles ─────────────────────────────────── -->
+                <!--  Source : songs WHERE album_id IS NULL                 -->
+                <!--                   AND status = 'live'                  -->
+                <!--           ORDER BY created_at DESC LIMIT 5             -->
+                <!--  Row fields : songs.title, users.display_name,         -->
+                <!--               songs.duration_seconds (as mm:ss),       -->
+                <!--               songs.cover_url                          -->
+                <VBox spacing="12" HBox.hgrow="ALWAYS">
+                    <Label styleClass="section-title" text="Latest Singles" />
+                    <!-- Populated by AlbumController.buildSinglesList(List<Song>) -->
+                    <VBox fx:id="latestSinglesList" spacing="4" />
+                </VBox>
+
+            </HBox>
+
+        </VBox>
+    </content>
+</ScrollPane>
