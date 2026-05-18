@@ -33,82 +33,48 @@ CREATE TABLE users (
 
                        birth_date DATE,
 
-                       is_active BOOLEAN NOT NULL DEFAULT TRUE,
-
-                       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                       updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-                           ON UPDATE CURRENT_TIMESTAMP
-);
-
-/* =====================================================
-   GENRES
-===================================================== */
-
-CREATE TABLE genres (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
-
-                        name VARCHAR(100) NOT NULL UNIQUE,
-                        slug VARCHAR(100) NOT NULL UNIQUE
-);
-
-/* =====================================================
-   ALBUMS
-===================================================== */
-
-CREATE TABLE albums (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
-
-                        artist_id INT NOT NULL,
-
-                        title VARCHAR(255) NOT NULL,
-                        cover_url VARCHAR(500),
-
-                        release_date DATE,
-
-                        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-                            ON UPDATE CURRENT_TIMESTAMP,
-
-                        FOREIGN KEY (artist_id)
-                            REFERENCES users(id)
-                            ON DELETE CASCADE
-);
-
-/* =====================================================
+                       is_active BOOLEAN NOT NULL DEFAULT TRUE,/* =====================================================
    SONGS
 ===================================================== */
 
-CREATE TABLE songs (
-                       id INT AUTO_INCREMENT PRIMARY KEY,
+                       CREATE TABLE songs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
 
-                       artist_id INT NOT NULL,
-                       album_id INT,
+    artist_id INT NOT NULL,
+    album_id INT,
 
-                       title VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
 
-                       duration_seconds SMALLINT NOT NULL DEFAULT 0,
+    duration_seconds SMALLINT NOT NULL DEFAULT 0,
 
-                       file_url VARCHAR(500) NOT NULL,
-                       cover_url VARCHAR(500),
+    file_url VARCHAR(500) NOT NULL,
+    cover_url VARCHAR(500),
 
-                       track_number SMALLINT,
+    track_number SMALLINT,
 
-                       play_count BIGINT NOT NULL DEFAULT 0,
+    play_count BIGINT NOT NULL DEFAULT 0,
 
-                       status ENUM('live', 'pending', 'deleted')
-        NOT NULL DEFAULT 'live',
+    status ENUM('LIVE', 'PENDING', 'DELETED')
+        NOT NULL DEFAULT 'LIVE',
 
-                       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                       updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-                           ON UPDATE CURRENT_TIMESTAMP,
+    required_account_type ENUM(
+        'NORMAL',
+        'PRO',
+        'PREMIUM'
+    ) NOT NULL DEFAULT 'NORMAL',
 
-                       FOREIGN KEY (artist_id)
-                           REFERENCES users(id)
-                           ON DELETE CASCADE,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-                       FOREIGN KEY (album_id)
-                           REFERENCES albums(id)
-                           ON DELETE SET NULL
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (artist_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (album_id)
+        REFERENCES albums(id)
+        ON DELETE SET NULL
 );
 
 /* =====================================================
