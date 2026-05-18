@@ -1,14 +1,15 @@
 /* =====================================================
-   SportT5 Optimized Database Schema
+   SportT5 Database Schema
    JavaFX + JDBC + MySQL
 ===================================================== */
 
-CREATE DATABASE sportt5;
-USE sportt5;
+DROP DATABASE IF EXISTS sportt5;
 
-/* =====================================================
-   USERS
-===================================================== */
+CREATE DATABASE sportt5
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE sportt5;
 
 /* =====================================================
    USERS
@@ -33,48 +34,85 @@ CREATE TABLE users (
 
                        birth_date DATE,
 
-                       is_active BOOLEAN NOT NULL DEFAULT TRUE,/* =====================================================
+                       is_active BOOLEAN NOT NULL DEFAULT TRUE,
+
+                       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                       updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                           ON UPDATE CURRENT_TIMESTAMP
+);
+
+/* =====================================================
+   GENRES
+===================================================== */
+
+CREATE TABLE genres (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+
+                        name VARCHAR(100) NOT NULL UNIQUE,
+                        slug VARCHAR(100) NOT NULL UNIQUE
+);
+
+/* =====================================================
+   ALBUMS
+===================================================== */
+
+CREATE TABLE albums (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+
+                        artist_id INT NOT NULL,
+
+                        title VARCHAR(255) NOT NULL,
+                        cover_url VARCHAR(500),
+
+                        release_date DATE,
+
+                        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                            ON UPDATE CURRENT_TIMESTAMP,
+
+                        FOREIGN KEY (artist_id)
+                            REFERENCES users(id)
+                            ON DELETE CASCADE
+);
+
+/* =====================================================
    SONGS
 ===================================================== */
 
-                       CREATE TABLE songs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE songs (
+                       id INT AUTO_INCREMENT PRIMARY KEY,
 
-    artist_id INT NOT NULL,
-    album_id INT,
+                       artist_id INT NOT NULL,
+                       album_id INT,
 
-    title VARCHAR(255) NOT NULL,
+                       title VARCHAR(255) NOT NULL,
 
-    duration_seconds SMALLINT NOT NULL DEFAULT 0,
+                       duration_seconds SMALLINT NOT NULL DEFAULT 0,
 
-    file_url VARCHAR(500) NOT NULL,
-    cover_url VARCHAR(500),
+                       file_url VARCHAR(500) NOT NULL,
+                       cover_url VARCHAR(500),
 
-    track_number SMALLINT,
+                       track_number SMALLINT,
 
-    play_count BIGINT NOT NULL DEFAULT 0,
+                       play_count BIGINT NOT NULL DEFAULT 0,
 
-    status ENUM('LIVE', 'PENDING', 'DELETED')
+                       status ENUM('LIVE', 'PENDING', 'DELETED')
         NOT NULL DEFAULT 'LIVE',
 
-    required_account_type ENUM(
-        'NORMAL',
-        'PRO',
-        'PREMIUM'
-    ) NOT NULL DEFAULT 'NORMAL',
+                       required_account_type ENUM('NORMAL', 'PRO', 'PREMIUM')
+        NOT NULL DEFAULT 'NORMAL',
 
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                       updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                           ON UPDATE CURRENT_TIMESTAMP,
 
-    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP,
+                       FOREIGN KEY (artist_id)
+                           REFERENCES users(id)
+                           ON DELETE CASCADE,
 
-    FOREIGN KEY (artist_id)
-        REFERENCES users(id)
-        ON DELETE CASCADE,
-
-    FOREIGN KEY (album_id)
-        REFERENCES albums(id)
-        ON DELETE SET NULL
+                       FOREIGN KEY (album_id)
+                           REFERENCES albums(id)
+                           ON DELETE SET NULL
 );
 
 /* =====================================================
@@ -177,8 +215,8 @@ CREATE TABLE play_history (
 
                               seconds_played SMALLINT NOT NULL DEFAULT 0,
 
-                              device_type ENUM('desktop', 'mobile', 'web')
-        DEFAULT 'desktop',
+                              device_type ENUM('DESKTOP', 'MOBILE', 'WEB')
+        DEFAULT 'DESKTOP',
 
                               FOREIGN KEY (user_id)
                                   REFERENCES users(id)
