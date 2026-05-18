@@ -1,5 +1,8 @@
 package com.sportt5.model;
 
+import com.sportt5.model.enums.AccountType;
+import com.sportt5.model.enums.Roles;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
