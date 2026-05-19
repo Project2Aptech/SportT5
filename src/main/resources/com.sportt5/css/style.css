@@ -1,0 +1,412 @@
+.main-scene {
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Inter", "SF Pro Display", "Segoe UI", Arial, sans-serif;
+}
+
+.app-shell {
+    -fx-background-color: #101111;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.20), 20, 0.18, 0, 7);
+}
+
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #191919, #161716);
+    -fx-border-color: transparent rgba(255,255,255,0.055) transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.brand {
+    -fx-text-fill: #49ee78;
+    -fx-font-size: 30px;
+    -fx-font-weight: 900;
+}
+
+.profile {
+    -fx-padding: 30 0 32 0;
+}
+
+.avatar {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 60%, #195559, #0a1617);
+    -fx-background-radius: 18;
+    -fx-border-color: rgba(73,238,120,0.35);
+    -fx-border-radius: 18;
+}
+
+.avatar-icon {
+    -fx-text-fill: #58e6ee;
+    -fx-font-size: 17px;
+}
+
+.profile-name {
+    -fx-text-fill: #f4f4f4;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+}
+
+.profile-tier,
+.version,
+.nav-title,
+.album-artist,
+.track-artist,
+.time,
+.player-muted,
+.muted-icon {
+    -fx-text-fill: #aeb8ad;
+}
+
+.profile-tier {
+    -fx-font-size: 8px;
+}
+
+.nav-title {
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+    -fx-letter-spacing: 1px;
+    -fx-padding: 0 0 12 6;
+}
+
+.library-title {
+    -fx-padding: 20 0 12 6;
+}
+
+.nav-item {
+    -fx-text-fill: #c8d0c8;
+    -fx-font-size: 12px;
+    -fx-padding: 13 12 13 12;
+    -fx-background-radius: 0;
+}
+
+.nav-item .label {
+    -fx-text-fill: #c8d0c8;
+}
+
+.nav-active {
+    -fx-font-size: 12px;
+    -fx-background-color: rgba(255,255,255,0.055);
+    -fx-border-color: transparent transparent transparent #49ee78;
+    -fx-border-width: 0 0 0 4;
+    -fx-padding: 13 12 13 8;
+    -fx-background-radius: 0;
+}
+
+.nav-active .label {
+    -fx-text-fill: #49ee78;
+    -fx-font-weight: 800;
+}
+
+.nav-icon {
+    -fx-font-size: 16px;
+}
+
+.version {
+    -fx-font-size: 8px;
+    -fx-letter-spacing: 1px;
+}
+
+.content {
+    -fx-background-color: #101111;
+}
+
+.hero {
+    -fx-background-color:
+        linear-gradient(to bottom, rgba(0,0,0,0.03), rgba(0,0,0,0.76)),
+        linear-gradient(to bottom right, #6b2700 0%, #ed6100 37%, #5f2105 78%, #050909 100%);
+}
+
+.stage-beams {
+    -fx-background-color:
+        linear-gradient(from 10% 100% to 74% 0%, transparent 0%, rgba(255,128,24,0.55) 49%, transparent 55%),
+        linear-gradient(from 52% 95% to 100% 30%, transparent 0%, rgba(252,118,20,0.55) 49%, transparent 55%),
+        linear-gradient(from 3% 92% to 48% 0%, transparent 0%, rgba(163,48,0,0.45) 50%, transparent 56%);
+    -fx-opacity: 0.78;
+}
+
+.top-icons .label {
+    -fx-text-fill: #d9e1d8;
+    -fx-font-size: 17px;
+    -fx-font-weight: 800;
+}
+
+.search {
+    -fx-background-color: rgba(28,28,28,0.58);
+    -fx-background-radius: 16;
+    -fx-border-width: 0;
+    -fx-text-fill: #d9ded9;
+    -fx-prompt-text-fill: #8b918b;
+    -fx-font-size: 11px;
+    -fx-padding: 6 18 6 18;
+}
+
+.hero-title {
+    -fx-text-fill: #f0f0f0;
+    -fx-font-size: 47px;
+    -fx-font-weight: 300;
+}
+
+.hero-copy {
+    -fx-text-fill: #bcc4bb;
+    -fx-font-size: 12px;
+    -fx-line-spacing: 3px;
+}
+
+.primary-button {
+    -fx-background-color: #49e873;
+    -fx-background-radius: 26;
+    -fx-text-fill: #0c2313;
+    -fx-font-size: 13px;
+    -fx-font-weight: 900;
+    -fx-padding: 15 35 15 35;
+}
+
+.body {
+    -fx-padding: 22 26 6 26;
+}
+
+.section-title {
+    -fx-text-fill: #e6e8e5;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.album-strip {
+    -fx-padding: 2 0 2 0;
+}
+
+.latest-grid {
+    -fx-padding: 2 0 0 0;
+}
+
+.round-button {
+    -fx-background-color: rgba(255,255,255,0.065);
+    -fx-background-radius: 18;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-text-fill: #d9ded8;
+    -fx-font-size: 21px;
+}
+
+.album-card {
+    -fx-pref-width: 118px;
+}
+
+.cover-green,
+.cover-phone,
+.cover-blue,
+.cover-orb,
+.cover-mountain {
+    -fx-pref-width: 118px;
+    -fx-pref-height: 118px;
+    -fx-min-width: 118px;
+    -fx-min-height: 118px;
+    -fx-max-width: 118px;
+    -fx-max-height: 118px;
+    -fx-background-radius: 9;
+    -fx-background-insets: 0;
+    -fx-border-color: rgba(255,255,255,0.16);
+    -fx-border-radius: 9;
+    -fx-alignment: center;
+}
+
+.cover-green .label,
+.cover-phone .label,
+.cover-blue .label,
+.cover-orb .label,
+.cover-mountain .label {
+    -fx-font-size: 54px;
+    -fx-font-weight: 900;
+}
+
+.cover-green {
+    -fx-background-color: linear-gradient(to bottom right, #052013 0%, #062214 42%, #03f06e 52%, #07120d 72%);
+}
+
+.cover-green .label {
+    -fx-text-fill: #00ef70;
+}
+
+.cover-phone {
+    -fx-background-color: linear-gradient(to bottom right, #11111c 0%, #202235 45%, #6f9ad5 52%, #151926 100%);
+}
+
+.cover-phone .label {
+    -fx-text-fill: #9eb7d9;
+}
+
+.cover-blue {
+    -fx-background-color: linear-gradient(to bottom, #072333 0%, #09b8df 48%, #08090b 80%);
+}
+
+.cover-blue .label {
+    -fx-text-fill: #38d7ff;
+}
+
+.cover-orb {
+    -fx-background-color: linear-gradient(to bottom right, #050606 0%, #dfe9e6 46%, #0c0d0d 54%, #050606 100%);
+}
+
+.cover-orb .label {
+    -fx-text-fill: #d7e1de;
+}
+
+.cover-mountain {
+    -fx-background-color: linear-gradient(to bottom right, #061508 0%, #12331d 35%, #00ef78 51%, #061007 73%);
+}
+
+.cover-mountain .label {
+    -fx-text-fill: #49ef78;
+}
+
+.album-title,
+.track-title,
+.now-title {
+    -fx-text-fill: #f2f3f1;
+    -fx-font-weight: 800;
+}
+
+.album-title {
+    -fx-font-size: 12px;
+}
+
+.album-artist {
+    -fx-font-size: 12px;
+}
+
+.track-row {
+    -fx-min-height: 46px;
+}
+
+.track-index {
+    -fx-text-fill: #b9c5b7;
+    -fx-font-size: 10px;
+}
+
+.cover-amber,
+.cover-teal,
+.cover-neon,
+.cover-orb-small,
+.cover-violet,
+.cover-green-small {
+    -fx-pref-width: 38px;
+    -fx-pref-height: 38px;
+    -fx-min-width: 38px;
+    -fx-min-height: 38px;
+    -fx-max-width: 38px;
+    -fx-max-height: 38px;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+    -fx-border-color: rgba(255,255,255,0.10);
+    -fx-border-radius: 5;
+    -fx-alignment: center;
+}
+
+.cover-amber .label,
+.cover-teal .label,
+.cover-neon .label,
+.cover-orb-small .label,
+.cover-violet .label,
+.cover-green-small .label {
+    -fx-font-size: 19px;
+    -fx-text-fill: #55ee83;
+}
+
+.cover-amber {
+    -fx-background-color: linear-gradient(to bottom right, #071011, #d07433, #071011);
+}
+
+.cover-teal {
+    -fx-background-color: linear-gradient(to bottom right, #071111, #14d7a3, #071111);
+}
+
+.cover-neon {
+    -fx-background-color: linear-gradient(to bottom right, #060712, #1f8cff, #ec1d8f);
+}
+
+.cover-orb-small {
+    -fx-background-color: linear-gradient(to bottom right, #080909, #d8e9e4, #080909);
+}
+
+.cover-violet {
+    -fx-background-color: linear-gradient(to bottom right, #071011, #d12cff, #111827);
+}
+
+.cover-green-small {
+    -fx-background-color: linear-gradient(to bottom right, #06110d, #48ed7a, #06110d);
+}
+
+.track-title {
+    -fx-font-size: 12px;
+}
+
+.track-artist {
+    -fx-font-size: 11px;
+}
+
+.row-action {
+    -fx-text-fill: #c9d6c8;
+    -fx-font-size: 18px;
+    -fx-font-weight: 800;
+}
+
+.player {
+    -fx-background-color: #1d1e1d;
+    -fx-border-color: rgba(255,255,255,0.05) transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 8 24 8 24;
+}
+
+.now-cover {
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-background-radius: 5;
+    -fx-background-color: radial-gradient(center 50% 48%, radius 62%, #5ef082, #06100d);
+}
+
+.now-cover .label {
+    -fx-text-fill: #baffc8;
+    -fx-font-size: 25px;
+}
+
+.now-title {
+    -fx-font-size: 11px;
+}
+
+.now-artist {
+    -fx-text-fill: #49ee78;
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+}
+
+.play-button {
+    -fx-background-color: #49ee78;
+    -fx-background-radius: 20;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-text-fill: #0f2214;
+    -fx-font-size: 16px;
+    -fx-font-weight: 900;
+}
+
+.player-muted {
+    -fx-font-size: 18px;
+}
+
+.progress .bar,
+.volume .bar {
+    -fx-background-color: #49ee78;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-pref-height: 4px;
+    -fx-max-height: 4px;
+}
+
+.progress .track,
+.volume .track {
+    -fx-background-color: rgba(255,255,255,0.17);
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-pref-height: 4px;
+    -fx-max-height: 4px;
+}
+
+.time {
+    -fx-font-size: 8px;
+}
