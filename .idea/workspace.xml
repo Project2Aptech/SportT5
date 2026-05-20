@@ -4,33 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b185b49-8461-4cfe-b7cc-635092089ccc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LIST TÍNH NĂNG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AlbumController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Album.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Song.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/service/AlbumService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/album.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/Album.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/com/sportT5/css/home.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/com/sportT5/css/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/com/sportT5/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/com/sportT5/css/player.css" beforeDir="false" />
+    <list default="true" id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/dao/library/library_dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/dao/library/library_dao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,12 +33,12 @@
     &quot;assignee&quot;: &quot;vihnngk&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Project2Aptech/SportT5.git&quot;,
-    &quot;accountId&quot;: &quot;2611d356-3832-4f23-a62e-5751db8bb8af&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Project2Aptech/SportT5",
+    "accountId": "723fbd73-9763-4890-bf83-34badf44c4f8"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -76,31 +60,33 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.App.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Merging vinh",
+    "git-widget-placeholder": "hiep",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/DOCS/SportT5/SportT5",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true"
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Thuchanh\SportT5\SportT5\src\main\resources\com.sportt5\css" />
-    </key>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
       </set>
     </attachedChunks>
   </component>
@@ -111,8 +97,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1778760431420</updated>
+      <workItem from="1779288888455" duration="639000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -136,9 +126,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

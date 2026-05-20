@@ -73,10 +73,9 @@ public class library_dao {
 
     //Sort theo play_count
     public boolean sortByPlayCount() throws SQLException {
-        String sql = "SELECT * FROM songs WHERE status = ? ORDER BY ? DESC";
+        String sql = "SELECT * FROM songs WHERE status = ? ORDER BY play_count DESC";
         PreparedStatement ps = c.prepareStatement(sql);
         ps.setString(1, "LIVE");
-        ps.setString(2, "play_count");
         return dataAdd(ps);
     }
 
