@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" prefWidth="1280.0" prefHeight="1024.0" minWidth="1280.0" minHeight="1024.0" maxWidth="1280.0" maxHeight="1024.0" styleClass="main-scene">
+    <HBox prefWidth="1040.0" prefHeight="870.0" minWidth="1040.0" minHeight="870.0" maxWidth="1040.0" maxHeight="870.0" styleClass="app-shell" StackPane.alignment="CENTER">
+            <VBox prefWidth="190.0" prefHeight="870.0" minWidth="190.0" minHeight="870.0" maxWidth="190.0" maxHeight="870.0" styleClass="sidebar">
+                <padding>
+                    <Insets top="32.0" right="18.0" bottom="18.0" left="20.0" />
+                </padding>
+                <Label text="SPORT T5" styleClass="brand" />
+
+                <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="profile">
+                    <StackPane prefWidth="36.0" prefHeight="36.0" styleClass="avatar">
+                        <Label text="▣" styleClass="avatar-icon" />
+                    </StackPane>
+                    <VBox spacing="2.0">
+                        <Label text="Alex Studio" styleClass="profile-name" />
+                        <Label text="PREMIUM" styleClass="profile-tier" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="⌄" styleClass="muted-icon" />
+                </HBox>
+
+                <Label text="BROWSE" styleClass="nav-title" />
+                <VBox spacing="7.0">
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="nav-active">
+                        <Label text="⌂" styleClass="nav-icon" />
+                        <Label text="Home" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="nav-item">
+                        <Label text="△" styleClass="nav-icon" />
+                        <Label text="Genre" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="nav-item">
+                        <Label text="▥" styleClass="nav-icon" />
+                        <Label text="Top Charts" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="nav-item">
+                        <Label text="◉" styleClass="nav-icon" />
+                        <Label text="Podcast" />
+                    </HBox>
+                </VBox>
+
+                <Label text="LIBRARY" styleClass="nav-title library-title" />
+                <VBox spacing="7.0">
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="nav-item">
+                        <Label text="♡" styleClass="nav-icon" />
+                        <Label text="Favourites" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="nav-item">
+                        <Label text="♬" styleClass="nav-icon" />
+                        <Label text="Playlist" />
+                    </HBox>
+                </VBox>
+                <Region VBox.vgrow="ALWAYS" />
+                <Label text="STUDIO DESKTOP V2.0" styleClass="version" />
+            </VBox>
+
+            <BorderPane prefWidth="850.0" prefHeight="870.0" minWidth="850.0" minHeight="870.0" maxWidth="850.0" maxHeight="870.0" styleClass="content">
+                <top>
+                    <VBox>
+                        <StackPane prefHeight="300.0" minHeight="300.0" maxHeight="300.0" styleClass="hero">
+                            <Pane styleClass="stage-beams" />
+                            <VBox alignment="CENTER_LEFT" spacing="16.0" maxWidth="560.0" StackPane.alignment="CENTER_LEFT">
+                                <StackPane.margin>
+                                    <Insets left="32.0" top="36.0" />
+                                </StackPane.margin>
+                                <Label text="WHAT'S NEW?" styleClass="hero-title" />
+                                <Label text="Experience the latest sonic landscape curated just for you. From underground beats to chart-topping anthems, dive into the pulse of the contemporary music scene." wrapText="true" styleClass="hero-copy" />
+                                <Button text="▶  START LISTENING" styleClass="primary-button" />
+                            </VBox>
+                            <TextField promptText="Search for tracks, artists..." prefWidth="330.0" maxWidth="330.0" prefHeight="30.0" styleClass="search" StackPane.alignment="TOP_CENTER">
+                                <StackPane.margin>
+                                    <Insets top="18.0" />
+                                </StackPane.margin>
+                            </TextField>
+                            <HBox alignment="CENTER_RIGHT" spacing="18.0" maxWidth="110.0" StackPane.alignment="TOP_RIGHT" styleClass="top-icons">
+                                <StackPane.margin>
+                                    <Insets top="26.0" right="24.0" />
+                                </StackPane.margin>
+                                <Label text="♧" />
+                                <Label text="⚙" />
+                                <Label text="☻" />
+                            </HBox>
+                        </StackPane>
+                    </VBox>
+                </top>
+
+                <center>
+                    <VBox spacing="18.0" styleClass="body">
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Top Albums" styleClass="section-title" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button text="‹" styleClass="round-button" />
+                            <Button text="›" styleClass="round-button" />
+                        </HBox>
+
+                        <HBox spacing="25.0" styleClass="album-strip">
+                            <VBox spacing="8.0" prefWidth="118.0" minWidth="118.0" maxWidth="118.0" styleClass="album-card">
+                                <StackPane prefWidth="118.0" prefHeight="118.0" minWidth="118.0" minHeight="118.0" maxWidth="118.0" maxHeight="118.0" styleClass="cover-green"><Label text="▲" /></StackPane>
+                                <Label text="Electric Dreams" styleClass="album-title" />
+                                <Label text="Neon Circuit" styleClass="album-artist" />
+                            </VBox>
+                            <VBox spacing="8.0" prefWidth="118.0" minWidth="118.0" maxWidth="118.0" styleClass="album-card">
+                                <StackPane prefWidth="118.0" prefHeight="118.0" minWidth="118.0" minHeight="118.0" maxWidth="118.0" maxHeight="118.0" styleClass="cover-phone"><Label text="▯" /></StackPane>
+                                <Label text="Midnight City" styleClass="album-title" />
+                                <Label text="Echo Wave" styleClass="album-artist" />
+                            </VBox>
+                            <VBox spacing="8.0" prefWidth="118.0" minWidth="118.0" maxWidth="118.0" styleClass="album-card">
+                                <StackPane prefWidth="118.0" prefHeight="118.0" minWidth="118.0" minHeight="118.0" maxWidth="118.0" maxHeight="118.0" styleClass="cover-blue"><Label text="✦" /></StackPane>
+                                <Label text="Pulse Velocity" styleClass="album-title" />
+                                <Label text="Vibe Tribe" styleClass="album-artist" />
+                            </VBox>
+                            <VBox spacing="8.0" prefWidth="118.0" minWidth="118.0" maxWidth="118.0" styleClass="album-card">
+                                <StackPane prefWidth="118.0" prefHeight="118.0" minWidth="118.0" minHeight="118.0" maxWidth="118.0" maxHeight="118.0" styleClass="cover-orb"><Label text="◉" /></StackPane>
+                                <Label text="Zero Gravity" styleClass="album-title" />
+                                <Label text="Orbit Collective" styleClass="album-artist" />
+                            </VBox>
+                            <VBox spacing="8.0" prefWidth="118.0" minWidth="118.0" maxWidth="118.0" styleClass="album-card">
+                                <StackPane prefWidth="118.0" prefHeight="118.0" minWidth="118.0" minHeight="118.0" maxWidth="118.0" maxHeight="118.0" styleClass="cover-mountain"><Label text="◆" /></StackPane>
+                                <Label text="Distorted Realities" styleClass="album-title" />
+                                <Label text="Fragment" styleClass="album-artist" />
+                            </VBox>
+                        </HBox>
+
+                        <GridPane hgap="54.0" styleClass="latest-grid">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50.0" />
+                                <ColumnConstraints percentWidth="50.0" />
+                            </columnConstraints>
+
+                            <VBox spacing="18.0" GridPane.columnIndex="0">
+                                <Label text="Latest Albums" styleClass="section-title" />
+                                <VBox spacing="14.0">
+                                    <HBox alignment="CENTER_LEFT" spacing="18.0" styleClass="track-row">
+                                        <Label text="01" styleClass="track-index" />
+                                        <StackPane prefWidth="38.0" prefHeight="38.0" minWidth="38.0" minHeight="38.0" maxWidth="38.0" maxHeight="38.0" styleClass="cover-amber"><Label text="▰" /></StackPane>
+                                        <VBox spacing="3.0"><Label text="Random Access Memories" styleClass="track-title" /><Label text="Daft Punk" styleClass="track-artist" /></VBox>
+                                        <Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" />
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="18.0" styleClass="track-row">
+                                        <Label text="02" styleClass="track-index" />
+                                        <StackPane prefWidth="38.0" prefHeight="38.0" minWidth="38.0" minHeight="38.0" maxWidth="38.0" maxHeight="38.0" styleClass="cover-teal"><Label text="▰" /></StackPane>
+                                        <VBox spacing="3.0"><Label text="Glow On" styleClass="track-title" /><Label text="Turnstile" styleClass="track-artist" /></VBox>
+                                        <Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" />
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="18.0" styleClass="track-row">
+                                        <Label text="03" styleClass="track-index" />
+                                        <StackPane prefWidth="38.0" prefHeight="38.0" minWidth="38.0" minHeight="38.0" maxWidth="38.0" maxHeight="38.0" styleClass="cover-neon"><Label text="✦" /></StackPane>
+                                        <VBox spacing="3.0"><Label text="Dopethrone" styleClass="track-title" /><Label text="Electric Wizard" styleClass="track-artist" /></VBox>
+                                        <Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" />
+                                    </HBox>
+                                </VBox>
+                            </VBox>
+
+                            <VBox spacing="18.0" GridPane.columnIndex="1">
+                                <Label text="Latest Singles" styleClass="section-title" />
+                                <VBox spacing="14.0">
+                                    <HBox alignment="CENTER_LEFT" spacing="18.0" styleClass="track-row">
+                                        <Label text="01" styleClass="track-index" />
+                                        <StackPane prefWidth="38.0" prefHeight="38.0" minWidth="38.0" minHeight="38.0" maxWidth="38.0" maxHeight="38.0" styleClass="cover-orb-small"><Label text="◉" /></StackPane>
+                                        <VBox spacing="3.0"><Label text="Feel Good Inc." styleClass="track-title" /><Label text="Gorillaz" styleClass="track-artist" /></VBox>
+                                        <Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" />
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="18.0" styleClass="track-row">
+                                        <Label text="02" styleClass="track-index" />
+                                        <StackPane prefWidth="38.0" prefHeight="38.0" minWidth="38.0" minHeight="38.0" maxWidth="38.0" maxHeight="38.0" styleClass="cover-violet"><Label text="╱" /></StackPane>
+                                        <VBox spacing="3.0"><Label text="Get Lucky" styleClass="track-title" /><Label text="Daft Punk" styleClass="track-artist" /></VBox>
+                                        <Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" />
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="18.0" styleClass="track-row">
+                                        <Label text="03" styleClass="track-index" />
+                                        <StackPane prefWidth="38.0" prefHeight="38.0" minWidth="38.0" minHeight="38.0" maxWidth="38.0" maxHeight="38.0" styleClass="cover-green-small"><Label text="♫" /></StackPane>
+                                        <VBox spacing="3.0"><Label text="Ace of Spades" styleClass="track-title" /><Label text="Motörhead" styleClass="track-artist" /></VBox>
+                                        <Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" />
+                                    </HBox>
+                                </VBox>
+                            </VBox>
+                        </GridPane>
+                    </VBox>
+                </center>
+
+                <bottom>
+                    <HBox alignment="CENTER_LEFT" spacing="18.0" prefHeight="68.0" minHeight="68.0" maxHeight="68.0" styleClass="player">
+                        <StackPane prefWidth="50.0" prefHeight="50.0" minWidth="50.0" minHeight="50.0" maxWidth="50.0" maxHeight="50.0" styleClass="now-cover"><Label text="▥" /></StackPane>
+                        <VBox spacing="4.0">
+                            <Label text="Death Grips is Online" styleClass="now-title" />
+                            <Label text="DEATH GRIPS" styleClass="now-artist" />
+                        </VBox>
+                        <Label text="♡" styleClass="player-muted" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="⤨" styleClass="player-muted" />
+                        <Label text="|◀" styleClass="player-muted" />
+                        <Button text="▶" styleClass="play-button" />
+                        <Label text="▶|" styleClass="player-muted" />
+                        <Label text="⇄" styleClass="player-muted" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <VBox alignment="CENTER" spacing="4.0" prefWidth="210.0">
+                            <ProgressBar progress="0.58" maxWidth="210.0" styleClass="progress" />
+                            <HBox alignment="CENTER" spacing="120.0">
+                                <Label text="1:42" styleClass="time" />
+                                <Label text="3:15" styleClass="time" />
+                            </HBox>
+                        </VBox>
+                        <Label text="≡" styleClass="player-muted" />
+                        <Label text="▣" styleClass="player-muted" />
+                        <Label text="♩" styleClass="player-muted" />
+                        <ProgressBar progress="0.70" prefWidth="84.0" styleClass="volume" />
+                    </HBox>
+                </bottom>
+            </BorderPane>
+    </HBox>
+</StackPane>
