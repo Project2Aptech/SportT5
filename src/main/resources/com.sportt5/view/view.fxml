@@ -9,9 +9,7 @@
            prefWidth="1220.0" prefHeight="810.0" minWidth="1220.0" minHeight="810.0"
            maxWidth="1220.0" maxHeight="810.0" styleClass="main-scene">
 
-    <fx:include fx:id="authView" source="auth/auth-view.fxml"/>
-
-    <HBox fx:id="homeView" visible="false" managed="false"
+    <HBox fx:id="homeView"
           prefWidth="1220.0" prefHeight="810.0" minWidth="1220.0" minHeight="810.0"
           maxWidth="1220.0" maxHeight="810.0" styleClass="home-shell">
 
