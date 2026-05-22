@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            visible="false" managed="false"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="28.0" styleClass="playlist-body">
+        <HBox alignment="CENTER_LEFT" spacing="32.0">
+            <StackPane prefWidth="220.0" prefHeight="220.0" styleClass="playlist-hero-art">
+                <Label text="▯" />
+            </StackPane>
+            <VBox spacing="12.0">
+                <Label text="PUBLIC PLAYLIST" styleClass="playlist-eyebrow" />
+                <Label text="Late Night Vibes" styleClass="playlist-heading" />
+                <HBox spacing="10.0">
+                    <Label text="Alex Rivers" styleClass="playlist-meta-strong" />
+                    <Label text="•" styleClass="playlist-meta" />
+                    <Label text="42 songs" styleClass="playlist-meta" />
+                    <Label text="•" styleClass="playlist-meta" />
+                    <Label text="2h 45min" styleClass="playlist-meta" />
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="18.0">
+            <Button text="▶" styleClass="playlist-play-button" />
+            <Button text="Follow" styleClass="follow-button" />
+            <Label text="•••" styleClass="row-action" />
+        </HBox>
+
+        <GridPane hgap="18.0" vgap="14.0" styleClass="playlist-table">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="7.0" />
+                <ColumnConstraints percentWidth="40.0" />
+                <ColumnConstraints percentWidth="38.0" />
+                <ColumnConstraints percentWidth="15.0" />
+            </columnConstraints>
+            <Label text="#" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
+            <Label text="TITLE" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
+            <Label text="ALBUM" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+            <Label text="DURATION" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+
+            <Label text="1" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="playlist-rank-active" />
+            <HBox spacing="12.0" GridPane.rowIndex="1" GridPane.columnIndex="1"><StackPane prefWidth="32.0" prefHeight="32.0" styleClass="song-thumb thumb-city" /><VBox spacing="1.0"><Label text="Midnight City" styleClass="playlist-song-active" /><Label text="M83" styleClass="table-text" /></VBox></HBox>
+            <Label text="Hurry Up, We're Dreaming" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="table-text" />
+            <Label text="4:03" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="table-text" />
+
+            <Label text="2" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="table-text" />
+            <HBox spacing="12.0" GridPane.rowIndex="2" GridPane.columnIndex="1"><StackPane prefWidth="32.0" prefHeight="32.0" styleClass="song-thumb thumb-orange" /><VBox spacing="1.0"><Label text="Nightcall" styleClass="table-title" /><Label text="Kavinsky" styleClass="table-text" /></VBox></HBox>
+            <Label text="OutRun" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="table-text" />
+            <Label text="4:18" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="table-text" />
+
+            <Label text="3" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="table-text" />
+            <HBox spacing="12.0" GridPane.rowIndex="3" GridPane.columnIndex="1"><StackPane prefWidth="32.0" prefHeight="32.0" styleClass="song-thumb thumb-blue" /><VBox spacing="1.0"><Label text="Instant Crush" styleClass="table-title" /><Label text="Daft Punk ft. Julian Casablancas" styleClass="table-text" /></VBox></HBox>
+            <Label text="Random Access Memories" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="table-text" />
+            <Label text="5:37" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="table-text" />
+
+            <Label text="4" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="table-text" />
+            <HBox spacing="12.0" GridPane.rowIndex="4" GridPane.columnIndex="1"><StackPane prefWidth="32.0" prefHeight="32.0" styleClass="song-thumb thumb-gold" /><VBox spacing="1.0"><Label text="After Hours" styleClass="table-title" /><Label text="The Weeknd" styleClass="table-text" /></VBox></HBox>
+            <Label text="After Hours" GridPane.rowIndex="4" GridPane.columnIndex="2" styleClass="table-text" />
+            <Label text="6:02" GridPane.rowIndex="4" GridPane.columnIndex="3" styleClass="table-text" />
+        </GridPane>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="24.0" styleClass="home-body">
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Top Albums" styleClass="section-title" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="‹" styleClass="round-button" />
+            <Button text="›" styleClass="round-button" />
+        </HBox>
+
+        <HBox spacing="26.0">
+            <VBox spacing="8.0" prefWidth="124.0" styleClass="album-card">
+                <StackPane prefWidth="124.0" prefHeight="124.0" styleClass="cover cover-green"><Label text="▲" /></StackPane>
+                <Label text="Electric Dreams" styleClass="album-title" />
+                <Label text="Neon Circuit" styleClass="album-artist" />
+            </VBox>
+            <VBox spacing="8.0" prefWidth="124.0" styleClass="album-card">
+                <StackPane prefWidth="124.0" prefHeight="124.0" styleClass="cover cover-phone"><Label text="▯" /></StackPane>
+                <Label text="Midnight City" styleClass="album-title" />
+                <Label text="Echo Wave" styleClass="album-artist" />
+            </VBox>
+            <VBox spacing="8.0" prefWidth="124.0" styleClass="album-card">
+                <StackPane prefWidth="124.0" prefHeight="124.0" styleClass="cover cover-blue"><Label text="✦" /></StackPane>
+                <Label text="Pulse Velocity" styleClass="album-title" />
+                <Label text="Vibe Tribe" styleClass="album-artist" />
+            </VBox>
+            <VBox spacing="8.0" prefWidth="124.0" styleClass="album-card">
+                <StackPane prefWidth="124.0" prefHeight="124.0" styleClass="cover cover-orb"><Label text="◉" /></StackPane>
+                <Label text="Zero Gravity" styleClass="album-title" />
+                <Label text="Orbit Collective" styleClass="album-artist" />
+            </VBox>
+            <VBox spacing="8.0" prefWidth="124.0" styleClass="album-card">
+                <StackPane prefWidth="124.0" prefHeight="124.0" styleClass="cover cover-mountain"><Label text="◆" /></StackPane>
+                <Label text="Distorted Realities" styleClass="album-title" />
+                <Label text="Fragment" styleClass="album-artist" />
+            </VBox>
+        </HBox>
+
+        <GridPane hgap="48.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0" />
+                <ColumnConstraints percentWidth="50.0" />
+            </columnConstraints>
+            <VBox spacing="18.0" GridPane.columnIndex="0">
+                <Label text="Latest Albums" styleClass="section-title" />
+                <VBox spacing="16.0">
+                    <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="track-row"><Label text="01" styleClass="track-index" /><StackPane prefWidth="36.0" prefHeight="36.0" styleClass="mini-cover cover-amber"><Label text="▰" /></StackPane><VBox spacing="2.0"><Label text="Random Access Memories" styleClass="track-title" /><Label text="Daft Punk" styleClass="track-artist" /></VBox><Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" /></HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="track-row"><Label text="02" styleClass="track-index" /><StackPane prefWidth="36.0" prefHeight="36.0" styleClass="mini-cover cover-teal"><Label text="▰" /></StackPane><VBox spacing="2.0"><Label text="Glow On" styleClass="track-title" /><Label text="Turnstile" styleClass="track-artist" /></VBox><Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" /></HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="track-row"><Label text="03" styleClass="track-index" /><StackPane prefWidth="36.0" prefHeight="36.0" styleClass="mini-cover cover-neon"><Label text="✦" /></StackPane><VBox spacing="2.0"><Label text="Dopethrone" styleClass="track-title" /><Label text="Electric Wizard" styleClass="track-artist" /></VBox><Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" /></HBox>
+                </VBox>
+            </VBox>
+            <VBox spacing="18.0" GridPane.columnIndex="1">
+                <Label text="Latest Singles" styleClass="section-title" />
+                <VBox spacing="16.0">
+                    <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="track-row"><Label text="01" styleClass="track-index" /><StackPane prefWidth="36.0" prefHeight="36.0" styleClass="mini-cover cover-orb-small"><Label text="◉" /></StackPane><VBox spacing="2.0"><Label text="Feel Good Inc." styleClass="track-title" /><Label text="Gorillaz" styleClass="track-artist" /></VBox><Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" /></HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="track-row"><Label text="02" styleClass="track-index" /><StackPane prefWidth="36.0" prefHeight="36.0" styleClass="mini-cover cover-violet"><Label text="╱" /></StackPane><VBox spacing="2.0"><Label text="Get Lucky" styleClass="track-title" /><Label text="Daft Punk" styleClass="track-artist" /></VBox><Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" /></HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="track-row"><Label text="03" styleClass="track-index" /><StackPane prefWidth="36.0" prefHeight="36.0" styleClass="mini-cover cover-green-small"><Label text="♫" /></StackPane><VBox spacing="2.0"><Label text="Ace of Spades" styleClass="track-title" /><Label text="Motörhead" styleClass="track-artist" /></VBox><Region HBox.hgrow="ALWAYS" /><Label text="♡" styleClass="row-action" /><Label text="•••" styleClass="row-action" /></HBox>
+                </VBox>
+            </VBox>
+        </GridPane>
+    </VBox>
+</ScrollPane>
