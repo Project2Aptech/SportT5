@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      prefWidth="205.0" prefHeight="810.0" minWidth="205.0" maxWidth="205.0" styleClass="home-sidebar">
+    <Label text="SPORT T5" styleClass="home-brand" />
+    <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="home-profile">
+        <StackPane prefWidth="36.0" prefHeight="36.0" styleClass="home-avatar">
+            <Label text="▣" />
+        </StackPane>
+        <VBox spacing="2.0">
+            <Label fx:id="profileNameLabel" text="Alex Studio" styleClass="profile-name" />
+            <Label fx:id="profileTierLabel" text="PREMIUM" styleClass="profile-tier" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="⌄" styleClass="muted" />
+    </HBox>
+
+    <Label text="BROWSE" styleClass="nav-title" />
+    <VBox spacing="5.0">
+        <HBox fx:id="homeNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showHomePage" styleClass="nav-active">
+            <Label text="⌂" styleClass="nav-icon" />
+            <Label text="Home" />
+        </HBox>
+        <HBox fx:id="genreNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showGenrePage" styleClass="nav-item">
+            <Label text="△" styleClass="nav-icon" />
+            <Label text="Genre" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="▥" styleClass="nav-icon" />
+            <Label text="Top Charts" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="◉" styleClass="nav-icon" />
+            <Label text="Podcast" />
+        </HBox>
+    </VBox>
+
+    <Label text="LIBRARY" styleClass="nav-title library-title" />
+    <VBox spacing="5.0">
+        <HBox fx:id="favouritesNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showFavouritesPage" styleClass="nav-item">
+            <Label text="♡" styleClass="nav-icon" />
+            <Label text="Favourites" />
+        </HBox>
+        <HBox fx:id="playlistNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showPlaylistPage" styleClass="nav-item">
+            <Label text="♬" styleClass="nav-icon" />
+            <Label text="Playlist" />
+        </HBox>
+    </VBox>
+    <Region VBox.vgrow="ALWAYS" />
+    <HBox fx:id="accountNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showAccountPage" styleClass="nav-item">
+        <Label text="♙" styleClass="nav-icon" />
+        <Label text="Account Settings" />
+    </HBox>
+    <Label text="STUDIO DESKTOP V2.0" styleClass="version" />
+</VBox>

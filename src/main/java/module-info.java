@@ -12,6 +12,7 @@ module com.sportt5 {
     requires com.zaxxer.hikari;
 
     opens com.sportt5 to javafx.fxml;
+    opens com.sportt5.controller to javafx.fxml;
     opens com.sportt5.controller.home to javafx.fxml;
     opens com.sportt5.controller.library to javafx.fxml;
     exports com.sportt5;
