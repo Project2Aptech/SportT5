@@ -3,26 +3,11 @@ package com.sportt5.controller;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 public class AppController {
-
-    // Auth
-    @FXML private StackPane authView;
-    @FXML private VBox loginCard;
-    @FXML private TextField loginEmailField;
-    @FXML private PasswordField loginPasswordField;
-    @FXML private Label loginStatusLabel;
-    @FXML private VBox signupCard;
-    @FXML private TextField signupNameField;
-    @FXML private TextField signupEmailField;
-    @FXML private PasswordField signupPasswordField;
-    @FXML private Label signupStatusLabel;
 
     // Home shell
     @FXML private HBox homeView;
@@ -54,39 +39,6 @@ public class AppController {
 
     @FXML
     public void initialize() {}
-
-    // --- Auth ---
-
-    @FXML
-    private void showLogin() {
-        loginCard.setVisible(true);
-        loginCard.setManaged(true);
-        signupCard.setVisible(false);
-        signupCard.setManaged(false);
-    }
-
-    @FXML
-    private void showSignup() {
-        signupCard.setVisible(true);
-        signupCard.setManaged(true);
-        loginCard.setVisible(false);
-        loginCard.setManaged(false);
-    }
-
-    @FXML
-    private void forgotPassword() {}
-
-    @FXML
-    private void signIn() {
-        // TODO: validate credentials
-        setVisible(authView, false);
-        setVisible(homeView, true);
-    }
-
-    @FXML
-    private void signUp() {
-        // TODO: register user
-    }
 
     // --- Navigation ---
 
