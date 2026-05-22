@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="library-scroll" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sportt5.controller.library.LibraryController">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="library-scroll" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sportt5.controller.LibraryController">
     <stylesheets>
         <URL value="@../../css/library_css.css" />
     </stylesheets>

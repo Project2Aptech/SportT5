@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sportt5.controller.PlayerBarController"
       alignment="CENTER_LEFT" spacing="16.0" prefHeight="64.0" minHeight="64.0" maxHeight="64.0" styleClass="player">
     <StackPane prefWidth="46.0" prefHeight="46.0" styleClass="now-cover"><Label text="▥" /></StackPane>
     <VBox spacing="3.0"><Label text="Death Grips is Online" styleClass="now-title" /><Label text="DEATH GRIPS" styleClass="now-artist" /></VBox>

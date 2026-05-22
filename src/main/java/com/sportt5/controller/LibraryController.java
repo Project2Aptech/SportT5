@@ -1,8 +1,6 @@
-package com.sportt5.controller.library;
+package com.sportt5.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
