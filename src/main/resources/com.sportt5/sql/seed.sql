@@ -1,11 +1,10 @@
-USE sportt5;
 
 /* =====================================================
    USERS
 ===================================================== */
 
-    /* =====================================================
-   USERS
+/* =====================================================
+USERS
 ===================================================== */
 
 INSERT INTO users (
@@ -84,6 +83,10 @@ VALUES
    SONGS
 ===================================================== */
 
+/* =====================================================
+   SONGS (Đã sửa sạch lỗi cú pháp)
+===================================================== */
+
 INSERT INTO songs (
     artist_id,
     album_id,
@@ -98,342 +101,342 @@ INSERT INTO songs (
 )
 VALUES
     (
-        artist_id 1,
-        album_id 1,
-        title 'E Là Không Thể',
-        duration_seconds 210,
-        file_url 'songs/Anh_Quân_Idol_-_E_Là_Không_Thể.mp3',
-        cover_url 'covers/song1.jpg',
-        track_number 1,
-        play_count 1200,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        1,
+        1,
+        'E Là Không Thể',
+        210,
+        'songs/Anh_Quân_Idol_-_E_Là_Không_Thể.mp3',
+        'covers/song1.jpg',
+        1,
+        1200,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 1,
-        album_id 1,
-        title 'Chiều Thu Hoa Bóng Nắng',
-        duration_seconds 205,
-        file_url 'songs/DatKaa_-_Chiều_Thu_Hoa_Bóng_Nắng.mp3',
-        cover_url 'covers/song2.jpg',
-        track_number 2,
-        play_count 1800,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        1,
+        1,
+        'Chiều Thu Hoa Bóng Nắng',
+        205,
+        'songs/DatKaa_-_Chiều_Thu_Hoa_Bóng_Nắng.mp3',
+        'covers/song2.jpg',
+        2,
+        1800,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 1,
-        album_id 1,
-        title 'Đông Phai Mờ Dáng Ai',
-        duration_seconds 240,
-        file_url 'songs/DatKaa_-_Đông_Phai_Mờ_Dáng_Ai.mp3',
-        cover_url 'covers/song3.jpg',
-        track_number 3,
-        play_count 1500,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        1,
+        1,
+        'Đông Phai Mờ Dáng Ai',
+        240,
+        'songs/DatKaa_-_Đông_Phai_Mờ_Dáng_Ai.mp3',
+        'covers/song3.jpg',
+        3,
+        1500,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 2,
-        album_id 2,
-        title 'Hoa Nở Không Màu',
-        duration_seconds 250,
-        file_url 'songs/Hoài_Lâm_-_Hoa_Nở_Không_Màu.mp3',
-        cover_url 'covers/song4.jpg',
-        track_number 1,
-        play_count 3500,
-        status 'LIVE',
-        required_account_type 'PRO'
+        2,
+        2,
+        'Hoa Nở Không Màu',
+        250,
+        'songs/Hoài_Lâm_-_Hoa_Nở_Không_Màu.mp3',
+        'covers/song4.jpg',
+        1,
+        3500,
+        'LIVE',
+        'PRO'
     ),
 
     (
-        artist_id 2,
-        album_id 2,
-        title 'Cay',
-        duration_seconds 200,
-        file_url 'songs/Khắc_Hưng_-_Cay.mp3',
-        cover_url 'covers/song5.jpg',
-        track_number 2,
-        play_count 900,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        2,
+        2,
+        'Cay',
+        200,
+        'songs/Khắc_Hưng_-_Cay.mp3',
+        'covers/song5.jpg',
+        2,
+        900,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 3,
-        album_id 3,
-        title 'Hôm Nay Em Cưới Rồi',
-        duration_seconds 230,
-        file_url 'songs/Khải_Đăng_-_Hôm_Nay_Em_Cưới_Rồi.mp3',
-        cover_url 'covers/song6.jpg',
-        track_number 1,
-        play_count 1700,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        3,
+        3,
+        'Hôm Nay Em Cưới Rồi',
+        230,
+        'songs/Khải_Đăng_-_Hôm_Nay_Em_Cưới_Rồi.mp3',
+        'covers/song6.jpg',
+        1,
+        1700,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 3,
-        album_id 3,
-        title 'Lời Tâm Sự Số 3',
-        duration_seconds 260,
-        file_url 'songs/Lãng_-_lời_tâm_sự_3.mp3',
-        cover_url 'covers/song7.jpg',
-        track_number 2,
-        play_count 1100,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        3,
+        3,
+        'Lời Tâm Sự Số 3',
+        260,
+        'songs/Lãng_-_lời_tâm_sự_3.mp3',
+        'covers/song7.jpg',
+        2,
+        1100,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 4,
-        album_id 4,
-        title 'Bước Qua Đời Nhau',
-        duration_seconds 240,
-        file_url 'songs/Lê_Bảo_Bình_-_Bước_Qua_Đời_Nhau.mp3',
-        cover_url 'covers/song8.jpg',
-        track_number 1,
-        play_count 4200,
-        status 'LIVE',
-        required_account_type 'PRO'
+        4,
+        4,
+        'Bước Qua Đời Nhau',
+        240,
+        'songs/Lê_Bảo_Bình_-_Bước_Qua_Đời_Nhau.mp3',
+        'covers/song8.jpg',
+        1,
+        4200,
+        'LIVE',
+        'PRO'
     ),
 
     (
-        artist_id 4,
-        album_id 4,
-        title 'Lá Xa Lìa Cành',
-        duration_seconds 220,
-        file_url 'songs/Lê_Bảo_Bình_-_Lá_Xa_Lìa_Cành.mp3',
-        cover_url 'covers/song9.jpg',
-        track_number 2,
-        play_count 3900,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        4,
+        4,
+        'Lá Xa Lìa Cành',
+        220,
+        'songs/Lê_Bảo_Bình_-_Lá_Xa_Lìa_Cành.mp3',
+        'covers/song9.jpg',
+        2,
+        3900,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 4,
-        album_id 4,
-        title 'Thích Thì Đến',
-        duration_seconds 210,
-        file_url 'songs/Lê_Bảo_Bình_-_THÍCH_THÌ_ĐẾN.mp3',
-        cover_url 'covers/song10.jpg',
-        track_number 3,
-        play_count 2500,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        4,
+        4,
+        'Thích Thì Đến',
+        210,
+        'songs/Lê_Bảo_Bình_-_THÍCH_THÌ_ĐẾN.mp3',
+        'covers/song10.jpg',
+        3,
+        2500,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 5,
-        album_id 5,
-        title 'Bài Này Chill Phết',
-        duration_seconds 230,
-        file_url 'songs/MIN_-_Bài_này_chill_phết.mp3',
-        cover_url 'covers/song11.jpg',
-        track_number 1,
-        play_count 5100,
-        status 'LIVE',
-        required_account_type 'PREMIUM'
+        5,
+        5,
+        'Bài Này Chill Phết',
+        230,
+        'songs/MIN_-_Bài_này_chill_phết.mp3',
+        'covers/song11.jpg',
+        1,
+        5100,
+        'LIVE',
+        'PREMIUM'
     ),
 
     (
-        artist_id 5,
-        album_id 5,
-        title 'Già Vợ Yếu',
-        duration_seconds 215,
-        file_url 'songs/Ngô_Kiến_Huy_-_Già_Vợ_Yếu.mp3',
-        cover_url 'covers/song12.jpg',
-        track_number 2,
-        play_count 1300,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        5,
+        5,
+        'Già Vợ Yếu',
+        215,
+        'songs/Ngô_Kiến_Huy_-_Già_Vợ_Yếu.mp3',
+        'covers/song12.jpg',
+        2,
+        1300,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 6,
-        album_id 6,
-        title 'Sau Lời Từ Khước',
-        duration_seconds 260,
-        file_url 'songs/Phan_Mạnh_Quỳnh_-_Sau_Lời_Từ_Khước.mp3',
-        cover_url 'covers/song13.jpg',
-        track_number 1,
-        play_count 3000,
-        status 'LIVE',
-        required_account_type 'PRO'
+        6,
+        6,
+        'Sau Lời Từ Khước',
+        260,
+        'songs/Phan_Mạnh_Quỳnh_-_Sau_Lời_Từ_Khước.mp3',
+        'covers/song13.jpg',
+        1,
+        3000,
+        'LIVE',
+        'PRO'
     ),
 
     (
-        artist_id 6,
-        album_id 6,
-        title 'Họ Chưa Từng Sai',
-        duration_seconds 250,
-        file_url 'songs/Phúc_Rev_-_Họ_chưa_từng_sai.mp3',
-        cover_url 'covers/song14.jpg',
-        track_number 2,
-        play_count 2800,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        6,
+        6,
+        'Họ Chưa Từng Sai',
+        250,
+        'songs/Phúc_Rev_-_Họ_chưa_từng_sai.mp3',
+        'covers/song14.jpg',
+        2,
+        2800,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 7,
-        album_id 7,
-        title 'Anh Đã Không Biết Cách Yêu Em',
-        duration_seconds 235,
-        file_url 'songs/Quang_Dang_Tran_-ANH_ĐÃ_KHÔNG_BIẾT_CÁCH_YÊU_EM.mp3',
-        cover_url 'covers/song15.jpg',
-        track_number 1,
-        play_count 1400,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        7,
+        7,
+        'Anh Đã Không Biết Cách Yêu Em',
+        235,
+        'songs/Quang_Dang_Tran_-ANH_ĐÃ_KHÔNG_BIẾT_CÁCH_YÊU_EM.mp3',
+        'covers/song15.jpg',
+        1,
+        1400,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 7,
-        album_id 7,
-        title 'Còn Gì Đau Hơn Chữ Đã Từng',
-        duration_seconds 245,
-        file_url 'songs/Quân_A.P_-_Còn_Gì_Đau_Hơn_Chữ_Đã_Từng.mp3',
-        cover_url 'covers/song16.jpg',
-        track_number 2,
-        play_count 3600,
-        status 'LIVE',
-        required_account_type 'PRO'
+        7,
+        7,
+        'Còn Gì Đau Hơn Chữ Đã Từng',
+        245,
+        'songs/Quân_A.P_-_Còn_Gì_Đau_Hơn_Chữ_Đã_Từng.mp3',
+        'covers/song16.jpg',
+        2,
+        3600,
+        'LIVE',
+        'PRO'
     ),
 
     (
-        artist_id 8,
-        album_id 8,
-        title 'Ai Là Người Thương Em',
-        duration_seconds 220,
-        file_url 'songs/Quân_A.P_-_Ai_Là_Người_Thương_Em.mp3',
-        cover_url 'covers/song17.jpg',
-        track_number 1,
-        play_count 4100,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        8,
+        8,
+        'Ai Là Người Thương Em',
+        220,
+        'songs/Quân_A.P_-_Ai_Là_Người_Thương_Em.mp3',
+        'covers/song17.jpg',
+        1,
+        4100,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 8,
-        album_id 8,
-        title 'Âm Thầm Bên Em',
-        duration_seconds 255,
-        file_url 'songs/Sơn_Tùng_M-TP_-_Âm_Thầm_Bên_Em.mp3',
-        cover_url 'covers/song18.jpg',
-        track_number 2,
-        play_count 8000,
-        status 'LIVE',
-        required_account_type 'PREMIUM'
+        8,
+        8,
+        'Âm Thầm Bên Em',
+        255,
+        'songs/Sơn_Tùng_M-TP_-_Âm_Thầm_Bên_Em.mp3',
+        'covers/song18.jpg',
+        2,
+        8000,
+        'LIVE',
+        'PREMIUM'
     ),
 
     (
-        artist_id 9,
-        album_id 9,
-        title 'Ngày Mai Người Ta Lấy Chồng',
-        duration_seconds 240,
-        file_url 'songs/Thành_Đạt_-_Ngày_Mai_Người_Ta_Lấy_Chồng.mp3',
-        cover_url 'covers/song19.jpg',
-        track_number 1,
-        play_count 4600,
-        status 'LIVE',
-        required_account_type 'PRO'
+        9,
+        9,
+        'Ngày Mai Người Ta Lấy Chồng',
+        240,
+        'songs/Thành_Đạt_-_Ngày_Mai_Người_Ta_Lấy_Chồng.mp3',
+        'covers/song19.jpg',
+        1,
+        4600,
+        'LIVE',
+        'PRO'
     ),
 
     (
-        artist_id 9,
-        album_id 9,
-        title 'Trường Thế Vinh',
-        duration_seconds 215,
-        file_url 'songs/Tình_Yêu_Hoa_Gió__Truong_Thế_Vinh.mp3',
-        cover_url 'covers/song20.jpg',
-        track_number 2,
-        play_count 900,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        9,
+        9,
+        'Tình Yêu Hoa Gió',
+        215,
+        'songs/Tình_Yêu_Hoa_Gió__Truong_Thế_Vinh.mp3',
+        'covers/song20.jpg',
+        2,
+        900,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 10,
-        album_id 10,
-        title 'Vạn Lý Sầu',
-        duration_seconds 225,
-        file_url 'songs/TRO-Music_-_VẠN_LÝ_SẦU.mp3',
-        cover_url 'covers/song21.jpg',
-        track_number 1,
-        play_count 6200,
-        status 'LIVE',
-        required_account_type 'PREMIUM'
+        10,
+        10,
+        'Vạn Lý Sầu',
+        225,
+        'songs/TRO-Music_-_VẠN_LÝ_SẦU.mp3',
+        'covers/song21.jpg',
+        1,
+        6200,
+        'LIVE',
+        'PREMIUM'
     ),
 
     (
-        artist_id 10,
-        album_id 10,
-        title 'Đà Lạt Cơn Mưa Không Em',
-        duration_seconds 245,
-        file_url 'songs/TRO-Music_-_ĐÀ_LẠT_CƠN_MƯA_KHÔNG_EM.mp3',
-        cover_url 'covers/song22.jpg',
-        track_number 2,
-        play_count 3100,
-        status 'LIVE',
-        required_account_type 'PRO'
+        10,
+        10,
+        'Đà Lạt Cơn Mưa Không Em',
+        245,
+        'songs/TRO-Music_-_ĐÀ_LẠT_CƠN_MƯA_KHÔNG_EM.mp3',
+        'covers/song22.jpg',
+        2,
+        3100,
+        'LIVE',
+        'PRO'
     ),
 
     (
-        artist_id 11,
-        album_id 11,
-        title 'Tái Sinh',
-        duration_seconds 250,
-        file_url 'songs/Tùng_Dương_-_Tái_Sinh.mp3',
-        cover_url 'covers/song23.jpg',
-        track_number 1,
-        play_count 1500,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        11,
+        11,
+        'Tái Sinh',
+        250,
+        'songs/Tùng_Dương_-_Tái_Sinh.mp3',
+        'covers/song23.jpg',
+        1,
+        1500,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 11,
-        album_id 11,
-        title 'Ngày Mai Em Đi Mất',
-        duration_seconds 235,
-        file_url 'songs/Đạt_G_-_Ngày_Mai_Em_Đi_Mất.mp3',
-        cover_url 'covers/song24.jpg',
-        track_number 2,
-        play_count 1700,
-        status 'LIVE',
-        required_account_type 'NORMAL'
+        11,
+        11,
+        'Ngày Mai Em Đi Mất',
+        235,
+        'songs/Đạt_G_-_Ngày_Mai_Em_Đi_Mất.mp3',
+        'covers/song24.jpg',
+        2,
+        1700,
+        'LIVE',
+        'NORMAL'
     ),
 
     (
-        artist_id 12,
-        album_id 12,
-        title 'Lối Nhỏ',
-        duration_seconds 210,
-        file_url 'songs/Đen_-_Lối_Nhỏ.mp3',
-        cover_url 'covers/song25.jpg',
-        track_number 1,
-        play_count 9500,
-        status 'LIVE',
-        required_account_type 'PREMIUM'
+        12,
+        12,
+        'Lối Nhỏ',
+        210,
+        'songs/Đen_-_Lối_Nhỏ.mp3',
+        'covers/song25.jpg',
+        1,
+        9500,
+        'LIVE',
+        'PREMIUM'
     ),
 
     (
-        artist_id 12,
-        album_id 12,
-        title 'Đỉnh Đúng',
-        duration_seconds 260,
-        file_url 'songs/ĐỂ_VƯƠNG_-_ĐỈNH_ĐÚNG.mp3',
-        cover_url 'covers/song26.jpg',
-        track_number 2,
-        play_count 1200,
-        status 'LIVE',
-        required_account_type 'NORMAL'
-    )
+        12,
+        12,
+        'Đế Vương',
+        260,
+        'songs/ĐỂ_VƯƠNG_-_ĐỈNH_ĐÚNG.mp3',
+        'covers/song26.jpg',
+        2,
+        1200,
+        'LIVE',
+        'NORMAL'
+    );
 /* =====================================================
    SONG GENRES
 ===================================================== */

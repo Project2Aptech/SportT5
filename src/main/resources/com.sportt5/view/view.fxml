@@ -13,12 +13,12 @@
           prefWidth="1220.0" prefHeight="810.0" minWidth="1220.0" minHeight="810.0"
           maxWidth="1220.0" maxHeight="810.0" styleClass="home-shell">
 
-        <fx:include source="components/sidebar.fxml"/>
+        <fx:include fx:id="sidebar" source="components/sidebar.fxml"/>
 
         <BorderPane prefWidth="1015.0" prefHeight="810.0" minWidth="1015.0" maxWidth="1015.0"
                     styleClass="home-content">
             <top>
-                <fx:include source="components/topbars.fxml"/>
+                <fx:include fx:id="topBar" source="components/topbars.fxml"/>
             </top>
             <center>
                 <StackPane>
