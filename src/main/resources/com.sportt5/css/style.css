@@ -955,6 +955,19 @@
     -fx-background-radius: 4;
 }
 
+.song-row {
+    -fx-alignment: CENTER_LEFT;
+    -fx-min-height: 44px;
+    -fx-border-color: transparent transparent rgba(255,255,255,0.04) transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-radius: 6;
+}
+
+.song-row:hover {
+    -fx-background-color: rgba(255,255,255,0.04);
+    -fx-cursor: hand;
+}
+
 .thumb-city {
     -fx-background-color: linear-gradient(to bottom, #161b22, #6a342e, #060707);
 }

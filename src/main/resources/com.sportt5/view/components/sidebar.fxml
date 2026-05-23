@@ -32,9 +32,9 @@
             <Label text="△" styleClass="nav-icon" />
             <Label text="Genre" />
         </HBox>
-        <HBox alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-            <Label text="▥" styleClass="nav-icon" />
-            <Label text="Top Charts" />
+        <HBox fx:id="playlistNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="♬" styleClass="nav-icon" />
+            <Label text="Playlist" />
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="◉" styleClass="nav-icon" />
@@ -47,10 +47,6 @@
         <HBox fx:id="favouritesNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="♡" styleClass="nav-icon" />
             <Label text="Favourites" />
-        </HBox>
-        <HBox fx:id="playlistNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-            <Label text="♬" styleClass="nav-icon" />
-            <Label text="Playlist" />
         </HBox>
     </VBox>
     <Region VBox.vgrow="ALWAYS" />
