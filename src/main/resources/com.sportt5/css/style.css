@@ -1323,3 +1323,28 @@
     -fx-background-color: rgba(145,178,255,0.14);
     -fx-text-fill: #b6c8ff;
 }
+
+.upload-art-drop {
+    -fx-background-color: rgba(255,255,255,0.035);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(73,238,120,0.28);
+    -fx-border-radius: 12;
+    -fx-border-style: segments(8, 7);
+}
+
+.upload-drop-icon {
+    -fx-text-fill: #49ee78;
+    -fx-font-size: 42px;
+    -fx-font-weight: 900;
+}
+
+.analytics-fill {
+    -fx-opacity: 0.88;
+}
+
+.fan-donut {
+    -fx-background-color:
+        radial-gradient(center 50% 50%, radius 32%, #101111 0%, #101111 58%, transparent 60%),
+        radial-gradient(center 50% 50%, radius 78%, #49ee78 0%, #49ee78 48%, #335f44 49%, #335f44 72%, transparent 73%);
+    -fx-background-radius: 80;
+}
