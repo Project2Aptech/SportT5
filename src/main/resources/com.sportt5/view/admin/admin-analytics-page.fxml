@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            visible="false" managed="false"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT" spacing="18.0">
+            <VBox spacing="5.0">
+                <Label text="Analytics" styleClass="admin-title" />
+                <Label text="Platform-wide streams, revenue, and growth trends." styleClass="admin-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox spacing="6.0" styleClass="chart-tabs">
+                <Button text="7 Days" styleClass="chart-tab-active" />
+                <Button text="30 Days" styleClass="chart-tab" />
+                <Button text="1 Year" styleClass="chart-tab" />
+            </HBox>
+        </HBox>
+
+        <VBox spacing="14.0" styleClass="admin-panel">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Platform Revenue" styleClass="panel-title" />
+                <Region HBox.hgrow="ALWAYS" />
+            </HBox>
+            <StackPane prefHeight="210.0" styleClass="chart-area">
+                <Pane styleClass="chart-grid" />
+                <Pane styleClass="chart-fill" />
+                <HBox alignment="BOTTOM_LEFT" spacing="48.0" StackPane.alignment="BOTTOM_LEFT" styleClass="chart-points">
+                    <Label text="01 Oct" />
+                    <Label text="07 Oct" />
+                    <Label text="14 Oct" />
+                    <Label text="21 Oct" />
+                    <Label text="30 Oct" />
+                </HBox>
+            </StackPane>
+        </VBox>
+    </VBox>
+</ScrollPane>
