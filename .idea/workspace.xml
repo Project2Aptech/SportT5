@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="home_dao and library_dao">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/util/ServerConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/GenreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/GenreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/dao/dao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/dao/genre/genre_dao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/dao/home/home_dao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/dao/library/library_dao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/dao/playlist/playlist_dao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/database/DataSourceManagement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/util/util.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/TopBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/TopBarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/admin-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/artist-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/favourites-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/library-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/genre-page.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/playlist-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Project2Aptech/SportT5&quot;,
-    &quot;accountId&quot;: &quot;83d35872-54f8-4df9-85d7-b28e6f4b7de8&quot;
+    &quot;accountId&quot;: &quot;723fbd73-9763-4890-bf83-34badf44c4f8&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -84,7 +83,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;hiep&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dang&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/DOCS/SportT5/SportT5&quot;,
@@ -93,7 +92,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -121,8 +120,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
-        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.138" />
       </set>
     </attachedChunks>
   </component>
@@ -135,11 +134,9 @@
       <updated>1778760431420</updated>
       <workItem from="1779288888455" duration="639000" />
       <workItem from="1779408138238" duration="1112000" />
-      <workItem from="1779548642631" duration="2385000" />
-      <workItem from="1779586351431" duration="3491000" />
-      <workItem from="1779617248271" duration="752000" />
-      <workItem from="1779630932960" duration="291000" />
-      <workItem from="1779708692279" duration="3091000" />
+      <workItem from="1779548642631" duration="3465000" />
+      <workItem from="1779612645970" duration="7295000" />
+      <workItem from="1779709674823" duration="2100000" />
     </task>
     <servers />
   </component>
@@ -168,9 +165,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

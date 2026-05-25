@@ -25,15 +25,6 @@
             <Button text="▶  START LISTENING" styleClass="listen-button" />
         </VBox>
     </StackPane>
-    <HBox fx:id="genreTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
-        <TextField promptText="Search artists, albums, or tracks..." prefWidth="420.0" maxWidth="420.0" styleClass="store-search" />
-        <Region HBox.hgrow="ALWAYS" />
-        <HBox alignment="CENTER_RIGHT" spacing="18.0" styleClass="store-icons">
-            <Label text="♟" />
-            <Label text="⚙" />
-            <Label text="☻" />
-        </HBox>
-    </HBox>
     <HBox fx:id="libraryTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
         <TextField promptText="Search in library..." prefWidth="320.0" maxWidth="320.0" styleClass="store-search" />
         <Region HBox.hgrow="ALWAYS" />
@@ -43,7 +34,7 @@
             <Label text="☻" />
         </HBox>
     </HBox>
-    <HBox fx:id="playlistTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
+    <HBox fx:id="albumTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
         <TextField promptText="Search for tracks, artists..." prefWidth="720.0" maxWidth="720.0" styleClass="store-search" />
         <Region HBox.hgrow="ALWAYS" />
         <HBox alignment="CENTER_RIGHT" spacing="18.0" styleClass="store-icons">
@@ -61,7 +52,7 @@
             <Label text="☻" />
         </HBox>
     </HBox>
-    <HBox fx:id="adminTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar admin-topbar">
+    <HBox fx:id="artistTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar admin-topbar">
         <TextField promptText="Search analytics, tracks, or fans..." prefWidth="360.0" maxWidth="360.0" styleClass="store-search" />
         <Region HBox.hgrow="ALWAYS" />
         <HBox alignment="CENTER_RIGHT" spacing="18.0" styleClass="store-icons">
