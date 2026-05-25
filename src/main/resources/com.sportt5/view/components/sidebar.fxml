@@ -28,29 +28,17 @@
             <Label text="⌂" styleClass="nav-icon" />
             <Label text="Home" />
         </HBox>
-        <HBox fx:id="genreNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-            <Label text="△" styleClass="nav-icon" />
-            <Label text="Genre" />
-        </HBox>
-        <HBox alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-            <Label text="▥" styleClass="nav-icon" />
-            <Label text="Top Charts" />
-        </HBox>
-        <HBox alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-            <Label text="◉" styleClass="nav-icon" />
-            <Label text="Podcast" />
-        </HBox>
-    </VBox>
-
-    <Label text="LIBRARY" styleClass="nav-title library-title" />
-    <VBox spacing="5.0">
-        <HBox fx:id="favouritesNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+        <HBox fx:id="libraryItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="♡" styleClass="nav-icon" />
-            <Label text="Favourites" />
+            <Label text="Library" />
         </HBox>
-        <HBox fx:id="playlistNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+        <HBox fx:id="albumItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="♬" styleClass="nav-icon" />
-            <Label text="Playlist" />
+            <Label text="Albums" />
+        </HBox>
+        <HBox fx:id="artistItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="✓" styleClass="nav-icon" />
+            <Label text="Artist" />
         </HBox>
     </VBox>
     <Region VBox.vgrow="ALWAYS" />

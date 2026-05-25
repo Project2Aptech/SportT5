@@ -12,11 +12,12 @@ public class AppController {
     // Home shell
     @FXML private HBox homeView;
     // Pages
-    @FXML private ScrollPane homePage;
-    @FXML private ScrollPane genrePage;
-    @FXML private ScrollPane favouritesPage;
-    @FXML private ScrollPane playlistPage;
     @FXML private ScrollPane accountPage;
+    @FXML private ScrollPane homePage;
+    @FXML private ScrollPane libraryPage;
+    @FXML private ScrollPane albumPage;
+    @FXML private ScrollPane artistPage;
+
 
     //Controllers
     @FXML private SidebarController sidebarController;
@@ -30,44 +31,29 @@ public class AppController {
     }
 
     // --- Navigation ---
-
     @FXML
-    public void showHomePage() {
-        showPage(homePage, topBarController.getHomeHero(), sidebarController.getHomeNavItem());
-    }
-
+    public void showAccountPage() { showPage(accountPage, topBarController.getAccountTopBar(), sidebarController.getAccountNavItem()); }
     @FXML
-    public void showGenrePage() {
-        showPage(genrePage, topBarController.getGenreTopBar(), sidebarController.getGenreNavItem());
-    }
-
+    public void showHomePage() { showPage(homePage, topBarController.getHomeHero(), sidebarController.getHomeNavItem()); }
     @FXML
-    public void showFavouritesPage() {
-        showPage(favouritesPage, topBarController.getLibraryTopBar(), sidebarController.getFavouritesNavItem());
-    }
-
+    public void showLibraryPage() { showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryItem()); }
     @FXML
-    public void showPlaylistPage() {
-        showPage(playlistPage, topBarController.getPlaylistTopBar(), sidebarController.getPlaylistNavItem());
-    }
-
+    public void showAlbumPage() { showPage(albumPage, topBarController.getAlbumTopBar(), sidebarController.getAlbumItem()); }
     @FXML
-    public void showAccountPage() {
-        showPage(accountPage, topBarController.getAccountTopBar(), sidebarController.getAccountNavItem());
-    }
+    public void showArtistPage() { showPage(artistPage, topBarController.getArtistTopBar(), sidebarController.getArtistItem()); }
 
     public void showPage(ScrollPane page, Node topBar, HBox navItem) {
-        setVisible(homePage, false);
-        setVisible(genrePage, false);
-        setVisible(favouritesPage, false);
-        setVisible(playlistPage, false);
         setVisible(accountPage, false);
+        setVisible(homePage, false);
+        setVisible(libraryPage, false);
+        setVisible(albumPage, false);
+        setVisible(artistPage, false);
 
-        setVisible(topBarController.getHomeHero(), false);
-        setVisible(topBarController.getGenreTopBar(), false);
-        setVisible(topBarController.getLibraryTopBar(), false);
-        setVisible(topBarController.getPlaylistTopBar(), false);
         setVisible(topBarController.getAccountTopBar(), false);
+        setVisible(topBarController.getHomeHero(), false);
+        setVisible(topBarController.getLibraryTopBar(), false);
+        setVisible(topBarController.getAlbumTopBar(), false);
+        setVisible(topBarController.getArtistTopBar(), false);
 
         sidebarController.resetNavStyles();
 
