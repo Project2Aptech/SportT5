@@ -1,0 +1,117 @@
+- 1. Login 
+- 2. Logout
+- 3. Đăng ký subscription
+- 4. Chỉnh sửa thông tin người dùng
+- 5. Search nhạc
+- 6. Lọc nhạc
+- 7. Thêm album
+- 8. Sửa album
+- 9. Xóa album
+- 10. Hiện dashboard artist
+- 11. Trình phát nhạc
+- 12. Sửa language
+- 13. Light/Dark mode
+- 14. Lưu nhạc (về máy)
+- 15. Tải nhạc (lên app)
+- 16. Rút tiền
+- 17. Thêm yêu thích
+- 18. Xóa yêu thích
+- 19. Duyệt nhạc
+- 20. Tải album (về máy)
+- 21. Xóa acc
+- 22. Follow artist
+- 23. Trending (hiện ở home) (tính theo play_count)
+- 24. Comment bài hát 
+- 25. Sort
+- 26. Sign up
+- 27. Forgot password
+- 28. Remember this device
+
+- [b] *Group các tính năng theo trang*
+	- *Login / Sign up:* 1, 2, 3, 26, 27, 28
+	- *Account Settings:* 4
+	- *Home:* 5, 14, 23
+	- *Library:* 6, phần Library của 8, 17, 25
+	- *Album:* 7, 8, 9, 20
+	- *Khung ngoài (lúc nào cũng hiện):* 5, 11, 12, 13, các nút để đi vào các trang
+	- *Admin:* 21, 25
+	- *Other:* 3, 4, 10, 16, 22, 24
+
+- **1. Login**
+	- Có 2 trường: email or username, password
+	- Textfield password có nút toggle che
+	- Checkbox remember this device
+	- Password sai có notify bên dưới: password sai / không tìm thấy người dùng
+- **2. Logout**
+	- Bấm vào avatar / username hiện các nút: logout, info, language, light/dark mode
+	- Ấn logout hiện confirm có logout không, có thì logout
+	- Đã logout rồi (Chưa đăng nhập lại), thì các trang: Albums, Playlist, Đăng ký subscription Yêu cầu đăng nhập mới có thể tạo
+- **3. Đăng ký subscription**
+	- Khi đăng ký account sẽ hiện trang đăng ký subscription sẵn. 
+	- Sau khi chọn và có account sẽ có nút đăng ký ở dưới tên người dùng, ấn vào hiện giao diện subscription, có thể nâng cấp lên tier cao hơn, hoặc hủy subcription đang đăng ký. 
+	- Hủy / nâng cấp sẽ có noti ở dưới góc thông báo người dùng (thành công / thất bại)
+- **4. Chỉnh sửa thông tin người dùng**
+	- Ở trang info của user có nút edit ở ava người dùng, ấn vào sẽ hiện trang edit
+	- Thông tin có thể edit: Username, ava, email, password
+	- Có nút edit ava riêng (???)
+- **5. Search nhạc**
+- **6. Lọc nhạc**
+	- Ở trang Library, sẽ có nút lọc, lọc theo: genre, artists, favourites
+- **7. Thêm album**
+	- Ở trang Album, có nút thêm album, ấn vào sẽ hiện giao diện thêm album
+	- Giao diện có các trường: Title, Cover_url (Không điền thì mặc định là cover của bài hát đầu tiên)
+- **8. Sửa album**
+	- Ấn vào album ở trang Album sẽ hiện ra chi tiết album cùng bài hát trong album. Sẽ có các nút: Thêm bài hát, Xóa bài hát khỏi album.
+	- Thêm bài hát sẽ hiện giao diện hiện ra các bài hát trong Library, có thể thêm nhiều bài cùng một lúc. (Ở trang Song detail và Library cũng có nút thêm vào albums, ấn sẽ hiện ra giao diện các albums đã có & thêm album mới, có thể thêm 1 bài hát vào nhiều albums cùng 1 lúc).
+	- Xóa bài hát sẽ hiện popup confirm có xóa hay không, có thì xóa khỏi albums.
+- **9. Xóa album**
+	- Ở trang Album, mỗi album có nút xóa album, ấn vào sẽ hiện popup confirm xóa album, nếu có sẽ xóa album. 
+- **10. Hiện dashboard artists**
+	- User nào có role artists sẽ có nút dashboard ở trên sidebar, ấn vào sẽ vào trang Dashboard.
+	- Trang dashboard sẽ có thông tin: Total revenue, Total followers, Danh sách nhạc đã đăng.
+	- Danh sách nhạc đã đăng sẽ có thông tin: Track cover, tên nhạc, ngày đăng, status (Live / Pending review), Số lượt nghe, Actions
+	- Status sẽ phụ thuộc vào enums status của bảng songs
+	- Actions sẽ có nút xóa & nút ẩn/hiện, xóa sẽ xóa khỏi database, ẩn/hiện phụ thuộc vào boolean is_available của bảng songs
+	- Có nút Upload new music, ấn sẽ hiện giao diện thêm nhạc, có các trường: Track cover, tên, file nhạc.
+- **11. Trình phát nhạc**
+	- Luôn luôn hiện trình phát nhạc ở dưới. Có các nút: Tráo, Quay lại bài trước, Nhảy sang bài sau, Loop. Có thanh chỉnh âm lượng, thanh hiện tiến trình bài hát (không cho tua)
+	- Tráo: Khi chọn bài nhạc trong Library, nút sẽ tối & không cho ấn. Chọn trong album ở trang Albums, nút sẽ sáng & cho ấn. Ấn sẽ sáng màu xanh, khi kết thúc bài sẽ random bài tiếp theo (không theo thứ tự trong album). Ấn lại sẽ quay lại phát theo thứ tự.
+	- Loop: Ấn sẽ cho lặp lại bài hát.
+- **12. Sửa language**
+	- Khi ấn vào nút language, sẽ cho chọn ngôn ngữ (tạm thời có tiếng Anh và tiếng Việt). Chọn ngôn ngữ này sẽ chuyển toàn bộ ngôn ngữ trong trang sang tiếng đã chọn
+- **13. Light/Dark Mode**
+	- Khi ấn vào nút Light/Dark mode, nền của trang sẽ chuyển từ đen sang trắng, chữ từ trắng sang đen (nếu ở Dark mode) và ngược lại nếu ở Light mode. Màu xanh giữ nguyên.
+- **14. Lưu nhạc về máy**
+	- Ấn nút 3 chấm sẽ hiện nút download, ấn download sẽ tải về.
+- **15. Tải nhạc lên app**
+	- Góc trang dashboard sẽ có nút Upload new music, ấn sẽ hiện giao diện tải nhạc lên app.
+	- Giao diện có những trường: tên bài hát, track cover, file bài hát.
+- **16. Rút tiền**
+	- Trang dashboard sẽ có nút rút tiền, ấn sẽ (tạm thời) hiện popup confirm bạn có muốn rút tiền không, chọn có sẽ thực hiện rút tiền ra khỏi account
+- **17. Thêm yêu thích**
+	- Mỗi bài nhạc trong danh sách nhạc trong Library có nút trái tim, click sẽ đánh dấu bài đó là favourite. 
+	- Khi có ít nhất 1 bài favourite thì mới có tính năng lọc favourite trong Library
+- **18. Xóa yêu thích**
+	- Ấn lại nút trái tim ở những bài favourite sẽ xóa bài đó ra khỏi danh sách favourite
+- **19. Duyệt nhạc**
+	- Trang admin sẽ có chức năng duyệt nhạc (ai làm trang admin tự lo)
+- **20. Tải album về máy**
+	- Mỗi album trong trang Album có nút 3 chấm, ấn sẽ hiện nút download. Ấn download sẽ tải 1 file chứa tất cả file nhạc trong album.
+- **21. Xóa acc**
+	- Trang admin sẽ có chức năng xóa acc (ai làm trang admin tự lo)
+- **22. Follow artist**
+	- Trang Artist detail có nút follow, ấn sẽ follow artist. 
+	- Sau khi follow, mỗi khi vào trang home sẽ ưu tiên hiện bài nhạc và album của artist đó lên đầu. Follow nhiều artist thì sắp xếp theo thứ tự random
+- **23. Trending**
+	- Ngoài latest singles ra thì còn có trending, sắp xếp bài nhạc theo play_count
+- **24. Comment bài hát**
+	- Trang Song detail / Now playing có textfield comment.
+- **25. Sort**
+	- Ở trang Library, sẽ có nút sort, sort theo: tên artist , tên bài nhạc, play_count, saved_at (sớm nhất / lâu nhất)
+- **26. Sign up**
+	- Có các trường: username, display_name, email, avatar, birth_date, role
+	- Role sẽ là toggle button giữa user và artist, trường này không thể tự đổi mà chỉ có admin mới có thể đổi.
+- **27. Forgot password**
+	- Ấn sẽ hiện giao diện forgot pass, cho điền username / email, ấn gửi sẽ hiện trường đổi password mới. Ấn confirm sẽ đổi password cũ sang password mới và quay lại login
+- **28. Remember this device**
+	- Ấn sẽ lưu trạng thái user của app, lần sau vào lại app sẽ tự log vào acc truy cập lần cuối cùng.

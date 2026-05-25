@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            visible="false" managed="false"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT">
+            <Label text="Admin Settings" styleClass="admin-title" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Save Changes" styleClass="upload-button" />
+        </HBox>
+
+        <VBox spacing="14.0" styleClass="admin-panel">
+            <Label text="Platform Configuration" styleClass="panel-title" />
+            <VBox spacing="10.0">
+                <Label text="PLATFORM NAME" styleClass="field-label" />
+                <TextField promptText="Sport T5" styleClass="auth-input" />
+            </VBox>
+            <VBox spacing="10.0">
+                <Label text="SUPPORT EMAIL" styleClass="field-label" />
+                <TextField promptText="support@sportt5.local" styleClass="auth-input" />
+            </VBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

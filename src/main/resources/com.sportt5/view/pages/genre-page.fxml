@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sportt5.controller.GenreController"
+            visible="false" managed="false"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="24.0" styleClass="store-body">
+
+        <HBox alignment="CENTER_LEFT" spacing="14.0">
+            <Label text="GENRES" styleClass="store-title" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="songCountLabel" text="" styleClass="table-text" />
+        </HBox>
+
+        <FlowPane fx:id="genreChipsBox" hgap="10.0" vgap="10.0" />
+
+        <VBox styleClass="seller-table" spacing="0.0">
+            <HBox spacing="16.0" styleClass="" prefHeight="32.0">
+                <Label text="#" styleClass="table-head" minWidth="30.0" maxWidth="30.0" />
+                <Label text="" minWidth="34.0" maxWidth="34.0" />
+                <Label text="TITLE" styleClass="table-head" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                <Label text="DURATION" styleClass="table-head" minWidth="45.0" maxWidth="45.0" />
+            </HBox>
+            <VBox fx:id="songListVBox" spacing="0.0" />
+        </VBox>
+
+    </VBox>
+</ScrollPane>

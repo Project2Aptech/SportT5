@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            visible="false" managed="false"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="5.0">
+                <Label text="Listeners" styleClass="admin-title" />
+                <Label text="Browse and manage the platform listener base." styleClass="admin-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+    </VBox>
+</ScrollPane>

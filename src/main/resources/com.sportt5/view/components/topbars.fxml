@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.sportt5.controller.TopBarController">
+    <StackPane fx:id="homeHero" prefHeight="300.0" minHeight="300.0" maxHeight="300.0" styleClass="home-hero">
+        <Pane styleClass="beam-layer" />
+        <TextField promptText="Search for tracks, artists..." prefWidth="320.0" maxWidth="320.0" prefHeight="30.0" styleClass="home-search" StackPane.alignment="TOP_CENTER" />
+        <HBox alignment="CENTER_RIGHT" spacing="16.0" maxWidth="100.0" styleClass="home-icons" StackPane.alignment="TOP_RIGHT">
+            <Label text="♧" />
+            <Label text="⚙" />
+            <Label text="☻" />
+        </HBox>
+        <VBox alignment="CENTER_LEFT" spacing="14.0" maxWidth="610.0" StackPane.alignment="CENTER_LEFT" styleClass="hero-copy-box">
+            <Label text="WHAT'S NEW?" styleClass="home-hero-title" />
+            <Label text="Experience the latest sonic landscape curated just for you. From underground beats to chart-topping anthems, dive into the pulse of the contemporary music scene." wrapText="true" styleClass="home-hero-copy" />
+            <Button text="▶  START LISTENING" styleClass="listen-button" />
+        </VBox>
+    </StackPane>
+    <HBox fx:id="libraryTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
+        <TextField promptText="Search in library..." prefWidth="320.0" maxWidth="320.0" styleClass="store-search" />
+        <Region HBox.hgrow="ALWAYS" />
+        <HBox alignment="CENTER_RIGHT" spacing="18.0" styleClass="store-icons">
+            <Label text="♟" />
+            <Label text="⚙" />
+            <Label text="☻" />
+        </HBox>
+    </HBox>
+    <HBox fx:id="albumTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
+        <TextField promptText="Search for tracks, artists..." prefWidth="720.0" maxWidth="720.0" styleClass="store-search" />
+        <Region HBox.hgrow="ALWAYS" />
+        <HBox alignment="CENTER_RIGHT" spacing="18.0" styleClass="store-icons">
+            <Label text="♟" />
+            <Label text="⚙" />
+            <Label text="☻" />
+        </HBox>
+    </HBox>
+    <HBox fx:id="accountTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
+        <TextField promptText="Search artists, songs, podcasts..." prefWidth="360.0" maxWidth="360.0" styleClass="store-search" />
+        <Region HBox.hgrow="ALWAYS" />
+        <HBox alignment="CENTER_RIGHT" spacing="18.0" styleClass="store-icons">
+            <Label text="♟" />
+            <Label text="⚙" />
+            <Label text="☻" />
+        </HBox>
+    </HBox>
+    <HBox fx:id="artistTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar admin-topbar">
+        <TextField promptText="Search analytics, tracks, or fans..." prefWidth="360.0" maxWidth="360.0" styleClass="store-search" />
+        <Region HBox.hgrow="ALWAYS" />
+        <HBox alignment="CENTER_RIGHT" spacing="18.0" styleClass="store-icons">
+            <Label text="♧" />
+            <Label text="⚙" />
+            <Label text="☻" />
+        </HBox>
+    </HBox>
+</StackPane>

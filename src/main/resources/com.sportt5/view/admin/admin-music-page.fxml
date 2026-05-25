@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            visible="false" managed="false"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT" spacing="18.0">
+            <VBox spacing="5.0">
+                <Label text="Users" styleClass="admin-title" />
+                <Label text="Manage all registered users and their subscriptions." styleClass="admin-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="⊕  Add User" styleClass="upload-button" />
+        </HBox>
+
+        <VBox spacing="12.0" styleClass="admin-panel">
+            <GridPane hgap="18.0" vgap="16.0" styleClass="admin-table">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="30.0" />
+                    <ColumnConstraints percentWidth="28.0" />
+                    <ColumnConstraints percentWidth="17.0" />
+                    <ColumnConstraints percentWidth="17.0" />
+                    <ColumnConstraints percentWidth="8.0" />
+                </columnConstraints>
+                <Label text="NAME" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
+                <Label text="EMAIL" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
+                <Label text="PLAN" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+                <Label text="JOINED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="ACTIONS" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
+
+                <HBox spacing="12.0" GridPane.rowIndex="1" GridPane.columnIndex="0"><StackPane prefWidth="34.0" prefHeight="34.0" styleClass="admin-thumb thumb-pink" /><VBox spacing="2.0"><Label text="Alex Studio" styleClass="table-title" /><Label text="Active" styleClass="table-text" /></VBox></HBox>
+                <Label text="alex@vibe.studio" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="PREMIUM" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="status-live" />
+                <Label text="Oct 12, 2023" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="table-text" />
+                <Label text="•••" GridPane.rowIndex="1" GridPane.columnIndex="4" styleClass="row-action" />
+
+                <HBox spacing="12.0" GridPane.rowIndex="2" GridPane.columnIndex="0"><StackPane prefWidth="34.0" prefHeight="34.0" styleClass="admin-thumb thumb-gray" /><VBox spacing="2.0"><Label text="Aura Studio" styleClass="table-title" /><Label text="Active" styleClass="table-text" /></VBox></HBox>
+                <Label text="aura@vibe.studio" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="ARTIST" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="trend-blue" />
+                <Label text="Sep 28, 2023" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="table-text" />
+                <Label text="•••" GridPane.rowIndex="2" GridPane.columnIndex="4" styleClass="row-action" />
+            </GridPane>
+            <Button text="View All Users (128,440)" styleClass="chart-button" />
+        </VBox>
+    </VBox>
+</ScrollPane>

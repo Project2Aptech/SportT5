@@ -1,0 +1,12 @@
+/* Album card — only styles not covered by style.css */
+
+.album-card {
+    -fx-background-color: rgba(255,255,255,0.055);
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-cursor: hand;
+}
+
+.album-card:hover {
+    -fx-background-color: rgba(255,255,255,0.08);
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox
+        maxHeight="-Infinity"
+        maxWidth="-Infinity"
+        minHeight="-Infinity"
+        minWidth="-Infinity"
+        prefHeight="205.5"
+        prefWidth="148.7"
+        styleClass="album-card"
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView
+                fx:id="imgCover"
+                fitHeight="116.6"
+                fitWidth="116.6"
+                pickOnBounds="true"
+                preserveRatio="true"
+        />
+
+        <Label fx:id="lblTitle" styleClass="playlist-title" text="Techno Pulse">
+            <VBox.margin>
+                <Insets top="12.0" />
+            </VBox.margin>
+        </Label>
+
+        <Label fx:id="lblTrackCount" styleClass="playlist-count" text="24 tracks">
+            <VBox.margin>
+                <Insets top="4.0" />
+            </VBox.margin>
+        </Label>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
+</VBox>

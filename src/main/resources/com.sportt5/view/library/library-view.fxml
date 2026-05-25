@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" visible="false" managed="false"
+            styleClass="home-scroll"
+            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sportt5.controller.LibraryController">
+    <stylesheets>
+        <URL value="@../../css/library_css.css" />
+    </stylesheets>
+    <content>
+        <VBox spacing="30.0" styleClass="library-body">
+
+            <!-- Title -->
+            <Label styleClass="library-heading" text="My Library" />
+
+            <!-- Tabs -->
+            <HBox spacing="32.0" styleClass="library-tabs">
+                <Label fx:id="tabSaved" styleClass="library-tab-active" text="Saved" />
+                <Label fx:id="tabGenres" styleClass="library-tab" text="Genres" />
+                <Label fx:id="tabArtists" styleClass="library-tab" text="Artists" />
+            </HBox>
+
+            <!-- Liked songs + Albums -->
+            <HBox spacing="24.0">
+
+                <!-- Liked card -->
+                <VBox fx:id="playlistContainer" spacing="0.0">
+                    <VBox prefHeight="150.0" prefWidth="260.0" styleClass="liked-card" spacing="8.0">
+                        <Label text="♥" styleClass="liked-heart" />
+                        <Label text="Liked Songs" styleClass="liked-title">
+                            <VBox.margin><Insets top="4.0" /></VBox.margin>
+                        </Label>
+                        <Label fx:id="favouritesCount" styleClass="liked-count" text="0 songs" />
+                    </VBox>
+                </VBox>
+
+                <!-- Your Albums -->
+                <VBox HBox.hgrow="ALWAYS" spacing="12.0">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label styleClass="store-section-title" text="Your Albums" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label styleClass="view-all-button" text="VIEW ALL" />
+                    </HBox>
+                    <HBox fx:id="p" spacing="16.0">
+                        <fx:include source="album-card-view.fxml" />
+                        <fx:include source="album-card-view.fxml" />
+                        <fx:include source="album-card-view.fxml" />
+                        <fx:include source="album-card-view.fxml" />
+                    </HBox>
+                </VBox>
+
+            </HBox>
+
+            <!-- Recently Saved songs -->
+            <VBox spacing="12.0">
+                <Label styleClass="store-section-title" text="Recently Saved" />
+                <VBox styleClass="seller-table" spacing="0.0">
+                    <HBox spacing="16.0" prefHeight="32.0">
+                        <Label text="#"           styleClass="table-head" minWidth="40.0"  maxWidth="40.0" />
+                        <Label text=""            minWidth="40.0"  maxWidth="40.0" />
+                        <Label text="TITLE"       styleClass="table-head" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                        <Label text="ALBUM"       styleClass="table-head" minWidth="200.0" maxWidth="200.0" />
+                        <Label text="DATE ADDED"  styleClass="table-head" minWidth="150.0" maxWidth="150.0" />
+                        <Label text="DURATION"    styleClass="table-head" minWidth="60.0"  maxWidth="60.0" />
+                    </HBox>
+                    <VBox fx:id="trackListContainer" spacing="0.0" />
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </content>
+</ScrollPane>
