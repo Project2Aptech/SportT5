@@ -16,7 +16,7 @@
 
         <Label text="PLAYLISTS" styleClass="store-section-title" />
 
-        <ScrollPane fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER"
+        <ScrollPane fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="NEVER"
                     prefHeight="158.0" minHeight="158.0" maxHeight="158.0" styleClass="home-scroll">
             <HBox fx:id="playlistCardsBox" spacing="16.0" />
         </ScrollPane>

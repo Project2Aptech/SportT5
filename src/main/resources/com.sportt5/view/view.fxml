@@ -26,6 +26,7 @@
                     <fx:include fx:id="genrePage" source="pages/genre-page.fxml"/>
                     <fx:include fx:id="favouritesPage" source="pages/favourites-page.fxml"/>
                     <fx:include fx:id="playlistPage" source="pages/playlist-page.fxml"/>
+                    <fx:include fx:id="libraryPage" source="library/library-view.fxml"/>
                     <fx:include fx:id="accountPage" source="pages/account-page.fxml"/>
                     <fx:include fx:id="adminPage" source="pages/admin-page.fxml"/>
                 </StackPane>

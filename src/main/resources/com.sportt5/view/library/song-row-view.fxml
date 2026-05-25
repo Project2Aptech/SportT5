@@ -16,7 +16,6 @@
         styleClass="song-row"
         xmlns="http://javafx.com/javafx/21"
         xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.sportt5.controller.LibraryController"
 >
     <children>
         <Label

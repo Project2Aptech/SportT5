@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 public class SidebarController {
     //Sidebar
     @FXML private Label profileNameLabel, brandLabel;
-    @FXML private HBox homeNavItem, genreNavItem, favouritesNavItem, playlistNavItem, accountNavItem;
+    @FXML private HBox homeNavItem, genreNavItem, favouritesNavItem, playlistNavItem, libraryNavItem, accountNavItem;
     //App controller
     private AppController appController;
 
@@ -16,7 +16,8 @@ public class SidebarController {
     public HBox getHomeNavItem() { return homeNavItem; }
     public HBox getGenreNavItem() { return genreNavItem; }
     public HBox getFavouritesNavItem() { return favouritesNavItem; }
-    public HBox getPlaylistNavItem() { return playlistNavItem;}
+    public HBox getPlaylistNavItem() { return playlistNavItem; }
+    public HBox getLibraryNavItem() { return libraryNavItem; }
     public HBox getAccountNavItem() { return accountNavItem; }
 
     public void resetNavStyles() {
@@ -24,6 +25,7 @@ public class SidebarController {
         genreNavItem.getStyleClass().setAll("nav-item");
         favouritesNavItem.getStyleClass().setAll("nav-item");
         playlistNavItem.getStyleClass().setAll("nav-item");
+        libraryNavItem.getStyleClass().setAll("nav-item");
         accountNavItem.getStyleClass().setAll("nav-item");
     }
 
@@ -35,5 +37,6 @@ public class SidebarController {
         genreNavItem.setOnMouseClicked(e -> { if (appController != null) appController.showGenrePage(); });
         favouritesNavItem.setOnMouseClicked(e -> { if (appController != null) appController.showFavouritesPage(); });
         playlistNavItem.setOnMouseClicked(e -> { if (appController != null) appController.showPlaylistPage(); });
+        libraryNavItem.setOnMouseClicked(e -> { if (appController != null) appController.showLibraryPage(); });
     }
 }
