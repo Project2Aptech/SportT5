@@ -12,7 +12,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/view.fxml"));
+        Parent root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/auth/auth-view.fxml"));
+
+//        Parent root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/view.fxml"));
         Scene scene = new Scene(root, MAIN_WIDTH, MAIN_HEIGHT);
         scene.getStylesheets().add(App.class.getResource("/com.sportt5/css/style.css").toExternalForm());
 
