@@ -10,6 +10,7 @@ module com.sportt5 {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires com.zaxxer.hikari;
+    requires java.net.http;
 
     opens com.sportt5 to javafx.fxml;
     opens com.sportt5.controller to javafx.fxml;
