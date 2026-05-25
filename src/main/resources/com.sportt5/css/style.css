@@ -228,6 +228,15 @@
     -fx-font-size: 14px;
 }
 
+.logout-item {
+    -fx-border-color: rgba(255,255,255,0.07) transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.logout-item .label {
+    -fx-text-fill: #cfd8d0;
+}
+
 .version {
     -fx-font-size: 8px;
 }

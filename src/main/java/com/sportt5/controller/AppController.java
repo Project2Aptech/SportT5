@@ -48,9 +48,21 @@ public class AppController {
     @FXML
     private javafx.scene.control.ScrollPane adminSettingsPage;
     @FXML
+    private javafx.scene.control.ScrollPane artistPage;
+    @FXML
+    private javafx.scene.control.ScrollPane artistMusicPage;
+    @FXML
+    private javafx.scene.control.ScrollPane artistUploadPage;
+    @FXML
+    private javafx.scene.control.ScrollPane artistAnalyticsPage;
+    @FXML
+    private javafx.scene.control.ScrollPane artistFansPage;
+    @FXML
     private VBox userBrowseNav;
     @FXML
     private VBox adminBrowseNav;
+    @FXML
+    private VBox artistBrowseNav;
     @FXML
     private Label libraryTitleLabel;
     @FXML
@@ -68,6 +80,8 @@ public class AppController {
     @FXML
     private HBox adminPanelNavItem;
     @FXML
+    private HBox artistPanelNavItem;
+    @FXML
     private HBox adminDashboardNavItem;
     @FXML
     private HBox adminMusicNavItem;
@@ -81,6 +95,20 @@ public class AppController {
     private HBox adminSettingsNavItem;
     @FXML
     private HBox exitAdminNavItem;
+    @FXML
+    private HBox artistDashboardNavItem;
+    @FXML
+    private HBox artistMusicNavItem;
+    @FXML
+    private HBox artistUploadNavItem;
+    @FXML
+    private HBox artistAnalyticsNavItem;
+    @FXML
+    private HBox artistFansNavItem;
+    @FXML
+    private HBox exitArtistNavItem;
+    @FXML
+    private HBox logoutNavItem;
     @FXML
     private VBox loginCard;
     @FXML
@@ -106,6 +134,10 @@ public class AppController {
 
     private boolean adminMode;
     private boolean adminAccess;
+    private boolean artistMode;
+    private boolean artistAccess;
+    private String signedInName = "Alex Studio";
+    private String signedInTier = "PREMIUM";
 
     @FXML
     private void showLogin() {
@@ -132,18 +164,36 @@ public class AppController {
         String password = loginPasswordField.getText();
         if ("admin@sportt5.local".equals(email) && "admin123".equals(password)) {
             adminAccess = true;
+            artistAccess = false;
             adminMode = false;
+            artistMode = false;
+            signedInName = "Minh Admin";
+            signedInTier = "ADMIN";
+            openHome();
+            return;
+        }
+        if ("artist@sportt5.local".equals(email) && "artist123".equals(password)) {
+            adminAccess = false;
+            artistAccess = true;
+            adminMode = false;
+            artistMode = false;
+            signedInName = "Aura Studio";
+            signedInTier = "ARTIST";
             openHome();
             return;
         }
         if ("user@sportt5.local".equals(email) && "user123".equals(password)) {
             adminAccess = false;
+            artistAccess = false;
             adminMode = false;
+            artistMode = false;
+            signedInName = "Alex Studio";
+            signedInTier = "PREMIUM";
             openHome();
             return;
         }
 
-        loginStatusLabel.setText("Mock accounts: user@sportt5.local or admin@sportt5.local.");
+        loginStatusLabel.setText("Use user, artist, or admin mock account.");
     }
 
     @FXML
@@ -155,6 +205,10 @@ public class AppController {
 
         adminMode = false;
         adminAccess = false;
+        artistMode = false;
+        artistAccess = false;
+        signedInName = "Alex Studio";
+        signedInTier = "PREMIUM";
         openHome();
     }
 
@@ -164,9 +218,38 @@ public class AppController {
     }
 
     @FXML
+    private void logout() {
+        adminMode = false;
+        adminAccess = false;
+        artistMode = false;
+        artistAccess = false;
+        signedInName = "Alex Studio";
+        signedInTier = "PREMIUM";
+
+        loginEmailField.clear();
+        loginPasswordField.clear();
+        signupNameField.clear();
+        signupEmailField.clear();
+        signupPasswordField.clear();
+        loginStatusLabel.setText("");
+        signupStatusLabel.setText("");
+
+        profileNameLabel.setText(signedInName);
+        profileTierLabel.setText(signedInTier);
+        configureSidebarForRole();
+        hide(homeView);
+        show(authView);
+        showLogin();
+    }
+
+    @FXML
     private void showHomePage() {
         if (adminMode) {
             showAdminPage();
+            return;
+        }
+        if (artistMode) {
+            showArtistPage();
             return;
         }
 
@@ -182,6 +265,7 @@ public class AppController {
         hide(playlistPage);
         hide(accountPage);
         hideAdminPages();
+        hideArtistPages();
         setUserActive(homeNavItem);
     }
 
@@ -197,6 +281,7 @@ public class AppController {
         hide(playlistPage);
         hide(accountPage);
         hideAdminPages();
+        hideArtistPages();
         show(genreTopBar);
         show(genrePage);
         setUserActive(genreNavItem);
@@ -214,6 +299,7 @@ public class AppController {
         hide(accountPage);
         hide(adminTopBar);
         hideAdminPages();
+        hideArtistPages();
         show(libraryTopBar);
         show(favouritesPage);
         setUserActive(favouritesNavItem);
@@ -231,6 +317,7 @@ public class AppController {
         hide(accountPage);
         hide(adminTopBar);
         hideAdminPages();
+        hideArtistPages();
         show(playlistTopBar);
         show(playlistPage);
         setUserActive(playlistNavItem);
@@ -248,6 +335,7 @@ public class AppController {
         hide(playlistPage);
         hide(adminTopBar);
         hideAdminPages();
+        hideArtistPages();
         show(accountTopBar);
         show(accountPage);
         setUserActive(accountNavItem);
@@ -260,8 +348,9 @@ public class AppController {
         }
 
         adminMode = true;
-        profileNameLabel.setText("Aura Studio");
-        profileTierLabel.setText("PRO ARTIST");
+        artistMode = false;
+        profileNameLabel.setText("System Admin");
+        profileTierLabel.setText("ADMIN");
         configureSidebarForRole();
         showAdminPage();
     }
@@ -269,8 +358,31 @@ public class AppController {
     @FXML
     private void exitAdminPanel() {
         adminMode = false;
-        profileNameLabel.setText("Alex Studio");
-        profileTierLabel.setText("PREMIUM");
+        profileNameLabel.setText(signedInName);
+        profileTierLabel.setText(signedInTier);
+        configureSidebarForRole();
+        showHomePage();
+    }
+
+    @FXML
+    private void enterArtistPanel() {
+        if (!artistAccess) {
+            return;
+        }
+
+        artistMode = true;
+        adminMode = false;
+        profileNameLabel.setText("Aura Studio");
+        profileTierLabel.setText("ARTIST");
+        configureSidebarForRole();
+        showArtistPage();
+    }
+
+    @FXML
+    private void exitArtistPanel() {
+        artistMode = false;
+        profileNameLabel.setText(signedInName);
+        profileTierLabel.setText(signedInTier);
         configureSidebarForRole();
         showHomePage();
     }
@@ -304,6 +416,30 @@ public class AppController {
         showAdminContent(adminSettingsPage, adminSettingsNavItem);
     }
 
+    private void showArtistPage() {
+        showArtistContent(artistPage, artistDashboardNavItem);
+    }
+
+    @FXML
+    private void showArtistMusicPage() {
+        showArtistContent(artistMusicPage, artistMusicNavItem);
+    }
+
+    @FXML
+    private void showArtistUploadPage() {
+        showArtistContent(artistUploadPage, artistUploadNavItem);
+    }
+
+    @FXML
+    private void showArtistAnalyticsPage() {
+        showArtistContent(artistAnalyticsPage, artistAnalyticsNavItem);
+    }
+
+    @FXML
+    private void showArtistFansPage() {
+        showArtistContent(artistFansPage, artistFansNavItem);
+    }
+
     private void showAdminContent(javafx.scene.control.ScrollPane page, HBox activeNav) {
         hide(homeHero);
         hide(homePage);
@@ -317,8 +453,27 @@ public class AppController {
         hide(accountPage);
         show(adminTopBar);
         hideAdminPages();
+        hideArtistPages();
         show(page);
         setAdminActive(activeNav);
+    }
+
+    private void showArtistContent(javafx.scene.control.ScrollPane page, HBox activeNav) {
+        hide(homeHero);
+        hide(homePage);
+        hide(genreTopBar);
+        hide(genrePage);
+        hide(libraryTopBar);
+        hide(favouritesPage);
+        hide(playlistTopBar);
+        hide(playlistPage);
+        hide(accountTopBar);
+        hide(accountPage);
+        show(adminTopBar);
+        hideAdminPages();
+        hideArtistPages();
+        show(page);
+        setArtistActive(activeNav);
     }
 
     private void show(javafx.scene.Node node) {
@@ -332,8 +487,8 @@ public class AppController {
     }
 
     private void openHome() {
-        profileNameLabel.setText(adminMode ? "Aura Studio" : "Alex Studio");
-        profileTierLabel.setText(adminMode ? "PRO ARTIST" : "PREMIUM");
+        profileNameLabel.setText(signedInName);
+        profileTierLabel.setText(signedInTier);
         configureSidebarForRole();
         hide(authView);
         show(homeView);
@@ -347,7 +502,18 @@ public class AppController {
             hide(userLibraryNav);
             hide(accountNavItem);
             show(adminBrowseNav);
+            hide(artistBrowseNav);
             show(adminSettingsNavItem);
+            return;
+        }
+        if (artistMode) {
+            hide(userBrowseNav);
+            hide(libraryTitleLabel);
+            hide(userLibraryNav);
+            hide(accountNavItem);
+            hide(adminBrowseNav);
+            hide(adminSettingsNavItem);
+            show(artistBrowseNav);
             return;
         }
 
@@ -360,7 +526,13 @@ public class AppController {
         } else {
             hide(adminPanelNavItem);
         }
+        if (artistAccess) {
+            show(artistPanelNavItem);
+        } else {
+            hide(artistPanelNavItem);
+        }
         hide(adminBrowseNav);
+        hide(artistBrowseNav);
         hide(adminSettingsNavItem);
     }
 
@@ -373,6 +545,14 @@ public class AppController {
         hide(adminSettingsPage);
     }
 
+    private void hideArtistPages() {
+        hide(artistPage);
+        hide(artistMusicPage);
+        hide(artistUploadPage);
+        hide(artistAnalyticsPage);
+        hide(artistFansPage);
+    }
+
     private void setUserActive(HBox activeItem) {
         setActive(homeNavItem, activeItem == homeNavItem);
         setActive(genreNavItem, activeItem == genreNavItem);
@@ -380,6 +560,7 @@ public class AppController {
         setActive(playlistNavItem, activeItem == playlistNavItem);
         setActive(accountNavItem, activeItem == accountNavItem);
         setActive(adminPanelNavItem, activeItem == adminPanelNavItem);
+        setActive(artistPanelNavItem, activeItem == artistPanelNavItem);
     }
 
     private void setAdminActive(HBox activeItem) {
@@ -387,9 +568,17 @@ public class AppController {
         setActive(adminMusicNavItem, activeItem == adminMusicNavItem);
         setActive(adminUploadNavItem, activeItem == adminUploadNavItem);
         setActive(adminAnalyticsNavItem, activeItem == adminAnalyticsNavItem);
-        setActive(adminFansNavItem, activeItem == adminFansNavItem);
         setActive(adminSettingsNavItem, activeItem == adminSettingsNavItem);
         setActive(exitAdminNavItem, activeItem == exitAdminNavItem);
+    }
+
+    private void setArtistActive(HBox activeItem) {
+        setActive(artistDashboardNavItem, activeItem == artistDashboardNavItem);
+        setActive(artistMusicNavItem, activeItem == artistMusicNavItem);
+        setActive(artistUploadNavItem, activeItem == artistUploadNavItem);
+        setActive(artistAnalyticsNavItem, activeItem == artistAnalyticsNavItem);
+        setActive(artistFansNavItem, activeItem == artistFansNavItem);
+        setActive(exitArtistNavItem, activeItem == exitArtistNavItem);
     }
 
     private void setActive(HBox item, boolean active) {

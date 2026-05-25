@@ -117,6 +117,10 @@
                     <Label text="▣" styleClass="nav-icon" />
                     <Label text="Admin Panel" />
                 </HBox>
+                <HBox fx:id="artistPanelNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#enterArtistPanel" styleClass="nav-item">
+                    <Label text="♫" styleClass="nav-icon" />
+                    <Label text="Artist Panel" />
+                </HBox>
             </VBox>
             <VBox fx:id="adminBrowseNav" visible="false" managed="false" spacing="5.0">
                 <HBox fx:id="adminDashboardNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showHomePage" styleClass="nav-active">
@@ -124,22 +128,44 @@
                     <Label text="Dashboard" />
                 </HBox>
                 <HBox fx:id="adminMusicNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showAdminMusicPage" styleClass="nav-item">
-                    <Label text="▥" styleClass="nav-icon" />
-                    <Label text="My Music" />
+                    <Label text="♙" styleClass="nav-icon" />
+                    <Label text="Users" />
                 </HBox>
                 <HBox fx:id="adminUploadNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showAdminUploadPage" styleClass="nav-item">
-                    <Label text="⊕" styleClass="nav-icon" />
-                    <Label text="Upload" />
+                    <Label text="✓" styleClass="nav-icon" />
+                    <Label text="Music Review" />
                 </HBox>
                 <HBox fx:id="adminAnalyticsNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showAdminAnalyticsPage" styleClass="nav-item">
                     <Label text="↗" styleClass="nav-icon" />
                     <Label text="Analytics" />
                 </HBox>
-                <HBox fx:id="adminFansNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showAdminFansPage" styleClass="nav-item">
+                <HBox fx:id="exitAdminNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#exitAdminPanel" styleClass="nav-item">
+                    <Label text="←" styleClass="nav-icon" />
+                    <Label text="Back to User" />
+                </HBox>
+            </VBox>
+            <VBox fx:id="artistBrowseNav" visible="false" managed="false" spacing="5.0">
+                <HBox fx:id="artistDashboardNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showHomePage" styleClass="nav-active">
+                    <Label text="⌂" styleClass="nav-icon" />
+                    <Label text="Dashboard" />
+                </HBox>
+                <HBox fx:id="artistMusicNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showArtistMusicPage" styleClass="nav-item">
+                    <Label text="▥" styleClass="nav-icon" />
+                    <Label text="My Music" />
+                </HBox>
+                <HBox fx:id="artistUploadNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showArtistUploadPage" styleClass="nav-item">
+                    <Label text="⊕" styleClass="nav-icon" />
+                    <Label text="Upload" />
+                </HBox>
+                <HBox fx:id="artistAnalyticsNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showArtistAnalyticsPage" styleClass="nav-item">
+                    <Label text="↗" styleClass="nav-icon" />
+                    <Label text="Analytics" />
+                </HBox>
+                <HBox fx:id="artistFansNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showArtistFansPage" styleClass="nav-item">
                     <Label text="♙" styleClass="nav-icon" />
                     <Label text="Fans" />
                 </HBox>
-                <HBox fx:id="exitAdminNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#exitAdminPanel" styleClass="nav-item">
+                <HBox fx:id="exitArtistNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#exitArtistPanel" styleClass="nav-item">
                     <Label text="←" styleClass="nav-icon" />
                     <Label text="Back to User" />
                 </HBox>
@@ -164,6 +190,10 @@
             <HBox fx:id="adminSettingsNavItem" visible="false" managed="false" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showAdminSettingsPage" styleClass="nav-item">
                 <Label text="⚙" styleClass="nav-icon" />
                 <Label text="Admin Settings" />
+            </HBox>
+            <HBox fx:id="logoutNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#logout" styleClass="nav-item logout-item">
+                <Label text="⏻" styleClass="nav-icon" />
+                <Label text="Logout" />
             </HBox>
             <Label text="STUDIO DESKTOP V2.0" styleClass="version" />
         </VBox>
@@ -246,6 +276,11 @@
                     <fx:include fx:id="adminAnalyticsPage" source="pages/admin-analytics-page.fxml" />
                     <fx:include fx:id="adminFansPage" source="pages/admin-fans-page.fxml" />
                     <fx:include fx:id="adminSettingsPage" source="pages/admin-settings-page.fxml" />
+                    <fx:include fx:id="artistPage" source="pages/artist-page.fxml" />
+                    <fx:include fx:id="artistMusicPage" source="pages/artist-music-page.fxml" />
+                    <fx:include fx:id="artistUploadPage" source="pages/artist-upload-page.fxml" />
+                    <fx:include fx:id="artistAnalyticsPage" source="pages/artist-analytics-page.fxml" />
+                    <fx:include fx:id="artistFansPage" source="pages/artist-fans-page.fxml" />
                 </StackPane>
             </center>
 
