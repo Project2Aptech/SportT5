@@ -16,6 +16,7 @@ public class AppController {
     @FXML private ScrollPane genrePage;
     @FXML private ScrollPane favouritesPage;
     @FXML private ScrollPane playlistPage;
+    @FXML private ScrollPane libraryPage;
     @FXML private ScrollPane accountPage;
 
     //Controllers
@@ -52,6 +53,11 @@ public class AppController {
     }
 
     @FXML
+    public void showLibraryPage() {
+        showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryNavItem());
+    }
+
+    @FXML
     public void showAccountPage() {
         showPage(accountPage, topBarController.getAccountTopBar(), sidebarController.getAccountNavItem());
     }
@@ -61,6 +67,7 @@ public class AppController {
         setVisible(genrePage, false);
         setVisible(favouritesPage, false);
         setVisible(playlistPage, false);
+        setVisible(libraryPage, false);
         setVisible(accountPage, false);
 
         setVisible(topBarController.getHomeHero(), false);

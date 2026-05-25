@@ -36,9 +36,9 @@
             <Label text="♬" styleClass="nav-icon" />
             <Label text="Playlist" />
         </HBox>
-        <HBox alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+        <HBox fx:id="libraryNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="◉" styleClass="nav-icon" />
-            <Label text="Podcast" />
+            <Label text="Library" />
         </HBox>
     </VBox>
 
