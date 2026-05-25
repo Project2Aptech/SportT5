@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox fx:id="adminTopBar" visible="false" managed="false"
+      alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0"
+      styleClass="store-topbar admin-topbar"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <TextField promptText="Search analytics, tracks, or fans..." prefWidth="360.0" maxWidth="360.0" styleClass="store-search" />
+    <Region HBox.hgrow="ALWAYS" />
+    <HBox alignment="CENTER_RIGHT" spacing="18.0" styleClass="store-icons">
+        <Label text="♧" />
+        <Label text="⚙" />
+        <Label text="☻" />
+    </HBox>
+</HBox>
