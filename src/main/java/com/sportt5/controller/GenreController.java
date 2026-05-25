@@ -1,6 +1,5 @@
 package com.sportt5.controller;
 
-import com.sportt5.dao.genre.genre_dao;
 import com.sportt5.model.Genres;
 import com.sportt5.model.Songs;
 import javafx.fxml.FXML;
@@ -18,22 +17,12 @@ public class GenreController {
     @FXML private VBox songListVBox;
     @FXML private Label songCountLabel;
 
-    private genre_dao dao;
-
     private static final String[] THUMB_STYLES = {"thumb-city", "thumb-orange", "thumb-blue", "thumb-gold"};
 
     @FXML
     public void initialize() {
-        try {
-            dao = new genre_dao();
-            dao.loadAllGenres();
-            dao.loadAllSongs();
-            renderGenreChips();
-            renderSongs();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
+
 
     private void renderGenreChips() {
         genreChipsBox.getChildren().clear();
