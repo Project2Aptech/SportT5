@@ -1,46 +1,48 @@
 package com.sportt5.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sportt5.model.enums.AccountType;
 import com.sportt5.model.enums.Roles;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Users {
     private int id;
     private String username;
     private String email;
-    private String password_hash;
+    private String passwordHash;
 
     private Roles role = Roles.USER;
     private AccountType accountType = AccountType.NORMAL;
 
-    private String display_name;
-    private String avatar_url;
+    private String displayName;
+    private String avatarUrl;
     private String bio;
 
-    private LocalDate birth_date;
+    private LocalDate birthDate;
 
-    private boolean is_active = true;
+    private boolean isActive = true;
 
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Users() {
     }
 
-    public Users(int id, String username, String email, String password_hash, Roles role, AccountType accountType, String display_name, String avatar_url, String bio, LocalDate birth_date, boolean is_active) {
+    public Users(int id, String username, String email, String passwordHash, Roles role, AccountType accountType, String displayName, String avatarUrl, String bio, LocalDate birthDate, boolean isActive) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.password_hash = password_hash;
+        this.passwordHash = passwordHash;
         this.role = role;
         this.accountType = accountType;
-        this.display_name = display_name;
-        this.avatar_url = avatar_url;
+        this.displayName = displayName;
+        this.avatarUrl = avatarUrl;
         this.bio = bio;
-        this.birth_date = birth_date;
-        this.is_active = is_active;
+        this.birthDate = birthDate;
+        this.isActive = isActive;
     }
 
     public int getId() {
@@ -67,12 +69,12 @@ public class Users {
         this.email = email;
     }
 
-    public String getPassword_hash() {
-        return password_hash;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setPassword_hash(String password_hash) {
-        this.password_hash = password_hash;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public Roles getRole() {
@@ -91,20 +93,20 @@ public class Users {
         this.accountType = accountType;
     }
 
-    public String getDisplay_name() {
-        return display_name;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setDisplay_name(String display_name) {
-        this.display_name = display_name;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public String getBio() {
@@ -115,19 +117,19 @@ public class Users {
         this.bio = bio;
     }
 
-    public LocalDate getBirth_date() {
-        return birth_date;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirth_date(LocalDate birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public boolean isIs_active() {
-        return is_active;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setIs_active(boolean is_active) {
-        this.is_active = is_active;
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
     }
 }
