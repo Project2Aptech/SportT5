@@ -46,7 +46,7 @@
                 </StackPane>
             </center>
             <bottom>
-                <fx:include source="components/player-bar.fxml"/>
+                <fx:include fx:id="playerBar" source="components/player-bar.fxml"/>
             </bottom>
         </BorderPane>
     </HBox>

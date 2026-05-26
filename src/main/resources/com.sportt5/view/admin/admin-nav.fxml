@@ -2,33 +2,57 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox visible="false"
-      managed="false"
-      spacing="5.0"
-      fx:controller="com.sportt5.controller.SidebarController"
-      xmlns="http://javafx.com/javafx/21"
+<VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sportt5.controller.SidebarController"
+      visible="false"
+      managed="false"
+      prefWidth="205.0"
+      prefHeight="810.0"
+      minWidth="205.0"
+      maxWidth="205.0"
+      styleClass="home-sidebar"
 >
-    <HBox fx:id="adminDashboardNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-active">
-        <Label text="⌂" styleClass="nav-icon" />
-        <Label text="Dashboard" />
+    <Label text="SPORT T5" styleClass="home-brand"/>
+    <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="home-profile">
+        <StackPane prefWidth="36.0" prefHeight="36.0" styleClass="home-avatar">
+            <Label text="▣" />
+        </StackPane>
+        <VBox spacing="2.0">
+            <Label text="Alex Studio" styleClass="profile-name" />
+            <Label text="ADMIN" styleClass="profile-tier" />
+        </VBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="⌄" styleClass="muted" />
     </HBox>
-    <HBox fx:id="adminUserNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-        <Label text="♙" styleClass="nav-icon" />
-        <Label text="Users" />
-    </HBox>
-    <HBox fx:id="adminReviewNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-        <Label text="✓" styleClass="nav-icon" />
-        <Label text="Music Review" />
-    </HBox>
-    <HBox fx:id="adminAnalyticsNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-        <Label text="↗" styleClass="nav-icon" />
-        <Label text="Analytics" />
-    </HBox>
-    <HBox fx:id="exitAdminNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-        <Label text="←" styleClass="nav-icon" />
-        <Label text="Back to User" />
-    </HBox>
+
+    <Label text="ADMIN PANEL" styleClass="nav-title" />
+    <VBox spacing="5.0">
+        <HBox fx:id="adminDashboardNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-active">
+            <Label text="⌂" styleClass="nav-icon" />
+            <Label text="Dashboard" />
+        </HBox>
+        <HBox fx:id="adminUserNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="♙" styleClass="nav-icon" />
+            <Label text="Users" />
+        </HBox>
+        <HBox fx:id="adminReviewNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="✓" styleClass="nav-icon" />
+            <Label text="Music Review" />
+        </HBox>
+        <HBox fx:id="adminAnalyticsNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="↗" styleClass="nav-icon" />
+            <Label text="Analytics" />
+        </HBox>
+        <HBox fx:id="exitAdminNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="←" styleClass="nav-icon" />
+            <Label text="Back to User" />
+        </HBox>
+    </VBox>
+    <Region VBox.vgrow="ALWAYS" />
+    <Label text="STUDIO DESKTOP V2.0" styleClass="version" />
 </VBox>
