@@ -26,6 +26,11 @@ public class AuthController {
     @FXML
     private Label loginStatusLabel;
 
+    @FXML private TextField signupNameField;
+    @FXML private TextField signupEmailField;
+    @FXML private PasswordField signupPasswordField;
+    @FXML private Label signupStatusLabel;
+
     private final AuthService authService = new AuthService();
 
     @FXML
@@ -45,6 +50,38 @@ public class AuthController {
         signupCard.setManaged(false);
         loginCard.setVisible(true);
         loginCard.setManaged(true);
+    }
+    @FXML
+    public void handleSignUp(ActionEvent event) {
+
+        String nameInput = signupNameField.getText();
+        String emailInput = signupEmailField.getText();
+        String passwordInput = signupPasswordField.getText();
+
+        if(nameInput == null ||  emailInput == null || passwordInput == null ||
+        nameInput.trim().isEmpty() ||  emailInput.trim().isEmpty() || passwordInput.trim().isEmpty()) {
+            signupStatusLabel.setText("Please fill in all fields");
+            return;
+        }
+        signupStatusLabel.setText("Creating account...");
+        new Thread(()->{
+            try{
+                AuthResponse response = authService.register(nameInput,emailInput,passwordInput);
+
+                javafx.application.Platform.runLater(()->{
+                    UserSession.startSession(response.getToken(), response.getUser());
+                    signupStatusLabel.setText("Account create success!");
+                    switchToMainScene(event);
+                });
+            }
+            catch(Exception e)
+            {
+            javafx.application.Platform.runLater(()->{
+                signupStatusLabel.setText(e.getMessage() != null ? e.getMessage() : "Error no connection server!");
+            });
+            }
+        }).start();
+
     }
 
     @FXML
