@@ -32,6 +32,8 @@ public class AppController {
     @FXML private VBox artistSidebar;
     @FXML private VBox adminSidebar;
     //Topbars
+    @FXML private StackPane topBar;
+    @FXML private HBox adminTopBar;
     @FXML private TopBarController topBarController;
     @FXML private TopBarController adminTopBarController;
     //Controllers
@@ -70,13 +72,13 @@ public class AppController {
     @FXML
     public void showArtistFanPage() { showArtistPage(artistFanPage, artistSidebarController.getArtistFansNavItem()); }
     @FXML
-    public void showAdminDashBoardPage() { showPage(adminDashBoardPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminDashboardNavItem()); }
+    public void showAdminDashBoardPage() { showAdminPage(adminDashBoardPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminDashboardNavItem()); }
     @FXML
-    public void showAdminUserPage() { showPage(adminUserPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminUserNavItem()); }
+    public void showAdminUserPage() { showAdminPage(adminUserPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminUserNavItem()); }
     @FXML
-    public void showAdminReviewPage() { showPage(adminReviewPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminReviewNavItem()); }
+    public void showAdminReviewPage() { showAdminPage(adminReviewPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminReviewNavItem()); }
     @FXML
-    public void showAdminAnalyticsPage() { showPage(adminAnalyticsPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminAnalyticsNavItem()); }
+    public void showAdminAnalyticsPage() { showAdminPage(adminAnalyticsPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminAnalyticsNavItem()); }
     // --- Sidebars ---
     public void showHomeSideBar() {
         closeAllSidebar();
@@ -97,13 +99,12 @@ public class AppController {
     }
 
     // --- Show pages ---
-    public void showPage(ScrollPane page, Node topBar, HBox navItem) {
+    public void showPage(ScrollPane page, Node topBarNode, HBox navItem) {
         closeAllPages();
         sidebarController.resetNavStyles();
-        adminSidebarController.resetNavStyles();
-
-        setVisible(page, true);
         setVisible(topBar, true);
+        setVisible(page, true);
+        setVisible(topBarNode, true);
         if (navItem != null) navItem.getStyleClass().setAll("nav-active");
     }
 
@@ -112,6 +113,15 @@ public class AppController {
         artistSidebarController.resetNavStyles();
 
         setVisible(page, true);
+        if (navItem != null) navItem.getStyleClass().setAll("nav-active");
+    }
+
+    public void showAdminPage(ScrollPane page, Node topBarNode, HBox navItem) {
+        closeAllPages();
+        adminSidebarController.resetNavStyles();
+        setVisible(adminTopBar, true);
+        setVisible(page, true);
+        setVisible(topBarNode, true);
         if (navItem != null) navItem.getStyleClass().setAll("nav-active");
     }
 
@@ -132,14 +142,21 @@ public class AppController {
         setVisible(adminUserPage, false);
         setVisible(adminReviewPage, false);
         setVisible(adminAnalyticsPage, false);
+        //Topbars
+        setVisible(topBar, false);
+        setVisible(adminTopBar, false);
         //Home topbar
-        setVisible(topBarController.getAccountTopBar(), false);
-        setVisible(topBarController.getHomeHero(), false);
-        setVisible(topBarController.getLibraryTopBar(), false);
-        setVisible(topBarController.getAlbumTopBar(), false);
-        setVisible(topBarController.getArtistTopBar(), false);
+        if (topBarController != null) {
+            setVisible(topBarController.getAccountTopBar(), false);
+            setVisible(topBarController.getHomeHero(), false);
+            setVisible(topBarController.getLibraryTopBar(), false);
+            setVisible(topBarController.getAlbumTopBar(), false);
+            setVisible(topBarController.getArtistTopBar(), false);
+        }
         //Admin topbar
-        setVisible(adminTopBarController.getAdminTopBar(), false);
+        if (adminTopBarController != null) {
+            setVisible(adminTopBarController.getAdminTopBar(), false);
+        }
     }
 
     private void closeAllSidebar() {
