@@ -4,29 +4,34 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="artistBrowseNav" visible="false" managed="false" spacing="5.0"
-      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox fx:id="artistDashboardNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showHomePage" styleClass="nav-active">
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.sportt5.controller.SidebarController"
+      visible="false"
+      managed="false"
+      spacing="5.0"
+>
+    <HBox fx:id="artistDashboardNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-active">
         <Label text="⌂" styleClass="nav-icon" />
         <Label text="Dashboard" />
     </HBox>
-    <HBox fx:id="artistMusicNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showArtistMusicPage" styleClass="nav-item">
+    <HBox fx:id="artistMusicNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
         <Label text="▥" styleClass="nav-icon" />
         <Label text="My Music" />
     </HBox>
-    <HBox fx:id="artistUploadNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showArtistUploadPage" styleClass="nav-item">
+    <HBox fx:id="artistUploadNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
         <Label text="⊕" styleClass="nav-icon" />
         <Label text="Upload" />
     </HBox>
-    <HBox fx:id="artistAnalyticsNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showArtistAnalyticsPage" styleClass="nav-item">
+    <HBox fx:id="artistAnalyticsNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
         <Label text="↗" styleClass="nav-icon" />
         <Label text="Analytics" />
     </HBox>
-    <HBox fx:id="artistFansNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#showArtistFansPage" styleClass="nav-item">
+    <HBox fx:id="artistFansNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
         <Label text="♙" styleClass="nav-icon" />
         <Label text="Fans" />
     </HBox>
-    <HBox fx:id="exitArtistNavItem" alignment="CENTER_LEFT" spacing="11.0" onMouseClicked="#exitArtistPanel" styleClass="nav-item">
+    <HBox fx:id="exitArtistNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
         <Label text="←" styleClass="nav-icon" />
         <Label text="Back to User" />
     </HBox>

@@ -14,12 +14,12 @@
             fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
     <VBox spacing="28.0" styleClass="playlist-body">
 
-        <Label text="PLAYLISTS" styleClass="store-section-title" />
+        <Label text="ALBUMS" styleClass="store-section-title" />
 
-        <ScrollPane fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="NEVER"
-                    prefHeight="158.0" minHeight="158.0" maxHeight="158.0" styleClass="home-scroll">
-            <HBox fx:id="playlistCardsBox" spacing="16.0" />
-        </ScrollPane>
+<!--        <ScrollPane fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="NEVER"-->
+<!--                    prefHeight="158.0" minHeight="158.0" maxHeight="158.0" styleClass="home-scroll">-->
+<!--            <HBox fx:id="playlistCardsBox" spacing="16.0" />-->
+<!--        </ScrollPane>-->
 
         <HBox alignment="CENTER_LEFT" spacing="32.0">
             <StackPane prefWidth="220.0" prefHeight="220.0" styleClass="playlist-hero-art">

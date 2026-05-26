@@ -6,9 +6,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.sportt5.controller.SidebarController"
-      prefWidth="205.0" prefHeight="810.0" minWidth="205.0" maxWidth="205.0" styleClass="home-sidebar">
+      prefWidth="205.0"
+      prefHeight="810.0"
+      minWidth="205.0"
+      maxWidth="205.0"
+      styleClass="home-sidebar"
+>
     <Label fx:id="brandLabel" text="SPORT T5" styleClass="home-brand"/>
     <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="home-profile">
         <StackPane prefWidth="36.0" prefHeight="36.0" styleClass="home-avatar">
@@ -39,6 +45,10 @@
         <HBox fx:id="artistItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="✓" styleClass="nav-icon" />
             <Label text="Artist" />
+        </HBox>
+        <HBox fx:id="adminItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
+            <Label text="🗝" styleClass="nav-icon" />
+            <Label text="admin" />
         </HBox>
     </VBox>
     <Region VBox.vgrow="ALWAYS" />
