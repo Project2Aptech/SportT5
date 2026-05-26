@@ -72,6 +72,6 @@
             <PasswordField fx:id="signupPasswordField" promptText="••••••••" styleClass="auth-input" />
         </VBox>
         <Label fx:id="signupStatusLabel" text="" minHeight="16.0" styleClass="auth-status" />
-        <Button text="CREATE ACCOUNT" maxWidth="320.0" styleClass="auth-submit" />
+        <Button onAction="#handleSignUp"  text="CREATE ACCOUNT" maxWidth="320.0" styleClass="auth-submit" />
     </VBox>
 </StackPane>
