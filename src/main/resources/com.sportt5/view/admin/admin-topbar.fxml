@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.Region?>
 
 <HBox fx:id="adminTopBar" visible="false" managed="false"
+      fx:controller="com.sportt5.controller.TopBarController"
       alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0"
       styleClass="store-topbar admin-topbar"
       xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">

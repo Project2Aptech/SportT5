@@ -14,19 +14,33 @@
           maxWidth="1220.0" maxHeight="810.0" styleClass="home-shell">
 
         <fx:include fx:id="sidebar" source="components/sidebar.fxml"/>
+        <fx:include fx:id="artistSidebar" source="artist/artist-nav.fxml"/>
+        <fx:include fx:id="adminSidebar" source="admin/admin-nav.fxml"/>
 
         <BorderPane prefWidth="1015.0" prefHeight="810.0" minWidth="1015.0" maxWidth="1015.0"
                     styleClass="home-content">
             <top>
                 <fx:include fx:id="topBar" source="components/topbars.fxml"/>
+                <fx:include fx:id="adminTopBar" source="admin/admin-topbar.fxml"/>
             </top>
             <center>
                 <StackPane>
+                    <!--Home-->
                     <fx:include fx:id="homePage" source="pages/home-page.fxml"/>
                     <fx:include fx:id="libraryPage" source="pages/library-page.fxml"/>
                     <fx:include fx:id="albumPage" source="pages/album-page.fxml"/>
                     <fx:include fx:id="accountPage" source="pages/account-page.fxml"/>
-                    <fx:include fx:id="artistPage" source="pages/artist-page.fxml"/>
+                    <!--Artist-->
+                    <fx:include fx:id="artistDashBoardPage" source="artist/artist-dashboard-page.fxml" />
+                    <fx:include fx:id="artistMusicPage" source="artist/artist-music-page.fxml" />
+                    <fx:include fx:id="artistUploadPage" source="artist/artist-upload-page.fxml" />
+                    <fx:include fx:id="artistAnalyticsPage" source="artist/artist-analytics-page.fxml" />
+                    <fx:include fx:id="artistFanPage" source="artist/artist-fans-page.fxml" />
+                    <!--Admin-->
+                    <fx:include fx:id="adminDashBoardPage" source="admin/admin-page.fxml" />
+                    <fx:include fx:id="adminUserPage" source="admin/admin-user-page.fxml" />
+                    <fx:include fx:id="adminReviewPage" source="admin/admin-review-page.fxml"/>
+                    <fx:include fx:id="adminAnalyticsPage" source="admin/admin-analytics-page.fxml"/>
                 </StackPane>
             </center>
             <bottom>

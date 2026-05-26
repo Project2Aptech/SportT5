@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sportt5.controller.AdminController"
             visible="false" managed="false"
             fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
     <VBox spacing="18.0" styleClass="admin-body">
@@ -33,7 +33,7 @@
                     <Label text="+12.5%" styleClass="trend-up" />
                 </HBox>
                 <Label text="TOTAL REVENUE" styleClass="metric-label" />
-                <Label text="$42,890.00" styleClass="metric-value" />
+                <Label text="\$42,890.00" styleClass="metric-value" />
                 <HBox alignment="BOTTOM_LEFT" spacing="6.0" styleClass="bar-chart">
                     <Region prefWidth="18.0" prefHeight="16.0" />
                     <Region prefWidth="18.0" prefHeight="25.0" />
