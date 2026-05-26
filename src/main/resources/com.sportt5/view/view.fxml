@@ -20,8 +20,10 @@
         <BorderPane prefWidth="1015.0" prefHeight="810.0" minWidth="1015.0" maxWidth="1015.0"
                     styleClass="home-content">
             <top>
-                <fx:include fx:id="topBar" source="components/topbars.fxml"/>
-                <fx:include fx:id="adminTopBar" source="admin/admin-topbar.fxml"/>
+                <StackPane>
+                    <fx:include fx:id="topBar" source="components/topbars.fxml"/>
+                    <fx:include fx:id="adminTopBar" source="admin/admin-topbar.fxml"/>
+                </StackPane>
             </top>
             <center>
                 <StackPane>
