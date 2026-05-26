@@ -36,6 +36,8 @@ public class AppController {
     @FXML private HBox adminTopBar;
     @FXML private TopBarController topBarController;
     @FXML private TopBarController adminTopBarController;
+    // Player bar
+    @FXML private HBox playerBar;
     //Controllers
     @FXML private SidebarController sidebarController;
     @FXML private SidebarController artistSidebarController;
@@ -102,6 +104,7 @@ public class AppController {
     public void showPage(ScrollPane page, Node topBarNode, HBox navItem) {
         closeAllPages();
         sidebarController.resetNavStyles();
+        setVisible(playerBar, true);
         setVisible(topBar, true);
         setVisible(page, true);
         setVisible(topBarNode, true);
@@ -111,7 +114,7 @@ public class AppController {
     public void showArtistPage(ScrollPane page, HBox navItem) {
         closeAllPages();
         artistSidebarController.resetNavStyles();
-
+        setVisible(playerBar, false);
         setVisible(page, true);
         if (navItem != null) navItem.getStyleClass().setAll("nav-active");
     }
@@ -119,6 +122,7 @@ public class AppController {
     public void showAdminPage(ScrollPane page, Node topBarNode, HBox navItem) {
         closeAllPages();
         adminSidebarController.resetNavStyles();
+        setVisible(playerBar, false);
         setVisible(adminTopBar, true);
         setVisible(page, true);
         setVisible(topBarNode, true);
