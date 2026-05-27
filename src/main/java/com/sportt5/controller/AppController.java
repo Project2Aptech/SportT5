@@ -1,56 +1,39 @@
 package com.sportt5.controller;
 
+import com.sportt5.App;
+import com.sportt5.session.UserSession;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class AppController {
+
     // Home shell
     @FXML private HBox homeView;
-    // Home Pages
+    // Pages
     @FXML private ScrollPane accountPage;
     @FXML private ScrollPane homePage;
     @FXML private ScrollPane libraryPage;
     @FXML private ScrollPane albumPage;
-    // Artist Pages
-    @FXML private ScrollPane artistDashBoardPage;
-    @FXML private ScrollPane artistMusicPage;
-    @FXML private ScrollPane artistUploadPage;
-    @FXML private ScrollPane artistAnalyticsPage;
-    @FXML private ScrollPane artistFanPage;
-    // Admin Pages
-    @FXML private ScrollPane adminDashBoardPage;
-    @FXML private ScrollPane adminUserPage;
-    @FXML private ScrollPane adminReviewPage;
-    @FXML private ScrollPane adminAnalyticsPage;
-    //Sidebars
-    @FXML private VBox sidebar;
-    @FXML private VBox artistSidebar;
-    @FXML private VBox adminSidebar;
-    //Topbars
-    @FXML private StackPane topBar;
-    @FXML private HBox adminTopBar;
-    @FXML private TopBarController topBarController;
-    @FXML private TopBarController adminTopBarController;
-    // Player bar
-    @FXML private HBox playerBar;
+    @FXML private ScrollPane artistPage;
+
+
     //Controllers
     @FXML private SidebarController sidebarController;
-    @FXML private SidebarController artistSidebarController;
-    @FXML private SidebarController adminSidebarController;
+    @FXML private TopBarController topBarController;
 
     @FXML
     public void initialize() {
-        if (sidebarController != null) sidebarController.setAppController(this);
-        if (artistSidebarController != null) artistSidebarController.setAppController(this);
-        if (adminSidebarController != null) adminSidebarController.setAppController(this);
-
-        if (topBarController != null) topBarController.setAppController(this);
-        if (adminTopBarController != null) adminTopBarController.setAppController(this);
+        sidebarController.setAppController(this);
+        topBarController.setAppController(this);
         showHomePage();
     }
 
@@ -64,113 +47,34 @@ public class AppController {
     @FXML
     public void showAlbumPage() { showPage(albumPage, topBarController.getAlbumTopBar(), sidebarController.getAlbumItem()); }
     @FXML
-    public void showArtistDashBoardPage() { showArtistPage(artistDashBoardPage, artistSidebarController.getArtistDashboardNavItem()); }
-    @FXML
-    public void showArtistMusicPage() { showArtistPage(artistMusicPage, artistSidebarController.getArtistMusicNavItem()); }
-    @FXML
-    public void showArtistUploadPage() { showArtistPage(artistUploadPage, artistSidebarController.getArtistUploadNavItem()); }
-    @FXML
-    public void showArtistAnalyticsPage() { showArtistPage(artistAnalyticsPage, artistSidebarController.getArtistAnalyticsNavItem()); }
-    @FXML
-    public void showArtistFanPage() { showArtistPage(artistFanPage, artistSidebarController.getArtistFansNavItem()); }
-    @FXML
-    public void showAdminDashBoardPage() { showAdminPage(adminDashBoardPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminDashboardNavItem()); }
-    @FXML
-    public void showAdminUserPage() { showAdminPage(adminUserPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminUserNavItem()); }
-    @FXML
-    public void showAdminReviewPage() { showAdminPage(adminReviewPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminReviewNavItem()); }
-    @FXML
-    public void showAdminAnalyticsPage() { showAdminPage(adminAnalyticsPage, adminTopBarController.getAdminTopBar(), adminSidebarController.getAdminAnalyticsNavItem()); }
-    // --- Sidebars ---
-    public void showHomeSideBar() {
-        closeAllSidebar();
-        setVisible(sidebar, true);
-        showHomePage();
-    }
+    public void showArtistPage() { showPage(artistPage, topBarController.getArtistTopBar(), sidebarController.getArtistItem()); }
 
-    public void showArtistSideBar() {
-        closeAllSidebar();
-        setVisible(artistSidebar, true);
-        showArtistDashBoardPage();
-    }
-
-    public void showAdminSideBar() {
-        closeAllSidebar();
-        setVisible(adminSidebar, true);
-        showAdminDashBoardPage();
-    }
-
-    // --- Show pages ---
-    public void showPage(ScrollPane page, Node topBarNode, HBox navItem) {
-        closeAllPages();
-        sidebarController.resetNavStyles();
-        setVisible(playerBar, true);
-        setVisible(topBar, true);
-        setVisible(page, true);
-        setVisible(topBarNode, true);
-        if (navItem != null) navItem.getStyleClass().setAll("nav-active");
-    }
-
-    public void showArtistPage(ScrollPane page, HBox navItem) {
-        closeAllPages();
-        artistSidebarController.resetNavStyles();
-        setVisible(playerBar, false);
-        setVisible(page, true);
-        if (navItem != null) navItem.getStyleClass().setAll("nav-active");
-    }
-
-    public void showAdminPage(ScrollPane page, Node topBarNode, HBox navItem) {
-        closeAllPages();
-        adminSidebarController.resetNavStyles();
-        setVisible(playerBar, false);
-        setVisible(adminTopBar, true);
-        setVisible(page, true);
-        setVisible(topBarNode, true);
-        if (navItem != null) navItem.getStyleClass().setAll("nav-active");
-    }
-
-    private void closeAllPages() {
-        //Home
+    public void showPage(ScrollPane page, Node topBar, HBox navItem) {
         setVisible(accountPage, false);
         setVisible(homePage, false);
         setVisible(libraryPage, false);
         setVisible(albumPage, false);
-        //Artist
-        setVisible(artistDashBoardPage, false);
-        setVisible(artistMusicPage, false);
-        setVisible(artistUploadPage, false);
-        setVisible(artistAnalyticsPage, false);
-        setVisible(artistFanPage, false);
-        //Admin
-        setVisible(adminDashBoardPage, false);
-        setVisible(adminUserPage, false);
-        setVisible(adminReviewPage, false);
-        setVisible(adminAnalyticsPage, false);
-        //Topbars
-        setVisible(topBar, false);
-        setVisible(adminTopBar, false);
-        //Home topbar
-        if (topBarController != null) {
-            setVisible(topBarController.getAccountTopBar(), false);
-            setVisible(topBarController.getHomeHero(), false);
-            setVisible(topBarController.getLibraryTopBar(), false);
-            setVisible(topBarController.getAlbumTopBar(), false);
-            setVisible(topBarController.getArtistTopBar(), false);
-        }
-        //Admin topbar
-        if (adminTopBarController != null) {
-            setVisible(adminTopBarController.getAdminTopBar(), false);
-        }
-    }
+        setVisible(artistPage, false);
 
-    private void closeAllSidebar() {
-        setVisible(sidebar, false);
-        setVisible(artistSidebar, false);
-        setVisible(adminSidebar, false);
+        setVisible(topBarController.getAccountTopBar(), false);
+        setVisible(topBarController.getHomeHero(), false);
+        setVisible(topBarController.getLibraryTopBar(), false);
+        setVisible(topBarController.getAlbumTopBar(), false);
+        setVisible(topBarController.getArtistTopBar(), false);
+
+        sidebarController.resetNavStyles();
+
+        setVisible(page, true);
+        setVisible(topBar, true);
+        if (navItem != null) navItem.getStyleClass().setAll("nav-active");
     }
 
     private void setVisible(Node node, boolean visible) {
         node.setVisible(visible);
         node.setManaged(visible);
     }
+
+    public static class AuthController {
+    }
+
 }
