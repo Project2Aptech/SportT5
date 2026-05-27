@@ -4,7 +4,9 @@
       "Read(//mnt/d/Dev/Code/**)",
       "Bash(mvn clean *)",
       "PowerShell(Get-ChildItem -Recurse \"D:\\\\Dev\\\\Code\\\\SportT5\\\\src\\\\main\\\\resources\\\\com.sportt5\\\\view\\\\\" | Where-Object { !$_.PSIsContainer } | Select-Object FullName, Length)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(git add *)"
     ]
   }
 }

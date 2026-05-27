@@ -7,125 +7,70 @@ import java.time.LocalDateTime;
 
 public class Songs {
     private int id;
-    private int artist_id;
-    private int album_id;
+    private int artistId;
+    private int albumId;
     private String title;
-    private int duration_seconds;
+    private int durationSeconds;
 
-    private String file_url;
-    private String cover_url;
+    private String fileUrl;
+    private String coverUrl;
 
-    private int track_number;
-    private long play_count;
+    private int trackNumber;
+    private long playCount;
 
     private Status status = Status.LIVE;
-    private RequiredAccountType required_account_type = RequiredAccountType.NORMAL;
+    private RequiredAccountType requiredAccountType = RequiredAccountType.NORMAL;
 
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public Songs() {
     }
 
-    public Songs(int album_id, int artist_id, String cover_url, int duration_seconds, String file_url, int id, long play_count, RequiredAccountType required_account_type, Status status, String title, int track_number) {
-        this.album_id = album_id;
-        this.artist_id = artist_id;
-        this.cover_url = cover_url;
-        this.duration_seconds = duration_seconds;
-        this.file_url = file_url;
+    public Songs(int albumId, int artistId, String coverUrl, int durationSeconds, String fileUrl, int id, long playCount, RequiredAccountType requiredAccountType, Status status, String title, int trackNumber) {
+        this.albumId = albumId;
+        this.artistId = artistId;
+        this.coverUrl = coverUrl;
+        this.durationSeconds = durationSeconds;
+        this.fileUrl = fileUrl;
         this.id = id;
-        this.play_count = play_count;
-        this.required_account_type = required_account_type;
+        this.playCount = playCount;
+        this.requiredAccountType = requiredAccountType;
         this.status = status;
         this.title = title;
-        this.track_number = track_number;
+        this.trackNumber = trackNumber;
     }
 
-    public int getAlbum_id() {
-        return album_id;
-    }
+    public int getAlbumId() { return albumId; }
+    public void setAlbumId(int albumId) { this.albumId = albumId; }
 
-    public void setAlbum_id(int album_id) {
-        this.album_id = album_id;
-    }
+    public int getArtistId() { return artistId; }
+    public void setArtistId(int artistId) { this.artistId = artistId; }
 
-    public int getArtist_id() {
-        return artist_id;
-    }
+    public String getCoverUrl() { return coverUrl; }
+    public void setCoverUrl(String coverUrl) { this.coverUrl = coverUrl; }
 
-    public void setArtist_id(int artist_id) {
-        this.artist_id = artist_id;
-    }
+    public int getDurationSeconds() { return durationSeconds; }
+    public void setDurationSeconds(int durationSeconds) { this.durationSeconds = durationSeconds; }
 
-    public String getCover_url() {
-        return cover_url;
-    }
+    public String getFileUrl() { return fileUrl; }
+    public void setFileUrl(String fileUrl) { this.fileUrl = fileUrl; }
 
-    public void setCover_url(String cover_url) {
-        this.cover_url = cover_url;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public int getDuration_seconds() {
-        return duration_seconds;
-    }
+    public long getPlayCount() { return playCount; }
+    public void setPlayCount(long playCount) { this.playCount = playCount; }
 
-    public void setDuration_seconds(int duration_seconds) {
-        this.duration_seconds = duration_seconds;
-    }
+    public RequiredAccountType getRequiredAccountType() { return requiredAccountType; }
+    public void setRequiredAccountType(RequiredAccountType requiredAccountType) { this.requiredAccountType = requiredAccountType; }
 
-    public String getFile_url() {
-        return file_url;
-    }
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
 
-    public void setFile_url(String file_url) {
-        this.file_url = file_url;
-    }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public long getPlay_count() {
-        return play_count;
-    }
-
-    public void setPlay_count(long play_count) {
-        this.play_count = play_count;
-    }
-
-    public RequiredAccountType getRequired_account_type() {
-        return required_account_type;
-    }
-
-    public void setRequired_account_type(RequiredAccountType required_account_type) {
-        this.required_account_type = required_account_type;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getTrack_number() {
-        return track_number;
-    }
-
-    public void setTrack_number(int track_number) {
-        this.track_number = track_number;
-    }
+    public int getTrackNumber() { return trackNumber; }
+    public void setTrackNumber(int trackNumber) { this.trackNumber = trackNumber; }
 }

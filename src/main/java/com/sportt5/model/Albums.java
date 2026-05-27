@@ -5,60 +5,36 @@ import java.time.LocalDate;
 
 public class Albums {
     private int id;
-    private int artist_id;
+    private int artistId;
     private String title;
-    private String cover_url;
-    private LocalDate release_date;
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    private String coverUrl;
+    private LocalDate releaseDate;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
     public Albums() {
     }
 
-    public Albums(String title, int id, String cover_url, int artist_id, LocalDate release_date) {
+    public Albums(String title, int id, String coverUrl, int artistId, LocalDate releaseDate) {
         this.title = title;
         this.id = id;
-        this.cover_url = cover_url;
-        this.artist_id = artist_id;
-        this.release_date = release_date;
+        this.coverUrl = coverUrl;
+        this.artistId = artistId;
+        this.releaseDate = releaseDate;
     }
 
-    public int getArtist_id() {
-        return artist_id;
-    }
+    public int getArtistId() { return artistId; }
+    public void setArtistId(int artistId) { this.artistId = artistId; }
 
-    public void setArtist_id(int artist_id) {
-        this.artist_id = artist_id;
-    }
+    public String getCoverUrl() { return coverUrl; }
+    public void setCoverUrl(String coverUrl) { this.coverUrl = coverUrl; }
 
-    public String getCover_url() {
-        return cover_url;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public void setCover_url(String cover_url) {
-        this.cover_url = cover_url;
-    }
+    public LocalDate getReleaseDate() { return releaseDate; }
+    public void setReleaseDate(LocalDate releaseDate) { this.releaseDate = releaseDate; }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDate getRelease_date() {
-        return release_date;
-    }
-
-    public void setRelease_date(LocalDate release_date) {
-        this.release_date = release_date;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 }

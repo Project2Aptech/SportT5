@@ -5,14 +5,14 @@ USERS
 INSERT INTO users (
     username,
     email,
-    password_hash,
+    passwordHash,
     role,
-    account_type,
-    display_name,
-    avatar_url,
+    accountType,
+    displayName,
+    avatarUrl,
     bio,
-    birth_date,
-    is_active
+    birthDate,
+    isActive
 )
 VALUES
     ('admin1','admin1@sportt5.com','123456','ADMIN','PREMIUM','Admin One','avatars/admin1.jpg','System administrator','1995-01-01',TRUE),
@@ -57,10 +57,10 @@ VALUES
 ===================================================== */
 
 INSERT INTO albums (
-    artist_id,
+    artistId,
     title,
-    cover_url,
-    release_date
+    coverUrl,
+    releaseDate
 )
 VALUES
     (2,'Pop Dreams','covers/pop_dreams.jpg','2024-01-01'),
@@ -78,21 +78,17 @@ VALUES
    SONGS
 ===================================================== */
 
-/* =====================================================
-   SONGS (Đã sửa sạch lỗi cú pháp)
-===================================================== */
-
 INSERT INTO songs (
-    artist_id,
-    album_id,
+    artistId,
+    albumId,
     title,
-    duration_seconds,
-    file_url,
-    cover_url,
-    track_number,
-    play_count,
+    durationSeconds,
+    fileUrl,
+    coverUrl,
+    trackNumber,
+    playCount,
     status,
-    required_account_type
+    requiredAccountType
 )
 VALUES
     (
@@ -432,13 +428,14 @@ VALUES
         'LIVE',
         'NORMAL'
     );
+
 /* =====================================================
    SONG GENRES
 ===================================================== */
 
-INSERT INTO song_genres (
-    song_id,
-    genre_id
+INSERT INTO songGenres (
+    songId,
+    genreId
 )
 VALUES
     (1,1),
@@ -457,11 +454,11 @@ VALUES
 ===================================================== */
 
 INSERT INTO playlists (
-    user_id,
+    userId,
     title,
     description,
-    cover_url,
-    is_public
+    coverUrl,
+    isPublic
 )
 VALUES
     (5,'Morning Chill','Relax morning playlist','covers/p1.jpg',TRUE),
@@ -488,9 +485,9 @@ VALUES
    PLAYLIST SONGS
 ===================================================== */
 
-INSERT INTO playlist_songs (
-    playlist_id,
-    song_id
+INSERT INTO playlistSongs (
+    playlistId,
+    songId
 )
 VALUES
     (1,9),
@@ -508,9 +505,9 @@ VALUES
    LIKED SONGS
 ===================================================== */
 
-INSERT INTO liked_songs (
-    user_id,
-    song_id
+INSERT INTO likedSongs (
+    userId,
+    songId
 )
 VALUES
     (5,1),
@@ -528,11 +525,11 @@ VALUES
    PLAY HISTORY
 ===================================================== */
 
-INSERT INTO play_history (
-    user_id,
-    song_id,
-    seconds_played,
-    device_type
+INSERT INTO playHistory (
+    userId,
+    songId,
+    secondsPlayed,
+    deviceType
 )
 VALUES
     (5,1,210,'desktop'),
@@ -550,9 +547,9 @@ VALUES
    ARTIST FOLLOWS
 ===================================================== */
 
-INSERT INTO artist_follows (
-    user_id,
-    artist_id
+INSERT INTO artistFollows (
+    userId,
+    artistId
 )
 VALUES
     (5,2),
@@ -570,9 +567,9 @@ VALUES
    PLAYLIST FOLLOWS
 ===================================================== */
 
-INSERT INTO playlist_follows (
-    user_id,
-    playlist_id
+INSERT INTO playlistFollows (
+    userId,
+    playlistId
 )
 VALUES
     (5,2),
@@ -590,12 +587,12 @@ VALUES
    SONG COMMENTS
 ===================================================== */
 
-INSERT INTO song_comments (
-    song_id,
-    user_id,
-    parent_comment_id,
+INSERT INTO songComments (
+    songId,
+    userId,
+    parentCommentId,
     content,
-    is_deleted
+    isDeleted
 )
 VALUES
     (1,5,NULL,'Amazing song!',FALSE),
@@ -620,7 +617,7 @@ VALUES
 
 /* =====================================================
    SUBSCRIPTIONS
-   plan_type: PRO=$9.99  PREMIUM=$19.99
+   planType: PRO=$9.99  PREMIUM=$19.99
    6 tháng: 2023-10 → 2024-03
    Paying users: artist1(2) PRO, artist2(3) PREMIUM,
                  artist3(4) PRO,  user2(6)   PREMIUM,
@@ -628,7 +625,7 @@ VALUES
                  artist5(10) PRO
 ===================================================== */
 
-INSERT INTO subscriptions (user_id, plan_type, amount, started_at, expires_at, status) VALUES
+INSERT INTO subscriptions (userId, planType, amount, startedAt, expiresAt, status) VALUES
 -- artist1 (id=2) — PRO
 (2,'PRO', 9.99,'2023-10-01','2023-10-31','EXPIRED'),
 (2,'PRO', 9.99,'2023-11-01','2023-11-30','EXPIRED'),
@@ -683,10 +680,10 @@ INSERT INTO subscriptions (user_id, plan_type, amount, started_at, expires_at, s
    ARTIST EARNINGS
    6 tháng: 2023-10 → 2024-03
    Tỉ lệ: ~$0.004 / stream
-   Mỗi tháng stream_count tăng dần ~5-10%
+   Mỗi tháng streamCount tăng dần ~5-10%
 ===================================================== */
 
-INSERT INTO artist_earnings (artist_id, period_start, period_end, stream_count, amount) VALUES
+INSERT INTO artistEarnings (artistId, periodStart, periodEnd, streamCount, amount) VALUES
 -- artist1 (id=2) — Pop
 (2,'2023-10-01','2023-10-31', 42000, 168.00),
 (2,'2023-11-01','2023-11-30', 45000, 180.00),
