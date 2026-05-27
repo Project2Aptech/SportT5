@@ -6,45 +6,45 @@ import java.time.LocalDateTime;
 
 public class ArtistEarnings {
     private int id;
-    private int artist_id;
-    private LocalDate period_start;
-    private LocalDate period_end;
-    private int stream_count;
+    private int artistId;
+    private LocalDate periodStart;
+    private LocalDate periodEnd;
+    private int streamCount;
     private BigDecimal amount;
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     public ArtistEarnings() {
     }
 
-    public ArtistEarnings(BigDecimal amount, int artist_id, int id,
-                          LocalDate period_end, LocalDate period_start,
-                          int stream_count) {
+    public ArtistEarnings(BigDecimal amount, int artistId, int id,
+                          LocalDate periodEnd, LocalDate periodStart,
+                          int streamCount) {
         this.amount = amount;
-        this.artist_id = artist_id;
+        this.artistId = artistId;
         this.id = id;
-        this.period_end = period_end;
-        this.period_start = period_start;
-        this.stream_count = stream_count;
+        this.periodEnd = periodEnd;
+        this.periodStart = periodStart;
+        this.streamCount = streamCount;
     }
 
     public BigDecimal getAmount() { return amount; }
     public void setAmount(BigDecimal amount) { this.amount = amount; }
 
-    public int getArtist_id() { return artist_id; }
-    public void setArtist_id(int artist_id) { this.artist_id = artist_id; }
+    public int getArtistId() { return artistId; }
+    public void setArtistId(int artistId) { this.artistId = artistId; }
 
-    public LocalDateTime getCreated_at() { return created_at; }
-    public void setCreated_at(LocalDateTime created_at) { this.created_at = created_at; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public LocalDate getPeriod_end() { return period_end; }
-    public void setPeriod_end(LocalDate period_end) { this.period_end = period_end; }
+    public LocalDate getPeriodEnd() { return periodEnd; }
+    public void setPeriodEnd(LocalDate periodEnd) { this.periodEnd = periodEnd; }
 
-    public LocalDate getPeriod_start() { return period_start; }
-    public void setPeriod_start(LocalDate period_start) { this.period_start = period_start; }
+    public LocalDate getPeriodStart() { return periodStart; }
+    public void setPeriodStart(LocalDate periodStart) { this.periodStart = periodStart; }
 
-    public int getStream_count() { return stream_count; }
-    public void setStream_count(int stream_count) { this.stream_count = stream_count; }
+    public int getStreamCount() { return streamCount; }
+    public void setStreamCount(int streamCount) { this.streamCount = streamCount; }
 }

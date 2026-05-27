@@ -7,50 +7,50 @@ import java.time.LocalDateTime;
 
 public class Subscriptions {
     private int id;
-    private int user_id;
-    private AccountType plan_type;
+    private int userId;
+    private AccountType planType;
     private BigDecimal amount;
-    private LocalDateTime started_at;
-    private LocalDateTime expires_at;
+    private LocalDateTime startedAt;
+    private LocalDateTime expiresAt;
     private String status = "ACTIVE"; // ACTIVE | EXPIRED | CANCELLED
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     public Subscriptions() {
     }
 
-    public Subscriptions(BigDecimal amount, LocalDateTime expires_at, int id,
-                         AccountType plan_type, LocalDateTime started_at,
-                         String status, int user_id) {
+    public Subscriptions(BigDecimal amount, LocalDateTime expiresAt, int id,
+                         AccountType planType, LocalDateTime startedAt,
+                         String status, int userId) {
         this.amount = amount;
-        this.expires_at = expires_at;
+        this.expiresAt = expiresAt;
         this.id = id;
-        this.plan_type = plan_type;
-        this.started_at = started_at;
+        this.planType = planType;
+        this.startedAt = startedAt;
         this.status = status;
-        this.user_id = user_id;
+        this.userId = userId;
     }
 
     public BigDecimal getAmount() { return amount; }
     public void setAmount(BigDecimal amount) { this.amount = amount; }
 
-    public LocalDateTime getCreated_at() { return created_at; }
-    public void setCreated_at(LocalDateTime created_at) { this.created_at = created_at; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-    public LocalDateTime getExpires_at() { return expires_at; }
-    public void setExpires_at(LocalDateTime expires_at) { this.expires_at = expires_at; }
+    public LocalDateTime getExpiresAt() { return expiresAt; }
+    public void setExpiresAt(LocalDateTime expiresAt) { this.expiresAt = expiresAt; }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public AccountType getPlan_type() { return plan_type; }
-    public void setPlan_type(AccountType plan_type) { this.plan_type = plan_type; }
+    public AccountType getPlanType() { return planType; }
+    public void setPlanType(AccountType planType) { this.planType = planType; }
 
-    public LocalDateTime getStarted_at() { return started_at; }
-    public void setStarted_at(LocalDateTime started_at) { this.started_at = started_at; }
+    public LocalDateTime getStartedAt() { return startedAt; }
+    public void setStartedAt(LocalDateTime startedAt) { this.startedAt = startedAt; }
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public int getUser_id() { return user_id; }
-    public void setUser_id(int user_id) { this.user_id = user_id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 }

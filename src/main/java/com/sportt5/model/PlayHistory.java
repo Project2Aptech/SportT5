@@ -6,40 +6,40 @@ import java.time.LocalDateTime;
 
 public class PlayHistory {
     private long id;
-    private int user_id;
-    private int song_id;
-    private LocalDateTime played_at;
-    private int seconds_played;
-    private DeviceType device_type = DeviceType.DESKTOP;
+    private int userId;
+    private int songId;
+    private LocalDateTime playedAt;
+    private int secondsPlayed;
+    private DeviceType deviceType = DeviceType.DESKTOP;
 
     public PlayHistory() {
     }
 
-    public PlayHistory(DeviceType device_type, long id, LocalDateTime played_at,
-                       int seconds_played, int song_id, int user_id) {
-        this.device_type = device_type;
+    public PlayHistory(DeviceType deviceType, long id, LocalDateTime playedAt,
+                       int secondsPlayed, int songId, int userId) {
+        this.deviceType = deviceType;
         this.id = id;
-        this.played_at = played_at;
-        this.seconds_played = seconds_played;
-        this.song_id = song_id;
-        this.user_id = user_id;
+        this.playedAt = playedAt;
+        this.secondsPlayed = secondsPlayed;
+        this.songId = songId;
+        this.userId = userId;
     }
 
-    public DeviceType getDevice_type() { return device_type; }
-    public void setDevice_type(DeviceType device_type) { this.device_type = device_type; }
+    public DeviceType getDeviceType() { return deviceType; }
+    public void setDeviceType(DeviceType deviceType) { this.deviceType = deviceType; }
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 
-    public LocalDateTime getPlayed_at() { return played_at; }
-    public void setPlayed_at(LocalDateTime played_at) { this.played_at = played_at; }
+    public LocalDateTime getPlayedAt() { return playedAt; }
+    public void setPlayedAt(LocalDateTime playedAt) { this.playedAt = playedAt; }
 
-    public int getSeconds_played() { return seconds_played; }
-    public void setSeconds_played(int seconds_played) { this.seconds_played = seconds_played; }
+    public int getSecondsPlayed() { return secondsPlayed; }
+    public void setSecondsPlayed(int secondsPlayed) { this.secondsPlayed = secondsPlayed; }
 
-    public int getSong_id() { return song_id; }
-    public void setSong_id(int song_id) { this.song_id = song_id; }
+    public int getSongId() { return songId; }
+    public void setSongId(int songId) { this.songId = songId; }
 
-    public int getUser_id() { return user_id; }
-    public void setUser_id(int user_id) { this.user_id = user_id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 }
