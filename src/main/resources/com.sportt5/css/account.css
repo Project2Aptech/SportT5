@@ -1,0 +1,130 @@
+.account-body {
+    -fx-padding: 30 34 34 34;
+    -fx-background-color: linear-gradient(to bottom right, rgba(26,70,44,0.32), -c-bg-base 36%, -c-bg-base);
+}
+
+.account-header {
+    -fx-padding: 8 0 10 0;
+}
+
+.account-avatar-large {
+    -fx-background-color: radial-gradient(center 50% 40%, radius 70%, #1b5f4e, #050b0b);
+    -fx-background-radius: 59;
+    -fx-border-color: -c-accent;
+    -fx-border-width: 2;
+    -fx-border-radius: 59;
+}
+
+.account-avatar-large .label {
+    -fx-text-fill: #d8fff0;
+    -fx-font-size: 54px;
+    -fx-font-weight: 900;
+}
+
+.account-name {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 46px;
+    -fx-font-weight: 900;
+}
+
+.account-pill {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 10;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+    -fx-padding: 4 9 4 9;
+}
+
+.account-muted {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 11px;
+}
+
+.edit-profile-button {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 18;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+    -fx-padding: 9 19 9 19;
+}
+
+.account-card {
+    -fx-background-color: -c-bg-card;
+    -fx-background-radius: 9;
+    -fx-border-color: -c-border-sidebar;
+    -fx-border-radius: 9;
+    -fx-padding: 20;
+}
+
+.account-card-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 17px;
+    -fx-font-weight: 900;
+}
+
+.account-card-label {
+    -fx-text-fill: -c-text-faint;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+}
+
+.account-plan {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+}
+
+.account-text {
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 11px;
+}
+
+.account-price {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+}
+
+.manage-button {
+    -fx-background-color: -c-border-sidebar;
+    -fx-background-radius: 5;
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-min-height: 34px;
+}
+
+.verified-dot,
+.change-button,
+.filter-button,
+.download-link {
+    -fx-text-fill: -c-accent;
+}
+
+.change-button,
+.filter-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+}
+
+.toggle-on {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 20px;
+}
+
+.history-card {
+    -fx-pref-width: 650px;
+}
+
+.history-table {
+    -fx-padding: 8 0 0 0;
+}
+
+.download-link {
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+}

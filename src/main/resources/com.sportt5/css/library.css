@@ -1,0 +1,243 @@
+.library-body {
+    -fx-padding: 30 34 34 34;
+    -fx-background-color: -c-bg-base;
+}
+
+.library-heading {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 36px;
+    -fx-font-weight: 900;
+}
+
+.library-tabs {
+    -fx-border-color: transparent transparent -c-border-strong transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0 0 12 0;
+}
+
+.library-tab,
+.library-tab-active {
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+}
+
+.library-tab {
+    -fx-text-fill: -c-text-body;
+}
+
+.library-tab-active {
+    -fx-text-fill: -c-accent;
+    -fx-underline: true;
+}
+
+.liked-card {
+    -fx-background-color:
+        radial-gradient(center 80% 85%, radius 70%, rgba(125,218,131,0.45), transparent 55%),
+        linear-gradient(to bottom right, #04ce60, #146b3c);
+    -fx-background-radius: 15;
+    -fx-padding: 24;
+}
+
+.liked-heart {
+    -fx-text-fill: #f6fff8;
+    -fx-font-size: 34px;
+    -fx-font-weight: 900;
+}
+
+.liked-title {
+    -fx-text-fill: #f7fff9;
+    -fx-font-size: 28px;
+    -fx-font-weight: 900;
+}
+
+.liked-count {
+    -fx-text-fill: rgba(255,255,255,0.82);
+    -fx-font-size: 12px;
+}
+
+.view-all-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+}
+
+.playlist-card {
+    -fx-background-color: -c-bg-overlay;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+}
+
+.playlist-art {
+    -fx-background-radius: 7;
+}
+
+.playlist-art .label {
+    -fx-font-size: 32px;
+    -fx-font-weight: 900;
+}
+
+.art-green {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 70%, #1ccf67, #132017);
+}
+
+.art-green .label {
+    -fx-text-fill: -c-accent;
+}
+
+.art-city {
+    -fx-background-color: linear-gradient(to bottom, #06111b, #35617a, #130d0c);
+}
+
+.art-city .label {
+    -fx-text-fill: #b8d7e8;
+}
+
+.art-gold {
+    -fx-background-color: linear-gradient(to bottom, #2a2111, #e4c45c, #080806);
+}
+
+.art-gold .label {
+    -fx-text-fill: #ffe28a;
+}
+
+.new-playlist {
+    -fx-background-color: -c-bg-card-hover;
+}
+
+.new-playlist .label {
+    -fx-text-fill: -c-text-body;
+}
+
+.playlist-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 11px;
+    -fx-font-weight: 900;
+}
+
+.playlist-count {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 9px;
+}
+
+.recent-table {
+    -fx-background-color: -c-bg-card;
+    -fx-background-radius: 14;
+    -fx-padding: 16;
+}
+
+/* ── Playlist detail ── */
+
+.playlist-body {
+    -fx-padding: 34 34 34 34;
+    -fx-background-color: linear-gradient(to bottom right, rgba(19,55,35,0.42), -c-bg-base 34%, -c-bg-base);
+}
+
+.playlist-hero-art {
+    -fx-background-color: linear-gradient(to bottom right, #07111b, #16273b 38%, #ff2584 55%, #07100e);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(255,255,255,0.12);
+    -fx-border-radius: 8;
+}
+
+.playlist-hero-art .label {
+    -fx-text-fill: #7de8ff;
+    -fx-font-size: 78px;
+    -fx-font-weight: 200;
+}
+
+.playlist-eyebrow {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+    -fx-letter-spacing: 3px;
+}
+
+.playlist-heading {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 50px;
+    -fx-font-weight: 900;
+}
+
+.playlist-meta,
+.playlist-meta-strong {
+    -fx-font-size: 12px;
+}
+
+.playlist-meta {
+    -fx-text-fill: -c-text-muted;
+}
+
+.playlist-meta-strong {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-weight: 900;
+}
+
+.playlist-play-button {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 24;
+    -fx-min-width: 48px;
+    -fx-min-height: 48px;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+}
+
+.follow-button {
+    -fx-background-color: -c-border;
+    -fx-background-radius: 18;
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 11px;
+    -fx-font-weight: 900;
+    -fx-padding: 9 22 9 22;
+}
+
+.playlist-table {
+    -fx-background-color: transparent;
+    -fx-padding: 4 0 0 0;
+}
+
+.playlist-rank-active {
+    -fx-background-color: -c-accent-subtle3;
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 12px;
+}
+
+.playlist-song-active {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 12px;
+    -fx-font-weight: 900;
+}
+
+.song-thumb {
+    -fx-background-radius: 4;
+}
+
+.song-row {
+    -fx-alignment: CENTER_LEFT;
+    -fx-min-height: 44px;
+    -fx-border-color: transparent transparent -c-border-subtle transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-radius: 6;
+}
+
+.song-row:hover {
+    -fx-background-color: -c-bg-hover;
+    -fx-cursor: hand;
+}
+
+.thumb-city {
+    -fx-background-color: linear-gradient(to bottom, #161b22, #6a342e, #060707);
+}
+
+.thumb-orange {
+    -fx-background-color: linear-gradient(to bottom right, #0f1318, #ff8335, #080808);
+}
+
+.thumb-blue {
+    -fx-background-color: linear-gradient(to bottom right, #071018, #14a7d8, #0a1016);
+}
+
+.thumb-gold {
+    -fx-background-color: linear-gradient(to bottom right, #0e0b08, #d8a633, #171009);
+}

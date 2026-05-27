@@ -1,0 +1,66 @@
+.player {
+    -fx-background-color: -c-bg-player;
+    -fx-border-color: -c-border-sidebar transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 8 22 8 22;
+}
+
+.now-cover {
+    -fx-background-radius: 5;
+    -fx-background-color: radial-gradient(center 50% 48%, radius 62%, #5ef082, #06100d);
+}
+
+.now-cover .label {
+    -fx-text-fill: #baffc8;
+    -fx-font-size: 22px;
+}
+
+.now-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.now-artist {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+}
+
+.play-button {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 19;
+    -fx-min-width: 38px;
+    -fx-min-height: 38px;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 15px;
+    -fx-font-weight: 900;
+}
+
+.player-muted {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 15px;
+}
+
+.progress .bar,
+.volume .bar {
+    -fx-background-color: -c-progress-fill;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-pref-height: 4px;
+    -fx-max-height: 4px;
+}
+
+.progress .track,
+.volume .track {
+    -fx-background-color: -c-progress-track;
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-pref-height: 4px;
+    -fx-max-height: 4px;
+}
+
+.time {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 8px;
+}

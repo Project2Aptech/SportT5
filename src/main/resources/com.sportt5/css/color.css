@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════
+   COLOR TOKENS  —  SportT5
+   Default: dark theme  |  .light-theme: light
+   ═══════════════════════════════════════════════ */
+
+/* ── DARK THEME (default) ── */
+.root {
+    /* Backgrounds */
+    -c-bg-base:          #101111;
+    -c-bg-elevated:      #191919;
+    -c-bg-surface:       #151615;
+    -c-bg-player:        #1d1e1d;
+    -c-bg-topbar:        #0f1010;
+    -c-bg-auth:          #030a08;
+    -c-bg-card:          rgba(255,255,255,0.045);
+    -c-bg-card-hover:    rgba(255,255,255,0.065);
+    -c-bg-input:         rgba(255,255,255,0.035);
+    -c-bg-hover:         rgba(255,255,255,0.04);
+    -c-bg-overlay:       rgba(255,255,255,0.055);
+
+    /* Accent / Brand green */
+    -c-accent:           #49ee78;
+    -c-accent-alt:       #1ed263;
+    -c-accent-on:        #06120c;
+    -c-accent-subtle:    rgba(73,238,120,0.14);
+    -c-accent-subtle2:   rgba(73,238,120,0.16);
+    -c-accent-subtle3:   rgba(73,238,120,0.10);
+
+    /* Text */
+    -c-text-heading:     #f4f4f4;
+    -c-text-primary:     #f2f3f1;
+    -c-text-body:        #c8d0c8;
+    -c-text-muted:       #aeb8ad;
+    -c-text-faint:       #8f9a93;
+    -c-text-input:       #e2e8e4;
+    -c-text-placeholder: #58625d;
+
+    /* Border */
+    -c-border:           rgba(255,255,255,0.07);
+    -c-border-subtle:    rgba(255,255,255,0.04);
+    -c-border-strong:    rgba(255,255,255,0.10);
+    -c-border-sidebar:   rgba(255,255,255,0.06);
+
+    /* Semantic — blue */
+    -c-blue:             #91b2ff;
+    -c-blue-subtle:      rgba(145,178,255,0.14);
+
+    /* Progress / Slider */
+    -c-progress-fill:    #49ee78;
+    -c-progress-track:   rgba(255,255,255,0.17);
+}
+
+/* ── LIGHT THEME ── */
+/* Add style class "light-theme" to the root pane to activate */
+.light-theme {
+    /* Backgrounds */
+    -c-bg-base:          #f4f5f4;
+    -c-bg-elevated:      #ffffff;
+    -c-bg-surface:       #ececec;
+    -c-bg-player:        #eef0ee;
+    -c-bg-topbar:        #f8f9f8;
+    -c-bg-auth:          #f0f4f2;
+    -c-bg-card:          rgba(0,0,0,0.04);
+    -c-bg-card-hover:    rgba(0,0,0,0.07);
+    -c-bg-input:         rgba(0,0,0,0.04);
+    -c-bg-hover:         rgba(0,0,0,0.04);
+    -c-bg-overlay:       rgba(0,0,0,0.055);
+
+    /* Accent / Brand green (slightly darker for light bg contrast) */
+    -c-accent:           #16c254;
+    -c-accent-alt:       #10a044;
+    -c-accent-on:        #ffffff;
+    -c-accent-subtle:    rgba(22,194,84,0.12);
+    -c-accent-subtle2:   rgba(22,194,84,0.15);
+    -c-accent-subtle3:   rgba(22,194,84,0.08);
+
+    /* Text */
+    -c-text-heading:     #0e1010;
+    -c-text-primary:     #1a1c1a;
+    -c-text-body:        #3c4840;
+    -c-text-muted:       #6b7870;
+    -c-text-faint:       #8a9690;
+    -c-text-input:       #1c2420;
+    -c-text-placeholder: #9aa59e;
+
+    /* Border */
+    -c-border:           rgba(0,0,0,0.08);
+    -c-border-subtle:    rgba(0,0,0,0.04);
+    -c-border-strong:    rgba(0,0,0,0.12);
+    -c-border-sidebar:   rgba(0,0,0,0.07);
+
+    /* Semantic — blue */
+    -c-blue:             #3d6ff0;
+    -c-blue-subtle:      rgba(61,111,240,0.12);
+
+    /* Progress / Slider */
+    -c-progress-fill:    #16c254;
+    -c-progress-track:   rgba(0,0,0,0.15);
+}
