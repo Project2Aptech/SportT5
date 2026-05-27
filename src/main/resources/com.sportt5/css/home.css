@@ -1,0 +1,214 @@
+.home-hero {
+    -fx-background-color:
+        linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.82)),
+        radial-gradient(center 52% 34%, radius 70%, rgba(175,76,15,0.86), rgba(4,9,9,0.96));
+}
+
+.beam-layer {
+    -fx-background-color:
+        linear-gradient(from 18% 0% to 58% 100%, transparent 0%, rgba(236,91,20,0.66) 48%, transparent 54%),
+        linear-gradient(from 42% 0% to 55% 100%, transparent 0%, rgba(245,128,26,0.70) 46%, transparent 52%),
+        linear-gradient(from 76% 0% to 54% 100%, transparent 0%, rgba(251,128,28,0.68) 45%, transparent 51%),
+        linear-gradient(from 94% 0% to 70% 100%, transparent 0%, rgba(245,120,18,0.56) 46%, transparent 52%);
+    -fx-opacity: 0.70;
+}
+
+.home-search {
+    -fx-background-color: -c-bg-card-hover;
+    -fx-background-radius: 16;
+    -fx-border-width: 0;
+    -fx-text-fill: -c-text-body;
+    -fx-prompt-text-fill: -c-text-faint;
+    -fx-font-size: 10px;
+    -fx-padding: 6 18 6 18;
+    -fx-translate-y: 12px;
+}
+
+.home-icons {
+    -fx-translate-y: 18px;
+    -fx-translate-x: -22px;
+}
+
+.home-icons .label {
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+}
+
+.hero-copy-box {
+    -fx-translate-x: 28px;
+    -fx-translate-y: 28px;
+}
+
+.home-hero-title {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 48px;
+    -fx-font-weight: 300;
+}
+
+.home-hero-copy {
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 11px;
+    -fx-line-spacing: 3px;
+}
+
+.listen-button {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 24;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 11px;
+    -fx-font-weight: 900;
+    -fx-padding: 12 28 12 28;
+}
+
+.home-scroll,
+.home-scroll .viewport {
+    -fx-background-color: -c-bg-base;
+}
+
+.home-scroll {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.home-body {
+    -fx-padding: 30 34 34 34;
+}
+
+.section-title {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+}
+
+.round-button {
+    -fx-background-color: -c-bg-card-hover;
+    -fx-background-radius: 17;
+    -fx-min-width: 34px;
+    -fx-min-height: 34px;
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 19px;
+}
+
+.cover {
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(255,255,255,0.15);
+    -fx-border-radius: 8;
+}
+
+.cover .label {
+    -fx-font-size: 50px;
+    -fx-font-weight: 900;
+}
+
+.cover-green {
+    -fx-background-color: linear-gradient(to bottom right, #06120d, #123e26 38%, #49ee78 52%, #07120d 84%);
+}
+
+.cover-green .label {
+    -fx-text-fill: -c-accent;
+}
+
+.cover-phone {
+    -fx-background-color: linear-gradient(to bottom right, #08080d, #26283c 45%, #6b8ec7 55%, #08080d);
+}
+
+.cover-phone .label {
+    -fx-text-fill: #a8c4e5;
+}
+
+.cover-blue {
+    -fx-background-color: linear-gradient(to bottom, #061018, #0aa6d6 46%, #090a0d 80%);
+}
+
+.cover-blue .label {
+    -fx-text-fill: #38d7ff;
+}
+
+.cover-orb {
+    -fx-background-color: linear-gradient(to bottom right, #050606, #dbe8e6 47%, #111 55%, #050606);
+}
+
+.cover-orb .label {
+    -fx-text-fill: #d7e1de;
+}
+
+.cover-mountain {
+    -fx-background-color: linear-gradient(to bottom right, #050705, #19321f 36%, #4def7d 50%, #060706 74%);
+}
+
+.cover-mountain .label {
+    -fx-text-fill: -c-accent;
+}
+
+.cover-amber {
+    -fx-background-color: linear-gradient(to bottom right, #071011, #d07433, #071011);
+}
+
+.cover-teal {
+    -fx-background-color: linear-gradient(to bottom right, #071111, #14d7a3, #071111);
+}
+
+.cover-neon {
+    -fx-background-color: linear-gradient(to bottom right, #060712, #1f8cff, #ec1d8f);
+}
+
+.cover-orb-small {
+    -fx-background-color: linear-gradient(to bottom right, #080909, #d8e9e4, #080909);
+}
+
+.cover-violet {
+    -fx-background-color: linear-gradient(to bottom right, #071011, #d12cff, #111827);
+}
+
+.cover-green-small {
+    -fx-background-color: linear-gradient(to bottom right, #06110d, #48ed7a, #06110d);
+}
+
+.album-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.album-artist {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 10px;
+}
+
+.track-row {
+    -fx-min-height: 42px;
+}
+
+.track-index {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 9px;
+}
+
+.mini-cover {
+    -fx-background-radius: 5;
+    -fx-border-color: -c-border-strong;
+    -fx-border-radius: 5;
+}
+
+.mini-cover .label {
+    -fx-font-size: 17px;
+    -fx-text-fill: -c-accent;
+}
+
+.track-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.track-artist {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 10px;
+}
+
+.row-action {
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+}

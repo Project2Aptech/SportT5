@@ -1,0 +1,94 @@
+.home-shell {
+    -fx-background-color: -c-bg-base;
+}
+
+.home-sidebar {
+    -fx-background-color: linear-gradient(to bottom, -c-bg-elevated, -c-bg-surface);
+    -fx-border-color: transparent -c-border-sidebar transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 28 18 18 20;
+}
+
+.home-brand {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 28px;
+    -fx-font-weight: 900;
+}
+
+.home-profile {
+    -fx-padding: 24 0 28 0;
+}
+
+.home-avatar {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 58%, #195559, #0a1617);
+    -fx-background-radius: 18;
+    -fx-border-color: rgba(73,238,120,0.35);
+    -fx-border-radius: 18;
+}
+
+.home-avatar .label {
+    -fx-text-fill: #58e6ee;
+    -fx-font-size: 15px;
+}
+
+.profile-name {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.profile-tier {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 8px;
+}
+
+.muted {
+    -fx-text-fill: -c-text-muted;
+}
+
+.version {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 8px;
+}
+
+.nav-title {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+    -fx-padding: 0 0 11 6;
+}
+
+.library-title {
+    -fx-padding: 22 0 11 6;
+}
+
+.nav-item,
+.nav-active {
+    -fx-font-size: 10px;
+    -fx-padding: 9 10 9 10;
+    -fx-background-radius: 0;
+}
+
+.nav-item .label {
+    -fx-text-fill: -c-text-body;
+}
+
+.nav-active {
+    -fx-background-color: -c-bg-hover;
+    -fx-border-color: transparent transparent transparent -c-accent;
+    -fx-border-width: 0 0 0 4;
+    -fx-padding: 9 10 9 6;
+}
+
+.nav-active .label {
+    -fx-text-fill: -c-accent;
+    -fx-font-weight: 800;
+}
+
+.nav-icon {
+    -fx-font-size: 14px;
+}
+
+.home-content {
+    -fx-background-color: -c-bg-base;
+}

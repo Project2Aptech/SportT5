@@ -1,0 +1,226 @@
+.store-topbar {
+    -fx-background-color: -c-bg-topbar;
+    -fx-border-color: transparent transparent -c-border-subtle transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 0 24 0 28;
+}
+
+.store-search {
+    -fx-background-color: -c-border;
+    -fx-background-radius: 16;
+    -fx-border-width: 0;
+    -fx-text-fill: -c-text-body;
+    -fx-prompt-text-fill: -c-text-faint;
+    -fx-font-size: 11px;
+    -fx-padding: 7 18 7 18;
+}
+
+.store-icons .label {
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+}
+
+.store-body {
+    -fx-padding: 28 34 34 34;
+    -fx-background-color: -c-bg-base;
+}
+
+.store-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 44px;
+    -fx-font-weight: 900;
+}
+
+.genre-chip,
+.genre-chip-active {
+    -fx-background-radius: 15;
+    -fx-border-width: 0;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-padding: 7 15 7 15;
+}
+
+.genre-chip {
+    -fx-background-color: -c-bg-card;
+    -fx-text-fill: -c-text-body;
+}
+
+.genre-chip-active {
+    -fx-background-color: -c-accent;
+    -fx-text-fill: -c-accent-on;
+}
+
+.store-card {
+    -fx-pref-width: 180px;
+    -fx-pref-height: 222px;
+    -fx-min-width: 180px;
+    -fx-min-height: 222px;
+    -fx-max-width: 180px;
+    -fx-background-radius: 9;
+    -fx-border-color: -c-border-strong;
+    -fx-border-radius: 9;
+    -fx-padding: 12;
+}
+
+.store-card-a {
+    -fx-background-color: linear-gradient(to bottom right, #071623, #0e2442 45%, #b85285 78%, #08090a);
+}
+
+.store-card-b {
+    -fx-background-color: linear-gradient(to bottom right, #1c1209, #af6c28 45%, #2a160b 75%, #08090a);
+}
+
+.store-card-c {
+    -fx-background-color: linear-gradient(to bottom right, #17051e, #291139 43%, #0dd1bd 56%, #07080a);
+}
+
+.store-card-d {
+    -fx-background-color: linear-gradient(to bottom right, #061011, #151817 34%, #9ba7a4 54%, #050606);
+}
+
+.store-badge {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 3;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+    -fx-padding: 3 6 3 6;
+}
+
+.muted-badge {
+    -fx-background-color: rgba(255,255,255,0.72);
+}
+
+.store-card-title {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+}
+
+.store-card-artist {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 11px;
+}
+
+.store-price {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+}
+
+.buy-button {
+    -fx-background-color: -c-text-heading;
+    -fx-background-radius: 12;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+    -fx-padding: 5 9 5 9;
+}
+
+.seller-panel {
+    -fx-pref-width: 520px;
+}
+
+.store-section-title {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.seller-table {
+    -fx-background-color: -c-bg-card;
+    -fx-background-radius: 14;
+    -fx-padding: 18;
+}
+
+.table-head {
+    -fx-text-fill: -c-text-faint;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+}
+
+.table-text {
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 11px;
+}
+
+.table-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+.rank-up {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+}
+
+.price-pill {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 12;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+    -fx-padding: 5 9 5 9;
+}
+
+.chart-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+}
+
+.offer-card,
+.promo-card {
+    -fx-background-color: rgba(73,238,120,0.18);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(73,238,120,0.25);
+    -fx-border-radius: 14;
+    -fx-padding: 14;
+}
+
+.offer-art {
+    -fx-background-color: linear-gradient(to bottom right, #10131a, #ca3f85, #0ad7be);
+    -fx-background-radius: 7;
+}
+
+.offer-art .label {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+
+.offer-small {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+}
+
+.offer-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+.offer-price {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+
+.promo-copy {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 10px;
+}
+
+.promo-code {
+    -fx-background-color: rgba(0,0,0,0.48);
+    -fx-background-radius: 6;
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 24px;
+    -fx-font-weight: 900;
+    -fx-padding: 8 56 8 56;
+}

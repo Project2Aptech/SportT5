@@ -1,0 +1,138 @@
+.main-scene {
+    -fx-background-color: -c-bg-auth;
+    -fx-font-family: "Inter", "SF Pro Display", "Segoe UI", Arial, sans-serif;
+}
+
+.auth-scene {
+    -fx-background-color:
+        radial-gradient(center 25% 26%, radius 62%, rgba(22,45,36,0.58), transparent 60%),
+        radial-gradient(center 76% 64%, radius 34%, rgba(74,50,18,0.24), transparent 68%),
+        linear-gradient(to bottom right, #030a08, #071110 52%, #020605);
+}
+
+.auth-glow {
+    -fx-background-color:
+        linear-gradient(from 0% 83% to 42% 61%, transparent 0%, rgba(16,49,42,0.54) 52%, transparent 54%),
+        linear-gradient(from 100% 58% to 56% 80%, transparent 0%, rgba(16,51,47,0.46) 50%, transparent 53%);
+    -fx-opacity: 0.72;
+}
+
+.auth-card {
+    -fx-background-color: rgba(13,17,16,0.86);
+    -fx-background-radius: 14;
+    -fx-border-color: -c-border-strong;
+    -fx-border-radius: 14;
+    -fx-padding: 28 38 28 38;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.30), 22, 0.20, 0, 10);
+}
+
+.auth-logo {
+    -fx-background-color: -c-accent-alt;
+    -fx-background-radius: 14;
+}
+
+.auth-logo .label {
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 24px;
+    -fx-font-weight: 900;
+}
+
+.auth-brand {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 25px;
+    -fx-font-weight: 900;
+    -fx-letter-spacing: 2px;
+}
+
+.auth-subtitle {
+    -fx-text-fill: -c-text-faint;
+    -fx-font-size: 8px;
+    -fx-font-weight: 800;
+}
+
+.auth-tabs {
+    -fx-background-color: rgba(255,255,255,0.025);
+    -fx-background-radius: 8;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 8;
+    -fx-padding: 3;
+    -fx-max-width: 320px;
+}
+
+.auth-tab,
+.auth-tab-active {
+    -fx-background-radius: 6;
+    -fx-border-width: 0;
+    -fx-min-width: 157px;
+    -fx-min-height: 31px;
+    -fx-font-size: 9px;
+    -fx-font-weight: 800;
+}
+
+.auth-tab {
+    -fx-background-color: transparent;
+    -fx-text-fill: -c-text-muted;
+}
+
+.auth-tab-active {
+    -fx-background-color: -c-accent-alt;
+    -fx-text-fill: -c-accent-on;
+}
+
+.field-label {
+    -fx-text-fill: -c-text-faint;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+}
+
+.auth-input {
+    -fx-background-color: -c-bg-input;
+    -fx-background-radius: 8;
+    -fx-border-color: -c-border-strong;
+    -fx-border-radius: 8;
+    -fx-text-fill: -c-text-input;
+    -fx-prompt-text-fill: -c-text-placeholder;
+    -fx-font-size: 11px;
+    -fx-min-height: 36px;
+    -fx-padding: 0 12 0 12;
+}
+
+.link-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 8px;
+    -fx-font-weight: 800;
+    -fx-padding: 0;
+}
+
+.remember-check {
+    -fx-text-fill: -c-text-faint;
+    -fx-font-size: 10px;
+}
+
+.remember-check .box {
+    -fx-background-color: -c-bg-hover;
+    -fx-background-radius: 4;
+    -fx-border-color: -c-border-strong;
+    -fx-border-radius: 4;
+}
+
+.remember-check:selected .mark {
+    -fx-background-color: -c-accent-alt;
+}
+
+.auth-status {
+    -fx-text-fill: -c-accent;
+    -fx-font-size: 10px;
+}
+
+.auth-submit {
+    -fx-background-color: linear-gradient(to bottom, -c-accent, -c-accent-alt);
+    -fx-background-radius: 9;
+    -fx-border-width: 0;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 12px;
+    -fx-font-weight: 900;
+    -fx-min-height: 40px;
+}
