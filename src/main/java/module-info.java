@@ -15,6 +15,7 @@ module com.sportt5 {
     requires java.net.http;
     requires java.desktop;
     requires java.prefs;
+    requires java.management;
 
     opens com.sportt5.model to com.fasterxml.jackson.databind,
             com.fasterxml.jackson.datatype.jsr310;

@@ -51,7 +51,7 @@ public class AccountController {
             stage.setTitle("Edit Profile");
             Scene scene = new Scene(root);
             scene.getStylesheets().add(
-                    App.class.getResource("/com.sportt5/css/style.css").toExternalForm()
+                    App.class.getResource("/com.sportt5/css/editProfile.css").toExternalForm()
             );
 
             stage.setScene(scene);
@@ -66,6 +66,7 @@ public class AccountController {
     public void loadUserProfile(){
         UserSession session = UserSession.getInstance();
         int userId = (session != null) ? session.getCurrentUserId() : -1;
+
 
         new Thread(()->{
             try{
@@ -89,7 +90,7 @@ public class AccountController {
         }).start();
     }
     private void bindToUi(Users u) {
-        displayNameLabel.setText(nonNull(u.getDisplayName()));
+        displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : "User"));
         emailLabel.setText(nonNull(u.getEmail()));
         planLabel.setText(u.getAccountType() != null ? u.getAccountType().name() : "NORMAL");
         checkEmail.setText((u.getEmail() != null ? "V" : "X"));

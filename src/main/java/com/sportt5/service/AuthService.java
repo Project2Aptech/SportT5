@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sportt5.model.AuthResponse;
 import com.sportt5.model.Users;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.util.Map;
@@ -16,6 +17,27 @@ public class AuthService {
     {
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
+    public String updateAvatar(File selectedFile) {
+        String endpoint = "users/me/avatar";
+        try {
+            HttpResponse<String> response =
+                    ConnectionServer.uploadAvatar(
+                            endpoint,
+                            selectedFile
+                    );
+
+            System.out.println(response.body());
+            JsonNode node =
+                    mapper.readTree(response.body());
+            return node.get("avatarUrl").asText();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public Users updateUser(int id, Map<String, Object> updates) throws IOException, InterruptedException {
@@ -35,7 +57,7 @@ public class AuthService {
 
     public Users getUserById(int id) throws IOException, InterruptedException {
         String endpoint = String.format("users/%d", id);
-        HttpResponse<String> response = ConnectionServer.get(endpoint);
+        HttpResponse<String> response = ConnectionServer.get1(endpoint);
         JsonNode node = mapper.readTree(response.body());
 
         System.out.println("=== GET /users/" + id + " ===");

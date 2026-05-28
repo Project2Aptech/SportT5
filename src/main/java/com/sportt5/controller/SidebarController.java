@@ -1,9 +1,13 @@
 package com.sportt5.controller;
 
+import com.sportt5.model.Users;
+import com.sportt5.model.enums.Roles;
+import com.sportt5.session.UserSession;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 
 public class SidebarController {
     //Home Sidebar
@@ -57,6 +61,9 @@ public class SidebarController {
 
     @FXML
     public void initialize() {
+        Users user = UserSession.getInstance().getCurrentUser();
+        Roles role = user != null ? user.getRole() : null;
+
         //<-----Home sidebar----->
         if (brandLabel != null) {
             brandLabel.setOnMouseClicked(e -> {
@@ -84,9 +91,21 @@ public class SidebarController {
             });
         }
         if (artistItem != null) {
-            artistItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showArtistSideBar();
-            });
+
+            boolean canShowArtist =
+                    role == Roles.ADMIN ||
+                            role == Roles.ARTIST;
+
+            artistItem.setVisible(canShowArtist);
+            artistItem.setManaged(canShowArtist);
+
+            if (canShowArtist) {
+                artistItem.setOnMouseClicked(e -> {
+                    if (appController != null) {
+                        appController.showArtistSideBar();
+                    }
+                });
+            }
         }
         if (accountNavItem != null) {
             accountNavItem.setOnMouseClicked(e -> {
@@ -94,10 +113,21 @@ public class SidebarController {
             });
         }
         if (adminItem != null) {
-            adminItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showAdminSideBar();
-            });
+
+            boolean isAdmin = role == Roles.ADMIN;
+
+            adminItem.setVisible(isAdmin);
+            adminItem.setManaged(isAdmin);
+
+            if (isAdmin) {
+                adminItem.setOnMouseClicked(e -> {
+                    if (appController != null) {
+                        appController.showAdminSideBar();
+                    }
+                });
+            }
         }
+
         //<-----Artist sidebar----->
         if (artistDashboardNavItem != null) {
             artistDashboardNavItem.setOnMouseClicked(e -> {
