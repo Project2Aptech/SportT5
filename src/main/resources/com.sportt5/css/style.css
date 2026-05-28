@@ -994,18 +994,14 @@
 }
 
 .account-avatar-large {
-    -fx-background-color: radial-gradient(center 50% 40%, radius 70%, #1b5f4e, #050b0b);
-    -fx-background-radius: 59;
+    -fx-background-radius: 999px;
     -fx-border-color: #49ee78;
-    -fx-border-width: 2;
-    -fx-border-radius: 59;
+    -fx-border-width: 2px;
+    -fx-border-radius: 999px;
+    -fx-padding: 3px;
+    -fx-alignment: center;
 }
 
-.account-avatar-large .label {
-    -fx-text-fill: #d8fff0;
-    -fx-font-size: 54px;
-    -fx-font-weight: 900;
-}
 
 .account-name {
     -fx-text-fill: #f4f6f4;
@@ -1335,4 +1331,75 @@
 .status-review {
     -fx-background-color: rgba(145,178,255,0.14);
     -fx-text-fill: #b6c8ff;
+}
+
+/* ===== INPUTS ===== */
+.dialog-root {
+    -fx-background-color: linear-gradient(to bottom right, #0b0c0c, #111414 45%, #1a1d1c);
+    -fx-background-radius: 16; -fx-padding: 24 32 28 32;
+    /* top/right/bottom/left */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.48), 24, 0.30, 0, 8);
+    -fx-border-color: rgba(255,255,255,0.07);
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+}
+
+.dialog-root .dialog-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+    -fx-padding: 0 0 12 0;
+}
+.dialog-root .text-field,
+.dialog-root .text-area,
+.dialog-root .date-picker {
+    -fx-background-color: #111414;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 10 12;
+}
+/* focus effect */
+.dialog-root .text-field:focused,
+.dialog-root .text-area:focused,
+.dialog-root .date-picker:focused {
+
+    -fx-border-color: #49ee78;
+    -fx-effect: dropshadow(gaussian,
+    rgba(73,238,120,0.18),
+    10, 0.2, 0, 0);
+}
+
+/* textarea background */
+.dialog-root .text-area .content {
+    -fx-background-color: #111414;
+}
+
+/* ===== BUTTON ===== */
+.dialog-root .button {
+    -fx-background-color: #49ee78;
+    -fx-text-fill: #0c0c0c;
+    -fx-font-weight: 700;
+    -fx-font-size: 13px;
+    -fx-background-radius: 999px;
+    -fx-padding: 10 20;
+    -fx-margin: 20 0;
+    -fx-cursor: hand;
+}
+.dialog-root .text-mail{
+    -fx-background-color: #727272;
+}
+.dialog-root .button:hover {
+    -fx-background-color: #63ff90;
+}
+
+/* ===== DATE PICKER ===== */
+.dialog-root .date-picker .arrow-button {
+    -fx-background-color: #111414;
+}
+
+.dialog-root .date-picker .arrow {
+    -fx-background-color: #49ee78;
 }

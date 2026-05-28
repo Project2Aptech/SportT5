@@ -1,5 +1,7 @@
 package com.sportt5.service;
 
+import com.sportt5.session.UserSession;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -12,21 +14,30 @@ public class ConnectionServer {
 
     private static final HttpClient client = HttpClient.newHttpClient();
 
+    private static HttpRequest.Builder withAuth(HttpRequest.Builder builder) {
+        String token = UserSession.getInstance() != null ? UserSession.getInstance().getToken() : null;
+        if (token != null && !token.isBlank()) {
+            builder.header("Authorization", "Bearer " + token);
+        }
+        return builder;
+    }
     // =========================
     // GET
     // =========================
-    public static String get(String endpoint) throws IOException, InterruptedException {
+    public static HttpResponse<String> get(String endpoint)
+            throws IOException, InterruptedException {
 
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(API_URL + endpoint))
                 .GET()
-                .header("Content-Type", "application/json")
-                .build();
+                .header("Content-Type", "application/json");
 
-        HttpResponse<String> response =
-                client.send(request, HttpResponse.BodyHandlers.ofString());
+        // Thêm token nếu có
+        builder = withAuth(builder);
 
-        return response.body();
+        HttpRequest request = builder.build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
     // =========================
@@ -50,7 +61,7 @@ public class ConnectionServer {
     // =========================
     // PUT
     // =========================
-    public static String put(String endpoint, String jsonBody)
+    public static HttpResponse<String> put(String endpoint, String jsonBody)
             throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -62,7 +73,24 @@ public class ConnectionServer {
         HttpResponse<String> response =
                 client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        return response.body();
+        return response;
+    }
+    // =========================
+    // PATCH
+    // =========================
+    public static HttpResponse<String> patch(String endpoint, String jsonBody)
+            throws IOException, InterruptedException {
+
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
+                .uri(URI.create(API_URL + endpoint))
+                .header("Content-Type", "application/json")
+                .method("PATCH", HttpRequest.BodyPublishers.ofString(jsonBody));
+
+        // **Thêm token**
+        builder = withAuth(builder);
+
+        HttpRequest request = builder.build();
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
     // =========================
