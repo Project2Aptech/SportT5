@@ -1,0 +1,221 @@
+.admin-topbar {
+    -fx-background-color: -c-bg-base;
+}
+
+.admin-body {
+    -fx-padding: 22 28 22 28;
+    -fx-background-color: -c-bg-base;
+}
+
+.admin-title {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 29px;
+    -fx-font-weight: 900;
+}
+
+.admin-subtitle {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 11px;
+}
+
+.upload-button {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 22;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 11px;
+    -fx-font-weight: 900;
+    -fx-padding: 11 20 11 20;
+}
+
+.metric-card,
+.admin-panel {
+    -fx-background-color: -c-bg-card;
+    -fx-background-radius: 10;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 10;
+}
+
+.metric-card {
+    -fx-padding: 18;
+    -fx-pref-width: 300px;
+    -fx-min-height: 150px;
+}
+
+.metric-icon {
+    -fx-background-radius: 6;
+}
+
+.metric-icon .label {
+    -fx-font-size: 15px;
+    -fx-font-weight: 900;
+}
+
+.revenue-icon {
+    -fx-background-color: -c-accent-subtle2;
+}
+
+.revenue-icon .label {
+    -fx-text-fill: -c-accent;
+}
+
+.listener-icon {
+    -fx-background-color: rgba(145,178,255,0.17);
+}
+
+.listener-icon .label {
+    -fx-text-fill: -c-blue;
+}
+
+.growth-icon {
+    -fx-background-color: -c-border-strong;
+}
+
+.growth-icon .label {
+    -fx-text-fill: -c-text-body;
+}
+
+.trend-up,
+.trend-blue,
+.trend-neutral {
+    -fx-background-radius: 6;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+    -fx-padding: 4 8 4 8;
+}
+
+.trend-up {
+    -fx-background-color: -c-accent-subtle;
+    -fx-text-fill: -c-accent;
+}
+
+.trend-blue {
+    -fx-background-color: -c-blue-subtle;
+    -fx-text-fill: -c-blue;
+}
+
+.trend-neutral {
+    -fx-background-color: -c-border-strong;
+    -fx-text-fill: -c-text-body;
+}
+
+.metric-label {
+    -fx-text-fill: -c-text-faint;
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+}
+
+.metric-value {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 28px;
+    -fx-font-weight: 300;
+}
+
+.bar-chart Region {
+    -fx-background-color: -c-accent;
+    -fx-opacity: 0.72;
+}
+
+.followers-bars Region {
+    -fx-background-color: -c-text-muted;
+    -fx-background-radius: 4 4 0 0;
+    -fx-opacity: 0.72;
+}
+
+.listener-wave {
+    -fx-background-color: linear-gradient(to bottom right, transparent 8%, rgba(145,178,255,0.28) 34%, transparent 37%, rgba(145,178,255,0.55) 58%, transparent 62%);
+    -fx-background-radius: 4;
+}
+
+.admin-panel {
+    -fx-padding: 18;
+}
+
+.panel-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+}
+
+.chart-tabs {
+    -fx-background-color: -c-bg-overlay;
+    -fx-background-radius: 6;
+    -fx-padding: 3;
+}
+
+.chart-tab,
+.chart-tab-active {
+    -fx-background-radius: 4;
+    -fx-font-size: 9px;
+    -fx-font-weight: 900;
+    -fx-padding: 6 12 6 12;
+}
+
+.chart-tab {
+    -fx-background-color: transparent;
+    -fx-text-fill: -c-text-muted;
+}
+
+.chart-tab-active {
+    -fx-background-color: -c-accent-subtle;
+    -fx-text-fill: -c-accent;
+}
+
+.chart-area {
+    -fx-background-color: linear-gradient(to bottom, rgba(73,238,120,0.08), rgba(73,238,120,0.02));
+    -fx-background-radius: 8;
+}
+
+.chart-grid {
+    -fx-background-color: linear-gradient(to bottom, transparent 24%, rgba(255,255,255,0.04) 25%, transparent 26%, transparent 49%, rgba(255,255,255,0.04) 50%, transparent 51%, transparent 74%, rgba(255,255,255,0.04) 75%, transparent 76%);
+}
+
+.chart-fill {
+    -fx-background-color: linear-gradient(to top right, rgba(73,238,120,0.00) 19%, rgba(73,238,120,0.35) 20%, rgba(73,238,120,0.08) 21%, rgba(73,238,120,0.00) 23%, rgba(73,238,120,0.00) 36%, rgba(73,238,120,0.55) 37%, rgba(73,238,120,0.10) 38%, rgba(73,238,120,0.00) 40%, rgba(73,238,120,0.00) 59%, rgba(73,238,120,0.55) 60%, rgba(73,238,120,0.12) 61%, rgba(73,238,120,0.00) 63%);
+}
+
+.chart-points {
+    -fx-padding: 0 0 6 12;
+}
+
+.chart-points .label {
+    -fx-text-fill: -c-text-faint;
+    -fx-font-size: 9px;
+}
+
+.admin-table {
+    -fx-padding: 8 0 0 0;
+}
+
+.admin-thumb {
+    -fx-background-radius: 5;
+}
+
+.thumb-pink {
+    -fx-background-color: linear-gradient(to bottom right, #0b1218, #fa3fb0, #0b1014);
+}
+
+.thumb-gray {
+    -fx-background-color: linear-gradient(to bottom right, #0d0f10, #7c8380, #050606);
+}
+
+.thumb-purple {
+    -fx-background-color: linear-gradient(to bottom right, #11081c, #7d32ff, #07100d);
+}
+
+.status-live,
+.status-review {
+    -fx-background-radius: 8;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+    -fx-padding: 4 8 4 8;
+}
+
+.status-live {
+    -fx-background-color: -c-accent-subtle2;
+    -fx-text-fill: -c-accent;
+}
+
+.status-review {
+    -fx-background-color: -c-blue-subtle;
+    -fx-text-fill: -c-blue;
+}

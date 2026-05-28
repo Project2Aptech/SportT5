@@ -16,6 +16,7 @@ public class TopBarController {
     //Topbar
     @FXML private StackPane homeHero;
     @FXML private HBox accountTopBar, libraryTopBar, albumTopBar, artistTopBar;
+    @FXML private HBox adminTopBar;
     //App controller
     private AppController appController;
 
@@ -26,7 +27,7 @@ public class TopBarController {
     public HBox getLibraryTopBar() {return libraryTopBar;}
     public HBox getAlbumTopBar() {return albumTopBar;}
     public HBox getArtistTopBar() {return artistTopBar; }
-
+    public HBox getAdminTopBar() { return adminTopBar; }
 
     @FXML
     public void initialize() {

@@ -3,39 +3,25 @@ package com.sportt5.model;
 import java.time.LocalDateTime;
 
 public class PlaylistFollows {
-    private int user_id;
-    private int playlist_id;
-    private LocalDateTime followed_at;
+    private int userId;
+    private int playlistId;
+    private LocalDateTime followedAt;
+
     public PlaylistFollows() {
     }
 
-    public PlaylistFollows(LocalDateTime followed_at, int playlist_id, int user_id) {
-        this.followed_at = followed_at;
-        this.playlist_id = playlist_id;
-        this.user_id = user_id;
+    public PlaylistFollows(LocalDateTime followedAt, int playlistId, int userId) {
+        this.followedAt = followedAt;
+        this.playlistId = playlistId;
+        this.userId = userId;
     }
 
-    public LocalDateTime getFollowed_at() {
-        return followed_at;
-    }
+    public LocalDateTime getFollowedAt() { return followedAt; }
+    public void setFollowedAt(LocalDateTime followedAt) { this.followedAt = followedAt; }
 
-    public void setFollowed_at(LocalDateTime followed_at) {
-        this.followed_at = followed_at;
-    }
+    public int getPlaylistId() { return playlistId; }
+    public void setPlaylistId(int playlistId) { this.playlistId = playlistId; }
 
-    public int getPlaylist_id() {
-        return playlist_id;
-    }
-
-    public void setPlaylist_id(int playlist_id) {
-        this.playlist_id = playlist_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 }

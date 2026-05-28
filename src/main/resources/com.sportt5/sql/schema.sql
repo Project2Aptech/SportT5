@@ -270,6 +270,56 @@ CREATE TABLE playlist_follows (
 );
 
 /* =====================================================
+   SUBSCRIPTIONS
+===================================================== */
+
+CREATE TABLE subscriptions (
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+
+    user_id    INT    NOT NULL,
+
+    plan_type  ENUM('PRO', 'PREMIUM') NOT NULL,
+
+    amount     DECIMAL(10,2) NOT NULL,
+
+    started_at DATETIME NOT NULL,
+    expires_at DATETIME NOT NULL,
+
+    status     ENUM('ACTIVE', 'EXPIRED', 'CANCELLED')
+               NOT NULL DEFAULT 'ACTIVE',
+
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+/* =====================================================
+   ARTIST EARNINGS
+===================================================== */
+
+CREATE TABLE artist_earnings (
+    id           INT AUTO_INCREMENT PRIMARY KEY,
+
+    artist_id    INT  NOT NULL,
+
+    period_start DATE NOT NULL,
+    period_end   DATE NOT NULL,
+
+    stream_count INT           NOT NULL DEFAULT 0,
+    amount       DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+
+    created_at   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE KEY uq_artist_period (artist_id, period_start),
+
+    FOREIGN KEY (artist_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+);
+
+/* =====================================================
    SONG COMMENTS
 ===================================================== */
 

@@ -4,70 +4,40 @@ import java.time.LocalDateTime;
 
 public class SongComments {
     private long id;
-    private int song_id;
-    private int user_id;
-    private long parent_comment_id;
+    private int songId;
+    private int userId;
+    private long parentCommentId;
     private String content;
-    private boolean is_deleted;
-    private LocalDateTime created_at;
+    private boolean isDeleted;
+    private LocalDateTime createdAt;
 
     public SongComments() {
     }
 
-    public SongComments(String content, long id, boolean is_deleted, long parent_comment_id, int song_id, int user_id) {
+    public SongComments(String content, long id, boolean isDeleted, long parentCommentId, int songId, int userId) {
         this.content = content;
         this.id = id;
-        this.is_deleted = is_deleted;
-        this.parent_comment_id = parent_comment_id;
-        this.song_id = song_id;
-        this.user_id = user_id;
+        this.isDeleted = isDeleted;
+        this.parentCommentId = parentCommentId;
+        this.songId = songId;
+        this.userId = userId;
     }
 
-    public String getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+    public long getId() { return id; }
+    public void setId(long id) { this.id = id; }
 
-    public long getId() {
-        return id;
-    }
+    public boolean isDeleted() { return isDeleted; }
+    public void setDeleted(boolean isDeleted) { this.isDeleted = isDeleted; }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public long getParentCommentId() { return parentCommentId; }
+    public void setParentCommentId(long parentCommentId) { this.parentCommentId = parentCommentId; }
 
-    public boolean isIs_deleted() {
-        return is_deleted;
-    }
+    public int getSongId() { return songId; }
+    public void setSongId(int songId) { this.songId = songId; }
 
-    public void setIs_deleted(boolean is_deleted) {
-        this.is_deleted = is_deleted;
-    }
-
-    public long getParent_comment_id() {
-        return parent_comment_id;
-    }
-
-    public void setParent_comment_id(long parent_comment_id) {
-        this.parent_comment_id = parent_comment_id;
-    }
-
-    public int getSong_id() {
-        return song_id;
-    }
-
-    public void setSong_id(int song_id) {
-        this.song_id = song_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 }
