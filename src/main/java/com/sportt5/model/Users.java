@@ -1,5 +1,7 @@
 package com.sportt5.model;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sportt5.model.enums.AccountType;
 import com.sportt5.model.enums.Roles;
@@ -14,18 +16,22 @@ public class Users {
     private String email;
     private String passwordHash;
 
+    @JsonEnumDefaultValue
     private Roles role = Roles.USER;
+    @JsonEnumDefaultValue
     private AccountType accountType = AccountType.NORMAL;
 
     private String displayName;
     private String avatarUrl;
     private String bio;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
     private boolean isActive = true;
-
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime updatedAt;
 
     public Users() {

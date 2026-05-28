@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sportt5.controller.AccountController"
             visible="false" managed="false"
@@ -17,10 +18,15 @@
     <VBox spacing="26.0" styleClass="account-body">
         <HBox alignment="CENTER_LEFT" spacing="24.0" styleClass="account-header">
             <StackPane prefWidth="118.0" prefHeight="118.0" styleClass="account-avatar-large">
-                <Label text="A" />
+                <ImageView
+                        fx:id="avatarImageView"
+                        fitWidth="90"
+                        fitHeight="90"
+                        preserveRatio="true"
+                />
             </StackPane>
             <VBox spacing="8.0">
-                <Label text="Adrian Thorne" styleClass="account-name" />
+                <Label fx:id="displayNameLabel" text="" styleClass="account-name" />
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <Label text="PREMIUM MEMBER" styleClass="account-pill" />
                     <Label text="Member since Oct 2023" styleClass="account-muted" />
@@ -31,7 +37,7 @@
                     onAction="#handleSignOut"
                     text="Sign Out"
                     styleClass="edit-profile-button"/>
-            <Button text="Edit Profile" styleClass="edit-profile-button" />
+            <Button onAction="#handleEditProfile" text="Edit Profile" styleClass="edit-profile-button" />
         </HBox>
 
         <HBox spacing="24.0">
@@ -40,15 +46,15 @@
                     <Label text="Subscription Plan" styleClass="account-card-title" />
                     <VBox spacing="4.0">
                         <Label text="CURRENT PLAN" styleClass="account-card-label" />
-                        <Label text="Vibe Hi-Fi Plus" styleClass="account-plan" />
+                        <Label fx:id="planLabel" text="" styleClass="account-plan" />
                     </VBox>
                     <VBox spacing="3.0">
                         <Label text="Next billing date" styleClass="account-card-label" />
-                        <Label text="November 12, 2024" styleClass="account-text" />
+                        <Label fx:id="billingDateLabel" text="November 12, 2024" styleClass="account-text" />
                     </VBox>
                     <HBox alignment="CENTER_LEFT">
-                        <Label text="\$14.99" styleClass="account-price" />
-                        <Label text="/mo" styleClass="account-muted" />
+                        <Label fx:id="priceLabel" text="\$14.99" styleClass="account-price" />
+                        <Label text="/month" styleClass="account-muted" />
                     </HBox>
                     <Button text="Manage Subscription" styleClass="manage-button" />
                 </VBox>
@@ -58,14 +64,14 @@
                     <VBox spacing="5.0">
                         <Label text="EMAIL ADDRESS" styleClass="account-card-label" />
                         <HBox alignment="CENTER_LEFT" spacing="6.0">
-                            <Label text="adrian.thorne@studio.com" styleClass="account-text" />
-                            <Label text="✓" styleClass="verified-dot" />
+                            <Label fx:id="emailLabel" text="" styleClass="account-text" />
+                            <Label  fx:id="checkEmail" text="v" styleClass="verified-dot" />
                         </HBox>
                     </VBox>
                     <VBox spacing="5.0">
                         <Label text="PASSWORD" styleClass="account-card-label" />
                         <HBox alignment="CENTER_LEFT">
-                            <Label text="••••••••••••" styleClass="account-text" />
+                            <Label  text="••••••••••••" styleClass="account-text" />
                             <Region HBox.hgrow="ALWAYS" />
                             <Button text="Change" styleClass="change-button" />
                         </HBox>

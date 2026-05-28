@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sportt5.controller.EditProfileController"
+            prefWidth="440"
+            prefHeight="500"
+            styleClass="dialog-root">
+
+    <!-- TITLE -->
+    <Label text="Edit Profile"
+           styleClass="dialog-title"
+           layoutX="32"
+           layoutY="24"/>
+
+    <!-- FORM -->
+    <VBox spacing="12"
+          layoutX="32"
+          layoutY="76"
+          prefWidth="376">
+
+        <!-- DISPLAY NAME -->
+        <VBox spacing="5">
+            <Label text="Display Name"
+                   styleClass="input-label"/>
+
+            <TextField fx:id="displayNameField"
+                       promptText="Display name"
+                       prefHeight="38"/>
+        </VBox>
+
+        <!-- EMAIL -->
+        <VBox spacing="5">
+            <Label text="Email"
+                   styleClass="input-label"/>
+
+            <TextField fx:id="emailField"
+                       promptText="Email"
+                       editable="false"
+                       prefHeight="38"
+                       styleClass="text-mail"/>
+        </VBox>
+
+        <!-- AVATAR -->
+        <VBox spacing="5">
+            <Label text="Avatar URL"
+                   styleClass="input-label"/>
+
+            <TextField fx:id="avatarUrlField"
+                       promptText="Avatar URL"
+                       prefHeight="38"/>
+        </VBox>
+
+        <!-- BIRTH DATE -->
+        <VBox spacing="5">
+            <Label text="Birth Date"
+                   styleClass="input-label"/>
+
+            <DatePicker fx:id="birthDatePicker"
+                        prefHeight="38"
+                        prefWidth="376"/>
+        </VBox>
+
+        <!-- BIO -->
+        <VBox spacing="5">
+            <Label text="Bio"
+                   styleClass="input-label"/>
+
+            <TextArea fx:id="bioArea"
+                      promptText="Tell something about yourself..."
+                      prefRowCount="3"
+                      prefHeight="78"
+                      wrapText="true"/>
+        </VBox>
+
+        <!-- ERROR -->
+        <Label fx:id="errorLabel"
+               textFill="#ff5c5c"
+               visible="false"/>
+    </VBox>
+
+    <!-- BUTTONS -->
+    <HBox spacing="16"
+          alignment="CENTER"
+          layoutX="118"
+          layoutY="520">
+
+        <Button text="Save"
+                fx:id="saveButton"
+                onAction="#handleSave"
+                prefWidth="92"
+                prefHeight="38"/>
+
+        <Button text="Cancel"
+                fx:id="cancelButton"
+                onAction="#handleCancel"
+                styleClass="cancel-btn"
+                prefWidth="92"
+                prefHeight="38"/>
+    </HBox>
+
+</AnchorPane>
+
+

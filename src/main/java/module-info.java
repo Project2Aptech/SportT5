@@ -4,6 +4,7 @@ module com.sportt5 {
     requires javafx.graphics;
     requires javafx.media;
     requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.datatype.jsr310;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -13,8 +14,11 @@ module com.sportt5 {
     requires com.zaxxer.hikari;
     requires java.net.http;
     requires java.desktop;
+    requires java.prefs;
 
-    opens com.sportt5.model to com.fasterxml.jackson.databind;
+    opens com.sportt5.model to com.fasterxml.jackson.databind,
+            com.fasterxml.jackson.datatype.jsr310;
+
     opens com.sportt5.model.enums to com.fasterxml.jackson.databind;
     opens com.sportt5 to javafx.fxml;
     opens com.sportt5.controller to javafx.fxml;

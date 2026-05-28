@@ -1,6 +1,7 @@
 package com.sportt5.service;
 
 import com.sportt5.session.UserSession;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -13,21 +14,30 @@ public class ConnectionServer {
 
     private static final HttpClient client = HttpClient.newHttpClient();
 
+    private static HttpRequest.Builder withAuth(HttpRequest.Builder builder) {
+        String token = UserSession.getInstance() != null ? UserSession.getInstance().getToken() : null;
+        if (token != null && !token.isBlank()) {
+            builder.header("Authorization", "Bearer " + token);
+        }
+        return builder;
+    }
     // =========================
     // GET
     // =========================
-    public static String get(String endpoint) throws IOException, InterruptedException {
+    public static HttpResponse<String> get(String endpoint)
+            throws IOException, InterruptedException {
 
-        HttpRequest request = HttpRequest.newBuilder()
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(API_URL + endpoint))
                 .GET()
-                .header("Content-Type", "application/json")
-                .build();
+                .header("Content-Type", "application/json");
 
-        HttpResponse<String> response =
-                client.send(request, HttpResponse.BodyHandlers.ofString());
+        // Thêm token nếu có
+        builder = withAuth(builder);
 
-        return response.body();
+        HttpRequest request = builder.build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
     // =========================
@@ -51,7 +61,7 @@ public class ConnectionServer {
     // =========================
     // PUT
     // =========================
-    public static String put(String endpoint, String jsonBody)
+    public static HttpResponse<String> put(String endpoint, String jsonBody)
             throws IOException, InterruptedException {
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -63,56 +73,24 @@ public class ConnectionServer {
         HttpResponse<String> response =
                 client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        return response.body();
+        return response;
     }
-
     // =========================
-    // Authenticated GET
+    // PATCH
     // =========================
-    public static String getAuth(String endpoint) throws IOException, InterruptedException {
-        HttpRequest request = authBuilder(endpoint).GET().build();
-        return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
-    }
-
-    // =========================
-    // Authenticated POST
-    // =========================
-    public static HttpResponse<String> postAuth(String endpoint, String jsonBody)
+    public static HttpResponse<String> patch(String endpoint, String jsonBody)
             throws IOException, InterruptedException {
-        HttpRequest request = authBuilder(endpoint)
-                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
-                .build();
-        return client.send(request, HttpResponse.BodyHandlers.ofString());
-    }
 
-    // =========================
-    // Authenticated PUT
-    // =========================
-    public static String putAuth(String endpoint, String jsonBody)
-            throws IOException, InterruptedException {
-        HttpRequest request = authBuilder(endpoint)
-                .PUT(HttpRequest.BodyPublishers.ofString(jsonBody))
-                .build();
-        return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
-    }
-
-    // =========================
-    // Authenticated DELETE
-    // =========================
-    public static String deleteAuth(String endpoint) throws IOException, InterruptedException {
-        HttpRequest request = authBuilder(endpoint).DELETE().build();
-        return client.send(request, HttpResponse.BodyHandlers.ofString()).body();
-    }
-
-    private static HttpRequest.Builder authBuilder(String endpoint) {
         HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(API_URL + endpoint))
-                .header("Content-Type", "application/json");
-        UserSession session = UserSession.getInstance();
-        if (session != null && session.getToken() != null) {
-            builder.header("Authorization", "Bearer " + session.getToken());
-        }
-        return builder;
+                .header("Content-Type", "application/json")
+                .method("PATCH", HttpRequest.BodyPublishers.ofString(jsonBody));
+
+        // **Thêm token**
+        builder = withAuth(builder);
+
+        HttpRequest request = builder.build();
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
     // =========================
