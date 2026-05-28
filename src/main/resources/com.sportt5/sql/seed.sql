@@ -15,25 +15,29 @@ INSERT INTO users (
     is_active
 )
 VALUES
-    ('admin1','admin1@sportt5.com','123456','ADMIN','PREMIUM','Admin One','avatars/admin1.jpg','System administrator','1995-01-01',TRUE),
+    ('admin1','admin1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ADMIN','PREMIUM','Admin One','avatars/admin1.jpg','System administrator','1995-01-01',TRUE),
 
-    ('artist1','artist1@sportt5.com','123456','ARTIST','PRO','Artist One','avatars/artist1.jpg','Pop artist','1998-02-10',TRUE),
+    ('artist1','artist1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist One','avatars/artist1.jpg','Pop artist','1998-02-10',TRUE),
 
-    ('artist2','artist2@sportt5.com','123456','ARTIST','PREMIUM','Artist Two','avatars/artist2.jpg','Rock artist','1997-03-12',TRUE),
+    ('artist2','artist2@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PREMIUM','Artist Two','avatars/artist2.jpg','Rock artist','1997-03-12',TRUE),
 
-    ('artist3','artist3@sportt5.com','123456','ARTIST','PRO','Artist Three','avatars/artist3.jpg','Jazz artist','1996-04-14',TRUE),
+    ('artist3','artist3@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Three','avatars/artist3.jpg','Jazz artist','1996-04-14',TRUE),
 
-    ('user1','user1@sportt5.com','123456','USER','NORMAL','User One','avatars/user1.jpg','Music lover','2000-05-11',TRUE),
+    ('user1','user1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','NORMAL','User One','avatars/user1.jpg','Music lover','2000-05-11',TRUE),
 
-    ('user2','user2@sportt5.com','123456','USER','PREMIUM','User Two','avatars/user2.jpg','Playlist collector','2001-06-21',TRUE),
+    ('user2','user2@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','PREMIUM','User Two','avatars/user2.jpg','Playlist collector','2001-06-21',TRUE),
 
-    ('user3','user3@sportt5.com','123456','USER','NORMAL','User Three','avatars/user3.jpg','EDM fan','2002-07-15',TRUE),
+    ('user3','user3@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','NORMAL','User Three','avatars/user3.jpg','EDM fan','2002-07-15',TRUE),
 
-    ('user4','user4@sportt5.com','123456','USER','PRO','User Four','avatars/user4.jpg','Chill music fan','1999-08-18',TRUE),
+    ('user4','user4@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','PRO','User Four','avatars/user4.jpg','Chill music fan','1999-08-18',TRUE),
 
-    ('artist4','artist4@sportt5.com','123456','ARTIST','PREMIUM','Artist Four','avatars/artist4.jpg','Hip hop artist','1994-09-19',TRUE),
+    ('artist4','artist4@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PREMIUM','Artist Four','avatars/artist4.jpg','Hip hop artist','1994-09-19',TRUE),
 
-    ('artist5','artist5@sportt5.com','123456','ARTIST','PRO','Artist Five','avatars/artist5.jpg','Lo-fi producer','1993-10-20',TRUE);
+    ('artist5','artist5@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Five','avatars/artist5.jpg','Lo-fi producer','1993-10-20',TRUE),
+
+    ('artist6','artist6@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','NORMAL','Artist Six','avatars/artist6.jpg','Indie singer','1992-11-05',TRUE),
+
+    ('artist7','artist7@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Seven','avatars/artist7.jpg','Rap artist','1991-12-15',TRUE);
 
 /* =====================================================
    GENRES
@@ -72,7 +76,9 @@ VALUES
     (3,'Metal Fire','covers/metal_fire.jpg','2024-02-10'),
     (4,'Jazz Lounge','covers/jazz_lounge.jpg','2024-02-15'),
     (9,'Rap World','covers/rap_world.jpg','2024-02-20'),
-    (10,'Chill Beats','covers/chill_beats.jpg','2024-02-25');
+    (10,'Chill Beats','covers/chill_beats.jpg','2024-02-25'),
+    (11,'Indie Souls','covers/indie_souls.jpg','2024-03-01'),
+    (12,'Street Rap','covers/street_rap.jpg','2024-03-10');
 
 /* =====================================================
    SONGS

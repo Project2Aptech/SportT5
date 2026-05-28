@@ -6,7 +6,12 @@
       "PowerShell(Get-ChildItem -Recurse \"D:\\\\Dev\\\\Code\\\\SportT5\\\\src\\\\main\\\\resources\\\\com.sportt5\\\\view\\\\\" | Where-Object { !$_.PSIsContainer } | Select-Object FullName, Length)",
       "Bash(git checkout *)",
       "PowerShell(Remove-Item *)",
-      "PowerShell(git add *)"
+      "PowerShell(git add *)",
+      "Bash(python -c \"import bcrypt; pw = b'123456'; h = bcrypt.hashpw\\(pw, bcrypt.gensalt\\(10\\)\\); print\\(h.decode\\(\\)\\)\")",
+      "Bash(python3 -c \"import bcrypt; pw = b'123456'; h = bcrypt.hashpw\\(pw, bcrypt.gensalt\\(10\\)\\); print\\(h.decode\\(\\)\\)\")",
+      "Bash(node -e \"const bcrypt = require\\('bcrypt'\\); bcrypt.hash\\('123456', 10\\).then\\(h => console.log\\(h\\)\\)\")",
+      "Bash(java -version)",
+      "PowerShell(Get-ChildItem *)"
     ]
   }
 }
