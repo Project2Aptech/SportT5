@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="done logic login, sign out">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/sql/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/sql/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/sql/seed.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +32,12 @@
     &quot;assignee&quot;: &quot;vihnngk&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Project2Aptech/SportT5",
-    "accountId": "83d35872-54f8-4df9-85d7-b28e6f4b7de8"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Project2Aptech/SportT5&quot;,
+    &quot;accountId&quot;: &quot;83d35872-54f8-4df9-85d7-b28e6f4b7de8&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -130,7 +127,8 @@
       <workItem from="1779548642631" duration="3465000" />
       <workItem from="1779612645970" duration="7295000" />
       <workItem from="1779709674823" duration="2100000" />
-      <workItem from="1779900389327" duration="1918000" />
+      <workItem from="1779900389327" duration="2252000" />
+      <workItem from="1779928159566" duration="373000" />
     </task>
     <task id="LOCAL-00001" summary="done logic login, sign out">
       <option name="closed" value="true" />
