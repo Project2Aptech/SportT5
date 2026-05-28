@@ -21,6 +21,8 @@ public class SidebarController {
     public HBox getHomeNavItem() { return homeNavItem; }
     public HBox getLibraryItem() { return libraryItem; }
     public HBox getAlbumItem() { return albumItem; }
+    public HBox getArtistItem() { return artistItem; }
+    public HBox getAdminItem() { return adminItem; }
     public HBox getArtistDashboardNavItem() { return artistDashboardNavItem; }
     public HBox getArtistMusicNavItem() { return artistMusicNavItem; }
     public HBox getArtistUploadNavItem() { return artistUploadNavItem; }

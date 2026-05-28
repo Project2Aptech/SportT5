@@ -43,12 +43,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <Button text="VIEW ALL" styleClass="view-all-button" />
                     </HBox>
-                    <HBox spacing="18.0">
-                        <VBox spacing="8.0" prefWidth="112.0" styleClass="playlist-card"><StackPane prefWidth="96.0" prefHeight="96.0" styleClass="playlist-art art-green"><Label text="◎" /></StackPane><Label text="Techno Pulse" styleClass="playlist-title" /><Label text="24 tracks" styleClass="playlist-count" /></VBox>
-                        <VBox spacing="8.0" prefWidth="112.0" styleClass="playlist-card"><StackPane prefWidth="96.0" prefHeight="96.0" styleClass="playlist-art art-city"><Label text="▥" /></StackPane><Label text="Midnight Jazz" styleClass="playlist-title" /><Label text="85 tracks" styleClass="playlist-count" /></VBox>
-                        <VBox spacing="8.0" prefWidth="112.0" styleClass="playlist-card"><StackPane prefWidth="96.0" prefHeight="96.0" styleClass="playlist-art art-gold"><Label text="✦" /></StackPane><Label text="Heavy Riffs" styleClass="playlist-title" /><Label text="42 tracks" styleClass="playlist-count" /></VBox>
-                        <VBox spacing="8.0" prefWidth="112.0" styleClass="playlist-card"><StackPane prefWidth="96.0" prefHeight="96.0" styleClass="playlist-art new-playlist"><Label text="+" /></StackPane><Label text="New Playlist" styleClass="playlist-title" /><Label text="Create" styleClass="playlist-count" /></VBox>
-                    </HBox>
+                    <HBox fx:id="playlistCardsBox" spacing="18.0" />
                 </VBox>
             </HBox>
 

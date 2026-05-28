@@ -34,7 +34,10 @@ public class Playlists {
     public void setId(int id) { this.id = id; }
 
     public boolean isPublic() { return isPublic; }
+    @com.fasterxml.jackson.annotation.JsonProperty("public")
     public void setPublic(boolean isPublic) { this.isPublic = isPublic; }
+    @com.fasterxml.jackson.annotation.JsonProperty("isPublic")
+    public void setIsPublic(boolean isPublic) { this.isPublic = isPublic; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
