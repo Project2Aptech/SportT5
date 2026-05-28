@@ -4,17 +4,15 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sportt5.model.Albums;
-import com.sportt5.model.PageResponse;
+import com.sportt5.model.Users;
 
 import java.io.IOException;
-import java.util.List;
 
-public class AlbumService {
+public class UserService {
 
     private final ObjectMapper mapper;
 
-    public AlbumService() {
+    public UserService() {
         mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
@@ -22,15 +20,16 @@ public class AlbumService {
         mapper.setVisibility(PropertyAccessor.CREATOR, JsonAutoDetect.Visibility.ANY);
     }
 
-    public Albums getById(int id) throws IOException, InterruptedException {
-        String json = ConnectionServer.get("albums/" + id);
-        return mapper.readValue(json, Albums.class);
+    public Users getById(int id) throws IOException, InterruptedException {
+        String json = ConnectionServer.getAuth("users/" + id);
+        return mapper.readValue(json, Users.class);
     }
 
-    public List<Albums> getByArtist(int artistId) throws IOException, InterruptedException {
-        String json = ConnectionServer.get("albums/artist/" + artistId);
-        PageResponse<Albums> page = mapper.readValue(json,
-                mapper.getTypeFactory().constructParametricType(PageResponse.class, Albums.class));
-        return page.getContent();
+    public Users update(int id, String displayName, String bio, String avatarUrl) throws IOException, InterruptedException {
+        String body = String.format(
+                "{\"displayName\":\"%s\",\"bio\":\"%s\",\"avatarUrl\":\"%s\"}",
+                displayName, bio, avatarUrl);
+        String json = ConnectionServer.putAuth("users/" + id, body);
+        return mapper.readValue(json, Users.class);
     }
 }
