@@ -46,12 +46,16 @@
 
         <!-- AVATAR -->
         <VBox spacing="5">
-            <Label text="Avatar URL"
+
+            <Label text="Avatar"
                    styleClass="input-label"/>
 
             <TextField fx:id="avatarUrlField"
                        promptText="Avatar URL"
                        prefHeight="38"/>
+
+            <Button text="Choose Avatar"
+                    onAction="#handleChooseAvatar"/>
         </VBox>
 
         <!-- BIRTH DATE -->
@@ -86,7 +90,7 @@
     <HBox spacing="16"
           alignment="CENTER"
           layoutX="118"
-          layoutY="520">
+          layoutY="550">
 
         <Button text="Save"
                 fx:id="saveButton"

@@ -1,13 +1,21 @@
 package com.sportt5.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.sportt5.model.Users;
 import com.sportt5.service.AuthService;
+import com.sportt5.service.ConnectionServer;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +45,39 @@ public class EditProfileController {
         bioArea.setText(user.getBio());
         birthDatePicker.setValue(user.getBirthDate());
 
+    }
+    @FXML
+    private void handleChooseAvatar() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Avatar");
+
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter(
+                        "Image Files",
+                        "*.png", "*.jpg", "*.jpeg"
+                )
+        );
+
+        File selectedFile =
+                fileChooser.showOpenDialog(
+                        avatarUrlField.getScene().getWindow()
+                );
+
+        if (selectedFile == null) {
+            return;
+        }
+
+        try {
+            AuthService authService = new AuthService();
+            String avatarUrl =
+                    authService.updateAvatar(selectedFile);
+            if (avatarUrl != null) {
+                avatarUrlField.setText(avatarUrl);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void handleSave() throws IOException, InterruptedException {
