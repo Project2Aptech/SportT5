@@ -20,24 +20,24 @@ CREATE TABLE users (
 
                        username VARCHAR(50) NOT NULL UNIQUE,
                        email VARCHAR(255) NOT NULL UNIQUE,
-                       passwordHash VARCHAR(255) NOT NULL,
+                       password_hash VARCHAR(255) NOT NULL,
 
                        role ENUM('USER', 'ARTIST', 'ADMIN')
         NOT NULL DEFAULT 'USER',
 
-                       accountType ENUM('NORMAL', 'PRO', 'PREMIUM')
+                       account_type ENUM('NORMAL', 'PRO', 'PREMIUM')
         NOT NULL DEFAULT 'NORMAL',
 
-                       displayName VARCHAR(255),
-                       avatarUrl VARCHAR(500),
+                       display_name VARCHAR(255),
+                       avatar_url VARCHAR(500),
                        bio TEXT,
 
-                       birthDate DATE,
+                       birth_date DATE,
 
-                       isActive BOOLEAN NOT NULL DEFAULT TRUE,
+                       is_active BOOLEAN NOT NULL DEFAULT TRUE,
 
-                       createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                       updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                       updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
                            ON UPDATE CURRENT_TIMESTAMP
 );
 
@@ -59,18 +59,18 @@ CREATE TABLE genres (
 CREATE TABLE albums (
                         id INT AUTO_INCREMENT PRIMARY KEY,
 
-                        artistId INT NOT NULL,
+                        artist_id INT NOT NULL,
 
                         title VARCHAR(255) NOT NULL,
-                        coverUrl VARCHAR(500),
+                        cover_url VARCHAR(500),
 
-                        releaseDate DATE,
+                        release_date DATE,
 
-                        createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                        updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
                             ON UPDATE CURRENT_TIMESTAMP,
 
-                        FOREIGN KEY (artistId)
+                        FOREIGN KEY (artist_id)
                             REFERENCES users(id)
                             ON DELETE CASCADE
 );
@@ -82,35 +82,35 @@ CREATE TABLE albums (
 CREATE TABLE songs (
                        id INT AUTO_INCREMENT PRIMARY KEY,
 
-                       artistId INT NOT NULL,
-                       albumId INT,
+                       artist_id INT NOT NULL,
+                       album_id INT,
 
                        title VARCHAR(255) NOT NULL,
 
-                       durationSeconds SMALLINT NOT NULL DEFAULT 0,
+                       duration_seconds SMALLINT NOT NULL DEFAULT 0,
 
-                       fileUrl VARCHAR(500) NOT NULL,
-                       coverUrl VARCHAR(500),
+                       file_url VARCHAR(500) NOT NULL,
+                       cover_url VARCHAR(500),
 
-                       trackNumber SMALLINT,
+                       track_number SMALLINT,
 
-                       playCount BIGINT NOT NULL DEFAULT 0,
+                       play_count BIGINT NOT NULL DEFAULT 0,
 
                        status ENUM('LIVE', 'PENDING', 'DELETED')
         NOT NULL DEFAULT 'LIVE',
 
-                       requiredAccountType ENUM('NORMAL', 'PRO', 'PREMIUM')
+                       required_account_type ENUM('NORMAL', 'PRO', 'PREMIUM')
         NOT NULL DEFAULT 'NORMAL',
 
-                       createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                       updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                       updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
                            ON UPDATE CURRENT_TIMESTAMP,
 
-                       FOREIGN KEY (artistId)
+                       FOREIGN KEY (artist_id)
                            REFERENCES users(id)
                            ON DELETE CASCADE,
 
-                       FOREIGN KEY (albumId)
+                       FOREIGN KEY (album_id)
                            REFERENCES albums(id)
                            ON DELETE SET NULL
 );
@@ -119,17 +119,17 @@ CREATE TABLE songs (
    SONG GENRES
 ===================================================== */
 
-CREATE TABLE songGenres (
-                             songId INT NOT NULL,
-                             genreId INT NOT NULL,
+CREATE TABLE song_genres (
+                             song_id INT NOT NULL,
+                             genre_id INT NOT NULL,
 
-                             PRIMARY KEY (songId, genreId),
+                             PRIMARY KEY (song_id, genre_id),
 
-                             FOREIGN KEY (songId)
+                             FOREIGN KEY (song_id)
                                  REFERENCES songs(id)
                                  ON DELETE CASCADE,
 
-                             FOREIGN KEY (genreId)
+                             FOREIGN KEY (genre_id)
                                  REFERENCES genres(id)
                                  ON DELETE CASCADE
 );
@@ -141,20 +141,20 @@ CREATE TABLE songGenres (
 CREATE TABLE playlists (
                            id INT AUTO_INCREMENT PRIMARY KEY,
 
-                           userId INT NOT NULL,
+                           user_id INT NOT NULL,
 
                            title VARCHAR(255) NOT NULL,
                            description TEXT,
 
-                           coverUrl VARCHAR(500),
+                           cover_url VARCHAR(500),
 
-                           isPublic BOOLEAN NOT NULL DEFAULT TRUE,
+                           is_public BOOLEAN NOT NULL DEFAULT TRUE,
 
-                           createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                           updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                           created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                           updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
                                ON UPDATE CURRENT_TIMESTAMP,
 
-                           FOREIGN KEY (userId)
+                           FOREIGN KEY (user_id)
                                REFERENCES users(id)
                                ON DELETE CASCADE
 );
@@ -163,19 +163,19 @@ CREATE TABLE playlists (
    PLAYLIST SONGS
 ===================================================== */
 
-CREATE TABLE playlistSongs (
-                                playlistId INT NOT NULL,
-                                songId INT NOT NULL,
+CREATE TABLE playlist_songs (
+                                playlist_id INT NOT NULL,
+                                song_id INT NOT NULL,
 
-                                addedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                added_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-                                PRIMARY KEY (playlistId, songId),
+                                PRIMARY KEY (playlist_id, song_id),
 
-                                FOREIGN KEY (playlistId)
+                                FOREIGN KEY (playlist_id)
                                     REFERENCES playlists(id)
                                     ON DELETE CASCADE,
 
-                                FOREIGN KEY (songId)
+                                FOREIGN KEY (song_id)
                                     REFERENCES songs(id)
                                     ON DELETE CASCADE
 );
@@ -184,19 +184,19 @@ CREATE TABLE playlistSongs (
    LIKED SONGS
 ===================================================== */
 
-CREATE TABLE likedSongs (
-                             userId INT NOT NULL,
-                             songId INT NOT NULL,
+CREATE TABLE liked_songs (
+                             user_id INT NOT NULL,
+                             song_id INT NOT NULL,
 
-                             likedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                             liked_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-                             PRIMARY KEY (userId, songId),
+                             PRIMARY KEY (user_id, song_id),
 
-                             FOREIGN KEY (userId)
+                             FOREIGN KEY (user_id)
                                  REFERENCES users(id)
                                  ON DELETE CASCADE,
 
-                             FOREIGN KEY (songId)
+                             FOREIGN KEY (song_id)
                                  REFERENCES songs(id)
                                  ON DELETE CASCADE
 );
@@ -205,24 +205,24 @@ CREATE TABLE likedSongs (
    PLAY HISTORY
 ===================================================== */
 
-CREATE TABLE playHistory (
+CREATE TABLE play_history (
                               id BIGINT AUTO_INCREMENT PRIMARY KEY,
 
-                              userId INT NOT NULL,
-                              songId INT NOT NULL,
+                              user_id INT NOT NULL,
+                              song_id INT NOT NULL,
 
-                              playedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                              played_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-                              secondsPlayed SMALLINT NOT NULL DEFAULT 0,
+                              seconds_played SMALLINT NOT NULL DEFAULT 0,
 
-                              deviceType ENUM('DESKTOP', 'MOBILE', 'WEB')
+                              device_type ENUM('DESKTOP', 'MOBILE', 'WEB')
         DEFAULT 'DESKTOP',
 
-                              FOREIGN KEY (userId)
+                              FOREIGN KEY (user_id)
                                   REFERENCES users(id)
                                   ON DELETE CASCADE,
 
-                              FOREIGN KEY (songId)
+                              FOREIGN KEY (song_id)
                                   REFERENCES songs(id)
                                   ON DELETE CASCADE
 );
@@ -231,19 +231,19 @@ CREATE TABLE playHistory (
    ARTIST FOLLOWS
 ===================================================== */
 
-CREATE TABLE artistFollows (
-                                userId INT NOT NULL,
-                                artistId INT NOT NULL,
+CREATE TABLE artist_follows (
+                                user_id INT NOT NULL,
+                                artist_id INT NOT NULL,
 
-                                followedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                followed_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-                                PRIMARY KEY (userId, artistId),
+                                PRIMARY KEY (user_id, artist_id),
 
-                                FOREIGN KEY (userId)
+                                FOREIGN KEY (user_id)
                                     REFERENCES users(id)
                                     ON DELETE CASCADE,
 
-                                FOREIGN KEY (artistId)
+                                FOREIGN KEY (artist_id)
                                     REFERENCES users(id)
                                     ON DELETE CASCADE
 );
@@ -252,19 +252,19 @@ CREATE TABLE artistFollows (
    PLAYLIST FOLLOWS
 ===================================================== */
 
-CREATE TABLE playlistFollows (
-                                  userId INT NOT NULL,
-                                  playlistId INT NOT NULL,
+CREATE TABLE playlist_follows (
+                                  user_id INT NOT NULL,
+                                  playlist_id INT NOT NULL,
 
-                                  followedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                  followed_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-                                  PRIMARY KEY (userId, playlistId),
+                                  PRIMARY KEY (user_id, playlist_id),
 
-                                  FOREIGN KEY (userId)
+                                  FOREIGN KEY (user_id)
                                       REFERENCES users(id)
                                       ON DELETE CASCADE,
 
-                                  FOREIGN KEY (playlistId)
+                                  FOREIGN KEY (playlist_id)
                                       REFERENCES playlists(id)
                                       ON DELETE CASCADE
 );
@@ -276,21 +276,21 @@ CREATE TABLE playlistFollows (
 CREATE TABLE subscriptions (
     id         INT AUTO_INCREMENT PRIMARY KEY,
 
-    userId     INT    NOT NULL,
+    user_id    INT    NOT NULL,
 
-    planType   ENUM('PRO', 'PREMIUM') NOT NULL,
+    plan_type  ENUM('PRO', 'PREMIUM') NOT NULL,
 
     amount     DECIMAL(10,2) NOT NULL,
 
-    startedAt  DATETIME NOT NULL,
-    expiresAt  DATETIME NOT NULL,
+    started_at DATETIME NOT NULL,
+    expires_at DATETIME NOT NULL,
 
     status     ENUM('ACTIVE', 'EXPIRED', 'CANCELLED')
                NOT NULL DEFAULT 'ACTIVE',
 
-    createdAt  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (userId)
+    FOREIGN KEY (user_id)
         REFERENCES users(id)
         ON DELETE CASCADE
 );
@@ -299,22 +299,22 @@ CREATE TABLE subscriptions (
    ARTIST EARNINGS
 ===================================================== */
 
-CREATE TABLE artistEarnings (
+CREATE TABLE artist_earnings (
     id           INT AUTO_INCREMENT PRIMARY KEY,
 
-    artistId     INT  NOT NULL,
+    artist_id    INT  NOT NULL,
 
-    periodStart  DATE NOT NULL,
-    periodEnd    DATE NOT NULL,
+    period_start DATE NOT NULL,
+    period_end   DATE NOT NULL,
 
-    streamCount  INT          NOT NULL DEFAULT 0,
+    stream_count INT           NOT NULL DEFAULT 0,
     amount       DECIMAL(10,2) NOT NULL DEFAULT 0.00,
 
-    createdAt    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    UNIQUE KEY uqArtistPeriod (artistId, periodStart),
+    UNIQUE KEY uq_artist_period (artist_id, period_start),
 
-    FOREIGN KEY (artistId)
+    FOREIGN KEY (artist_id)
         REFERENCES users(id)
         ON DELETE CASCADE
 );
@@ -323,29 +323,29 @@ CREATE TABLE artistEarnings (
    SONG COMMENTS
 ===================================================== */
 
-CREATE TABLE songComments (
+CREATE TABLE song_comments (
                                id BIGINT AUTO_INCREMENT PRIMARY KEY,
 
-                               songId INT NOT NULL,
-                               userId INT NOT NULL,
+                               song_id INT NOT NULL,
+                               user_id INT NOT NULL,
 
-                               parentCommentId BIGINT,
+                               parent_comment_id BIGINT,
 
                                content TEXT NOT NULL,
 
-                               isDeleted BOOLEAN NOT NULL DEFAULT FALSE,
+                               is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
 
-                               createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                               created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-                               FOREIGN KEY (songId)
+                               FOREIGN KEY (song_id)
                                    REFERENCES songs(id)
                                    ON DELETE CASCADE,
 
-                               FOREIGN KEY (userId)
+                               FOREIGN KEY (user_id)
                                    REFERENCES users(id)
                                    ON DELETE CASCADE,
 
-                               FOREIGN KEY (parentCommentId)
-                                   REFERENCES songComments(id)
+                               FOREIGN KEY (parent_comment_id)
+                                   REFERENCES song_comments(id)
                                    ON DELETE SET NULL
 );
