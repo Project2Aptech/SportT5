@@ -39,6 +39,7 @@ public class AppController {
     @FXML private SidebarController artistSidebarController;
     @FXML private SidebarController adminSidebarController;
     @FXML private TopBarController  topBarController;
+    @FXML private PlaylistController albumPageController;
 
     @FXML
     public void initialize() {
@@ -55,7 +56,10 @@ public class AppController {
 
     @FXML public void showHomePage()    { showPage(homePage,    topBarController.getHomeHero(),     sidebarController.getHomeNavItem()); }
     @FXML public void showLibraryPage() { showPage(libraryPage, topBarController.getLibraryTopBar(),sidebarController.getLibraryItem()); }
-    @FXML public void showAlbumPage()   { showPage(albumPage,   topBarController.getAlbumTopBar(),  sidebarController.getAlbumItem()); }
+    @FXML public void showAlbumPage() {
+        if (albumPageController != null) albumPageController.loadUserAlbums();
+        showPage(albumPage, topBarController.getAlbumTopBar(), sidebarController.getAlbumItem());
+    }
     @FXML public void showAccountPage() { showPage(accountPage, topBarController.getAccountTopBar(),sidebarController.getAccountNavItem()); }
 
     // ════════════════════════════════════════════════════════════════════════

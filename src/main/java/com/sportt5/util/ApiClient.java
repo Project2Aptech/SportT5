@@ -11,6 +11,12 @@ import java.net.http.HttpResponse;
 public class ApiClient {
 
     private static final String BASE_URL = "http://localhost:8080/api/v1/";
+    private static final String SERVER_ROOT = "http://localhost:8080/";
+
+    public static String resolveUrl(String url) {
+        if (url == null || url.isBlank()) return null;
+        return url.startsWith("http") ? url : SERVER_ROOT + url;
+    }
     private static final HttpClient client = HttpClient.newHttpClient();
 
     public static HttpClient getClient() {

@@ -1,11 +1,15 @@
 package com.sportt5.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Albums {
     private int id;
     private int artistId;
+    private String artistName;
     private String title;
     private String coverUrl;
     private LocalDate releaseDate;
@@ -25,6 +29,9 @@ public class Albums {
 
     public int getArtistId() { return artistId; }
     public void setArtistId(int artistId) { this.artistId = artistId; }
+
+    public String getArtistName() { return artistName; }
+    public void setArtistName(String artistName) { this.artistName = artistName; }
 
     public String getCoverUrl() { return coverUrl; }
     public void setCoverUrl(String coverUrl) { this.coverUrl = coverUrl; }
