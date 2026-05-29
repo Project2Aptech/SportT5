@@ -4,6 +4,7 @@ import com.sportt5.App;
 import com.sportt5.model.Users;
 import com.sportt5.service.AuthService;
 import com.sportt5.session.UserSession;
+import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,8 +96,9 @@ public class AccountController {
         planLabel.setText(u.getAccountType() != null ? u.getAccountType().name() : "NORMAL");
         checkEmail.setText((u.getEmail() != null ? "V" : "X"));
         System.out.println("Avatar URL = " + u.getAvatarUrl());
-        if (u.getAvatarUrl() != null && !u.getAvatarUrl().isBlank()) {
-            avatarImageView.setImage(new Image(u.getAvatarUrl(), true));
+        String avatarUrl = ApiClient.resolveUrl(u.getAvatarUrl());
+        if (avatarUrl != null) {
+            avatarImageView.setImage(new Image(avatarUrl, true));
         } else {
             avatarImageView.setImage(new Image(App.class.getResource("/com.sportt5/img/avatar.png").toExternalForm()));
         }
