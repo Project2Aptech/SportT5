@@ -4,41 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/PaymentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/SubscriptionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/dialog.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/images/qrCode.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/users/payment-dialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/users/subscription-plans.fxml" afterDir="false" />
+    <list default="true" id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="done upload img and merge hiep">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/SidebarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/pages/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/pages/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/util/ApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/util/ApiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/account-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/account-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;tuanhiep29797&quot;
+    &quot;assignee&quot;: &quot;vihnngk&quot;
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
@@ -47,15 +43,22 @@
     &quot;accountId&quot;: &quot;83d35872-54f8-4df9-85d7-b28e6f4b7de8&quot;
   }
 }</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../../../xampp/php/php.exe" />
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6,
-  &quot;fromUser&quot;: false
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="3EQwHwsRhn1QO0qDAUo6rNochFF" />
+  <component name="ProjectId" id="3DiMRfZpMTkg0Ao2EWVMFVXpV3a" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -66,31 +69,30 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "Manh",
+    "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Code/SportT5",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "terminal",
+    "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/com.sportt5/view/users" />
-    </key>
-  </component>
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.sportt5.App" />
@@ -121,18 +123,69 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="" />
-      <created>1780124017130</created>
+      <changelist id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="" />
+      <created>1778760431420</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1780124017130</updated>
-      <workItem from="1780124018380" duration="4965000" />
-      <workItem from="1780238271475" duration="1480000" />
-      <workItem from="1780311371556" duration="2992000" />
+      <updated>1778760431420</updated>
+      <workItem from="1779288888455" duration="639000" />
+      <workItem from="1779408138238" duration="1112000" />
+      <workItem from="1779548642631" duration="3465000" />
+      <workItem from="1779612645970" duration="7295000" />
+      <workItem from="1779709674823" duration="2100000" />
+      <workItem from="1779900389327" duration="2252000" />
+      <workItem from="1779928159566" duration="373000" />
+      <workItem from="1779965696850" duration="1937000" />
+      <workItem from="1779974698999" duration="2309000" />
     </task>
+    <task id="LOCAL-00001" summary="done logic login, sign out">
+      <option name="closed" value="true" />
+      <created>1779739120241</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1779739120241</updated>
+    </task>
+    <task id="LOCAL-00002" summary="done upload img and merge hiep">
+      <option name="closed" value="true" />
+      <created>1779994248067</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1779994248067</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="test" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="done logic login, sign out" />
+    <MESSAGE value="done upload img and merge hiep" />
+    <option name="LAST_COMMIT_MESSAGE" value="done upload img and merge hiep" />
   </component>
 </project>
