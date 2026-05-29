@@ -12,7 +12,4 @@ public class ServerConnect {
     public static HttpClient getClient() {
         return client;
     }
-
-
-
 }

@@ -2,9 +2,12 @@ package com.sportt5.controller;
 
 import com.sportt5.model.Genres;
 import com.sportt5.model.Songs;
+import com.sportt5.service.GenreService;
+import com.sportt5.service.SongService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
