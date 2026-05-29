@@ -6,11 +6,17 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sportt5.model.AuthResponse;
 import com.sportt5.model.Users;
+import com.sportt5.session.UserSession;
 import com.sportt5.util.DataServer;
+import com.sportt5.util.ServerConnect;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class AuthService {
@@ -20,24 +26,34 @@ public class AuthService {
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
     public String updateAvatar(File selectedFile) {
-        String endpoint = "users/me/avatar";
         try {
-            HttpResponse<String> response =
-                    DataServer.uploadAvatar(
-                            endpoint,
-                            selectedFile
-                    );
+            String boundary = "----Boundary" + System.currentTimeMillis();
+            var byteArrays = new ArrayList<byte[]>();
+            byteArrays.add((
+                    "--" + boundary + "\r\n" +
+                    "Content-Disposition: form-data; name=\"file\"; filename=\"" + selectedFile.getName() + "\"\r\n" +
+                    "Content-Type: image/jpeg\r\n\r\n"
+            ).getBytes());
+            byteArrays.add(Files.readAllBytes(selectedFile.toPath()));
+            byteArrays.add(("\r\n--" + boundary + "--\r\n").getBytes());
 
-            System.out.println(response.body());
-            JsonNode node =
-                    mapper.readTree(response.body());
+            HttpRequest.Builder builder = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/api/v1/users/me/avatar"))
+                    .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                    .POST(HttpRequest.BodyPublishers.ofByteArrays(byteArrays));
+
+            UserSession session = UserSession.getInstance();
+            if (session != null && session.getToken() != null) {
+                builder.header("Authorization", "Bearer " + session.getToken());
+            }
+
+            HttpResponse<String> response = ServerConnect.getClient().send(builder.build(), HttpResponse.BodyHandlers.ofString());
+            JsonNode node = mapper.readTree(response.body());
             return node.get("avatarUrl").asText();
 
         } catch (Exception e) {
-
             e.printStackTrace();
         }
-
         return null;
     }
 
