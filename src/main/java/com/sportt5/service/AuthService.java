@@ -7,8 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sportt5.model.AuthResponse;
 import com.sportt5.model.Users;
 import com.sportt5.session.UserSession;
-import com.sportt5.util.DataServer;
-import com.sportt5.util.ServerConnect;
+import com.sportt5.util.ApiClient;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,17 +36,16 @@ public class AuthService {
             byteArrays.add(Files.readAllBytes(selectedFile.toPath()));
             byteArrays.add(("\r\n--" + boundary + "--\r\n").getBytes());
 
+            UserSession session = UserSession.getInstance();
             HttpRequest.Builder builder = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/users/me/avatar"))
                     .header("Content-Type", "multipart/form-data; boundary=" + boundary)
                     .POST(HttpRequest.BodyPublishers.ofByteArrays(byteArrays));
-
-            UserSession session = UserSession.getInstance();
             if (session != null && session.getToken() != null) {
                 builder.header("Authorization", "Bearer " + session.getToken());
             }
 
-            HttpResponse<String> response = ServerConnect.getClient().send(builder.build(), HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = ApiClient.getClient().send(builder.build(), HttpResponse.BodyHandlers.ofString());
             JsonNode node = mapper.readTree(response.body());
             return node.get("avatarUrl").asText();
 
@@ -60,7 +58,7 @@ public class AuthService {
     public Users updateUser(int id, Map<String, Object> updates) throws IOException, InterruptedException {
         String endpoint = String.format("users/%d", id);
         String jsonBody = mapper.writeValueAsString(updates);
-        HttpResponse<String> response = DataServer.patch(endpoint, jsonBody);
+        HttpResponse<String> response = ApiClient.patch(endpoint, jsonBody);
         JsonNode node = mapper.readTree(response.body());
 
         if(response.statusCode() == 200){
@@ -74,7 +72,7 @@ public class AuthService {
 
     public Users getUserById(int id) throws IOException, InterruptedException {
         String endpoint = String.format("users/%d", id);
-        HttpResponse<String> response = DataServer.get(endpoint);
+        HttpResponse<String> response = ApiClient.get(endpoint);
         JsonNode node = mapper.readTree(response.body());
 
         System.out.println("=== GET /users/" + id + " ===");
@@ -104,7 +102,7 @@ public class AuthService {
 
         String endpointRegister = "auth/register";
 
-        HttpResponse<String> response = DataServer.post(endpointRegister, jsonPayload);
+        HttpResponse<String> response = ApiClient.post(endpointRegister, jsonPayload);
         JsonNode node = mapper.readTree(response.body());
 
         if(response.statusCode() == 200){
@@ -123,7 +121,7 @@ public class AuthService {
     public AuthResponse authenticate(String login,String password) throws IOException, InterruptedException {
         String endpointLogin = "auth/login";
         String jsonPayload = String.format("{\"email\":\"%s\", \"password\":\"%s\"}", login, password);
-        HttpResponse<String> response = DataServer.post(endpointLogin, jsonPayload);
+        HttpResponse<String> response = ApiClient.post(endpointLogin, jsonPayload);
         JsonNode node = mapper.readTree(response.body());
 
         if (response.statusCode() == 200) {
