@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sportt5.model.AuthResponse;
 import com.sportt5.model.Users;
+import com.sportt5.util.DataServer;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class AuthService {
         String endpoint = "users/me/avatar";
         try {
             HttpResponse<String> response =
-                    ConnectionServer.uploadAvatar(
+                    DataServer.uploadAvatar(
                             endpoint,
                             selectedFile
                     );
@@ -43,7 +44,7 @@ public class AuthService {
     public Users updateUser(int id, Map<String, Object> updates) throws IOException, InterruptedException {
         String endpoint = String.format("users/%d", id);
         String jsonBody = mapper.writeValueAsString(updates);
-        HttpResponse<String> response = ConnectionServer.patch(endpoint, jsonBody);
+        HttpResponse<String> response = DataServer.patch(endpoint, jsonBody);
         JsonNode node = mapper.readTree(response.body());
 
         if(response.statusCode() == 200){
@@ -57,7 +58,7 @@ public class AuthService {
 
     public Users getUserById(int id) throws IOException, InterruptedException {
         String endpoint = String.format("users/%d", id);
-        HttpResponse<String> response = ConnectionServer.get1(endpoint);
+        HttpResponse<String> response = DataServer.get(endpoint);
         JsonNode node = mapper.readTree(response.body());
 
         System.out.println("=== GET /users/" + id + " ===");
@@ -87,7 +88,7 @@ public class AuthService {
 
         String endpointRegister = "auth/register";
 
-        HttpResponse<String> response = ConnectionServer.post(endpointRegister, jsonPayload);
+        HttpResponse<String> response = DataServer.post(endpointRegister, jsonPayload);
         JsonNode node = mapper.readTree(response.body());
 
         if(response.statusCode() == 200){
@@ -106,7 +107,7 @@ public class AuthService {
     public AuthResponse authenticate(String login,String password) throws IOException, InterruptedException {
         String endpointLogin = "auth/login";
         String jsonPayload = String.format("{\"email\":\"%s\", \"password\":\"%s\"}", login, password);
-        HttpResponse<String> response = ConnectionServer.post(endpointLogin, jsonPayload);
+        HttpResponse<String> response = DataServer.post(endpointLogin, jsonPayload);
         JsonNode node = mapper.readTree(response.body());
 
         if (response.statusCode() == 200) {
