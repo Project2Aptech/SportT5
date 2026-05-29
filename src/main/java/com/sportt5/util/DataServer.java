@@ -2,13 +2,10 @@ package com.sportt5.util;
 
 import com.sportt5.session.UserSession;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.Files;
-import java.util.ArrayList;
 
 public class DataServer {
 
@@ -72,28 +69,6 @@ public class DataServer {
                 .header("Content-Type", "application/json")
                 .build();
         return ServerConnect.getClient().send(request, HttpResponse.BodyHandlers.ofString());
-    }
-
-    // =========================
-    // Upload Avatar (multipart, with auth)
-    // =========================
-    public static HttpResponse<String> uploadAvatar(String endpoint, File file) throws IOException, InterruptedException {
-        String boundary = "----Boundary" + System.currentTimeMillis();
-        var byteArrays = new ArrayList<byte[]>();
-        byteArrays.add((
-                "--" + boundary + "\r\n" +
-                "Content-Disposition: form-data; name=\"file\"; filename=\"" + file.getName() + "\"\r\n" +
-                "Content-Type: image/jpeg\r\n\r\n"
-        ).getBytes());
-        byteArrays.add(Files.readAllBytes(file.toPath()));
-        byteArrays.add(("\r\n--" + boundary + "--\r\n").getBytes());
-
-        HttpRequest.Builder builder = HttpRequest.newBuilder()
-                .uri(URI.create(API_URL + endpoint))
-                .header("Content-Type", "multipart/form-data; boundary=" + boundary)
-                .POST(HttpRequest.BodyPublishers.ofByteArrays(byteArrays));
-        withAuth(builder);
-        return ServerConnect.getClient().send(builder.build(), HttpResponse.BodyHandlers.ofString());
     }
 
     // =========================

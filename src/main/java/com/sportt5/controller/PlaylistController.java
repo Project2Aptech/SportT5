@@ -1,15 +1,8 @@
 package com.sportt5.controller;
 
-import com.sportt5.model.Playlists;
-import com.sportt5.model.Songs;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PlaylistController {
 
