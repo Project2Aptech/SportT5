@@ -1,21 +1,15 @@
 package com.sportt5.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.sportt5.model.Users;
 import com.sportt5.service.AuthService;
-import com.sportt5.service.ConnectionServer;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
