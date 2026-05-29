@@ -1,7 +1,6 @@
 package com.sportt5.controller;
 
 import com.sportt5.model.AuthResponse;
-import com.sportt5.service.AuthService;
 import com.sportt5.session.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
