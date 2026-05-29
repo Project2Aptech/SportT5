@@ -53,7 +53,6 @@ public class AuthController {
     }
     @FXML
     public void handleSignUp(ActionEvent event) {
-
         String nameInput = signupNameField.getText();
         String emailInput = signupEmailField.getText();
         String passwordInput = signupPasswordField.getText();

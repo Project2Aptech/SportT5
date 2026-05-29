@@ -77,6 +77,8 @@ public class AccountController {
                 showError("User is null");
             }
 
+            SidebarController.refreshAll(fresh);
+
             Platform.runLater(() -> {
                 bindToUi(fresh);
             });

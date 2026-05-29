@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="Merge branch 'hiep' into Manh&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/com/sportt5/service/ConnectionServer.java&#10;#&#9;src/main/resources/com.sportt5/css/style.css">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/editProfile.css" afterDir="false" />
+    <list default="true" id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="done upload img and merge hiep">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/EditProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/EditProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/service/ConnectionServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/service/ConnectionServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/edit-profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/edit-profile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779739120241</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="done upload img and merge hiep">
+      <option name="closed" value="true" />
+      <created>1779994248067</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1779994248067</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +185,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="done logic login, sign out" />
-    <option name="LAST_COMMIT_MESSAGE" value="done logic login, sign out" />
+    <MESSAGE value="done upload img and merge hiep" />
+    <option name="LAST_COMMIT_MESSAGE" value="done upload img and merge hiep" />
   </component>
 </project>

@@ -1,17 +1,37 @@
 package com.sportt5.controller;
 
+import com.sportt5.App;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.Roles;
+import com.sportt5.service.AuthService;
 import com.sportt5.session.UserSession;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 public class SidebarController {
+    private static final List<SidebarController> instances = new ArrayList<>();
+
+    public SidebarController() {
+        instances.add(this);
+    }
+
+    public static void refreshAll(Users user) {
+        for(SidebarController sc : instances) {
+            sc.loadUserProfile(user);
+        }
+    }
+    @FXML private ImageView avatarImageView;
     //Home Sidebar
-    @FXML private Label profileNameLabel, brandLabel;
+    @FXML private Label profileNameLabel, brandLabel,profileTierLabel;
     @FXML private HBox homeNavItem, libraryItem, albumItem, artistItem, accountNavItem, adminItem;
     //Artist Sidebar
     @FXML private HBox artistDashboardNavItem, artistMusicNavItem, artistUploadNavItem, artistAnalyticsNavItem, artistFansNavItem, exitArtistNavItem;
@@ -36,6 +56,37 @@ public class SidebarController {
     public HBox getAdminUserNavItem() { return adminUserNavItem; }
     public HBox getAdminReviewNavItem() { return adminReviewNavItem; }
     public HBox getAdminAnalyticsNavItem() { return adminAnalyticsNavItem; }
+
+    private final AuthService authService = new AuthService();
+
+    public void loadUserProfile(Users user){
+        new Thread(()->{
+            try{
+                if (user == null) {
+                    throw new RuntimeException("User is null");
+                }
+
+                Platform.runLater(() -> {
+                    bindToUi(user);
+                });
+
+            } catch (Exception e) {
+                Platform.runLater(() -> {
+                    throw new RuntimeException("Failed to load profile: " + e.getMessage());
+                });
+            }
+
+        }).start();
+    }
+    private void bindToUi(Users u) {
+        profileNameLabel.setText((u.getDisplayName() != null ? u.getDisplayName() : "User"));
+        profileTierLabel.setText(u.getAccountType() != null ? u.getAccountType().name() : "NORMAL");
+        if (u.getAvatarUrl() != null && !u.getAvatarUrl().isBlank()) {
+            avatarImageView.setImage(new Image(u.getAvatarUrl(), true));
+        } else {
+            avatarImageView.setImage(new Image(App.class.getResource("/com.sportt5/img/avatar.png").toExternalForm()));
+        }
+    }
 
     public void resetNavStyles() {
         if (homeNavItem != null) {
@@ -63,6 +114,7 @@ public class SidebarController {
     public void initialize() {
         Users user = UserSession.getInstance().getCurrentUser();
         Roles role = user != null ? user.getRole() : null;
+        loadUserProfile(user);
 
         //<-----Home sidebar----->
         if (brandLabel != null) {

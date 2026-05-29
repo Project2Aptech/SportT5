@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.sportt5.controller.SidebarController"
@@ -18,11 +19,16 @@
     <Label fx:id="brandLabel" text="SPORT T5" styleClass="home-brand"/>
     <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="home-profile">
         <StackPane prefWidth="36.0" prefHeight="36.0" styleClass="home-avatar">
-            <Label text="▣" />
+            <ImageView
+                    fx:id="avatarImageView"
+                    fitWidth="20"
+                    fitHeight="20"
+                    preserveRatio="true"
+            />
         </StackPane>
         <VBox spacing="2.0">
-            <Label fx:id="profileNameLabel" text="Alex Studio" styleClass="profile-name" />
-            <Label fx:id="profileTierLabel" text="PREMIUM" styleClass="profile-tier" />
+            <Label fx:id="profileNameLabel" text="" styleClass="profile-name" />
+            <Label fx:id="profileTierLabel" text="" styleClass="profile-tier" />
         </VBox>
         <Region HBox.hgrow="ALWAYS" />
         <Label text="⌄" styleClass="muted" />
