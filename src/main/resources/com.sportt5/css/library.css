@@ -226,6 +226,32 @@
     -fx-cursor: hand;
 }
 
+.song-row-locked {
+    -fx-opacity: 0.45;
+}
+
+.song-row-locked:hover {
+    -fx-opacity: 0.65;
+    -fx-cursor: default;
+}
+
+.lock-badge {
+    -fx-padding: 2 5 2 5;
+    -fx-background-radius: 3;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+}
+
+.lock-badge-pro {
+    -fx-background-color: #7a3d00;
+    -fx-text-fill: #ffb347;
+}
+
+.lock-badge-premium {
+    -fx-background-color: #3d0060;
+    -fx-text-fill: #c77dff;
+}
+
 .thumb-city {
     -fx-background-color: linear-gradient(to bottom, #161b22, #6a342e, #060707);
 }

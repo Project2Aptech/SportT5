@@ -3,15 +3,19 @@ package com.sportt5.controller;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.Roles;
 import com.sportt5.session.UserSession;
+import com.sportt5.util.ApiClient;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
 public class SidebarController {
     //Home Sidebar
-    @FXML private Label profileNameLabel, brandLabel;
+    @FXML private Label profileNameLabel, profileTierLabel, brandLabel;
+    @FXML private ImageView sidebarAvatar;
     @FXML private HBox homeNavItem, libraryItem, albumItem, artistItem, accountNavItem, adminItem;
     //Artist Sidebar
     @FXML private HBox artistDashboardNavItem, artistMusicNavItem, artistUploadNavItem, artistAnalyticsNavItem, artistFansNavItem, exitArtistNavItem;
@@ -63,6 +67,17 @@ public class SidebarController {
     public void initialize() {
         Users user = UserSession.getInstance().getCurrentUser();
         Roles role = user != null ? user.getRole() : null;
+
+        if (profileNameLabel != null && user != null) {
+            profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
+        }
+        if (profileTierLabel != null && user != null) {
+            profileTierLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
+        }
+        if (sidebarAvatar != null && user != null) {
+            String url = ApiClient.resolveUrl(user.getAvatarUrl());
+            if (url != null) sidebarAvatar.setImage(new Image(url, true));
+        }
 
         //<-----Home sidebar----->
         if (brandLabel != null) {
