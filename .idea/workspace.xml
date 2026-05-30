@@ -4,99 +4,80 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="done logic login, sign out">
+    <list default="true" id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AlbumCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AlbumCardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/EditProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/EditProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/PlayerBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/PlayerBarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/PlaylistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Albums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Albums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/model/PageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/model/PageResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Songs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Songs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SongRowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SongRowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/TopBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/TopBarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/util/ApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/util/ApiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/library/album-card-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/library/album-card-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/library.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/library.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/sql/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/sql/seed.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/player-bar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/player-bar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/library/song-row-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/library/song-row-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
-    <execution />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;vihnngk&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "tuanhiep29797"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Project2Aptech/SportT5&quot;,
-    &quot;accountId&quot;: &quot;83d35872-54f8-4df9-85d7-b28e6f4b7de8&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Project2Aptech/SportT5",
+    "accountId": "83d35872-54f8-4df9-85d7-b28e6f4b7de8"
   }
-}</component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
-  </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="$PROJECT_DIR$/../../../../../xampp/php/php.exe" />
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="3DiMRfZpMTkg0Ao2EWVMFVXpV3a" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3EQwHwsRhn1QO0qDAUo6rNochFF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;hiep&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Code/SportT5&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "hiep",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Code/SportT5",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.sportt5.App" />
@@ -127,62 +108,16 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eea7c718-fac3-4eef-a62d-250a305c3483" name="Changes" comment="" />
-      <created>1778760431420</created>
+      <changelist id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="" />
+      <created>1780124017130</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1778760431420</updated>
-      <workItem from="1779288888455" duration="639000" />
-      <workItem from="1779408138238" duration="1112000" />
-      <workItem from="1779548642631" duration="3465000" />
-      <workItem from="1779612645970" duration="7295000" />
-      <workItem from="1779709674823" duration="2100000" />
-      <workItem from="1779900389327" duration="2252000" />
-      <workItem from="1779928159566" duration="373000" />
-      <workItem from="1779965696850" duration="1937000" />
-      <workItem from="1779974698999" duration="2309000" />
-      <workItem from="1780051185442" duration="1628000" />
-      <workItem from="1780053170242" duration="3427000" />
+      <updated>1780124017130</updated>
+      <workItem from="1780124018380" duration="4965000" />
     </task>
-    <task id="LOCAL-00001" summary="done logic login, sign out">
-      <option name="closed" value="true" />
-      <created>1779739120241</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1779739120241</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="test" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="done logic login, sign out" />
-    <option name="LAST_COMMIT_MESSAGE" value="done logic login, sign out" />
   </component>
 </project>

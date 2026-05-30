@@ -77,7 +77,6 @@ public class EditProfileController {
     public void handleSave() throws IOException, InterruptedException {
         Map<String, Object> updates  = new HashMap<>();
         updates.put("displayName", displayNameField.getText());
-        updates.put("email", emailField.getText());
         updates.put("bio", bioArea.getText());
         updates.put("avatarUrl", avatarUrlField.getText());
         updates.put("birthDate", birthDatePicker.getValue());

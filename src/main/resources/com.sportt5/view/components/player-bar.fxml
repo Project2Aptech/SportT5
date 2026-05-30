@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
@@ -10,13 +11,45 @@
 
 <HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.sportt5.controller.PlayerBarController"
-      alignment="CENTER_LEFT" spacing="16.0" prefHeight="64.0" minHeight="64.0" maxHeight="64.0" styleClass="player">
-    <StackPane prefWidth="46.0" prefHeight="46.0" styleClass="now-cover"><Label text="▥" /></StackPane>
-    <VBox spacing="3.0"><Label text="Death Grips is Online" styleClass="now-title" /><Label text="DEATH GRIPS" styleClass="now-artist" /></VBox>
+      alignment="CENTER_LEFT" spacing="16.0"
+      prefHeight="64.0" minHeight="64.0" maxHeight="64.0" styleClass="player">
+
+    <!-- Cover xoay khi đang phát -->
+    <StackPane fx:id="coverPane" prefWidth="46.0" prefHeight="46.0" styleClass="now-cover">
+        <ImageView fx:id="coverImage" fitWidth="46.0" fitHeight="46.0" preserveRatio="true" />
+    </StackPane>
+
+    <!-- Tên bài / artist -->
+    <VBox spacing="3.0" minWidth="130.0" maxWidth="160.0">
+        <Label fx:id="nowTitle" text="—" styleClass="now-title" />
+        <Label fx:id="nowArtist" text="" styleClass="now-artist" />
+    </VBox>
+
     <Label text="♡" styleClass="player-muted" />
     <Region HBox.hgrow="ALWAYS" />
-    <Label text="⤨" styleClass="player-muted" /><Label text="|◀" styleClass="player-muted" /><Button text="▶" styleClass="play-button" /><Label text="▶|" styleClass="player-muted" /><Label text="⇄" styleClass="player-muted" />
+
+    <!-- Transport controls -->
+    <Label text="⤨" styleClass="player-muted" />
+    <Label text="|◀" styleClass="player-muted" />
+    <Button fx:id="btnPlay" text="▶" styleClass="play-button" onAction="#onPlayPause" />
+    <Label text="▶|" styleClass="player-muted" />
+    <Label text="⇄" styleClass="player-muted" />
+
     <Region HBox.hgrow="ALWAYS" />
-    <VBox alignment="CENTER" spacing="4.0" prefWidth="220.0"><ProgressBar progress="0.58" maxWidth="220.0" styleClass="progress" /><HBox alignment="CENTER" spacing="130.0"><Label text="1:42" styleClass="time" /><Label text="3:15" styleClass="time" /></HBox></VBox>
-    <Label text="≡" styleClass="player-muted" /><Label text="▣" styleClass="player-muted" /><Label text="♩" styleClass="player-muted" /><ProgressBar progress="0.70" prefWidth="78.0" styleClass="volume" />
+
+    <!-- Progress bar + time -->
+    <VBox alignment="CENTER" spacing="4.0" prefWidth="220.0">
+        <ProgressBar fx:id="progressBar" progress="0.0" maxWidth="220.0" styleClass="progress" />
+        <HBox prefWidth="220.0">
+            <Label fx:id="currentTimeLabel" text="0:00" styleClass="time" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="totalTimeLabel" text="0:00" styleClass="time" />
+        </HBox>
+    </VBox>
+
+    <!-- Volume -->
+    <Label text="≡" styleClass="player-muted" />
+    <Label text="▣" styleClass="player-muted" />
+    <Label text="♩" styleClass="player-muted" />
+    <ProgressBar fx:id="volumeBar" progress="0.70" prefWidth="78.0" styleClass="volume" />
 </HBox>

@@ -17,7 +17,15 @@
       "Bash(git push *)",
       "Bash(xargs ls)",
       "Bash(Get-ChildItem -Path \"D:\\\\Code\\\\Code\\\\SportT5\" -Recurse)",
-      "Bash(Select-Object -Property FullName)"
+      "Bash(Select-Object -Property FullName)",
+      "Bash(Get-ChildItem -Recurse \"D:\\\\Code\\\\SportT5\\\\src\\\\main\\\\resources\\\\com.sportt5\" -Include \"*.jpg\",\"*.jpeg\",\"*.png\",\"*.gif\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(xargs grep -l -i \"upload\\\\|multipart\\\\|cloudinary\")",
+      "Bash(xargs grep -l -i \"avatar\\\\|cover\")",
+      "Bash(xargs grep -l -i \"upload\\\\|avatar\\\\|cover\\\\|multipart\")",
+      "Bash(xargs cat)",
+      "Bash(xargs ls -1)"
     ]
   }
 }

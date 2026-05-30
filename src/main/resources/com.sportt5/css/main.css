@@ -92,3 +92,33 @@
 .home-content {
     -fx-background-color: -c-bg-base;
 }
+
+/* ── Global controls (theme + language) ── */
+
+.global-controls {
+    -fx-padding: 12 14 0 0;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.global-control-btn {
+    -fx-background-color: rgba(255,255,255,0.08);
+    -fx-background-radius: 6;
+    -fx-text-fill: -c-text-body;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-padding: 4 10 4 10;
+    -fx-cursor: hand;
+}
+
+.global-control-btn:hover {
+    -fx-background-color: rgba(255,255,255,0.14);
+    -fx-text-fill: -c-text-primary;
+}
+
+.light-theme .global-control-btn {
+    -fx-background-color: rgba(0,0,0,0.06);
+}
+
+.light-theme .global-control-btn:hover {
+    -fx-background-color: rgba(0,0,0,0.12);
+}

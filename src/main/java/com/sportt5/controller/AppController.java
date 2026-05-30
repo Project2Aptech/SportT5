@@ -1,7 +1,9 @@
 package com.sportt5.controller;
 
+import com.sportt5.util.ThemeManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 
@@ -33,6 +35,10 @@ public class AppController {
     @FXML private ScrollPane adminUserPage;
     @FXML private ScrollPane adminReviewPage;
     @FXML private ScrollPane adminAnalyticsPage;
+
+    // ── Global controls (theme + language) ──────────────────────────────────
+    @FXML private Button themeBtn;
+    @FXML private Button langBtn;
 
     // ── Sub-controllers ──────────────────────────────────────────────────────
     @FXML private SidebarController sidebarController;
@@ -174,6 +180,21 @@ public class AppController {
         if (node == null) return;
         node.setVisible(visible);
         node.setManaged(visible);
+    }
+
+    // ════════════════════════════════════════════════════════════════════════
+    // Global controls
+    // ════════════════════════════════════════════════════════════════════════
+
+    @FXML
+    private void toggleTheme() {
+        ThemeManager.toggle(homeView.getScene().getRoot());
+        themeBtn.setText(ThemeManager.isDarkMode() ? "🌙" : "☀");
+    }
+
+    @FXML
+    private void toggleLanguage() {
+        langBtn.setText(langBtn.getText().equals("EN") ? "VI" : "EN");
     }
 
     // kept for backward-compat if referenced elsewhere

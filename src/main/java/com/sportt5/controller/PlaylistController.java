@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.sportt5.model.Albums;
 import com.sportt5.model.PageResponse;
+import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;
-import com.sportt5.service.AlbumService;
+import com.sportt5.service.PlaylistService;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
@@ -32,7 +32,7 @@ public class PlaylistController {
     @FXML private VBox songListVBox;
     @FXML private ImageView albumCoverImage;
 
-    private final AlbumService albumService = new AlbumService();
+    private final PlaylistService playlistService = new PlaylistService();
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -45,22 +45,21 @@ public class PlaylistController {
         UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
 
-        int userId = session.getCurrentUserId();
         albumCardsBox.getChildren().clear();
         resetDetailSection();
 
         new Thread(() -> {
             try {
-                List<Albums> albums = albumService.getByArtist(userId);
+                List<Playlists> playlists = playlistService.getMyPlaylists();
                 Platform.runLater(() -> {
-                    for (Albums album : albums) {
+                    for (Playlists playlist : playlists) {
                         try {
                             FXMLLoader loader = new FXMLLoader(
                                     getClass().getResource("/com.sportt5/view/library/album-card-view.fxml"));
                             VBox card = loader.load();
                             AlbumCardController ctrl = loader.getController();
-                            ctrl.setAlbum(album);
-                            card.setOnMouseClicked(e -> loadAlbum(album));
+                            ctrl.setPlaylist(playlist);
+                            card.setOnMouseClicked(e -> loadPlaylist(playlist));
                             card.getStyleClass().add("album-card-clickable");
                             albumCardsBox.getChildren().add(card);
                         } catch (IOException e) {
@@ -74,14 +73,14 @@ public class PlaylistController {
         }).start();
     }
 
-    private void loadAlbum(Albums album) {
-        playlistEyebrow.setText("ALBUM");
-        playlistHeading.setText(album.getTitle());
+    private void loadPlaylist(Playlists playlist) {
+        playlistEyebrow.setText("PLAYLIST");
+        playlistHeading.setText(playlist.getTitle());
         playlistSongCount.setText("Loading...");
         playlistDuration.setText("");
         songListVBox.getChildren().clear();
 
-        String coverUrl = ApiClient.resolveUrl(album.getCoverUrl());
+        String coverUrl = ApiClient.resolveUrl(playlist.getCoverUrl());
         if (albumCoverImage != null && coverUrl != null) {
             albumCoverImage.setImage(new Image(coverUrl, true));
         }
@@ -89,7 +88,7 @@ public class PlaylistController {
         new Thread(() -> {
             try {
                 HttpResponse<String> response = ApiClient.get(
-                        "songs/album/" + album.getId() + "?size=50&sort=trackNumber");
+                        "playlists/" + playlist.getId() + "/songs?size=50");
 
                 if (response.statusCode() != 200) return;
 
@@ -112,7 +111,12 @@ public class PlaylistController {
                                     getClass().getResource("/com.sportt5/view/library/song-row-view.fxml"));
                             HBox row = loader.load();
                             SongRowController rowCtrl = loader.getController();
-                            rowCtrl.setSong(i + 1, songs.get(i), album.getTitle());
+                            Songs s = songs.get(i);
+                            rowCtrl.setSong(i + 1, s, playlist.getTitle());
+                            row.setOnMouseClicked(e -> {
+                                if (PlayerBarController.getInstance() != null)
+                                    PlayerBarController.getInstance().playSong(s);
+                            });
                             songListVBox.getChildren().add(row);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -127,7 +131,7 @@ public class PlaylistController {
     }
 
     private void resetDetailSection() {
-        playlistEyebrow.setText("SELECT AN ALBUM");
+        playlistEyebrow.setText("SELECT A PLAYLIST");
         playlistHeading.setText("—");
         playlistSongCount.setText("");
         playlistDuration.setText("");

@@ -13,15 +13,20 @@ public class ApiClient {
     private static final String BASE_URL = "http://localhost:8080/api/v1/";
     private static final String SERVER_ROOT = "http://localhost:8080/";
 
+    private static final HttpClient client = HttpClient.newHttpClient();
+
+    // ── URL helpers ──────────────────────────────────────────────────────────
+
     public static String resolveUrl(String url) {
         if (url == null || url.isBlank()) return null;
         return url.startsWith("http") ? url : SERVER_ROOT + url;
     }
-    private static final HttpClient client = HttpClient.newHttpClient();
 
     public static HttpClient getClient() {
         return client;
     }
+
+    // ── HTTP methods ─────────────────────────────────────────────────────────
 
     public static HttpResponse<String> get(String endpoint) throws IOException, InterruptedException {
         HttpRequest request = builder(endpoint).GET().build();
@@ -53,6 +58,8 @@ public class ApiClient {
         HttpRequest request = builder(endpoint).DELETE().build();
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
+
+    // ── Internal ─────────────────────────────────────────────────────────────
 
     private static HttpRequest.Builder builder(String endpoint) {
         HttpRequest.Builder builder = HttpRequest.newBuilder()
