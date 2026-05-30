@@ -498,6 +498,33 @@
     -fx-font-weight: 900;
 }
 
+.player-icon-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: #aeb8ad;
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-padding: 2 4 2 4;
+}
+
+.player-icon-button:hover {
+    -fx-text-fill: #f2f5f2;
+}
+
+.player-icon-button-active {
+    -fx-background-color: rgba(73,238,120,0.13);
+    -fx-background-radius: 12;
+    -fx-border-width: 0;
+    -fx-text-fill: #49ee78;
+    -fx-font-size: 15px;
+    -fx-font-weight: 900;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-padding: 2 4 2 4;
+}
+
 .player-muted {
     -fx-font-size: 15px;
 }
@@ -1076,6 +1103,20 @@
     -fx-font-size: 10px;
     -fx-font-weight: 800;
     -fx-min-height: 34px;
+}
+
+.language-button {
+    -fx-background-color: rgba(255,255,255,0.07);
+    -fx-background-radius: 16;
+    -fx-text-fill: #dce5de;
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+    -fx-padding: 9 16 9 16;
+}
+
+.language-button:hover {
+    -fx-background-color: rgba(73,238,120,0.18);
+    -fx-text-fill: #49ee78;
 }
 
 .verified-dot,
