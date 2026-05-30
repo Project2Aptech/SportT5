@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="artistPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT" spacing="18.0">
+            <VBox spacing="5.0">
+                <Label text="Artist Dashboard" styleClass="admin-title" />
+                <Label text="Track your releases, listeners, earnings, and audience growth." styleClass="admin-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="⊕  Upload New Music" styleClass="upload-button" />
+        </HBox>
+        <HBox spacing="18.0">
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="TOTAL REVENUE" styleClass="metric-label" /><Label text="\$42,890.00" styleClass="metric-value" /><Label text="+12.5\%" styleClass="trend-up" /></VBox>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="MONTHLY LISTENERS" styleClass="metric-label" /><Label text="1,204,500" styleClass="metric-value" /><Label text="+8.2\%" styleClass="trend-blue" /></VBox>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="FOLLOWERS GROWTH" styleClass="metric-label" /><Label text="85.4K" styleClass="metric-value" /><Label text="+24\%" styleClass="trend-neutral" /></VBox>
+        </HBox>
+        <VBox spacing="14.0" styleClass="admin-panel">
+            <HBox alignment="CENTER_LEFT"><Label text="Revenue Performance" styleClass="panel-title" /><Region HBox.hgrow="ALWAYS" /><Button text="Last 30 Days" styleClass="follow-button" /></HBox>
+            <StackPane prefHeight="230.0" styleClass="chart-area"><Pane styleClass="chart-grid" /><Pane styleClass="chart-fill" /></StackPane>
+        </VBox>
+        <VBox spacing="12.0" styleClass="admin-panel">
+            <Label text="Recent Releases" styleClass="panel-title" />
+            <GridPane hgap="18.0" vgap="16.0" styleClass="admin-table">
+                <columnConstraints><ColumnConstraints percentWidth="40.0" /><ColumnConstraints percentWidth="20.0" /><ColumnConstraints percentWidth="20.0" /><ColumnConstraints percentWidth="20.0" /></columnConstraints>
+                <Label text="TRACK / ALBUM" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
+                <Label text="STATUS" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
+                <Label text="STREAMS" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+                <Label text="EARNINGS" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="Midnight Resonance" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="table-title" />
+                <Label text="LIVE" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="status-live" />
+                <Label text="458,290" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="\$1,842" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="table-text" />
+                <Label text="Prism Drift" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="table-title" />
+                <Label text="PENDING" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="status-review" />
+                <Label text="--" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="--" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="table-text" />
+            </GridPane>
+        </VBox>
+    </VBox>
+</ScrollPane>

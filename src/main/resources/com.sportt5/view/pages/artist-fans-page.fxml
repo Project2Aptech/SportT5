@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="artistFansPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <VBox spacing="4.0"><Label text="Fans" styleClass="admin-title" /><Label text="Audience segments, top fans, and follower growth." styleClass="admin-subtitle" /></VBox>
+        <HBox spacing="18.0"><VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="FOLLOWERS" styleClass="metric-label" /><Label text="85.4K" styleClass="metric-value" /></VBox><VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="SUPER FANS" styleClass="metric-label" /><Label text="6,812" styleClass="metric-value" /></VBox><VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="PLAYLIST ADDS" styleClass="metric-label" /><Label text="12.7K" styleClass="metric-value" /></VBox></HBox>
+        <VBox spacing="14.0" styleClass="admin-panel"><Label text="Top Fans" styleClass="panel-title" /><HBox alignment="CENTER_LEFT"><Label text="Mina Frost" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="142 plays" styleClass="rank-up" /></HBox><HBox alignment="CENTER_LEFT"><Label text="Kai Rivers" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="98 plays" styleClass="rank-up" /></HBox></VBox>
+    </VBox>
+</ScrollPane>

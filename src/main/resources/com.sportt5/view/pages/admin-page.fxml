@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="adminPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT" spacing="18.0">
+            <VBox spacing="5.0">
+                <Label text="Admin Dashboard" styleClass="admin-title" />
+                <Label text="Platform overview: users, music submissions, revenue, and moderation queue." styleClass="admin-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Export Report" styleClass="upload-button" />
+        </HBox>
+
+        <HBox spacing="18.0">
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS" styleClass="metric-card">
+                <HBox alignment="CENTER_LEFT">
+                    <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon listener-icon"><Label text="♙" /></StackPane>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="+8.4\%" styleClass="trend-blue" />
+                </HBox>
+                <Label text="TOTAL USERS" styleClass="metric-label" />
+                <Label text="128,430" styleClass="metric-value" />
+                <Label text="4,218 new this month" styleClass="table-text" />
+            </VBox>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS" styleClass="metric-card">
+                <HBox alignment="CENTER_LEFT">
+                    <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon revenue-icon"><Label text="✓" /></StackPane>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="37 open" styleClass="trend-up" />
+                </HBox>
+                <Label text="PENDING REVIEWS" styleClass="metric-label" />
+                <Label text="86" styleClass="metric-value" />
+                <Label text="12 flagged as urgent" styleClass="table-text" />
+            </VBox>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS" styleClass="metric-card">
+                <HBox alignment="CENTER_LEFT">
+                    <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon growth-icon"><Label text="\$" /></StackPane>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="+12.5\%" styleClass="trend-neutral" />
+                </HBox>
+                <Label text="PLATFORM REVENUE" styleClass="metric-label" />
+                <Label text="\$42,890" styleClass="metric-value" />
+                <HBox alignment="BOTTOM_LEFT" spacing="6.0" styleClass="bar-chart">
+                    <Region prefWidth="18.0" prefHeight="16.0" />
+                    <Region prefWidth="18.0" prefHeight="25.0" />
+                    <Region prefWidth="18.0" prefHeight="20.0" />
+                    <Region prefWidth="18.0" prefHeight="34.0" />
+                    <Region prefWidth="18.0" prefHeight="28.0" />
+                    <Region prefWidth="18.0" prefHeight="39.0" />
+                </HBox>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="18.0">
+            <VBox spacing="14.0" HBox.hgrow="ALWAYS" styleClass="admin-panel">
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="3.0">
+                        <Label text="Platform Activity" styleClass="panel-title" />
+                        <Label text="User signups, active listeners, and submission volume." styleClass="admin-subtitle" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <HBox spacing="6.0" styleClass="chart-tabs">
+                        <Button text="Users" styleClass="chart-tab-active" />
+                        <Button text="Submissions" styleClass="chart-tab" />
+                        <Button text="Revenue" styleClass="chart-tab" />
+                    </HBox>
+                </HBox>
+                <StackPane prefHeight="220.0" styleClass="chart-area">
+                    <Pane styleClass="chart-grid" />
+                    <Pane styleClass="chart-fill analytics-fill" />
+                    <HBox alignment="BOTTOM_LEFT" spacing="48.0" StackPane.alignment="BOTTOM_LEFT" styleClass="chart-points">
+                        <Label text="01 Oct" />
+                        <Label text="07 Oct" />
+                        <Label text="14 Oct" />
+                        <Label text="21 Oct" />
+                        <Label text="30 Oct" />
+                    </HBox>
+                </StackPane>
+            </VBox>
+            <VBox spacing="14.0" prefWidth="280.0" styleClass="admin-panel">
+                <Label text="Moderation Queue" styleClass="panel-title" />
+                <HBox alignment="CENTER_LEFT"><Label text="Copyright checks" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="18" styleClass="status-review" /></HBox>
+                <HBox alignment="CENTER_LEFT"><Label text="Explicit tags" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="9" styleClass="status-review" /></HBox>
+                <HBox alignment="CENTER_LEFT"><Label text="Artist verification" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="14" styleClass="status-review" /></HBox>
+                <HBox alignment="CENTER_LEFT"><Label text="User reports" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="6" styleClass="status-live" /></HBox>
+            </VBox>
+        </HBox>
+
+        <VBox spacing="12.0" styleClass="admin-panel">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Latest Actions" styleClass="panel-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="View Audit Log" styleClass="filter-button" />
+            </HBox>
+            <GridPane hgap="18.0" vgap="16.0" styleClass="admin-table">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="24.0" />
+                    <ColumnConstraints percentWidth="28.0" />
+                    <ColumnConstraints percentWidth="18.0" />
+                    <ColumnConstraints percentWidth="18.0" />
+                    <ColumnConstraints percentWidth="12.0" />
+                </columnConstraints>
+                <Label text="ADMIN" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
+                <Label text="ACTION" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
+                <Label text="TARGET" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+                <Label text="STATUS" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="TIME" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
+
+                <Label text="Minh Admin" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="table-title" />
+                <Label text="Approved track submission" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="Midnight Resonance" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="APPROVED" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="status-live" />
+                <Label text="10:24" GridPane.rowIndex="1" GridPane.columnIndex="4" styleClass="table-text" />
+
+                <Label text="System" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="table-title" />
+                <Label text="Flagged duplicate account" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="kai.river" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="REVIEW" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="status-review" />
+                <Label text="09:48" GridPane.rowIndex="2" GridPane.columnIndex="4" styleClass="table-text" />
+            </GridPane>
+        </VBox>
+    </VBox>
+</ScrollPane>

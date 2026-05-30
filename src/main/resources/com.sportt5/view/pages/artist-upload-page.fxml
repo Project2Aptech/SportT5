@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="artistUploadPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="20.0" styleClass="admin-body">
+        <VBox spacing="4.0"><Label text="Upload Music" styleClass="admin-title" /><Label text="Submit a release package for admin review. Frontend mock only." styleClass="admin-subtitle" /></VBox>
+        <HBox spacing="22.0">
+            <VBox spacing="16.0" prefWidth="300.0" styleClass="admin-panel"><Label text="Cover Art" styleClass="panel-title" /><StackPane prefWidth="240.0" prefHeight="240.0" styleClass="upload-art-drop"><VBox alignment="CENTER" spacing="10.0"><Label text="⊕" styleClass="upload-drop-icon" /><Label text="Drop artwork here" styleClass="table-title" /><Label text="PNG or JPG, 3000 x 3000" styleClass="table-text" /></VBox></StackPane><Button text="Choose Image" styleClass="follow-button" /></VBox>
+            <VBox spacing="15.0" HBox.hgrow="ALWAYS" styleClass="admin-panel">
+                <Label text="Release Details" styleClass="panel-title" />
+                <GridPane hgap="18.0" vgap="14.0"><columnConstraints><ColumnConstraints percentWidth="50.0" /><ColumnConstraints percentWidth="50.0" /></columnConstraints>
+                    <VBox spacing="6.0" GridPane.rowIndex="0" GridPane.columnIndex="0"><Label text="TITLE" styleClass="field-label" /><TextField promptText="Midnight Signal" styleClass="auth-input" /></VBox>
+                    <VBox spacing="6.0" GridPane.rowIndex="0" GridPane.columnIndex="1"><Label text="GENRE" styleClass="field-label" /><TextField promptText="Electronic" styleClass="auth-input" /></VBox>
+                    <VBox spacing="6.0" GridPane.rowIndex="1" GridPane.columnIndex="0"><Label text="RELEASE DATE" styleClass="field-label" /><TextField promptText="2026-06-01" styleClass="auth-input" /></VBox>
+                    <VBox spacing="6.0" GridPane.rowIndex="1" GridPane.columnIndex="1"><Label text="TYPE" styleClass="field-label" /><TextField promptText="Single" styleClass="auth-input" /></VBox>
+                </GridPane>
+                <HBox spacing="14.0"><CheckBox text="Explicit content" styleClass="remember-check" /><CheckBox text="Enable pre-save" styleClass="remember-check" /></HBox>
+                <HBox alignment="CENTER_RIGHT" spacing="12.0"><Button text="Save Draft" styleClass="follow-button" /><Button text="Submit for Review" styleClass="upload-button" /></HBox>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="artistAnalyticsPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT"><VBox spacing="4.0"><Label text="Artist Analytics" styleClass="admin-title" /><Label text="Streams, saves, listener retention, and top countries." styleClass="admin-subtitle" /></VBox><Region HBox.hgrow="ALWAYS" /><Button text="Last 30 Days" styleClass="follow-button" /></HBox>
+        <HBox spacing="18.0"><VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="STREAMS" styleClass="metric-label" /><Label text="2.8M" styleClass="metric-value" /></VBox><VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="SAVES" styleClass="metric-label" /><Label text="184K" styleClass="metric-value" /></VBox><VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="AVG COMPLETION" styleClass="metric-label" /><Label text="71\%" styleClass="metric-value" /></VBox></HBox>
+        <VBox spacing="14.0" styleClass="admin-panel"><Label text="Streams Trend" styleClass="panel-title" /><StackPane prefHeight="280.0" styleClass="chart-area"><Pane styleClass="chart-grid" /><Pane styleClass="chart-fill analytics-fill" /></StackPane></VBox>
+    </VBox>
+</ScrollPane>

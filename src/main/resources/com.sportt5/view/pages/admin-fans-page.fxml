@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="adminFansPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <VBox spacing="4.0">
+            <Label text="Fans" styleClass="admin-title" />
+            <Label text="Understand the people listening, saving, and sharing your releases." styleClass="admin-subtitle" />
+        </VBox>
+
+        <HBox spacing="18.0">
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="FOLLOWERS" styleClass="metric-label" /><Label text="85.4K" styleClass="metric-value" /><Label text="+24\% this month" styleClass="rank-up" /></VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="SUPER FANS" styleClass="metric-label" /><Label text="6,812" styleClass="metric-value" /><Label text="high repeat listeners" styleClass="table-text" /></VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="PLAYLIST ADDS" styleClass="metric-label" /><Label text="12.7K" styleClass="metric-value" /><Label text="+11\% this month" styleClass="rank-up" /></VBox>
+        </HBox>
+
+        <HBox spacing="18.0">
+            <VBox spacing="14.0" HBox.hgrow="ALWAYS" styleClass="admin-panel">
+                <Label text="Top Fans" styleClass="panel-title" />
+                <HBox alignment="CENTER_LEFT" spacing="12.0"><StackPane prefWidth="38.0" prefHeight="38.0" styleClass="home-avatar"><Label text="M" /></StackPane><VBox><Label text="Mina Frost" styleClass="table-title" /><Label text="142 plays this month" styleClass="table-text" /></VBox><Region HBox.hgrow="ALWAYS" /><Button text="Message" styleClass="follow-button" /></HBox>
+                <HBox alignment="CENTER_LEFT" spacing="12.0"><StackPane prefWidth="38.0" prefHeight="38.0" styleClass="home-avatar"><Label text="K" /></StackPane><VBox><Label text="Kai Rivers" styleClass="table-title" /><Label text="98 plays this month" styleClass="table-text" /></VBox><Region HBox.hgrow="ALWAYS" /><Button text="Message" styleClass="follow-button" /></HBox>
+                <HBox alignment="CENTER_LEFT" spacing="12.0"><StackPane prefWidth="38.0" prefHeight="38.0" styleClass="home-avatar"><Label text="N" /></StackPane><VBox><Label text="Noah Lin" styleClass="table-title" /><Label text="76 plays this month" styleClass="table-text" /></VBox><Region HBox.hgrow="ALWAYS" /><Button text="Message" styleClass="follow-button" /></HBox>
+            </VBox>
+            <VBox spacing="14.0" prefWidth="300.0" styleClass="admin-panel">
+                <Label text="Audience Split" styleClass="panel-title" />
+                <HBox alignment="CENTER_LEFT"><Label text="Returning listeners" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="63\%" styleClass="rank-up" /></HBox>
+                <HBox alignment="CENTER_LEFT"><Label text="New listeners" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="37\%" styleClass="rank-up" /></HBox>
+                <Pane prefHeight="150.0" styleClass="fan-donut" />
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

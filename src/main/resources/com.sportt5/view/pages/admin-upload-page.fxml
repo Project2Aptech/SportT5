@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="adminUploadPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="4.0">
+                <Label text="Music Review" styleClass="admin-title" />
+                <Label text="Approve, reject, or flag submitted tracks before they go live." styleClass="admin-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Review Guidelines" styleClass="upload-button" />
+        </HBox>
+
+        <HBox spacing="18.0">
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="PENDING" styleClass="metric-label" /><Label text="86" styleClass="metric-value" /><Label text="37 open today" styleClass="rank-up" /></VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="APPROVED THIS WEEK" styleClass="metric-label" /><Label text="214" styleClass="metric-value" /><Label text="+18\% vs last week" styleClass="rank-up" /></VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="FLAGGED" styleClass="metric-label" /><Label text="19" styleClass="metric-value" /><Label text="copyright or metadata" styleClass="status-review" /></VBox>
+        </HBox>
+
+        <VBox spacing="12.0" styleClass="admin-panel">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Review Queue" styleClass="panel-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Copyright" styleClass="filter-button" />
+                <Button text="Explicit" styleClass="filter-button" />
+                <Button text="Newest" styleClass="filter-button" />
+            </HBox>
+            <GridPane hgap="18.0" vgap="16.0" styleClass="admin-table">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="30.0" />
+                    <ColumnConstraints percentWidth="18.0" />
+                    <ColumnConstraints percentWidth="16.0" />
+                    <ColumnConstraints percentWidth="15.0" />
+                    <ColumnConstraints percentWidth="21.0" />
+                </columnConstraints>
+                <Label text="SUBMISSION" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
+                <Label text="ARTIST" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
+                <Label text="CHECKS" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+                <Label text="STATUS" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="ACTIONS" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
+
+                <HBox spacing="12.0" GridPane.rowIndex="1" GridPane.columnIndex="0"><StackPane prefWidth="42.0" prefHeight="42.0" styleClass="admin-thumb thumb-pink" /><VBox spacing="2.0"><Label text="Midnight Resonance" styleClass="table-title" /><Label text="Single • 3:42" styleClass="table-text" /></VBox></HBox>
+                <Label text="Aura Studio" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="Passed" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="rank-up" />
+                <Label text="READY" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="status-live" />
+                <HBox spacing="8.0" GridPane.rowIndex="1" GridPane.columnIndex="4"><Button text="Approve" styleClass="genre-chip-active" /><Button text="Reject" styleClass="genre-chip" /></HBox>
+
+                <HBox spacing="12.0" GridPane.rowIndex="2" GridPane.columnIndex="0"><StackPane prefWidth="42.0" prefHeight="42.0" styleClass="admin-thumb thumb-purple" /><VBox spacing="2.0"><Label text="Prism Drift" styleClass="table-title" /><Label text="Single • 4:15" styleClass="table-text" /></VBox></HBox>
+                <Label text="Cyber Helix" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="Needs tag" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="REVIEW" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="status-review" />
+                <HBox spacing="8.0" GridPane.rowIndex="2" GridPane.columnIndex="4"><Button text="Approve" styleClass="genre-chip-active" /><Button text="Flag" styleClass="genre-chip" /></HBox>
+
+                <HBox spacing="12.0" GridPane.rowIndex="3" GridPane.columnIndex="0"><StackPane prefWidth="42.0" prefHeight="42.0" styleClass="admin-thumb thumb-gray" /><VBox spacing="2.0"><Label text="Urban Echoes" styleClass="table-title" /><Label text="Album • 12 tracks" styleClass="table-text" /></VBox></HBox>
+                <Label text="Velvet Noir" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="Copyright" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="FLAGGED" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="status-review" />
+                <HBox spacing="8.0" GridPane.rowIndex="3" GridPane.columnIndex="4"><Button text="Hold" styleClass="genre-chip" /><Button text="Reject" styleClass="genre-chip" /></HBox>
+            </GridPane>
+        </VBox>
+    </VBox>
+</ScrollPane>

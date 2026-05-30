@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="adminMusicPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="4.0">
+                <Label text="User Management" styleClass="admin-title" />
+                <Label text="Manage listeners, artists, admins, bans, and verification status." styleClass="admin-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="⊕  Create User" styleClass="upload-button" />
+        </HBox>
+
+        <HBox spacing="18.0">
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="ACTIVE USERS" styleClass="metric-label" /><Label text="119,204" styleClass="metric-value" /><Label text="+3,410 this month" styleClass="rank-up" /></VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="ARTIST ACCOUNTS" styleClass="metric-label" /><Label text="8,912" styleClass="metric-value" /><Label text="231 waiting verification" styleClass="table-text" /></VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="SUSPENDED" styleClass="metric-label" /><Label text="342" styleClass="metric-value" /><Label text="18 new reports today" styleClass="status-review" /></VBox>
+        </HBox>
+
+        <HBox spacing="14.0">
+            <Button text="All Users" styleClass="genre-chip-active" />
+            <Button text="Listeners" styleClass="genre-chip" />
+            <Button text="Artists" styleClass="genre-chip" />
+            <Button text="Admins" styleClass="genre-chip" />
+            <Button text="Suspended" styleClass="genre-chip" />
+        </HBox>
+
+        <VBox spacing="12.0" styleClass="admin-panel">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Accounts" styleClass="panel-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="Filter" styleClass="filter-button" />
+                <Button text="Export" styleClass="filter-button" />
+            </HBox>
+            <GridPane hgap="18.0" vgap="16.0" styleClass="admin-table">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="27.0" />
+                    <ColumnConstraints percentWidth="23.0" />
+                    <ColumnConstraints percentWidth="14.0" />
+                    <ColumnConstraints percentWidth="14.0" />
+                    <ColumnConstraints percentWidth="12.0" />
+                    <ColumnConstraints percentWidth="10.0" />
+                </columnConstraints>
+                <Label text="USER" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
+                <Label text="EMAIL" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
+                <Label text="ROLE" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+                <Label text="STATUS" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="JOINED" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
+                <Label text="ACTIONS" GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="table-head" />
+
+                <HBox spacing="12.0" GridPane.rowIndex="1" GridPane.columnIndex="0"><StackPane prefWidth="38.0" prefHeight="38.0" styleClass="home-avatar"><Label text="A" /></StackPane><VBox spacing="2.0"><Label text="Aura Studio" styleClass="table-title" /><Label text="Verified artist" styleClass="table-text" /></VBox></HBox>
+                <Label text="aura@sportt5.local" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="ARTIST" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="ACTIVE" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="status-live" />
+                <Label text="Oct 12" GridPane.rowIndex="1" GridPane.columnIndex="4" styleClass="table-text" />
+                <Label text="Edit  •••" GridPane.rowIndex="1" GridPane.columnIndex="5" styleClass="row-action" />
+
+                <HBox spacing="12.0" GridPane.rowIndex="2" GridPane.columnIndex="0"><StackPane prefWidth="38.0" prefHeight="38.0" styleClass="home-avatar"><Label text="M" /></StackPane><VBox spacing="2.0"><Label text="Mina Frost" styleClass="table-title" /><Label text="Hi-Fi listener" styleClass="table-text" /></VBox></HBox>
+                <Label text="mina@example.com" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="USER" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="ACTIVE" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="status-live" />
+                <Label text="Sep 28" GridPane.rowIndex="2" GridPane.columnIndex="4" styleClass="table-text" />
+                <Label text="Edit  •••" GridPane.rowIndex="2" GridPane.columnIndex="5" styleClass="row-action" />
+
+                <HBox spacing="12.0" GridPane.rowIndex="3" GridPane.columnIndex="0"><StackPane prefWidth="38.0" prefHeight="38.0" styleClass="home-avatar"><Label text="K" /></StackPane><VBox spacing="2.0"><Label text="Kai Rivers" styleClass="table-title" /><Label text="Reported account" styleClass="table-text" /></VBox></HBox>
+                <Label text="kai@example.com" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="table-text" />
+                <Label text="USER" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="table-text" />
+                <Label text="REVIEW" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="status-review" />
+                <Label text="Aug 05" GridPane.rowIndex="3" GridPane.columnIndex="4" styleClass="table-text" />
+                <Label text="Edit  •••" GridPane.rowIndex="3" GridPane.columnIndex="5" styleClass="row-action" />
+            </GridPane>
+        </VBox>
+    </VBox>
+</ScrollPane>
