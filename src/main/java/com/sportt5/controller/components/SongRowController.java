@@ -1,4 +1,4 @@
-package com.sportt5.controller;
+package com.sportt5.controller.components;
 
 import com.sportt5.model.Songs;
 import com.sportt5.model.Users;

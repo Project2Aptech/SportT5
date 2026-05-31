@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox
+        maxHeight="-Infinity"
+        maxWidth="-Infinity"
+        minHeight="-Infinity"
+        minWidth="-Infinity"
+        spacing="8.0"
+        prefWidth="124.0"
+        styleClass="album-card"
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="com.sportt5.controller.components.HomeAlbumCardController">
+    <ImageView
+            fx:id="imgCover"
+            fitHeight="116.6"
+            fitWidth="124.0"
+            pickOnBounds="true"
+            preserveRatio="true"
+    />
+    <Label fx:id="lblTitle" text="Electric Dreams" styleClass="album-title" />
+    <Label fx:id="lblArtist" text="Neon Circuit" styleClass="album-artist" />
+</VBox>

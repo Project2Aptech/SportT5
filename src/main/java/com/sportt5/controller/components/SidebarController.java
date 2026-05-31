@@ -1,5 +1,6 @@
-package com.sportt5.controller;
+package com.sportt5.controller.components;
 
+import com.sportt5.controller.AppController;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.Roles;
 import com.sportt5.session.UserSession;
@@ -9,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
 public class SidebarController {

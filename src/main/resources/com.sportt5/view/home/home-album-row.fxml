@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<HBox
+        fx:id="rowRoot"
+        alignment="CENTER_LEFT"
+        maxHeight="-Infinity"
+        minHeight="-Infinity"
+        spacing="16.0"
+        styleClass="track-row"
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.sportt5.controller.components.HomeAlbumRowController"
+>
+    <Label fx:id="lblIndex" text="01" styleClass="track-index" />
+    <ImageView
+            fx:id="imgTrackCover"
+            fitHeight="36.0"
+            fitWidth="36.0"
+            pickOnBounds="true"
+            preserveRatio="true"
+            styleClass="mini-cover cover-amber"
+    />
+    <VBox spacing="2.0">
+        <Label fx:id="lblTitle" text="Random Access Memories" styleClass="track-title" />
+    </VBox>
+    <Region HBox.hgrow="ALWAYS" />
+    <Label text="♡" styleClass="row-action" />
+    <Label text="•••" styleClass="row-action" />
+</HBox>
+

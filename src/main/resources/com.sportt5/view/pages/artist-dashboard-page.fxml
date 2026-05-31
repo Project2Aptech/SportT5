@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -30,7 +31,7 @@
                 <HBox alignment="CENTER_LEFT">
                     <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon revenue-icon"><Label text="▣" /></StackPane>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Label text="+12.5%" styleClass="trend-up" />
+                    <Label text="+12.5\%" styleClass="trend-up" />
                 </HBox>
                 <Label text="TOTAL REVENUE" styleClass="metric-label" />
                 <Label text="\$42,890.00" styleClass="metric-value" />
@@ -47,7 +48,7 @@
                 <HBox alignment="CENTER_LEFT">
                     <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon listener-icon"><Label text="♙" /></StackPane>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Label text="+8.2%" styleClass="trend-blue" />
+                    <Label text="+8.2\%" styleClass="trend-blue" />
                 </HBox>
                 <Label text="MONTHLY LISTENERS" styleClass="metric-label" />
                 <Label text="1,204,500" styleClass="metric-value" />
@@ -57,7 +58,7 @@
                 <HBox alignment="CENTER_LEFT">
                     <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon growth-icon"><Label text="↗" /></StackPane>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Label text="+24%" styleClass="trend-neutral" />
+                    <Label text="+24\%" styleClass="trend-neutral" />
                 </HBox>
                 <Label text="FOLLOWERS GROWTH" styleClass="metric-label" />
                 <Label text="85.4K" styleClass="metric-value" />
