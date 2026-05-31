@@ -1,9 +1,12 @@
-package com.sportt5.controller;
+package com.sportt5.controller.pages;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sportt5.controller.components.AlbumCardController;
+import com.sportt5.controller.components.PlayerBarController;
+import com.sportt5.controller.components.SongRowController;
 import com.sportt5.model.PageResponse;
 import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;

@@ -15,7 +15,7 @@
         styleClass="album-card"
         xmlns="http://javafx.com/javafx/21"
         xmlns:fx="http://javafx.com/fxml/1"
-        fx:controller="com.sportt5.controller.AlbumCardController">
+        fx:controller="com.sportt5.controller.components.AlbumCardController">
     <children>
         <ImageView
                 fx:id="imgCover"

@@ -1,5 +1,6 @@
-package com.sportt5.controller;
+package com.sportt5.controller.components;
 
+import com.sportt5.controller.AppController;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;

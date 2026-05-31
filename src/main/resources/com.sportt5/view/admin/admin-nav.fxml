@@ -8,7 +8,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.sportt5.controller.SidebarController"
+      fx:controller="com.sportt5.controller.components.SidebarController"
       visible="false"
       managed="false"
       prefWidth="205.0"

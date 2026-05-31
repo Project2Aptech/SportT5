@@ -11,7 +11,7 @@
 <ScrollPane fitToWidth="true" hbarPolicy="NEVER" visible="false" managed="false"
             styleClass="home-scroll"
             xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sportt5.controller.LibraryController">
+            fx:controller="com.sportt5.controller.pages.LibraryController">
     <stylesheets>
         <URL value="@../../css/library_css.css" />
     </stylesheets>

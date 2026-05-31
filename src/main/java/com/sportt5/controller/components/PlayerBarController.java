@@ -1,4 +1,4 @@
-package com.sportt5.controller;
+package com.sportt5.controller.components;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

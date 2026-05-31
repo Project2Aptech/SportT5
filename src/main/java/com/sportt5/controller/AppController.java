@@ -1,5 +1,10 @@
 package com.sportt5.controller;
 
+import com.sportt5.controller.components.SidebarController;
+import com.sportt5.controller.components.TopBarController;
+import com.sportt5.controller.pages.HomeController;
+import com.sportt5.controller.pages.LibraryController;
+import com.sportt5.controller.pages.PlaylistController;
 import com.sportt5.util.ThemeManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -44,8 +49,10 @@ public class AppController {
     @FXML private SidebarController sidebarController;
     @FXML private SidebarController artistSidebarController;
     @FXML private SidebarController adminSidebarController;
-    @FXML private TopBarController  topBarController;
+    @FXML private TopBarController topBarController;
     @FXML private PlaylistController albumPageController;
+    @FXML private HomeController homePageController;
+    @FXML private LibraryController libraryPageController;
 
     @FXML
     public void initialize() {
@@ -60,8 +67,21 @@ public class AppController {
     // Home navigation
     // ════════════════════════════════════════════════════════════════════════
 
-    @FXML public void showHomePage()    { showPage(homePage,    topBarController.getHomeHero(),     sidebarController.getHomeNavItem()); }
-    @FXML public void showLibraryPage() { showPage(libraryPage, topBarController.getLibraryTopBar(),sidebarController.getLibraryItem()); }
+    @FXML public void showHomePage() {
+        if (homePageController != null) {
+            homePageController.loadHomeAlbums();
+            homePageController.loadLatestSingles();
+            homePageController.loadLatestAlbums();
+        }
+        showPage(homePage, topBarController.getHomeHero(), sidebarController.getHomeNavItem());
+    }
+    @FXML public void showLibraryPage() {
+        if (libraryPageController != null) {
+            libraryPageController.loadPlayHistory();
+            libraryPageController.loadFavouritesSongs();
+        }
+        showPage(libraryPage, topBarController.getLibraryTopBar(),sidebarController.getLibraryItem());
+    }
     @FXML public void showAlbumPage() {
         if (albumPageController != null) albumPageController.loadUserAlbums();
         showPage(albumPage, topBarController.getAlbumTopBar(), sidebarController.getAlbumItem());
