@@ -25,7 +25,9 @@
       "Bash(xargs grep -l -i \"avatar\\\\|cover\")",
       "Bash(xargs grep -l -i \"upload\\\\|avatar\\\\|cover\\\\|multipart\")",
       "Bash(xargs cat)",
-      "Bash(xargs ls -1)"
+      "Bash(xargs ls -1)",
+      "Bash(Remove-Item \"D:/Code/Code/SportT5/src/main/java/com/sportt5/service/AlbumService.java\" -Force)",
+      "Bash(\"Done\")"
     ]
   }
 }
