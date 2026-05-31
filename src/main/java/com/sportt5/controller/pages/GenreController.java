@@ -1,4 +1,4 @@
-package com.sportt5.controller;
+package com.sportt5.controller.pages;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

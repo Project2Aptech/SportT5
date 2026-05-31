@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.sportt5.controller.LibraryController"
+            fx:controller="com.sportt5.controller.pages.LibraryController"
             visible="false" managed="false"
             fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
     <VBox spacing="24.0" styleClass="library-body">
@@ -30,7 +30,7 @@
         <!-- === PLAYLISTS VIEW === -->
         <VBox fx:id="playlistsView" spacing="24.0">
             <HBox spacing="22.0">
-                <StackPane prefWidth="260.0" prefHeight="150.0" styleClass="liked-card">
+                <StackPane fx:id="likedBtn" prefWidth="260.0" prefHeight="150.0" styleClass="liked-card">
                     <VBox alignment="CENTER_LEFT" spacing="8.0" StackPane.alignment="CENTER_LEFT">
                         <Label text="♥" styleClass="liked-heart" />
                         <Label text="Liked Songs" styleClass="liked-title" />
@@ -49,7 +49,7 @@
 
             <VBox spacing="14.0">
                 <Label text="Recently Played" styleClass="store-section-title" />
-                <GridPane hgap="18.0" vgap="15.0" styleClass="recent-table">
+                <GridPane fx:id="playHistoryTable" hgap="18.0" vgap="15.0" styleClass="recent-table">
                     <columnConstraints>
                         <ColumnConstraints percentWidth="8.0" />
                         <ColumnConstraints percentWidth="28.0" />
@@ -62,29 +62,8 @@
                     <Label text="TITLE"      GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
                     <Label text="ALBUM"      GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
                     <Label text="DATE ADDED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
-                    <Label text="◷"          GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
-                    <Label text=""           GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="table-head" />
-
-                    <Label text="01" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="table-text" />
-                    <VBox spacing="2.0" GridPane.rowIndex="1" GridPane.columnIndex="1"><Label text="Midnight City" styleClass="table-title" /><Label text="M83" styleClass="table-text" /></VBox>
-                    <Label text="Hurry Up, We're Dreaming" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="table-text" />
-                    <Label text="Oct 24, 2023" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="table-text" />
-                    <Label text="4:03" GridPane.rowIndex="1" GridPane.columnIndex="4" styleClass="table-text" />
-                    <Label text="•••" GridPane.rowIndex="1" GridPane.columnIndex="5" styleClass="row-action" />
-
-                    <Label text="02" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="table-text" />
-                    <VBox spacing="2.0" GridPane.rowIndex="2" GridPane.columnIndex="1"><Label text="Levels" styleClass="table-title" /><Label text="Avicii" styleClass="table-text" /></VBox>
-                    <Label text="Levels (Remixes)" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="table-text" />
-                    <Label text="Oct 22, 2023" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="table-text" />
-                    <Label text="♡  3:19" GridPane.rowIndex="2" GridPane.columnIndex="4" styleClass="table-text" />
-                    <Label text="•••" GridPane.rowIndex="2" GridPane.columnIndex="5" styleClass="row-action" />
-
-                    <Label text="03" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="table-text" />
-                    <VBox spacing="2.0" GridPane.rowIndex="3" GridPane.columnIndex="1"><Label text="Starboy" styleClass="table-title" /><Label text="The Weeknd" styleClass="table-text" /></VBox>
-                    <Label text="Starboy" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="table-text" />
-                    <Label text="Oct 20, 2023" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="table-text" />
-                    <Label text="♡  3:50" GridPane.rowIndex="3" GridPane.columnIndex="4" styleClass="table-text" />
-                    <Label text="•••" GridPane.rowIndex="3" GridPane.columnIndex="5" styleClass="row-action" />
+                    <Label text="DURATION"   GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
+                    <Label text="ACTIONS"    GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="table-head" />
                 </GridPane>
             </VBox>
         </VBox>
@@ -97,15 +76,22 @@
                 <Label fx:id="songCountLabel" text="" styleClass="table-text" />
             </HBox>
             <FlowPane fx:id="genreChipsBox" hgap="10.0" vgap="10.0" />
-            <VBox styleClass="seller-table" spacing="0.0">
-                <HBox spacing="16.0" prefHeight="32.0">
-                    <Label text="#"        styleClass="table-head" minWidth="30.0"  maxWidth="30.0" />
-                    <Label text=""         minWidth="34.0" maxWidth="34.0" />
-                    <Label text="TITLE"    styleClass="table-head" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
-                    <Label text="DURATION" styleClass="table-head" minWidth="45.0" maxWidth="45.0" />
-                </HBox>
-                <VBox fx:id="songListVBox" spacing="0.0" />
-            </VBox>
+            <GridPane fx:id="songListTable" hgap="18.0" vgap="15.0" styleClass="seller-table">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="8.0" />
+                    <ColumnConstraints percentWidth="28.0" />
+                    <ColumnConstraints percentWidth="28.0" />
+                    <ColumnConstraints percentWidth="22.0" />
+                    <ColumnConstraints percentWidth="8.0" />
+                    <ColumnConstraints percentWidth="6.0" />
+                </columnConstraints>
+                <Label text="#"          GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
+                <Label text="TITLE"      GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
+                <Label text="ALBUM"      GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+                <Label text="DATE ADDED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="DURATION"   GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
+                <Label text="ACTIONS"    GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="table-head" />
+            </GridPane>
         </VBox>
 
     </VBox>
