@@ -41,7 +41,7 @@
         </HBox>
         <HBox fx:id="albumItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="♬" styleClass="nav-icon" />
-            <Label text="Albums" />
+            <Label text="Playlist" />
         </HBox>
         <HBox fx:id="artistItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="✓" styleClass="nav-icon" />

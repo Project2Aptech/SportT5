@@ -5,27 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AlbumCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AlbumCardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/EditProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/EditProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/PlayerBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/PlayerBarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/PlaylistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SidebarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SongRowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/SongRowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/TopBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/TopBarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/util/ApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/util/ApiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/library.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/library.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/sql/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/sql/seed.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/player-bar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/player-bar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/FavouritesController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/home_css.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/icons/icons.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/img/img.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/library/song-row-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/library/song-row-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/library/library-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/artist-dashboard-page.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/text.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,49 +23,52 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "tuanhiep29797"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tuanhiep29797&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Project2Aptech/SportT5",
-    "accountId": "83d35872-54f8-4df9-85d7-b28e6f4b7de8"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Project2Aptech/SportT5&quot;,
+    &quot;accountId&quot;: &quot;83d35872-54f8-4df9-85d7-b28e6f4b7de8&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6,
-  "fromUser": false
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3EQwHwsRhn1QO0qDAUo6rNochFF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "hiep",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Code/SportT5",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;hiep&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Code/SportT5&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.sportt5.App" />
