@@ -27,7 +27,16 @@
       "Bash(xargs cat)",
       "Bash(xargs ls -1)",
       "Bash(Remove-Item \"D:/Code/Code/SportT5/src/main/java/com/sportt5/service/AlbumService.java\" -Force)",
-      "Bash(\"Done\")"
+      "Bash(\"Done\")",
+      "PowerShell(Get-ChildItem \"D:\\\\Code\\\\sping_server\\\\src\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem \"D:\\\\Code\\\\SportT5\\\\src\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object FullName)",
+      "Bash(dir D:Codesping_server *)",
+      "Bash(Get-ChildItem -Path \"D:\\\\Code\\\\sping_server\" -Recurse -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object -First 50)",
+      "Bash(Get-ChildItem -Path \"D:\\\\Code\\\\SportT5\" -Recurse -Directory)",
+      "Bash(Format-Table FullName)",
+      "Bash(del \"D:\\\\Code\\\\SportT5\\\\src\\\\main\\\\resources\\\\com.sportt5\\\\view\\\\admin\\\\add-user-dialog.fxml\")",
+      "Bash(del \"D:\\\\Code\\\\SportT5\\\\src\\\\main\\\\java\\\\com\\\\sportt5\\\\controller\\\\pages\\\\AddUserDialogController.java\")"
     ]
   }
 }

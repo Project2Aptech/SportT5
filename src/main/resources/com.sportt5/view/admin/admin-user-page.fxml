@@ -20,7 +20,6 @@
                 <Label text="Manage all registered users and their subscriptions." styleClass="admin-subtitle" />
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
-            <Button text="⊕  Add User" styleClass="upload-button" />
         </HBox>
 
         <VBox spacing="12.0" styleClass="admin-panel">

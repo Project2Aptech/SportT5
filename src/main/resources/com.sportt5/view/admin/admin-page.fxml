@@ -21,7 +21,6 @@
                 <Label text="Platform overview — users, content, and revenue at a glance." styleClass="admin-subtitle" />
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
-            <Button text="⊕  Add User" styleClass="upload-button" />
         </HBox>
 
         <HBox spacing="18.0">

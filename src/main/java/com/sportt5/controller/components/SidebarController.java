@@ -16,7 +16,7 @@ public class SidebarController {
     //Home Sidebar
     @FXML private Label profileNameLabel, profileTierLabel, brandLabel;
     @FXML private ImageView sidebarAvatar;
-    @FXML private HBox homeNavItem, libraryItem, albumItem, artistItem, accountNavItem, adminItem;
+    @FXML private HBox homeNavItem, libraryItem, playlistItem, artistItem, accountNavItem, adminItem;
     //Artist Sidebar
     @FXML private HBox artistDashboardNavItem, artistMusicNavItem, artistUploadNavItem, artistAnalyticsNavItem, artistFansNavItem, exitArtistNavItem;
     //Admin Sidebar
@@ -28,7 +28,7 @@ public class SidebarController {
     public HBox getAccountNavItem() { return accountNavItem; }
     public HBox getHomeNavItem() { return homeNavItem; }
     public HBox getLibraryItem() { return libraryItem; }
-    public HBox getAlbumItem() { return albumItem; }
+    public HBox getPlaylistItem() { return playlistItem; }
     public HBox getArtistItem() { return artistItem; }
     public HBox getAdminItem() { return adminItem; }
     public HBox getArtistDashboardNavItem() { return artistDashboardNavItem; }
@@ -46,7 +46,7 @@ public class SidebarController {
         accountNavItem.getStyleClass().setAll("nav-item");
         homeNavItem.getStyleClass().setAll("nav-item");
         libraryItem.getStyleClass().setAll("nav-item");
-        albumItem.getStyleClass().setAll("nav-item");
+        playlistItem.getStyleClass().setAll("nav-item");
         artistItem.getStyleClass().setAll("nav-item");
         }
         else if (artistDashboardNavItem != null) {
@@ -100,9 +100,9 @@ public class SidebarController {
                 if (appController != null) appController.showLibraryPage();
             });
         }
-        if (albumItem != null) {
-            albumItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showAlbumPage();
+        if (playlistItem != null) {
+            playlistItem.setOnMouseClicked(e -> {
+                if (appController != null) appController.showPlaylistPage();
             });
         }
         if (artistItem != null) {

@@ -25,7 +25,7 @@ public class AppController {
     // ── Pages – home ─────────────────────────────────────────────────────────
     @FXML private ScrollPane homePage;
     @FXML private ScrollPane libraryPage;
-    @FXML private ScrollPane albumPage;
+    @FXML private ScrollPane playlistPage;
     @FXML private ScrollPane accountPage;
 
     // ── Pages – artist ───────────────────────────────────────────────────────
@@ -50,7 +50,7 @@ public class AppController {
     @FXML private SidebarController artistSidebarController;
     @FXML private SidebarController adminSidebarController;
     @FXML private TopBarController topBarController;
-    @FXML private PlaylistController albumPageController;
+    @FXML private PlaylistController playlistPageController;
     @FXML private HomeController homePageController;
     @FXML private LibraryController libraryPageController;
 
@@ -82,9 +82,9 @@ public class AppController {
         }
         showPage(libraryPage, topBarController.getLibraryTopBar(),sidebarController.getLibraryItem());
     }
-    @FXML public void showAlbumPage() {
-        if (albumPageController != null) albumPageController.loadUserAlbums();
-        showPage(albumPage, topBarController.getAlbumTopBar(), sidebarController.getAlbumItem());
+    @FXML public void showPlaylistPage() {
+        if (playlistPageController != null) playlistPageController.loadUserPlaylists();
+        showPage(playlistPage, topBarController.getPlaylistTopBar(), sidebarController.getPlaylistItem());
     }
     @FXML public void showAccountPage() { showPage(accountPage, topBarController.getAccountTopBar(),sidebarController.getAccountNavItem()); }
 
@@ -173,7 +173,7 @@ public class AppController {
     public void showPage(ScrollPane page, Node topBar, HBox navItem) {
         // Hide all pages
         for (ScrollPane p : new ScrollPane[]{
-                homePage, libraryPage, albumPage, accountPage,
+                homePage, libraryPage, playlistPage, accountPage,
                 artistDashBoardPage, artistMusicPage, artistUploadPage,
                 artistAnalyticsPage, artistFanPage,
                 adminDashBoardPage, adminUserPage, adminReviewPage, adminAnalyticsPage
@@ -183,7 +183,7 @@ public class AppController {
         setVisible(topBarController.getHomeHero(),      false);
         setVisible(topBarController.getAccountTopBar(), false);
         setVisible(topBarController.getLibraryTopBar(), false);
-        setVisible(topBarController.getAlbumTopBar(),   false);
+        setVisible(topBarController.getPlaylistTopBar(),   false);
         setVisible(topBarController.getArtistTopBar(),  false);
         setVisible(topBarController.getAdminTopBar(),   false);
 

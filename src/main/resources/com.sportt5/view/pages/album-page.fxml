@@ -14,13 +14,13 @@
             fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
     <VBox spacing="28.0" styleClass="playlist-body">
 
-        <Label text="ALBUMS" styleClass="store-section-title" />
+        <Label text="PLAYLIST" styleClass="store-section-title" />
 
-        <HBox fx:id="albumCardsBox" spacing="16.0" />
+        <HBox fx:id="playlistCardsBox" spacing="16.0" />
 
         <HBox alignment="CENTER_LEFT" spacing="32.0">
-            <StackPane fx:id="albumHeroPane" prefWidth="220.0" prefHeight="220.0" styleClass="playlist-hero-art">
-                <ImageView fx:id="albumCoverImage" fitWidth="220.0" fitHeight="220.0" preserveRatio="true" />
+            <StackPane fx:id="playlistHeroPane" prefWidth="220.0" prefHeight="220.0" styleClass="playlist-hero-art">
+                <ImageView fx:id="playlistCoverImage" fitWidth="220.0" fitHeight="220.0" preserveRatio="true" />
             </StackPane>
             <VBox spacing="12.0">
                 <Label fx:id="playlistEyebrow" text="SELECT A PLAYLIST" styleClass="playlist-eyebrow" />
