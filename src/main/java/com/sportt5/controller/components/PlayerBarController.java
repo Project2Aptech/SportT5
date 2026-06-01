@@ -153,11 +153,7 @@ public class PlayerBarController {
         String coverUrl = ApiClient.resolveUrl(song.getCoverUrl());
         if (coverUrl != null) coverImage.setImage(new Image(coverUrl, true));
 
-        String audioUrl = resolveAudioUrl(song.getFileUrl());
-        if (audioUrl == null) {
-            nowArtist.setText("No audio file available");
-            return;
-        }
+        String audioUrl = "https://res.cloudinary.com/dnnhtiafm/video/upload/v1780049933/songs/vvl3mnidrzjplepxke69.mp3";
 
         double volume = volumeBar.getProgress();
         new Thread(() -> {
