@@ -83,9 +83,9 @@ public class PlayerBarController {
     }
 
     public void playSong(Songs song) {
-        // SongSummaryResponse không trả về requiredAccountType & fileUrl
-        // → luôn fetch full details để kiểm tra quyền truy cập chính xác
         if (song.getFileUrl() == null || song.getFileUrl().isBlank()) {
+            nowTitle.setText(song.getTitle());
+            nowArtist.setText("Loading...");
             new Thread(() -> {
                 try {
                     HttpResponse<String> resp = ApiClient.get("songs/" + song.getId());
@@ -98,13 +98,15 @@ public class PlayerBarController {
                                 doPlay(full);
                             }
                         });
+                    } else {
+                        Platform.runLater(() -> nowArtist.setText("Cannot load song (HTTP " + resp.statusCode() + ")"));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Platform.runLater(() -> nowArtist.setText("Connection error"));
                 }
             }).start();
         } else {
-            // fileUrl đã có → vẫn kiểm tra requiredAccountType nếu đã biết
             if (!canAccess(song)) {
                 showAccessDenied(song);
             } else {
@@ -145,7 +147,10 @@ public class PlayerBarController {
         if (coverUrl != null) coverImage.setImage(new Image(coverUrl, true));
 
         String audioUrl = resolveAudioUrl(song.getFileUrl());
-        if (audioUrl == null) return;
+        if (audioUrl == null) {
+            nowArtist.setText("No audio file available");
+            return;
+        }
 
         try {
             Media media = new Media(audioUrl);
@@ -161,9 +166,20 @@ public class PlayerBarController {
             });
 
             mediaPlayer.setOnEndOfMedia(this::onSongEnded);
-            mediaPlayer.setOnError(() -> Platform.runLater(() -> btnPlay.setText("▶")));
+            mediaPlayer.setOnError(() -> {
+                javafx.scene.media.MediaException ex = mediaPlayer.getError();
+                String reason = ex != null ? ex.getType().name() : "UNKNOWN";
+                Platform.runLater(() -> {
+                    btnPlay.setText("▶");
+                    nowArtist.setText("Playback error: " + reason);
+                });
+            });
 
+        } catch (javafx.scene.media.MediaException e) {
+            nowArtist.setText("Unsupported format: " + e.getType().name());
+            e.printStackTrace();
         } catch (Exception e) {
+            nowArtist.setText("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }

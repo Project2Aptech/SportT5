@@ -5,25 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/SongPlayerApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/SidebarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/TopBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/TopBarController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/pages/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/pages/PlaylistController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Playlists.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Playlists.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/service/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/service/PlaylistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/admin/admin-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/admin/admin-page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/admin/admin-user-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/admin/admin-user-page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/PlayerBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/PlayerBarController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,12 +53,16 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SongPlayerApp.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.SportT5 [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.SportT5 [install].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;hiep&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Code/SportT5&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -68,13 +70,13 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SongPlayerApp">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.sportt5.App" />
       <module name="SportT5" />
@@ -88,8 +90,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SongPlayerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.sportt5.SongPlayerApp" />
+      <module name="SportT5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.sportt5.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="Application.SongPlayerApp" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SongPlayerApp" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
@@ -111,7 +131,11 @@
       <updated>1780124017130</updated>
       <workItem from="1780124018380" duration="4965000" />
       <workItem from="1780238271475" duration="1480000" />
-      <workItem from="1780311371556" duration="2992000" />
+      <workItem from="1780311371556" duration="6519000" />
+      <workItem from="1780317931416" duration="1947000" />
+      <workItem from="1780319912691" duration="46000" />
+      <workItem from="1780319973429" duration="34000" />
+      <workItem from="1780320041605" duration="42000" />
     </task>
     <servers />
   </component>
