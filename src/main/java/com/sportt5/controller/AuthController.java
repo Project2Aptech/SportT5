@@ -53,7 +53,6 @@ public class AuthController {
     }
     @FXML
     public void handleSignUp(ActionEvent event) {
-
         String nameInput = signupNameField.getText();
         String emailInput = signupEmailField.getText();
         String passwordInput = signupPasswordField.getText();
@@ -63,6 +62,7 @@ public class AuthController {
             signupStatusLabel.setText("Please fill in all fields");
             return;
         }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         signupStatusLabel.setText("Creating account...");
         new Thread(()->{
             try{
@@ -71,7 +71,7 @@ public class AuthController {
                 javafx.application.Platform.runLater(()->{
                     UserSession.startSession(response.getToken(), response.getUser());
                     signupStatusLabel.setText("Account create success!");
-                    switchToMainScene(event);
+                    switchToMainScene(stage);
                 });
             }
             catch(Exception e)
@@ -93,28 +93,29 @@ public class AuthController {
             loginStatusLabel.setText("Please enter your email or password");
             return;
         }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         loginStatusLabel.setText("Waiting sever check...");
 
-    new Thread(()->{
-        try{
-            AuthResponse response = authService.authenticate(loginInput.trim(), passwordInput);
+        new Thread(()->{
+            try{
+                AuthResponse response = authService.authenticate(loginInput.trim(), passwordInput);
 
-            javafx.application.Platform.runLater(()->{
-                UserSession.startSession(response.getToken(), response.getUser());
-                loginStatusLabel.setText("Login success!");
-                switchToMainScene(event);
-            });
-        }catch (Exception e){
-            javafx.application.Platform.runLater(()->{
-                loginStatusLabel.setText(e.getMessage() != null ? e.getMessage() : "Error no connection server!");
-            });
-        }
-    }).start();
+                javafx.application.Platform.runLater(()->{
+                    UserSession.startSession(response.getToken(), response.getUser());
+                    loginStatusLabel.setText("Login success!");
+                    switchToMainScene(stage);
+                });
+            }catch (Exception e){
+                javafx.application.Platform.runLater(()->{
+                    loginStatusLabel.setText(e.getMessage() != null ? e.getMessage() : "Error no connection server!");
+                });
+            }
+        }).start();
     }
-    public void switchToMainScene(ActionEvent event) {
+
+    public void switchToMainScene(Stage stage) {
         try  {
             Parent root = FXMLLoader.load(getClass().getResource("/com.sportt5/view/view.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             Scene scene = new Scene(root, 1220, 810);
             scene.getStylesheets().add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm());
