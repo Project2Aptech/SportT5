@@ -2,6 +2,7 @@ package com.sportt5.model;
 
 import java.time.LocalDateTime;
 
+@com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
 public class Playlists {
     private int id;
     private int userId;

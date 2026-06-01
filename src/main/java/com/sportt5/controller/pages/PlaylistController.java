@@ -27,13 +27,13 @@ import java.util.List;
 
 public class PlaylistController {
 
-    @FXML private HBox albumCardsBox;
+    @FXML private HBox playlistCardsBox;
     @FXML private Label playlistEyebrow;
     @FXML private Label playlistHeading;
     @FXML private Label playlistSongCount;
     @FXML private Label playlistDuration;
     @FXML private VBox songListVBox;
-    @FXML private ImageView albumCoverImage;
+    @FXML private ImageView playlistCoverImage;
 
     private final PlaylistService playlistService = new PlaylistService();
     private final ObjectMapper mapper = new ObjectMapper()
@@ -44,11 +44,11 @@ public class PlaylistController {
     public void initialize() {
     }
 
-    public void loadUserAlbums() {
+    public void loadUserPlaylists() {
         UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
 
-        albumCardsBox.getChildren().clear();
+        playlistCardsBox.getChildren().clear();
         resetDetailSection();
 
         new Thread(() -> {
@@ -64,7 +64,7 @@ public class PlaylistController {
                             ctrl.setPlaylist(playlist);
                             card.setOnMouseClicked(e -> loadPlaylist(playlist));
                             card.getStyleClass().add("album-card-clickable");
-                            albumCardsBox.getChildren().add(card);
+                            playlistCardsBox.getChildren().add(card);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -84,8 +84,8 @@ public class PlaylistController {
         songListVBox.getChildren().clear();
 
         String coverUrl = ApiClient.resolveUrl(playlist.getCoverUrl());
-        if (albumCoverImage != null && coverUrl != null) {
-            albumCoverImage.setImage(new Image(coverUrl, true));
+        if (playlistCoverImage != null && coverUrl != null) {
+            playlistCoverImage.setImage(new Image(coverUrl, true));
         }
 
         new Thread(() -> {
@@ -139,6 +139,6 @@ public class PlaylistController {
         playlistSongCount.setText("");
         playlistDuration.setText("");
         songListVBox.getChildren().clear();
-        if (albumCoverImage != null) albumCoverImage.setImage(null);
+        if (playlistCoverImage != null) playlistCoverImage.setImage(null);
     }
 }

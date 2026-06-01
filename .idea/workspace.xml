@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/FavouritesController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/css/home_css.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/icons/icons.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/img/img.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/SidebarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/SidebarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/TopBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/components/TopBarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/pages/PlaylistController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/pages/PlaylistController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Playlists.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/model/Playlists.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/service/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/service/PlaylistService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/admin/admin-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/admin/admin-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/admin/admin-user-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/admin/admin-user-page.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/sidebar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/library/library-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/artist-dashboard-page.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/components/topbars.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/pages/album-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com.sportt5/view/view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +110,8 @@
       <option name="presentableId" value="Default" />
       <updated>1780124017130</updated>
       <workItem from="1780124018380" duration="4965000" />
+      <workItem from="1780238271475" duration="1480000" />
+      <workItem from="1780311371556" duration="2992000" />
     </task>
     <servers />
   </component>

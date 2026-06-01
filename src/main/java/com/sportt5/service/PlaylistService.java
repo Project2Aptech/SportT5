@@ -26,6 +26,8 @@ public class PlaylistService {
             PageResponse<Playlists> page = mapper.readValue(response.body(), type);
             return page.getContent();
         }
-        throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
+        com.fasterxml.jackson.databind.JsonNode errorBody = mapper.readTree(response.body());
+        com.fasterxml.jackson.databind.JsonNode msg = errorBody.get("message");
+        throw new RuntimeException(msg != null ? msg.asText() : "HTTP " + response.statusCode());
     }
 }
