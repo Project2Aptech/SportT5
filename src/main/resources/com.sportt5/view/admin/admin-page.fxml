@@ -13,7 +13,9 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             visible="false" managed="false"
-            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+            fx:controller="com.sportt5.controller.pages.AdminDashboardController"
+            fitToWidth="true" hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED" styleClass="home-scroll">
     <VBox spacing="18.0" styleClass="admin-body">
         <HBox alignment="CENTER_LEFT" spacing="18.0">
             <VBox spacing="5.0">
@@ -31,7 +33,7 @@
                     <Label text="+5.3%" styleClass="trend-up" />
                 </HBox>
                 <Label text="TOTAL USERS" styleClass="metric-label" />
-                <Label text="128,440" styleClass="metric-value" />
+                <Label fx:id="totalUser" text="128,440" styleClass="metric-value" />
                 <HBox alignment="BOTTOM_LEFT" spacing="6.0" styleClass="bar-chart">
                     <Region prefWidth="18.0" prefHeight="18.0" />
                     <Region prefWidth="18.0" prefHeight="28.0" />
@@ -48,7 +50,7 @@
                     <Label text="+11.8%" styleClass="trend-blue" />
                 </HBox>
                 <Label text="TRACKS UPLOADED" styleClass="metric-label" />
-                <Label text="94,210" styleClass="metric-value" />
+                <Label fx:id="trackUploaded" text="94,210" styleClass="metric-value" />
                 <Pane prefHeight="48.0" styleClass="listener-wave" />
             </VBox>
             <VBox spacing="10.0" HBox.hgrow="ALWAYS" styleClass="metric-card">
@@ -74,30 +76,31 @@
             <HBox alignment="CENTER_LEFT">
                 <Label text="Recent Users" styleClass="panel-title" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button text="View All" styleClass="filter-button" />
+                <Button text="View All"
+                        onAction="#handleViewAllUsers"
+                        styleClass="filter-button" />
             </HBox>
-            <GridPane hgap="18.0" vgap="16.0" styleClass="admin-table">
+            <GridPane fx:id="userGridDashboard"
+                      hgap="18.0"
+                      vgap="16.0"
+                      styleClass="admin-table">
+
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="35.0" />
-                    <ColumnConstraints percentWidth="25.0" />
-                    <ColumnConstraints percentWidth="20.0" />
-                    <ColumnConstraints percentWidth="20.0" />
+                    <ColumnConstraints percentWidth="30.0" />
+                    <ColumnConstraints percentWidth="28.0" />
+                    <ColumnConstraints percentWidth="17.0" />
+                    <ColumnConstraints percentWidth="17.0" />
+                    <ColumnConstraints percentWidth="8.0" />
                 </columnConstraints>
+
                 <Label text="NAME" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
                 <Label text="EMAIL" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
                 <Label text="PLAN" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
                 <Label text="JOINED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="ACTIONS" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
 
-                <Label text="Alex Studio" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="table-title" />
-                <Label text="alex@vibe.studio" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="table-text" />
-                <Label text="PREMIUM" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="status-live" />
-                <Label text="Oct 12, 2023" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="table-text" />
-
-                <Label text="Aura Studio" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="table-title" />
-                <Label text="aura@vibe.studio" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="table-text" />
-                <Label text="ARTIST" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="trend-blue" />
-                <Label text="Sep 28, 2023" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="table-text" />
             </GridPane>
+
         </VBox>
     </VBox>
 </ScrollPane>

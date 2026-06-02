@@ -52,6 +52,23 @@ public class ApiClient {
                 .build();
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
+    public static HttpResponse<String> patchBuilder(String endpoint, String jsonBody) throws IOException, InterruptedException {
+        return client.send(
+                builder(endpoint)
+                        .method("PATCH", HttpRequest.BodyPublishers.ofString(jsonBody))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+    }
+    public static HttpResponse<String> patch(String endpoint)
+            throws IOException, InterruptedException {
+
+        return client.send(
+                builder(endpoint)
+                        .method("PATCH", HttpRequest.BodyPublishers.noBody())
+                        .build(),
+                HttpResponse.BodyHandlers.ofString()
+        );
+    }
 
     public static HttpResponse<String> delete(String endpoint) throws IOException, InterruptedException {
         HttpRequest request = builder(endpoint).DELETE().build();

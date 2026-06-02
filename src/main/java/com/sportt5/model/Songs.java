@@ -1,6 +1,7 @@
 package com.sportt5.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sportt5.model.enums.RequiredAccountType;
 import com.sportt5.model.enums.Status;
@@ -22,6 +23,7 @@ public class Songs {
     private int trackNumber;
     private long playCount;
 
+    @JsonEnumDefaultValue
     private Status status = Status.LIVE;
     private RequiredAccountType requiredAccountType = RequiredAccountType.NORMAL;
 
