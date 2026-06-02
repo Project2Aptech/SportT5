@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.sportt5.controller.components.AdminEditUserController"
+            prefHeight="420"
+            prefWidth="500"
+            styleClass="edit-user-root">
+
+    <VBox spacing="16"
+          alignment="CENTER"
+          AnchorPane.topAnchor="0"
+          AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0">
+
+        <Label text="Edit User"
+               styleClass="dialog-title"/>
+
+        <TextField fx:id="usernameField"
+                   editable="false"
+                   maxWidth="Infinity"
+                   styleClass="form-field"/>
+
+        <TextField fx:id="emailField"
+                   editable="false"
+                   maxWidth="Infinity"
+                   styleClass="form-field"/>
+
+        <ComboBox fx:id="accountTypeBox"
+                  maxWidth="Infinity"
+                  styleClass="form-combo"/>
+
+        <ComboBox fx:id="roleTypeBox"
+                  maxWidth="Infinity"
+                  styleClass="form-combo"/>
+
+        <HBox spacing="16"
+              alignment="CENTER">
+            <Button  onAction="#handleSave" text="Save"
+                    styleClass="save-btn"/>
+
+            <Button onAction="#handleCancel"  text="Cancel"
+                    styleClass="cancel-btn"/>
+        </HBox>
+
+    </VBox>
+</AnchorPane>

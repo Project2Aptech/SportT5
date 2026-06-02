@@ -202,20 +202,181 @@
     -fx-background-color: linear-gradient(to bottom right, #11081c, #7d32ff, #07100d);
 }
 
-.status-live,
-.status-review {
+.plan-normal,
+.plan-pro,
+.plan-premium {
     -fx-background-radius: 8;
     -fx-font-size: 8px;
     -fx-font-weight: 900;
     -fx-padding: 4 8 4 8;
 }
 
-.status-live {
+.plan-normal {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-text-fill: #E5E7EB;
+}
+
+.plan-pro {
+    -fx-background-color: -c-blue-subtle;
+    -fx-text-fill: -c-blue;
+}
+
+.plan-premium {
+    -fx-background-color: -c-accent-subtle2;
+    -fx-text-fill: -c-accent;
+}
+.action-edit-btn {
+    -fx-background-color: #1db954;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+
+.action-deactivate-btn {
+    -fx-background-color: #f59e0b;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+
+.action-delete-btn {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+.role-user,
+.role-artist,
+.role-admin {
+    -fx-background-radius: 8;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+    -fx-padding: 4 8 4 8;
+}
+
+.role-user {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-text-fill: #E5E7EB;
+}
+
+.role-artist {
+    -fx-background-color: -c-blue-subtle;
+    -fx-text-fill: -c-blue;
+}
+
+.role-admin {
+    -fx-background-color: -c-accent-subtle2;
+    -fx-text-fill: -c-accent;
+}
+.status-active,
+.status-inactive {
+    -fx-background-radius: 8;
+    -fx-font-size: 8px;
+    -fx-font-weight: 900;
+    -fx-padding: 4 8 4 8;
+}
+
+.status-active {
     -fx-background-color: -c-accent-subtle2;
     -fx-text-fill: -c-accent;
 }
 
-.status-review {
-    -fx-background-color: -c-blue-subtle;
-    -fx-text-fill: -c-blue;
+.status-inactive {
+    -fx-background-color: rgba(255, 0, 0, 0.15);
+    -fx-text-fill: #ff6b6b;
+}
+
+.edit-user-root {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #0b0c0c,
+            #111414 45%,
+            #1a1d1c
+    );
+
+    -fx-padding: 30;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: rgba(255,255,255,0.07);
+}
+
+.dialog-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #49ee78;
+}
+
+.form-field,
+.form-combo {
+    -fx-pref-width: 360;
+    -fx-pref-height: 46;
+
+    -fx-background-color: #111414;
+    -fx-background-radius: 10;
+
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 10;
+
+    -fx-text-fill: #8e8e8e;
+    -fx-font-size: 14px;
+
+    -fx-padding: 0 14;
+}
+
+.form-field:focused,
+.form-combo:focused {
+    -fx-border-color: #49ee78;
+}
+
+.text-field:editable{
+    -fx-opacity: 1;
+    -fx-text-fill: #9f9f9f;
+    -fx-background-color: #161919;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #d1d5db;
+    -fx-font-size: 14px;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #111414;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #111414;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: rgba(73,238,120,0.15);
+}
+
+.save-btn {
+    -fx-background-color: #49ee78;
+    -fx-text-fill: #0c0c0c;
+
+    -fx-font-weight: 800;
+    -fx-font-size: 14px;
+
+    -fx-background-radius: 24;
+    -fx-pref-width: 130;
+    -fx-pref-height: 42;
+}
+
+.save-btn:hover {
+    -fx-background-color: #63ff90;
+}
+
+.cancel-btn {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+
+    -fx-font-weight: 800;
+    -fx-font-size: 14px;
+
+    -fx-background-radius: 24;
+    -fx-pref-width: 130;
+    -fx-pref-height: 42;
+}
+
+.cancel-btn:hover {
+    -fx-background-color: #dc2626;
 }

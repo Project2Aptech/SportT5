@@ -3,6 +3,7 @@ package com.sportt5.model;
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sportt5.model.enums.AccountType;
 import com.sportt5.model.enums.Roles;
 
@@ -28,8 +29,9 @@ public class Users {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
+    @JsonProperty("isActive")
     private boolean isActive = true;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
@@ -140,6 +142,7 @@ public class Users {
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
+
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
