@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            visible="false" managed="false"
             fx:controller="com.sportt5.controller.pages.AdminUserController"
             fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
     <VBox spacing="18.0" styleClass="admin-body">
@@ -29,22 +30,18 @@
                       styleClass="admin-table">
 
                 <columnConstraints>
-                    <ColumnConstraints percentWidth="20.0" />
-                    <ColumnConstraints percentWidth="25.0" />
-                    <ColumnConstraints percentWidth="10.0" />
-                    <ColumnConstraints percentWidth="10.0" />
-                    <ColumnConstraints percentWidth="10.0" />
-                    <ColumnConstraints percentWidth="12.0" />
-                    <ColumnConstraints percentWidth="20.0" />
+                    <ColumnConstraints percentWidth="30.0" />
+                    <ColumnConstraints percentWidth="28.0" />
+                    <ColumnConstraints percentWidth="17.0" />
+                    <ColumnConstraints percentWidth="17.0" />
+                    <ColumnConstraints percentWidth="8.0" />
                 </columnConstraints>
 
                 <Label text="NAME" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
                 <Label text="EMAIL" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
-                <Label text="ROLE" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
-                <Label text="ACTIVE" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
-                <Label text="PLAN" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
-                <Label text="JOINED" GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="table-head" />
-                <Label text="ACTIONS" GridPane.rowIndex="0" GridPane.columnIndex="6" styleClass="table-head" />
+                <Label text="PLAN" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+                <Label text="JOINED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="ACTIONS" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
 
             </GridPane>
 

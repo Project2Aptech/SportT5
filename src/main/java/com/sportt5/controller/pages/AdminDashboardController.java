@@ -1,8 +1,6 @@
 package com.sportt5.controller.pages;
 
 import com.sportt5.controller.AppController;
-import com.sportt5.model.SongResponse;
-import com.sportt5.model.Songs;
 import com.sportt5.model.UserResponse;
 import com.sportt5.model.Users;
 import com.sportt5.service.AdminService;
@@ -18,9 +16,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -44,13 +39,8 @@ public class AdminDashboardController {
             try {
                 UserResponse response = adminService.getUser();
                 List<Users> users = response.getContent();
-
-                SongResponse responseSong = adminService.getSong();
-                List<Songs> songs = responseSong.getContent();
-
+                System.out.println(users.size());
                 Platform.runLater(() -> {
-                    totalUser.setText(String.valueOf(users.size()));
-                    trackUploaded.setText(String.valueOf(songs.size()));
                     renderUsersDashboard(users);
                 });
             } catch (Exception e) {
@@ -60,24 +50,13 @@ public class AdminDashboardController {
     }
     @FXML
     private void handleViewAllUsers(ActionEvent event) {
-//        System.out.println("appController = " + appController);
-//
-//        if (appController != null) {
-//            appController.showAdminUserPage();
-//        }
+//        if (appController != null) appController.showAdminUserPage();
     }
-
     private void renderUsersDashboard(List<Users> users) {
         userGridDashboard.getChildren().removeIf(node -> {
             Integer row = GridPane.getRowIndex(node);
-
-            if (row == null) {
-                return false;
-            }
-
-            return row > 0;
+            return row != null && row > 0;
         });
-
         List<Users> latestUsers = users.stream()
                 .filter(u -> u.getCreatedAt() != null)
                 .sorted(Comparator.comparing(Users::getCreatedAt).reversed())
@@ -87,6 +66,9 @@ public class AdminDashboardController {
 
         for (Users user : latestUsers) {
             HBox nameBox = new HBox(12);
+//            StackPane avatar = new StackPane();
+//            avatar.setPrefSize(34, 34);
+//            avatar.getStyleClass().addAll("admin-thumb", "thumb-pink");
 
             VBox infoBox = new VBox(2);
 
@@ -103,18 +85,10 @@ public class AdminDashboardController {
 
             Label emailLabel = new Label(user.getEmail());
 
-            String plan = user.getAccountType() != null
-                    ? user.getAccountType().name()
-                    : "NORMAL";
-
-            Label planLabel = new Label(plan);
-
-            planLabel.getStyleClass().add(
-                    switch (plan) {
-                        case "PRO" -> "plan-pro";
-                        case "PREMIUM" -> "plan-premium";
-                        default -> "plan-normal";
-                    }
+            Label planLabel = new Label(
+                    user.getAccountType() != null
+                            ? user.getAccountType().toString()
+                            : "NORMAL"
             );
 
             Label joinedLabel = new Label(
