@@ -29,7 +29,7 @@ public class Users {
     private LocalDate birthDate;
 
     private boolean isActive = true;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
@@ -140,6 +140,7 @@ public class Users {
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
+
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
