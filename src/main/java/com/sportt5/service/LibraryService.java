@@ -1,7 +1,6 @@
 package com.sportt5.service;
 
 import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -24,7 +23,7 @@ public class LibraryService {
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
     //Main methods to get songs
-    public JsonNode getLikedSongs() throws IOException, InterruptedException {
+    public List<Songs> getLikedSongs() throws IOException, InterruptedException {
         String token = UserSession.getInstance().getToken();
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -33,12 +32,19 @@ public class LibraryService {
                 .header("Content-Type", "application/json")
                 .GET()
                 .build();
-        HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
-        if (response.statusCode() == 200) {
-            JsonNode root = mapper.readTree(response.body());
-            return root.get("content");
-        }
-        throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
+        return getResponseWithToken(request, Songs.class);
+    }
+
+    public List<Songs> getPlayHistory() throws IOException, InterruptedException {
+        String token = UserSession.getInstance().getToken();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/v1/history"))
+                .header("Authorization", "Bearer " + token)
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+        return getResponseWithToken(request, Songs.class);
     }
 
     public List<Playlists> getUserPlaylists() throws IOException, InterruptedException {
