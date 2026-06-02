@@ -34,20 +34,21 @@
     -fx-background-color:
         radial-gradient(center 80% 85%, radius 70%, rgba(125,218,131,0.45), transparent 55%),
         linear-gradient(to bottom right, #04ce60, #146b3c);
-    -fx-background-radius: 15;
-    -fx-padding: 24;
+    -fx-background-radius: 7.5;
+    -fx-padding: 7.5;
 }
 
 .liked-heart {
     -fx-text-fill: #f6fff8;
-    -fx-font-size: 34px;
+    -fx-font-size: 15px;
     -fx-font-weight: 900;
 }
 
 .liked-title {
     -fx-text-fill: #f7fff9;
-    -fx-font-size: 28px;
+    -fx-font-size: 10px;
     -fx-font-weight: 900;
+    -fx-letter-spacing: 3px;
 }
 
 .liked-count {
@@ -151,6 +152,7 @@
     -fx-font-size: 10px;
     -fx-font-weight: 900;
     -fx-letter-spacing: 3px;
+    -fx-padding: 10px 0px 0px 0px;
 }
 
 .playlist-heading {

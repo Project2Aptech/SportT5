@@ -18,9 +18,8 @@ public class LibraryController {
     // Views
     @FXML private VBox playlistsView, genresView;
     // Playlists view
-    @FXML private StackPane likedBtn;
-    @FXML private Label favouritesCount;
-    @FXML private HBox playlistCardsBox;
+    @FXML private HBox likedBtn;
+
     // Genres view
     @FXML private FlowPane genreChipsBox;
     @FXML private GridPane songListTable;
@@ -85,8 +84,6 @@ public class LibraryController {
         UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
 
-        favouritesCount.setText("0 song");
-
         new Thread(() -> {
             try {
                 List<Songs> favSongs = libraryService.getLikedSongs();
@@ -94,8 +91,6 @@ public class LibraryController {
 
                 Platform.runLater(() -> {
                     if (favSongs != null) {
-                        if (favSongs.isEmpty()) favouritesCount.setText("0 song");
-                        else favouritesCount.setText(favSongs.size() == 1 ? "01 song" : String.format("%02d songs", favSongs.size()));
                         likedBtn.setOnMouseClicked(e -> {
                             for (Label t : new Label[]{tabPlaylists, tabGenres, tabArtists, tabAlbums, tabDownloaded}) t.getStyleClass().setAll("library-tab");
 

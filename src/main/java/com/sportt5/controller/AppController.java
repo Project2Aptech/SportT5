@@ -77,8 +77,8 @@ public class AppController {
     }
     @FXML public void showLibraryPage() {
         if (libraryPageController != null) {
-            libraryPageController.loadPlayHistory();
-            libraryPageController.loadFavouritesSongs();
+//            libraryPageController.loadPlayHistory();
+//            libraryPageController.loadFavouritesSongs();
         }
         showPage(libraryPage, topBarController.getLibraryTopBar(),sidebarController.getLibraryItem());
     }
