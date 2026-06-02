@@ -112,7 +112,7 @@
                         <Button text="Change"
                                 styleClass="change-button" />
                     </HBox>
-                </VBox>ươpo
+                </VBox>
             </VBox>
 
         </HBox>

@@ -6,7 +6,9 @@ import com.sportt5.session.UserSession;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class LibraryController {
     // Tabs
     @FXML private Label tabPlaylists, tabGenres, tabArtists, tabAlbums, tabDownloaded;
     // Views
-    @FXML private VBox playlistsView, genresView;
+    @FXML private VBox playlistsView, genresView, artistsView, albumsView;
     // Playlists view
     @FXML private StackPane likedBtn;
     @FXML private Label favouritesCount;
@@ -25,7 +27,17 @@ public class LibraryController {
     @FXML private FlowPane genreChipsBox;
     @FXML private GridPane songListTable;
     @FXML private Label songCountLabel;
-    // Grid (Play history)
+    // Artists view
+    @FXML private ComboBox<String> artistComboBox;
+    @FXML private ImageView artistAvatarImg;
+    @FXML private Label artistNameLabel, artistFollowersLabel, artistSongsLabel, artistAlbumsLabel;
+    @FXML private GridPane artistSongTable;
+    // Albums view
+    @FXML private ComboBox<String> albumComboBox;
+    @FXML private ImageView albumCoverImg;
+    @FXML private Label albumTitleLabel, albumArtistLabel, albumYearLabel, albumSongsLabel, albumDurationLabel;
+    @FXML private GridPane albumSongTable;
+    // Recently Played
     @FXML private GridPane playHistoryTable;
 
     private final LibraryService libraryService = new LibraryService();
@@ -35,8 +47,8 @@ public class LibraryController {
         if (tabPlaylists != null) {
             tabPlaylists.setOnMouseClicked(e -> showTab(tabPlaylists, playlistsView));
             tabGenres.setOnMouseClicked(e -> showTab(tabGenres, genresView));
-            tabArtists.setOnMouseClicked(e -> showTab(tabArtists, null));
-            tabAlbums.setOnMouseClicked(e -> showTab(tabAlbums, null));
+            tabArtists.setOnMouseClicked(e -> showTab(tabArtists, artistsView));
+            tabAlbums.setOnMouseClicked(e -> showTab(tabAlbums, albumsView));
             tabDownloaded.setOnMouseClicked(e -> showTab(tabDownloaded, null));
         }
     }
@@ -48,6 +60,8 @@ public class LibraryController {
         activeTab.getStyleClass().setAll("library-tab-active");
         setVisible(playlistsView, false);
         setVisible(genresView, false);
+        setVisible(artistsView, false);
+        setVisible(albumsView, false);
         if (view != null) setVisible(view, true);
     }
 
@@ -60,8 +74,10 @@ public class LibraryController {
     public void loadPlayHistory() {
         UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
+        if (playHistoryTable == null) return;
 
-        playHistoryTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
+        playHistoryTable.getChildren().removeIf(node ->
+                GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
 
         new Thread(() -> {
             try {
@@ -70,9 +86,7 @@ public class LibraryController {
 
                 Platform.runLater(() -> {
                     for (int i = 0; i < songs.size(); i++) {
-                        Songs s = songs.get(i);
-                        int rowIdx = i + 1;
-                        addSongToTable(playHistoryTable, rowIdx, s, users);
+                        addSongToTable(playHistoryTable, i + 1, songs.get(i), users);
                     }
                 });
             } catch (Exception e) {
@@ -85,7 +99,7 @@ public class LibraryController {
         UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
 
-        favouritesCount.setText("0 song");
+        if (favouritesCount != null) favouritesCount.setText("0 songs");
 
         new Thread(() -> {
             try {
@@ -94,10 +108,14 @@ public class LibraryController {
 
                 Platform.runLater(() -> {
                     if (favSongs != null) {
-                        if (favSongs.isEmpty()) favouritesCount.setText("0 song");
-                        else favouritesCount.setText(favSongs.size() == 1 ? "01 song" : String.format("%02d songs", favSongs.size()));
+                        if (favouritesCount != null) {
+                            favouritesCount.setText(favSongs.size() == 1
+                                    ? "1 song"
+                                    : favSongs.size() + " songs");
+                        }
                         likedBtn.setOnMouseClicked(e -> {
-                            for (Label t : new Label[]{tabPlaylists, tabGenres, tabArtists, tabAlbums, tabDownloaded}) t.getStyleClass().setAll("library-tab");
+                            for (Label t : new Label[]{tabPlaylists, tabGenres, tabArtists, tabAlbums, tabDownloaded})
+                                t.getStyleClass().setAll("library-tab");
 
                             setVisible(playlistsView, false);
                             setVisible(genresView, true);
@@ -105,9 +123,7 @@ public class LibraryController {
                             songListTable.getChildren().clear();
 
                             for (int i = 0; i < favSongs.size(); i++) {
-                                Songs s = favSongs.get(i);
-                                int rowIdx = i + 1;
-                                addSongToTable(songListTable, rowIdx, s, users);
+                                addSongToTable(songListTable, i + 1, favSongs.get(i), users);
                             }
                         });
                     }
@@ -118,25 +134,22 @@ public class LibraryController {
         }).start();
     }
 
-
-
     private void addSongToTable(GridPane table, int index, Songs s, Map<Integer, String> users) {
-        //Index
         Label lblIndex = new Label(String.format("%02d", index));
         lblIndex.getStyleClass().add("table-text");
-        //Title & Artist
+
         VBox titleBox = new VBox(2.0);
         Label lblTitle = new Label(s.getTitle());
         Label lblArtist = new Label(users.getOrDefault(s.getArtistId(), "Unknown"));
         lblTitle.getStyleClass().add("table-title");
         lblArtist.getStyleClass().add("table-artist");
         titleBox.getChildren().addAll(lblTitle, lblArtist);
-        //Duration
+
         int minutes = s.getDurationSeconds() / 60;
         int seconds = s.getDurationSeconds() % 60;
         Label lblDuration = new Label(String.format("%02dp%ds", minutes, seconds));
         lblDuration.getStyleClass().add("table-text");
-        //Action
+
         Label lblAction = new Label("•••");
         lblAction.getStyleClass().add("row-action");
 

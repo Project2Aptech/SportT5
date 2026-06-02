@@ -36,7 +36,9 @@
       "Bash(Get-ChildItem -Path \"D:\\\\Code\\\\SportT5\" -Recurse -Directory)",
       "Bash(Format-Table FullName)",
       "Bash(del \"D:\\\\Code\\\\SportT5\\\\src\\\\main\\\\resources\\\\com.sportt5\\\\view\\\\admin\\\\add-user-dialog.fxml\")",
-      "Bash(del \"D:\\\\Code\\\\SportT5\\\\src\\\\main\\\\java\\\\com\\\\sportt5\\\\controller\\\\pages\\\\AddUserDialogController.java\")"
+      "Bash(del \"D:\\\\Code\\\\SportT5\\\\src\\\\main\\\\java\\\\com\\\\sportt5\\\\controller\\\\pages\\\\AddUserDialogController.java\")",
+      "Bash(Select-Object FullName)",
+      "Bash(Format-Table -AutoSize)"
     ]
   }
 }

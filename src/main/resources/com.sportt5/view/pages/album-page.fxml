@@ -23,7 +23,15 @@
                 <ImageView fx:id="playlistCoverImage" fitWidth="220.0" fitHeight="220.0" preserveRatio="true" />
             </StackPane>
             <VBox spacing="12.0">
-                <Label fx:id="playlistEyebrow" text="SELECT A PLAYLIST" styleClass="playlist-eyebrow" />
+                <HBox spacing="20.0">
+                    <Label fx:id="playlistEyebrow" text="SELECT A PLAYLIST" styleClass="playlist-eyebrow" />
+                    <StackPane styleClass="liked-card" prefHeight="10.0" prefWidth="100.0">
+                        <HBox alignment="CENTER_LEFT" spacing="5.0" StackPane.alignment="CENTER_LEFT">
+                            <Label text="♥" styleClass="liked-heart" />
+                            <Label text="LIKED SONGS" styleClass="liked-title" />
+                        </HBox>
+                    </StackPane>
+                </HBox>
                 <Label fx:id="playlistHeading" text="—" styleClass="playlist-heading" />
                 <HBox spacing="10.0">
                     <Label fx:id="playlistSongCount" text="0 songs" styleClass="playlist-meta" />
