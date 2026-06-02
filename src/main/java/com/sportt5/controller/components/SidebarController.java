@@ -40,6 +40,7 @@ public HBox getArtistItem() { return artistItem; }
     public HBox getAdminReviewNavItem() { return adminReviewNavItem; }
     public HBox getAdminAnalyticsNavItem() { return adminAnalyticsNavItem; }
 
+
     public void resetNavStyles() {
         if (homeNavItem != null) {
         accountNavItem.getStyleClass().setAll("nav-item");
@@ -65,6 +66,8 @@ public HBox getArtistItem() { return artistItem; }
     public void initialize() {
         Users user = UserSession.getInstance().getCurrentUser();
         Roles role = user != null ? user.getRole() : null;
+
+        System.out.println("Slide bar " + user);
 
         if (profileNameLabel != null && user != null) {
             profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
@@ -194,4 +197,6 @@ if (artistItem != null) {
             });
         }
     }
+
+
 }

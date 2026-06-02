@@ -24,6 +24,7 @@ public class AuthService {
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
+
     public String updateAvatar(File selectedFile) {
         try {
             String boundary = "----Boundary" + System.currentTimeMillis();
@@ -78,6 +79,7 @@ public class AuthService {
         System.out.println("=== GET /users/" + id + " ===");
         System.out.println("Status = " + response.statusCode());
         System.out.println("Body   = " + response.body());
+
         if(response.statusCode() == 200){
             if (node == null) {
                 throw new RuntimeException("User data not found");

@@ -28,8 +28,8 @@
             <VBox spacing="8.0">
                 <Label fx:id="displayNameLabel" text="" styleClass="account-name" />
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
-                    <Label text="PREMIUM MEMBER" styleClass="account-pill" />
-                    <Label text="Member since Oct 2023" styleClass="account-muted" />
+                    <Label fx:id="accountTypeHeader"  text="" styleClass="account-pill" />
+                    <Label fx:id="billingDateLabel" text="" styleClass="account-muted" />
                 </HBox>
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
@@ -41,97 +41,80 @@
         </HBox>
 
         <HBox spacing="24.0">
-            <VBox spacing="22.0" prefWidth="270.0">
-                <VBox spacing="14.0" styleClass="account-card">
-                    <Label text="Subscription Plan" styleClass="account-card-title" />
-                    <VBox spacing="4.0">
-                        <Label text="CURRENT PLAN" styleClass="account-card-label" />
-                        <Label fx:id="planLabel" text="" styleClass="account-plan" />
-                    </VBox>
-                    <VBox spacing="3.0">
-                        <Label text="Next billing date" styleClass="account-card-label" />
-                        <Label fx:id="billingDateLabel" text="November 12, 2024" styleClass="account-text" />
-                    </VBox>
-                    <HBox alignment="CENTER_LEFT">
-                        <Label fx:id="priceLabel" text="\$14.99" styleClass="account-price" />
-                        <Label text="/month" styleClass="account-muted" />
-                    </HBox>
-                    <Button text="Manage Subscription" styleClass="manage-button" />
+
+            <!-- Subscription Plan -->
+            <VBox spacing="14.0"
+                  styleClass="account-card"
+                  HBox.hgrow="ALWAYS"
+                  maxWidth="Infinity">
+
+                <Label text="Subscription Plan" styleClass="account-card-title" />
+
+                <VBox spacing="4.0">
+                    <Label text="CURRENT PLAN" styleClass="account-card-label" />
+                    <Label fx:id="planLabel" text="" styleClass="account-plan" />
                 </VBox>
 
-                <VBox spacing="14.0" styleClass="account-card">
-                    <Label text="Personal Information" styleClass="account-card-title" />
-                    <VBox spacing="5.0">
-                        <Label text="EMAIL ADDRESS" styleClass="account-card-label" />
-                        <HBox alignment="CENTER_LEFT" spacing="6.0">
-                            <Label fx:id="emailLabel" text="" styleClass="account-text" />
-                            <Label  fx:id="checkEmail" text="v" styleClass="verified-dot" />
-                        </HBox>
-                    </VBox>
-                    <VBox spacing="5.0">
-                        <Label text="PASSWORD" styleClass="account-card-label" />
-                        <HBox alignment="CENTER_LEFT">
-                            <Label  text="••••••••••••" styleClass="account-text" />
-                            <Region HBox.hgrow="ALWAYS" />
-                            <Button text="Change" styleClass="change-button" />
-                        </HBox>
-                    </VBox>
-                    <HBox alignment="CENTER_LEFT" spacing="10.0">
-                        <Label text="●" styleClass="toggle-on" />
-                        <VBox spacing="2.0">
-                            <Label text="Two-Factor" styleClass="account-text" />
-                            <Label text="Authentication" styleClass="account-muted" />
-                        </VBox>
-                    </HBox>
+                <VBox spacing="3.0">
+                    <Label text="Next billing date" styleClass="account-card-label" />
+                    <Label
+                           text="November 12, 2024"
+                           styleClass="account-text" />
                 </VBox>
-            </VBox>
 
-            <VBox spacing="14.0" HBox.hgrow="ALWAYS" styleClass="account-card history-card">
                 <HBox alignment="CENTER_LEFT">
-                    <Label text="Purchase History" styleClass="account-card-title" />
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Button text="▼  Filter" styleClass="filter-button" />
+                    <Label fx:id="priceLabel"
+                           text=""
+                           styleClass="account-price" />
+                    <Label text="/month"
+                           styleClass="account-muted" />
                 </HBox>
-                <GridPane hgap="20.0" vgap="18.0" styleClass="history-table">
-                    <columnConstraints>
-                        <ColumnConstraints percentWidth="18.0" />
-                        <ColumnConstraints percentWidth="43.0" />
-                        <ColumnConstraints percentWidth="17.0" />
-                        <ColumnConstraints percentWidth="12.0" />
-                        <ColumnConstraints percentWidth="10.0" />
-                    </columnConstraints>
-                    <Label text="DATE" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
-                    <Label text="ITEM / DESCRIPTION" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
-                    <Label text="AMOUNT" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
-                    <Label text="RECEIPT" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
-                    <Label text="" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
 
-                    <Label text="Oct 12, 2024" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="table-text" />
-                    <Label text="Monthly Subscription Hi-Fi" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="table-title" />
-                    <Label text="\$14.99" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="table-text" />
-                    <Label text="PDF" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="download-link" />
-                    <Label text="↧" GridPane.rowIndex="1" GridPane.columnIndex="4" styleClass="table-text" />
-
-                    <Label text="Sep 16, 2024" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="table-text" />
-                    <Label text="Vinyl: Midnight Echoes - Deluxe" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="table-title" />
-                    <Label text="\$24.50" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="table-text" />
-                    <Label text="PDF" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="download-link" />
-                    <Label text="↧" GridPane.rowIndex="2" GridPane.columnIndex="4" styleClass="table-text" />
-
-                    <Label text="Sep 10, 2024" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="table-text" />
-                    <Label text="Monthly Subscription Hi-Fi" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="table-title" />
-                    <Label text="\$14.99" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="table-text" />
-                    <Label text="PDF" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="download-link" />
-                    <Label text="↧" GridPane.rowIndex="3" GridPane.columnIndex="4" styleClass="table-text" />
-
-                    <Label text="Aug 12, 2024" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="table-text" />
-                    <Label text="Monthly Subscription Hi-Fi" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="table-title" />
-                    <Label text="\$14.99" GridPane.rowIndex="4" GridPane.columnIndex="2" styleClass="table-text" />
-                    <Label text="PDF" GridPane.rowIndex="4" GridPane.columnIndex="3" styleClass="download-link" />
-                    <Label text="↧" GridPane.rowIndex="4" GridPane.columnIndex="4" styleClass="table-text" />
-                </GridPane>
-                <Button text="Load More Transactions" styleClass="chart-button" />
+                <Button onAction="#handleBuySubscription"
+                        text="Manage Subscription"
+                        styleClass="manage-button" />
             </VBox>
+
+            <!-- Personal Information -->
+            <VBox spacing="14.0"
+                  styleClass="account-card"
+                  HBox.hgrow="ALWAYS"
+                  maxWidth="Infinity">
+
+                <Label text="Personal Information"
+                       styleClass="account-card-title" />
+
+                <VBox spacing="5.0">
+                    <Label text="EMAIL ADDRESS"
+                           styleClass="account-card-label" />
+
+                    <HBox alignment="CENTER_LEFT" spacing="6.0">
+                        <Label fx:id="emailLabel"
+                               text=""
+                               styleClass="account-text" />
+
+                        <Label fx:id="checkEmail"
+                               text=""
+                               styleClass="verified-dot" />
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <Label text="PASSWORD"
+                           styleClass="account-card-label" />
+
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="••••••••••••"
+                               styleClass="account-text" />
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <Button text="Change"
+                                styleClass="change-button" />
+                    </HBox>
+                </VBox>ươpo
+            </VBox>
+
         </HBox>
     </VBox>
 </ScrollPane>

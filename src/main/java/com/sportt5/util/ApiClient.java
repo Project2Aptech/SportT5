@@ -27,7 +27,6 @@ public class ApiClient {
     }
 
     // ── HTTP methods ─────────────────────────────────────────────────────────
-
     public static HttpResponse<String> get(String endpoint) throws IOException, InterruptedException {
         HttpRequest request = builder(endpoint).GET().build();
         return client.send(request, HttpResponse.BodyHandlers.ofString());
