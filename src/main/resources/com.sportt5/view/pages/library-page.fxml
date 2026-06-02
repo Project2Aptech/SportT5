@@ -15,7 +15,7 @@
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sportt5.controller.pages.LibraryController"
             visible="false" managed="false"
-            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" styleClass="home-scroll">
     <VBox styleClass="library-body">
         <!-- Tab bar -->
         <HBox spacing="28.0" styleClass="library-tabs">
@@ -36,8 +36,8 @@
                 <VBox spacing="12.0">
                     <HBox spacing="20.0">
                         <Label fx:id="playlistEyebrow" text="SELECT A PLAYLIST" styleClass="playlist-eyebrow" />
-                        <StackPane styleClass="liked-card" prefHeight="10.0" prefWidth="100.0">
-                            <HBox fx:id="likedBtn" alignment="CENTER_LEFT" spacing="5.0" StackPane.alignment="CENTER_LEFT">
+                        <StackPane fx:id="likedBtn" styleClass="liked-card" prefHeight="10.0" prefWidth="100.0">
+                            <HBox alignment="CENTER_LEFT" spacing="5.0" StackPane.alignment="CENTER_LEFT">
                                 <Label text="♥" styleClass="liked-heart" />
                                 <Label text="LIKED SONGS" styleClass="liked-title" />
                             </HBox>
@@ -69,7 +69,7 @@
                 <Label text="#"          GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
                 <Label text="TITLE"      GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
                 <Label text="ALBUM"      GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
-                <Label text="DATE ADDED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="DATE ADDED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" fx:id="dateAdded"/>
                 <Label text="DURATION"   GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
                 <Label text="ACTIONS"    GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="table-head" />
             </GridPane>
@@ -78,7 +78,6 @@
         <!-- === GENRES VIEW === -->
         <VBox fx:id="genresView" visible="false" managed="false" spacing="18.0">
             <HBox alignment="CENTER_LEFT">
-                <Label text="Genres" styleClass="store-section-title" />
                 <Region HBox.hgrow="ALWAYS" />
                 <Label fx:id="songCountLabel" text="" styleClass="table-text" />
             </HBox>

@@ -1,5 +1,6 @@
 package com.sportt5.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sportt5.model.enums.RequiredAccountType;
 import com.sportt5.model.enums.Status;
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Songs {
+    @JsonAlias({"songId", "id"})
     private int id;
     private int artistId;
     private int albumId;
