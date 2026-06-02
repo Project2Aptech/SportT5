@@ -2,7 +2,10 @@ package com.sportt5.controller.pages;
 
 import com.sportt5.App;
 import com.sportt5.controller.EditProfileController;
+import com.sportt5.controller.components.SidebarController;
+import com.sportt5.controller.components.SubscriptionController;
 import com.sportt5.model.Users;
+import com.sportt5.model.enums.Roles;
 import com.sportt5.service.AuthService;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
@@ -18,13 +21,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 
 public class AccountController {
     //UI element
-    @FXML private Label displayNameLabel;
+    @FXML private Label displayNameLabel,accountTypeHeader;
     @FXML private Label emailLabel;
     @FXML private Label checkEmail;
     @FXML private Label planLabel;
@@ -36,10 +42,46 @@ public class AccountController {
     @FXML private ProgressIndicator progressIndicator;
 
     private final AuthService authService = new AuthService();
+//    private SidebarController sidebarController;
+//
+//    public SidebarController getSidebarController() {
+//        return sidebarController;
+//    }
 
     @FXML
     public void initialize() {
+        loadAccountType();
         loadUserProfile();
+    }
+
+    @FXML
+    public void handleBuySubscription(){
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.sportt5/view/users/subscription-plans.fxml"));
+            DialogPane pane = loader.load();
+            pane.getStylesheets().add(
+                    App.class.getResource("/com.sportt5/css/dialog.css").toExternalForm()
+            );
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initOwner(avatarImageView.getScene().getWindow());
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initStyle(StageStyle.UTILITY);
+
+            SubscriptionController ctrl = loader.getController();
+            ctrl.initData(UserSession.getInstance().getCurrentUser());
+            dialog.showAndWait();
+
+            // Refresh UI to reflect new subscription tier
+            loadUserProfile();
+
+        } catch (Exception e) {
+            showError("Error " + e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+
     }
     public void handleEditProfile(){
         try {
@@ -59,49 +101,80 @@ public class AccountController {
             stage.setScene(scene);
             stage.showAndWait();
 
+
             loadUserProfile();
         } catch (IOException e) {
             showError("Unable to open edit dialog: " + e.getMessage());
         }
     }
 
+    public void loadAccountType(){
+        Users user = UserSession.getInstance().getCurrentUser();
+
+        if (planLabel != null && user != null) {
+            planLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
+        }
+        if (accountTypeHeader != null && user != null) {
+            accountTypeHeader.setText(
+                    String.format("%s Member",
+                            user.getAccountType() != null ? user.getAccountType().name() : "NORMAL"
+                    )
+            );
+        }
+        switch(user.getAccountType()){
+            case PRO -> priceLabel.setText("9.99/month");
+            case PREMIUM  -> priceLabel.setText("14.99/month");
+            default -> priceLabel.setText("Free");
+        }
+        emailLabel.setText(nonNull(user.getEmail()));
+        checkEmail.setText((user.getEmail() != null ? "V" : "X"));
+    }
+
     public void loadUserProfile(){
         UserSession session = UserSession.getInstance();
         int userId = (session != null) ? session.getCurrentUserId() : -1;
 
+        new Thread(() -> {
+            try {
+                Users fresh = authService.getUserById(userId);
+                UserSession.setCurrentUser(fresh);
+                Users user = UserSession.getInstance().getCurrentUser();
 
-        new Thread(()->{
-            try{
-            Users fresh = authService.getUserById(userId);
-            UserSession.setCurrentUser(fresh);
+                System.out.println("====fresh======\n" + user);
 
-            if (fresh == null) {
-                showError("User is null");
-            }
-
-            Platform.runLater(() -> {
-                bindToUi(fresh);
-            });
-
+                Platform.runLater(() -> {
+                    bindToUi(user);
+                });
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     showError("Failed to load profile: " + e.getMessage());
                 });
             }
-
         }).start();
     }
     private void bindToUi(Users u) {
         displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : "User"));
-        emailLabel.setText(nonNull(u.getEmail()));
-        planLabel.setText(u.getAccountType() != null ? u.getAccountType().name() : "NORMAL");
-        checkEmail.setText((u.getEmail() != null ? "V" : "X"));
+//        String planText = (u.getAccountType() != null) ? u.getAccountType().name() : "UNKNOWN";
+//        System.out.println("Setting planLabel to: " + planText);
+//        planLabel.setText(planText);
+
         System.out.println("Avatar URL = " + u.getAvatarUrl());
         String avatarUrl = ApiClient.resolveUrl(u.getAvatarUrl());
         if (avatarUrl != null) {
             avatarImageView.setImage(new Image(avatarUrl, true));
         } else {
             avatarImageView.setImage(new Image(App.class.getResource("/com.sportt5/img/avatar.png").toExternalForm()));
+        }
+
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH);
+
+        if (u.getCreatedAt() != null) {
+            billingDateLabel.setText(
+                    "Member since " + u.getCreatedAt().format(formatter)
+            );
+        } else {
+            billingDateLabel.setText("Member since N/A");
         }
     }
 

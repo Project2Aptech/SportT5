@@ -1,0 +1,87 @@
+.dialog-pane {
+    -fx-background-color: #121212;
+}
+
+.dialog-pane .content {
+    -fx-background-color: #121212;
+}
+
+.dialog-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Card */
+.tier-card {
+    -fx-background-color: #1e1e1e;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #2f2f2f;
+    -fx-border-width: 1;
+
+    -fx-padding: 20;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0,0,0,0.6),
+            12,
+            0,
+            0,
+            4
+    );
+}
+
+/* Hover */
+.tier-card:hover {
+    -fx-border-color: #00ff88;
+}
+
+/* Gói hiện tại */
+.tier-active {
+    -fx-border-color: #00ff88;
+    -fx-border-width: 2;
+}
+
+/* Tên gói */
+.tier-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Giá */
+.tier-price {
+    -fx-font-size: 16px;
+    -fx-text-fill: #00ff88;
+}
+
+/* Button Buy */
+.tier-button {
+    -fx-background-color: #00ff88;
+    -fx-text-fill: #121212;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+
+    -fx-padding: 8 20;
+}
+
+.tier-button:hover {
+    -fx-background-color: #00cc6a;
+}
+
+.tier-button:disabled {
+    -fx-background-color: #333333;
+    -fx-text-fill: #777777;
+}
+
+/* Nút Cancel của Dialog */
+.dialog-pane .button-bar .button {
+    -fx-background-color: #222222;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+}
+
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: #333333;
+}
