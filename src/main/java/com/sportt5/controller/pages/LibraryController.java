@@ -1,18 +1,14 @@
 package com.sportt5.controller.pages;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;
 import com.sportt5.service.LibraryService;
 import com.sportt5.session.UserSession;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.List;
@@ -22,32 +18,37 @@ public class LibraryController {
     // Tabs
     @FXML private Label tabPlaylists, tabGenres, tabArtists, tabAlbums, tabDownloaded;
     // Views
-    @FXML private VBox playlistsView, genresView;
+    @FXML private VBox playlistsView, genresView, artistsView, albumsView;
     // Playlists view
     @FXML private StackPane likedBtn;
-    @FXML private Label playlistSongCount;
-    @FXML private Label playlistDuration;
-    @FXML private GridPane songListPlaylistTable;
-    @FXML private Label dateAdded;
-    @FXML private Label playlistEyebrow;
+    @FXML private Label favouritesCount;
+    @FXML private HBox playlistCardsBox;
     // Genres view
     @FXML private FlowPane genreChipsBox;
     @FXML private GridPane songListTable;
     @FXML private Label songCountLabel;
+    // Artists view
+    @FXML private ComboBox<String> artistComboBox;
+    @FXML private ImageView artistAvatarImg;
+    @FXML private Label artistNameLabel, artistFollowersLabel, artistSongsLabel, artistAlbumsLabel;
+    @FXML private GridPane artistSongTable;
+    // Albums view
+    @FXML private ComboBox<String> albumComboBox;
+    @FXML private ImageView albumCoverImg;
+    @FXML private Label albumTitleLabel, albumArtistLabel, albumYearLabel, albumSongsLabel, albumDurationLabel;
+    @FXML private GridPane albumSongTable;
+    // Recently Played
+    @FXML private GridPane playHistoryTable;
 
     private final LibraryService libraryService = new LibraryService();
-    private final ObjectMapper mapper = new ObjectMapper()
-            .registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
 
     @FXML
     public void initialize() {
         if (tabPlaylists != null) {
             tabPlaylists.setOnMouseClicked(e -> showTab(tabPlaylists, playlistsView));
             tabGenres.setOnMouseClicked(e -> showTab(tabGenres, genresView));
-            tabArtists.setOnMouseClicked(e -> showTab(tabArtists, null));
-            tabAlbums.setOnMouseClicked(e -> showTab(tabAlbums, null));
+            tabArtists.setOnMouseClicked(e -> showTab(tabArtists, artistsView));
+            tabAlbums.setOnMouseClicked(e -> showTab(tabAlbums, albumsView));
             tabDownloaded.setOnMouseClicked(e -> showTab(tabDownloaded, null));
         }
     }
@@ -59,6 +60,8 @@ public class LibraryController {
         activeTab.getStyleClass().setAll("library-tab-active");
         setVisible(playlistsView, false);
         setVisible(genresView, false);
+        setVisible(artistsView, false);
+        setVisible(albumsView, false);
         if (view != null) setVisible(view, true);
     }
 
@@ -68,33 +71,59 @@ public class LibraryController {
         node.setManaged(visible);
     }
 
+    public void loadPlayHistory() {
+        UserSession session = UserSession.getInstance();
+        if (session == null || session.getCurrentUserId() == -1) return;
+        if (playHistoryTable == null) return;
+
+        playHistoryTable.getChildren().removeIf(node ->
+                GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
+
+        new Thread(() -> {
+            try {
+                List<Songs> songs = libraryService.getPlayHistory();
+                Map<Integer, String> users = libraryService.getAllUsers();
+
+                Platform.runLater(() -> {
+                    for (int i = 0; i < songs.size(); i++) {
+                        addSongToTable(playHistoryTable, i + 1, songs.get(i), users);
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
     public void loadFavouritesSongs() {
         UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
 
+        if (favouritesCount != null) favouritesCount.setText("0 songs");
+
         new Thread(() -> {
             try {
+                List<Songs> favSongs = libraryService.getLikedSongs();
                 Map<Integer, String> users = libraryService.getAllUsers();
-                JsonNode favSongContent = libraryService.getLikedSongs();
 
                 Platform.runLater(() -> {
-                    if (favSongContent.isArray()) {
+                    if (favSongs != null) {
+                        if (favouritesCount != null) {
+                            favouritesCount.setText(favSongs.size() == 1
+                                    ? "1 song"
+                                    : favSongs.size() + " songs");
+                        }
                         likedBtn.setOnMouseClicked(e -> {
-                            dateAdded.setText("LIKED AT");
-                            songListPlaylistTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
+                            for (Label t : new Label[]{tabPlaylists, tabGenres, tabArtists, tabAlbums, tabDownloaded})
+                                t.getStyleClass().setAll("library-tab");
 
-                            int rowIdx = 0;
-                            for (JsonNode node : favSongContent) {
-                                try {
-                                    Songs song = mapper.treeToValue(node, Songs.class);
-                                    rowIdx ++;
-                                    String artistName = users.getOrDefault(song.getArtistId(), "Unknown");
-                                    String[] likedAt = node.get("likedAt").asText().split("T");
+                            setVisible(playlistsView, false);
+                            setVisible(genresView, true);
 
-                                    addSongToTable(songListPlaylistTable, rowIdx, song, artistName, likedAt[0]);
-                                } catch (JsonProcessingException ex) {
-                                    throw new RuntimeException(ex);
-                                }
+                            songListTable.getChildren().clear();
+
+                            for (int i = 0; i < favSongs.size(); i++) {
+                                addSongToTable(songListTable, i + 1, favSongs.get(i), users);
                             }
                         });
                     }
@@ -105,58 +134,27 @@ public class LibraryController {
         }).start();
     }
 
-    public void loadPlaylists() {
-        UserSession session = UserSession.getInstance();
-        if (session == null || session.getCurrentUserId() == -1) return;
-
-        new Thread(() -> {
-            try {
-                List<Playlists> playlists = libraryService.getUserPlaylists();
-
-                Platform.runLater(() -> {
-                    if (playlists != null) {
-                        playlistEyebrow.setOnMouseClicked(e -> {
-                            dateAdded.setText("DATE ADDED");
-                            songListPlaylistTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
-
-                        });
-                    }
-                });
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
-
-
-
-    private void addSongToTable(GridPane table, int index, Songs s, String artistName, String dateAdded) {
-        //Index
+    private void addSongToTable(GridPane table, int index, Songs s, Map<Integer, String> users) {
         Label lblIndex = new Label(String.format("%02d", index));
         lblIndex.getStyleClass().add("table-text");
-        //Title & Artist
+
         VBox titleBox = new VBox(2.0);
         Label lblTitle = new Label(s.getTitle());
-        Label lblArtist = new Label(artistName);
+        Label lblArtist = new Label(users.getOrDefault(s.getArtistId(), "Unknown"));
         lblTitle.getStyleClass().add("table-title");
         lblArtist.getStyleClass().add("table-artist");
         titleBox.getChildren().addAll(lblTitle, lblArtist);
-        //Date added /liked at
-        Label lblDate = new Label(dateAdded);
-        lblDate.getStyleClass().add("table-text");
-        //Duration
+
         int minutes = s.getDurationSeconds() / 60;
         int seconds = s.getDurationSeconds() % 60;
         Label lblDuration = new Label(String.format("%02dp%ds", minutes, seconds));
         lblDuration.getStyleClass().add("table-text");
-        //Action
+
         Label lblAction = new Label("•••");
         lblAction.getStyleClass().add("row-action");
 
         table.add(lblIndex, 0, index);
         table.add(titleBox, 1, index);
-        table.add(lblDate, 3, index);
         table.add(lblDuration, 4, index);
         table.add(lblAction, 5, index);
     }
