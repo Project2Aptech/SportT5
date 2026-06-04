@@ -23,7 +23,7 @@
                 <Label text="Review and approve submitted tracks before they go live." styleClass="admin-subtitle" />
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
-            <Button text="Approve All" styleClass="upload-button" />
+            <Button onAction="#sortSongLive" text="SORT All" styleClass="upload-button" />
         </HBox>
     <VBox spacing="12.0" styleClass="admin-panel">
         <GridPane fx:id="tableGrid"

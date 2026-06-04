@@ -96,18 +96,24 @@ public class AdminDashboardController {
                             DateTimeFormatter.ofPattern("dd/MM/yyyy")
                     )
             );
+            String active = user.isActive() ? "ACTIVE" : "INACTIVE";
+            Label activeLabel = new Label(active);
 
-            Label actionLabel = new Label("•••");
+            activeLabel.getStyleClass().add(
+                    user.isActive()
+                            ? "status-active"
+                            : "status-inactive"
+            );
+
 
             emailLabel.getStyleClass().add("table-text");
             joinedLabel.getStyleClass().add("table-text");
-            actionLabel.getStyleClass().add("row-action");
 
             userGridDashboard.add(nameBox, 0, row);
             userGridDashboard.add(emailLabel, 1, row);
-            userGridDashboard.add(planLabel, 2, row);
-            userGridDashboard.add(joinedLabel, 3, row);
-            userGridDashboard.add(actionLabel, 4, row);
+            userGridDashboard.add(activeLabel, 2, row);
+            userGridDashboard.add(planLabel, 3, row);
+            userGridDashboard.add(joinedLabel, 4, row);
 
             row++;
         }
