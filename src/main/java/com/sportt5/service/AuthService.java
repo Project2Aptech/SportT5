@@ -25,6 +25,34 @@ public class AuthService {
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
+
+    public HttpResponse<String> forgotPassword(String email) throws IOException, InterruptedException {
+        String endpoint = "auth/forgot-password";
+        String jsonPayload = String.format("""
+            {
+                "email":"%s"
+            }
+            """, email);
+        System.out.println(jsonPayload);
+        HttpResponse<String> response = ApiClient.post(endpoint,jsonPayload);
+        System.out.println(response.body());
+        return response;
+    }
+
+    public boolean resetPassword(String token,String password) throws IOException, InterruptedException {
+        String endpoint = "auth/reset-password";
+        String jsonPayload = String.format("""
+            {
+                "token":"%s",
+                "newPassword":"%s"
+            }
+            """, token, password);
+
+        HttpResponse<String> response = ApiClient.post(endpoint,jsonPayload);
+        return response.statusCode() == 204;
+    }
+
+
     public String paymentPlan(String planType, int userId)
             throws IOException, InterruptedException {
 

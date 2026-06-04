@@ -36,7 +36,7 @@
             <HBox alignment="CENTER_LEFT">
                 <Label text="PASSWORD" styleClass="field-label" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button text="Forgot Password?" styleClass="link-button" />
+                <Button onAction="#handleForgotPassword" text="Forgot Password?" styleClass="link-button" />
             </HBox>
             <PasswordField fx:id="loginPasswordField" promptText="••••••••" styleClass="auth-input" />
         </VBox>

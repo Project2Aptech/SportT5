@@ -19,7 +19,6 @@ public class AdminEditUserController {
     private final AdminService adminService = new AdminService();
     private int userId;
 
-
     @FXML
     public void initialize()
     {
