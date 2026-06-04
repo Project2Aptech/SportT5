@@ -127,6 +127,14 @@
     -fx-background-color: -c-bg-card;
 }
 
+.lib-combo .combo-box-popup .list-view .scroll-bar:vertical {
+    -fx-width: 0;
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-opacity: 0;
+}
+
 /* Playlist horizontal scroll - ẩn thanh trượt */
 .playlist-h-scroll {
     -fx-background-color: transparent;
