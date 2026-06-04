@@ -2,6 +2,7 @@ package com.sportt5.controller;
 
 import com.sportt5.model.AuthResponse;
 import com.sportt5.service.AuthService;
+import com.sportt5.session.TokenStorage;
 import com.sportt5.session.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,9 +24,11 @@ public class AuthController {
     @FXML
     private PasswordField loginPasswordField;
     @FXML
-    private CheckBox rememberMeCheckbox;
-    @FXML
     private Label loginStatusLabel;
+    @FXML
+    private CheckBox rememberCheck;
+
+    private boolean rememberDevice = false;
 
     @FXML private TextField signupNameField;
     @FXML private TextField signupEmailField;
@@ -36,6 +39,15 @@ public class AuthController {
 
     @FXML
     public void initialize() {
+    }
+    @FXML
+    private void rememberUser() {
+        rememberDevice = rememberCheck.isSelected();
+    }
+    private void handleLoginSuccess(String token) {
+        if (rememberDevice) {
+            TokenStorage.saveToken(token);
+        }
     }
     @FXML
     private void handleForgotPassword() {
@@ -134,6 +146,7 @@ public class AuthController {
                 javafx.application.Platform.runLater(()->{
                     UserSession.startSession(response.getToken(), response.getUser());
                     loginStatusLabel.setText("Login success!");
+                    handleLoginSuccess(response.getToken());
                     switchToMainScene(stage);
                 });
             }catch (Exception e){
