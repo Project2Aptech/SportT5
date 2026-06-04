@@ -4,6 +4,7 @@ import com.sportt5.model.Users;
 import com.sportt5.service.AuthService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -20,10 +21,11 @@ public class EditProfileController {
     @FXML private TextField avatarUrlField;
     @FXML private TextArea bioArea;
     @FXML private DatePicker birthDatePicker;
-    @FXML private ImageView avatarPreview;
-
+    @FXML private ImageView avatarImageView;
     @FXML private PasswordField editPasswordField;
     @FXML private PasswordField editConfirmPasswordField;
+
+    private String selectedAvatarUrl;
 
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
@@ -35,7 +37,17 @@ public class EditProfileController {
 
         displayNameField.setText(user.getDisplayName());
         emailField.setText(user.getEmail());
-        avatarUrlField.setText(user.getAvatarUrl() != null ? user.getAvatarUrl() : "");
+
+        String avatarUrl = user.getAvatarUrl();
+
+        if (avatarUrl != null && !avatarUrl.isBlank()) {
+            selectedAvatarUrl = avatarUrl;
+            avatarImageView.setImage(new Image(avatarUrl, true));
+        } else {
+            avatarImageView.setImage(
+                    new Image(getClass().getResource("/com.sportt5/img/avatar.png").toExternalForm())
+            );
+        }
         bioArea.setText(user.getBio());
         birthDatePicker.setValue(user.getBirthDate());
 
@@ -54,7 +66,7 @@ public class EditProfileController {
 
         File selectedFile =
                 fileChooser.showOpenDialog(
-                        avatarUrlField.getScene().getWindow()
+                        avatarImageView.getScene().getWindow()
                 );
 
         if (selectedFile == null) {
@@ -63,10 +75,10 @@ public class EditProfileController {
 
         try {
             AuthService authService = new AuthService();
-            String avatarUrl =
-                    authService.updateAvatar(selectedFile);
+            String avatarUrl = authService.updateAvatar(selectedFile);
             if (avatarUrl != null) {
-                avatarUrlField.setText(avatarUrl);
+                selectedAvatarUrl = avatarUrl;
+                avatarImageView.setImage(new Image(avatarUrl, true));
             }
 
         } catch (Exception e) {
@@ -78,7 +90,10 @@ public class EditProfileController {
         Map<String, Object> updates  = new HashMap<>();
         updates.put("displayName", displayNameField.getText());
         updates.put("bio", bioArea.getText());
-        updates.put("avatarUrl", avatarUrlField.getText());
+        if (selectedAvatarUrl != null) {
+            updates.put("avatarUrl", selectedAvatarUrl);
+        }
+
         updates.put("birthDate", birthDatePicker.getValue());
 
         AuthService authService = new AuthService();
