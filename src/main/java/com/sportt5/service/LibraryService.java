@@ -62,7 +62,17 @@ public class LibraryService {
     }
 
     public List<Songs> getSongByGenre(int id) throws IOException, InterruptedException {
-        List<Songs> songs = getResponseWithoutToken(String.format("songs/genre/%d", id), Songs.class);
+        List<Songs> songs = getResponseWithoutToken(String.format("songs/filter?genreIds=%d", id), Songs.class);
+        if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
+        return songs;
+    }
+
+    public Albums getAlbumDetails(int id) throws IOException, InterruptedException {
+        return getResponseWithoutToken3(String.format("albums/%d", id), Albums.class);
+    }
+
+    public List<Songs> getSongByAlbum(int id) throws IOException, InterruptedException {
+        List<Songs> songs = getResponseWithoutToken(String.format("songs/album/%d", id), Songs.class);
         if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
         return songs;
     }
@@ -149,6 +159,13 @@ public class LibraryService {
             JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, c);
             return mapper.readValue(response.body(), type);
         }
+        throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
+    }
+
+    private <T> T getResponseWithoutToken3(String s, Class<T> c) throws IOException, InterruptedException {
+        //For a single object {}
+        HttpResponse<String> response = ApiClient.get(s);
+        if (response.statusCode() == 200) return mapper.readValue(response.body(), c);
         throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
     }
 }

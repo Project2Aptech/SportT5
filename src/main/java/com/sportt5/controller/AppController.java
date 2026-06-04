@@ -81,6 +81,7 @@ public class AppController {
             libraryPageController.loadPlaylists();
             libraryPageController.loadFavouritesSongs();
             libraryPageController.filterGenres();
+            libraryPageController.filterAlbums();
         }
     }
     @FXML public void showPlaylistPage() {

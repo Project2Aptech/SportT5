@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sportt5.model.Albums;
 import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;
 import com.sportt5.service.LibraryService;
@@ -18,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class LibraryController {
     @FXML private Label artistNameLabel, artistFollowersLabel, artistSongsLabel, artistAlbumsLabel;
     @FXML private GridPane artistSongTable;
     // Albums view
-    @FXML private ComboBox<String> albumComboBox;
+    @FXML private ComboBox<Albums> albumComboBox;
     @FXML private ImageView albumCoverImg;
     @FXML private Label albumTitleLabel, albumArtistLabel, albumYearLabel, albumSongsLabel, albumDurationLabel;
     @FXML private GridPane albumSongTable;
@@ -60,6 +62,8 @@ public class LibraryController {
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    //User session
+    private final UserSession session = UserSession.getInstance();
 
     public LibraryController() throws IOException, InterruptedException {}
 
@@ -93,7 +97,6 @@ public class LibraryController {
     }
 
     public void loadFavouritesSongs() {
-        UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
 
         new Thread(() -> {
@@ -135,7 +138,6 @@ public class LibraryController {
     }
 
     public void loadPlaylists() {
-        UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
 
         new Thread(() -> {
@@ -197,7 +199,6 @@ public class LibraryController {
     }
 
     public void filterGenres() {
-        UserSession session = UserSession.getInstance();
         if (session == null || session.getCurrentUserId() == -1) return;
 
         new Thread(() -> {
@@ -240,17 +241,93 @@ public class LibraryController {
         }).start();
     }
 
+
+    public void filterAlbums() {
+        if (session == null || session.getCurrentUserId() == -1) return;
+
+        new Thread(() -> {
+            try {
+                List<Albums> albums = libraryService.getAllAlbums();
+
+                Platform.runLater(() -> {
+                    if (!albums.isEmpty()) {
+                        albumComboBox.getItems().addAll(albums);
+                        //Set items name
+                        albumComboBox.setConverter(new StringConverter<Albums>() {
+                            @Override
+                            public String toString(Albums object) {
+                                return (object == null) ? "Unknown" : object.getTitle();
+                            }
+
+                            @Override
+                            public Albums fromString(String string) {
+                                return null;
+                            }
+                        });
+                        //Set action
+                        albumComboBox.setOnAction(e -> {
+                            Albums selected = albumComboBox.getSelectionModel().getSelectedItem();
+                            if (selected != null) {
+                                try {
+                                    Albums selectedDetails = libraryService.getAlbumDetails(selected.getId());
+                                    List<Songs> songs = libraryService.getSongByAlbum(selected.getId());
+                                    //Cover img
+                                    Image coverImg = new Image(ApiClient.resolveUrl(selectedDetails.getCoverUrl()), true);
+                                    albumCoverImg.setImage(coverImg);
+                                    //Title
+                                    albumTitleLabel.setText(selectedDetails.getTitle());
+                                    //Artist
+                                    albumArtistLabel.setText("Artist: " + selectedDetails.getArtistName());
+                                    //Year
+                                    albumYearLabel.setText(String.format("Year: %d", selectedDetails.getReleaseDate().getYear()));
+                                    //Songs
+                                    albumSongsLabel.setText(String.format("Songs: %02d", songs.size()));
+                                    //Duration
+                                    int duration = songs.stream().mapToInt(Songs::getDurationSeconds).sum();
+                                    int hours = duration / 3600;
+                                    int minutes = (duration - hours * 3600) / 60;
+                                    int seconds = duration - hours * 3600 - minutes * 60;
+                                    if (hours == 0) albumDurationLabel.setText(String.format("Duration: %02dp%02ds", minutes, seconds));
+                                    else albumDurationLabel.setText(String.format("Duration: %dh%02dp%02ds", hours, minutes, seconds));
+                                    //Table
+                                    albumSongTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
+                                    int rowIdx = 0;
+                                    for (Songs s : songs) {
+                                        rowIdx++;
+                                        addSongToTable(albumSongTable, rowIdx, s, "", selectedDetails.getArtistName(), "");
+                                    }
+
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
     private void addSongToTable(GridPane table, int index, Songs s, String artistName,String albumName, String dateAdded) {
         //Index
         Label lblIndex = new Label(String.format("%02d", index));
         lblIndex.getStyleClass().add("table-text");
         //Title & Artist
-        VBox titleBox = new VBox(2.0);
-        Label lblTitle = new Label(s.getTitle());
-        Label lblArtist = new Label(artistName);
-        lblTitle.getStyleClass().add("table-title");
-        lblArtist.getStyleClass().add("table-artist");
-        titleBox.getChildren().addAll(lblTitle, lblArtist);
+        if (artistName.isEmpty()) {
+            Label lblTitle = new Label(s.getTitle());
+            lblTitle.getStyleClass().add("table-title");
+            table.add(lblTitle, 1, index);
+        } else {
+            VBox titleBox = new VBox(2.0);
+            Label lblTitle = new Label(s.getTitle());
+            Label lblArtist = new Label(artistName);
+            lblTitle.getStyleClass().add("table-title");
+            lblArtist.getStyleClass().add("table-artist");
+            titleBox.getChildren().addAll(lblTitle, lblArtist);
+            table.add(titleBox, 1, index);
+        }
         //Album
         Label lblAlbum = new Label(albumName);
         lblAlbum.getStyleClass().add("table-text");
@@ -267,7 +344,6 @@ public class LibraryController {
         lblAction.getStyleClass().add("row-action");
 
         table.add(lblIndex, 0, index);
-        table.add(titleBox, 1, index);
         table.add(lblAlbum, 2, index);
         table.add(lblDate, 3, index);
         table.add(lblDuration, 4, index);
