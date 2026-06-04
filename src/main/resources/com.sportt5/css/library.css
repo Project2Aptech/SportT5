@@ -35,12 +35,12 @@
         radial-gradient(center 80% 85%, radius 70%, rgba(125,218,131,0.45), transparent 55%),
         linear-gradient(to bottom right, #04ce60, #146b3c);
     -fx-background-radius: 7.5;
-    -fx-padding: 7.5;
+    -fx-padding: 7.5 7.5 7.5 15;
 }
 
 .liked-heart {
     -fx-text-fill: #f6fff8;
-    -fx-font-size: 48px;
+    -fx-font-size: 45px;
     -fx-font-weight: 900;
 }
 
@@ -127,6 +127,14 @@
     -fx-background-color: -c-bg-card;
 }
 
+.lib-combo .combo-box-popup .list-view .scroll-bar:vertical {
+    -fx-width: 0;
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-opacity: 0;
+}
+
 /* Playlist horizontal scroll - ẩn thanh trượt */
 .playlist-h-scroll {
     -fx-background-color: transparent;
@@ -172,7 +180,7 @@
 
 .lib-playlist-name {
     -fx-text-fill: white;
-    -fx-font-size: 11px;
+    -fx-font-size: 10px;
     -fx-font-weight: 900;
 }
 
@@ -191,11 +199,6 @@
 
 .playlist-art {
     -fx-background-radius: 7;
-}
-
-.playlist-art .label {
-    -fx-font-size: 32px;
-    -fx-font-weight: 900;
 }
 
 .art-green {

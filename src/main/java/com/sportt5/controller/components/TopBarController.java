@@ -9,7 +9,6 @@ public class TopBarController {
 
     @FXML private StackPane homeHero;
     @FXML private HBox libraryTopBar;
-    @FXML private HBox playlistTopBar;
     @FXML private HBox accountTopBar;
     @FXML private HBox artistTopBar;
     @FXML private HBox adminTopBar;
@@ -23,10 +22,9 @@ public class TopBarController {
     @FXML
     public void initialize() {}
 
-    public StackPane getHomeHero()    { return homeHero; }
-    public HBox getLibraryTopBar()    { return libraryTopBar; }
-    public HBox getPlaylistTopBar()    { return playlistTopBar; }
-    public HBox getAccountTopBar()    { return accountTopBar; }
-    public HBox getArtistTopBar()     { return artistTopBar; }
-    public HBox getAdminTopBar()      { return adminTopBar; }
+    public StackPane getHomeHero()  { return homeHero; }
+    public HBox getLibraryTopBar()  { return libraryTopBar; }
+    public HBox getAccountTopBar()  { return accountTopBar; }
+    public HBox getArtistTopBar()   { return artistTopBar; }
+    public HBox getAdminTopBar()    { return adminTopBar; }
 }

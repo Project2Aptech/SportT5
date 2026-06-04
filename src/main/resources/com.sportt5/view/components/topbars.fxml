@@ -24,11 +24,7 @@
         <TextField promptText="Search in library..." prefWidth="320.0" maxWidth="320.0" styleClass="store-search" />
         <Region HBox.hgrow="ALWAYS" />
     </HBox>
-    <HBox fx:id="playlistTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
-        <TextField promptText="Search for tracks, artists..." prefWidth="720.0" maxWidth="720.0" styleClass="store-search" />
-        <Region HBox.hgrow="ALWAYS" />
-    </HBox>
-    <HBox fx:id="accountTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
+<HBox fx:id="accountTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
         <TextField promptText="Search artists, songs, podcasts..." prefWidth="360.0" maxWidth="360.0" styleClass="store-search" />
         <Region HBox.hgrow="ALWAYS" />
     </HBox>

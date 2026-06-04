@@ -15,7 +15,7 @@
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sportt5.controller.pages.LibraryController"
             visible="false" managed="false"
-            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" styleClass="home-scroll">
     <VBox spacing="24.0" styleClass="library-body">
         <Label text="My Library" styleClass="library-heading" />
 
@@ -33,7 +33,7 @@
             <HBox spacing="22.0">
                 <StackPane fx:id="likedBtn" prefWidth="250.0" prefHeight="165.0"
                            minHeight="165.0" maxHeight="165.0" styleClass="liked-card">
-                    <VBox alignment="CENTER_LEFT" spacing="8.0" StackPane.alignment="CENTER_LEFT">
+                    <VBox alignment="CENTER_LEFT" spacing="4.0" StackPane.alignment="CENTER_LEFT">
                         <Label text="♥" styleClass="liked-heart" />
                         <Label text="Liked Songs" styleClass="liked-title" />
                         <Label fx:id="favouritesCount" text="0 songs" styleClass="liked-count" />
@@ -43,47 +43,16 @@
                     <HBox alignment="CENTER_LEFT">
                         <Label text="Your Playlists" styleClass="store-section-title" />
                     </HBox>
-                    <ScrollPane styleClass="playlist-h-scroll" hbarPolicy="AS_NEEDED" vbarPolicy="NEVER"
-                                fitToHeight="true" fitToWidth="false" pannable="true">
-                        <HBox fx:id="playlistCardsBox" spacing="14.0" style="-fx-padding: 2 2 6 2;">
-                            <StackPane styleClass="lib-playlist-card playlist-art art-green" prefWidth="130.0" prefHeight="130.0">
-                                <Label text="♪" styleClass="playlist-art-icon" />
-                                <VBox alignment="BOTTOM_LEFT" styleClass="lib-playlist-name-overlay">
-                                    <Label text="Playlist 1" styleClass="lib-playlist-name" wrapText="true" />
-                                </VBox>
-                            </StackPane>
-                            <StackPane styleClass="lib-playlist-card playlist-art art-green" prefWidth="130.0" prefHeight="130.0">
-                                <Label text="♫" styleClass="playlist-art-icon" />
-                                <VBox alignment="BOTTOM_LEFT" styleClass="lib-playlist-name-overlay">
-                                    <Label text="Playlist 2" styleClass="lib-playlist-name" wrapText="true" />
-                                </VBox>
-                            </StackPane>
-                            <StackPane styleClass="lib-playlist-card playlist-art art-green" prefWidth="130.0" prefHeight="130.0">
-                                <Label text="♬" styleClass="playlist-art-icon" />
-                                <VBox alignment="BOTTOM_LEFT" styleClass="lib-playlist-name-overlay">
-                                    <Label text="Playlist 3" styleClass="lib-playlist-name" wrapText="true" />
-                                </VBox>
-                            </StackPane>
-                            <StackPane styleClass="lib-playlist-card playlist-art art-green" prefWidth="130.0" prefHeight="130.0">
-                                <Label text="♩" styleClass="playlist-art-icon" />
-                                <VBox alignment="BOTTOM_LEFT" styleClass="lib-playlist-name-overlay">
-                                    <Label text="Playlist 4" styleClass="lib-playlist-name" wrapText="true" />
-                                </VBox>
-                            </StackPane>
-                            <StackPane styleClass="lib-playlist-card playlist-art art-green" prefWidth="130.0" prefHeight="130.0">
-                                <Label text="♩" styleClass="playlist-art-icon" />
-                                <VBox alignment="BOTTOM_LEFT" styleClass="lib-playlist-name-overlay">
-                                    <Label text="Playlist 5" styleClass="lib-playlist-name" wrapText="true" />
-                                </VBox>
-                            </StackPane>
-                        </HBox>
+                    <ScrollPane styleClass="playlist-h-scroll" hbarPolicy="NEVER" vbarPolicy="NEVER"
+                                fitToHeight="true" pannable="true">
+                        <HBox fx:id="playlistCardsBox" spacing="14.0" style="-fx-padding: 2 2 6 2;"/>
                     </ScrollPane>
                 </VBox>
             </HBox>
 
             <VBox spacing="14.0">
-                <Label text="Recently Played" styleClass="store-section-title" />
-                <GridPane fx:id="playHistoryTable" hgap="18.0" vgap="15.0" styleClass="recent-table">
+                <Label fx:id="playlistSongsTitle" text="Playlist's Songs" styleClass="store-section-title" />
+                <GridPane fx:id="playlistSongsTable" hgap="18.0" vgap="15.0" styleClass="recent-table">
                     <columnConstraints>
                         <ColumnConstraints percentWidth="8.0" />
                         <ColumnConstraints percentWidth="28.0" />
@@ -95,7 +64,7 @@
                     <Label text="#"          GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
                     <Label text="TITLE"      GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
                     <Label text="ALBUM"      GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
-                    <Label text="DATE ADDED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                    <Label text="DATE ADDED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" fx:id="dateAdded"/>
                     <Label text="DURATION"   GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
                     <Label text="ACTIONS"    GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="table-head" />
                 </GridPane>
@@ -104,24 +73,11 @@
 
         <!-- === GENRES VIEW === -->
         <VBox fx:id="genresView" visible="false" managed="false" spacing="18.0">
+            <FlowPane fx:id="genreChipsBox" hgap="10.0" vgap="10.0"/>
             <HBox alignment="CENTER_LEFT">
                 <Region HBox.hgrow="ALWAYS" />
-                <Label fx:id="songCountLabel" text="" styleClass="table-text" />
+                <Label fx:id="songCountLabel" styleClass="table-text" />
             </HBox>
-            <FlowPane fx:id="genreChipsBox" hgap="10.0" vgap="10.0">
-                <Label text="Pop"          styleClass="genre-chip" />
-                <Label text="Rock"         styleClass="genre-chip" />
-                <Label text="Hip Hop"      styleClass="genre-chip" />
-                <Label text="Electronic"   styleClass="genre-chip" />
-                <Label text="Jazz"         styleClass="genre-chip" />
-                <Label text="Classical"    styleClass="genre-chip" />
-                <Label text="R&amp;B"      styleClass="genre-chip" />
-                <Label text="Country"      styleClass="genre-chip" />
-                <Label text="Metal"        styleClass="genre-chip" />
-                <Label text="Indie"        styleClass="genre-chip" />
-                <Label text="Lo-fi"        styleClass="genre-chip" />
-                <Label text="Soul"         styleClass="genre-chip" />
-            </FlowPane>
             <GridPane fx:id="songListTable" hgap="18.0" vgap="15.0" styleClass="recent-table">
                 <columnConstraints>
                     <ColumnConstraints percentWidth="8.0" />
