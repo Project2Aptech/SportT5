@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sportt5.model.Albums;
 import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;
+import com.sportt5.model.Users;
 import com.sportt5.service.LibraryService;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
@@ -22,9 +23,7 @@ import javafx.scene.layout.*;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static javafx.geometry.Pos.BOTTOM_LEFT;
 
@@ -45,7 +44,7 @@ public class LibraryController {
     @FXML private GridPane songListTable;
     @FXML private Label songCountLabel;
     // Artists view
-    @FXML private ComboBox<String> artistComboBox;
+    @FXML private ComboBox<Users> artistComboBox;
     @FXML private ImageView artistAvatarImg;
     @FXML private Label artistNameLabel, artistFollowersLabel, artistSongsLabel, artistAlbumsLabel;
     @FXML private GridPane artistSongTable;
@@ -64,6 +63,8 @@ public class LibraryController {
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     //User session
     private final UserSession session = UserSession.getInstance();
+    //Others
+    private final Set<Integer> selectedGenreIds = new HashSet<>();
 
     public LibraryController() throws IOException, InterruptedException {}
 
@@ -96,6 +97,17 @@ public class LibraryController {
         node.setManaged(visible);
     }
 
+    public void clearAllBox() {
+        playlistCardsBox.getChildren().clear();
+        playlistSongsTable.getChildren().removeIf(n -> GridPane.getRowIndex(n) != null && GridPane.getRowIndex(n) > 0);
+        genreChipsBox.getChildren().clear();
+        songListTable.getChildren().removeIf(n -> GridPane.getRowIndex(n) != null && GridPane.getRowIndex(n) > 0);
+        artistComboBox.getItems().clear();
+        artistSongTable.getChildren().removeIf(n -> GridPane.getRowIndex(n) != null && GridPane.getRowIndex(n) > 0);
+        albumComboBox.getItems().clear();
+        albumSongTable.getChildren().removeIf(n -> GridPane.getRowIndex(n) != null && GridPane.getRowIndex(n) > 0);
+    }
+    //════════════════════Playlists View════════════════════
     public void loadFavouritesSongs() {
         if (session == null || session.getCurrentUserId() == -1) return;
 
@@ -197,7 +209,7 @@ public class LibraryController {
             }
         }).start();
     }
-
+    //════════════════════Genres view════════════════════
     public void filterGenres() {
         if (session == null || session.getCurrentUserId() == -1) return;
 
@@ -210,9 +222,18 @@ public class LibraryController {
                         for (Integer i : genres) {
                             Label genreName = new Label(genresMap.get(i));
                             genreName.getStyleClass().add("genre-chip");
+                            final int currId = i;
                             genreName.setOnMouseClicked(e -> {
                                 try {
-                                    List<Songs> songs = libraryService.getSongByGenre(i);
+                                    if(selectedGenreIds.contains(currId)) {
+                                        selectedGenreIds.remove(currId);
+                                        genreName.getStyleClass().remove("genre-chip-active");
+                                    } else {
+                                        selectedGenreIds.add(currId);
+                                        genreName.getStyleClass().add("genre-chip-active");
+                                    }
+
+                                    List<Songs> songs = libraryService.getSongByGenre(selectedGenreIds, true);
 
                                     if (songs.isEmpty()) songCountLabel.setText("0 songs");
                                     else songCountLabel.setText(songs.size() == 1 ? "01 song" : String.format("%02d songs", songs.size()));
@@ -240,8 +261,69 @@ public class LibraryController {
             }
         }).start();
     }
+    //════════════════════Artists view════════════════════
+    public void filterArtist() {
+        if (session == null || session.getCurrentUserId() == -1) return;
 
+        new Thread(() -> {
+            try {
+                List<Users> artists = libraryService.getAllArtists();
 
+                Platform.runLater(() -> {
+                    if (!artists.isEmpty()) {
+                        artistComboBox.getItems().addAll(artists);
+                        //Set items name
+                        artistComboBox.setConverter(new StringConverter<Users>() {
+                            @Override
+                            public String toString(Users object) {
+                                return (object == null) ? "Unknown" : object.getDisplayName();
+                            }
+
+                            @Override
+                            public Users fromString(String string) {
+                                return null;
+                            }
+                        });
+                        //Set action
+                        artistComboBox.setOnAction(e -> {
+                            Users selected = artistComboBox.getSelectionModel().getSelectedItem();
+                            if (selected != null) {
+                                try {
+                                    int followersCount = libraryService.getArtistFollowersCount(selected.getId());
+                                    int albumsCount = libraryService.getArtistAlbumsCount(selected.getId());
+                                    List<Songs> songs = libraryService.getSongByArtist(selected.getId());
+                                    //Avatar img
+                                    artistAvatarImg.setImage(new Image(ApiClient.resolveUrl(selected.getAvatarUrl()), true));
+                                    //Name
+                                    artistNameLabel.setText(selected.getDisplayName());
+                                    //Followers count
+                                    artistFollowersLabel.setText(String.format("Followers: %d", followersCount));
+                                    //Songs
+                                    artistSongsLabel.setText(String.format("Songs: %02d", songs.size()));
+                                    //Albums
+                                    artistAlbumsLabel.setText(String.format("Albums: %02d", albumsCount));
+                                    //Table
+                                    artistSongTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
+                                    int rowIdx = 0;
+                                    for (Songs s : songs) {
+                                        rowIdx++;
+                                        String albumName = albumsMap.getOrDefault(s.getAlbumId(), "Unknown");
+                                        addSongToTable(artistSongTable, rowIdx, s, "", albumName, "");
+                                    }
+
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+    //════════════════════Albums view════════════════════
     public void filterAlbums() {
         if (session == null || session.getCurrentUserId() == -1) return;
 
@@ -272,8 +354,7 @@ public class LibraryController {
                                     Albums selectedDetails = libraryService.getAlbumDetails(selected.getId());
                                     List<Songs> songs = libraryService.getSongByAlbum(selected.getId());
                                     //Cover img
-                                    Image coverImg = new Image(ApiClient.resolveUrl(selectedDetails.getCoverUrl()), true);
-                                    albumCoverImg.setImage(coverImg);
+                                    albumCoverImg.setImage(new Image(ApiClient.resolveUrl(selectedDetails.getCoverUrl()), true));
                                     //Title
                                     albumTitleLabel.setText(selectedDetails.getTitle());
                                     //Artist
@@ -309,8 +390,8 @@ public class LibraryController {
             }
         }).start();
     }
-
-    private void addSongToTable(GridPane table, int index, Songs s, String artistName,String albumName, String dateAdded) {
+    //════════════════════Private methods════════════════════
+    private void addSongToTable(GridPane table, int index, Songs s, String artistName, String albumName, String dateAdded) {
         //Index
         Label lblIndex = new Label(String.format("%02d", index));
         lblIndex.getStyleClass().add("table-text");
