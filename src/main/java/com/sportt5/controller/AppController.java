@@ -76,13 +76,15 @@ public class AppController {
         showPage(homePage, topBarController.getHomeHero(), sidebarController.getHomeNavItem());
     }
     @FXML public void showLibraryPage() {
-        showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryItem());
         if (libraryPageController != null) {
+            libraryPageController.clearAllBox();
             libraryPageController.loadPlaylists();
             libraryPageController.loadFavouritesSongs();
             libraryPageController.filterGenres();
             libraryPageController.filterAlbums();
+            libraryPageController.filterArtist();
         }
+        showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryItem());
     }
     @FXML public void showPlaylistPage() {
         if (playlistPageController != null) playlistPageController.loadUserPlaylists();

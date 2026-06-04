@@ -13,9 +13,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LibraryService {
@@ -61,8 +61,12 @@ public class LibraryService {
         return songs;
     }
 
-    public List<Songs> getSongByGenre(int id) throws IOException, InterruptedException {
-        List<Songs> songs = getResponseWithoutToken(String.format("songs/filter?genreIds=%d", id), Songs.class);
+    public List<Songs> getSongByGenre(Set<Integer> genreIds, boolean matchAll) throws IOException, InterruptedException {
+        String idsParam = genreIds.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+        if (idsParam.isEmpty()) return java.util.Collections.emptyList();
+        List<Songs> songs = getResponseWithoutToken(String.format("songs/filter?genreIds=%s&matchAll=%b",idsParam, matchAll), Songs.class);
         if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
         return songs;
     }
@@ -75,6 +79,28 @@ public class LibraryService {
         List<Songs> songs = getResponseWithoutToken(String.format("songs/album/%d", id), Songs.class);
         if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
         return songs;
+    }
+
+    public List<Users> getAllArtists() throws IOException, InterruptedException {
+        List<Users> artists = getResponseWithoutToken("users/role/ARTIST", Users.class);
+        if (artists == null || artists.isEmpty()) return java.util.Collections.emptyList();
+        return artists;
+    }
+
+    public int getArtistFollowersCount(int id) throws IOException, InterruptedException {
+        return getResponseWithoutToken3(String.format("artists/%d/followers/count", id), Integer.class);
+    }
+
+    public List<Songs> getSongByArtist(int id) throws IOException, InterruptedException {
+        List<Songs> songs = getResponseWithoutToken(String.format("songs/artist/%d", id), Songs.class);
+        if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
+        return songs;
+    }
+
+    public int getArtistAlbumsCount(int id) throws IOException, InterruptedException {
+        List<Albums> albums = getResponseWithoutToken(String.format("albums/artist/%d", id), Albums.class);
+        if (albums == null || albums.isEmpty()) return 0;
+        return albums.size();
     }
 
     //════════════════════Supporting methods to get song details════════════════════
@@ -111,12 +137,6 @@ public class LibraryService {
                 ));
     }
 
-    public List<Songs> getAllSongs() throws IOException, InterruptedException {
-        List<Songs> songs = getResponseWithoutToken("songs", Songs.class);
-        if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
-        return songs;
-    }
-
     public List<Albums> getAllAlbums() throws IOException, InterruptedException {
         List<Albums> albums = getResponseWithoutToken("albums", Albums.class);
         if (albums == null || albums.isEmpty()) return java.util.Collections.emptyList();
@@ -126,8 +146,8 @@ public class LibraryService {
     //════════════════════Private methods to get API response════════════════════
     private <T> List<T> getResponseWithToken(HttpRequest request, Class<T> c) throws IOException, InterruptedException {
         HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Status = " + response.statusCode());
-        System.out.println("Body   = " + response.body());
+//        System.out.println("Status = " + response.statusCode());
+//        System.out.println("Body   = " + response.body());
 
         if (response.statusCode() == 200) {
             JavaType type = mapper.getTypeFactory().constructParametricType(PageResponse.class, c);
@@ -140,8 +160,6 @@ public class LibraryService {
     private <T> List<T> getResponseWithoutToken(String s, Class<T> c) throws IOException, InterruptedException {
         //For objects {}
         HttpResponse<String> response = ApiClient.get(s);
-//        System.out.println("Status = " + response.statusCode());
-//        System.out.println("Body   = " + response.body());
         if (response.statusCode() == 200) {
             JavaType type = mapper.getTypeFactory().constructParametricType(PageResponse.class, c);
             PageResponse<T> page = mapper.readValue(response.body(), type);
@@ -153,8 +171,6 @@ public class LibraryService {
     private <T> List<T> getResponseWithoutToken2(String s, Class<T> c) throws IOException, InterruptedException {
         //For arrays []
         HttpResponse<String> response = ApiClient.get(s);
-//        System.out.println("Status = " + response.statusCode());
-//        System.out.println("Body   = " + response.body());
         if (response.statusCode() == 200) {
             JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, c);
             return mapper.readValue(response.body(), type);
