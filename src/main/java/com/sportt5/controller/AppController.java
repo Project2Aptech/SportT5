@@ -4,7 +4,6 @@ import com.sportt5.controller.components.SidebarController;
 import com.sportt5.controller.components.TopBarController;
 import com.sportt5.controller.pages.HomeController;
 import com.sportt5.controller.pages.LibraryController;
-import com.sportt5.controller.pages.PlaylistController;
 import com.sportt5.util.ThemeManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -25,8 +24,7 @@ public class AppController {
     // ── Pages – home ─────────────────────────────────────────────────────────
     @FXML private ScrollPane homePage;
     @FXML private ScrollPane libraryPage;
-    @FXML private ScrollPane playlistPage;
-    @FXML private ScrollPane accountPage;
+@FXML private ScrollPane accountPage;
 
     // ── Pages – artist ───────────────────────────────────────────────────────
     @FXML private ScrollPane artistDashBoardPage;
@@ -50,8 +48,7 @@ public class AppController {
     @FXML private SidebarController artistSidebarController;
     @FXML private SidebarController adminSidebarController;
     @FXML private TopBarController topBarController;
-    @FXML private PlaylistController playlistPageController;
-    @FXML private HomeController homePageController;
+@FXML private HomeController homePageController;
     @FXML private LibraryController libraryPageController;
 
     @FXML
@@ -86,11 +83,7 @@ public class AppController {
         }
         showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryItem());
     }
-    @FXML public void showPlaylistPage() {
-        if (playlistPageController != null) playlistPageController.loadUserPlaylists();
-        showPage(playlistPage, topBarController.getPlaylistTopBar(), sidebarController.getPlaylistItem());
-    }
-    @FXML public void showAccountPage() { showPage(accountPage, topBarController.getAccountTopBar(),sidebarController.getAccountNavItem()); }
+    @FXML public void showAccountPage() { showPage(accountPage, topBarController.getAccountTopBar(), sidebarController.getAccountNavItem()); }
 
     // ════════════════════════════════════════════════════════════════════════
     // Sidebar switching
@@ -177,7 +170,7 @@ public class AppController {
     public void showPage(ScrollPane page, Node topBar, HBox navItem) {
         // Hide all pages
         for (ScrollPane p : new ScrollPane[]{
-                homePage, libraryPage, playlistPage, accountPage,
+                homePage, libraryPage, accountPage,
                 artistDashBoardPage, artistMusicPage, artistUploadPage,
                 artistAnalyticsPage, artistFanPage,
                 adminDashBoardPage, adminUserPage, adminReviewPage, adminAnalyticsPage
@@ -187,8 +180,7 @@ public class AppController {
         setVisible(topBarController.getHomeHero(),      false);
         setVisible(topBarController.getAccountTopBar(), false);
         setVisible(topBarController.getLibraryTopBar(), false);
-        setVisible(topBarController.getPlaylistTopBar(),   false);
-        setVisible(topBarController.getArtistTopBar(),  false);
+setVisible(topBarController.getArtistTopBar(),  false);
         setVisible(topBarController.getAdminTopBar(),   false);
 
         sidebarController.resetNavStyles();
