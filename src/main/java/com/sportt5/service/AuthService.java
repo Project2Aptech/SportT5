@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sportt5.model.AuthResponse;
+import com.sportt5.model.SongResponse;
 import com.sportt5.model.Users;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
@@ -23,6 +24,31 @@ public class AuthService {
     {
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
+    public String paymentPlan(String planType, int userId)
+            throws IOException, InterruptedException {
+
+        String endpoint = String.format(
+                "subscriptions/create-payment?userId=%d&planType=%s",
+                userId,
+                planType
+        );
+
+        HttpResponse<String> response = ApiClient.post(endpoint);
+        JsonNode node = mapper.readTree(response.body());
+
+        System.out.println(response.statusCode());
+        System.out.println(response.body());
+
+        if (response.statusCode() == 200) {
+            JsonNode paymentUrlNode = node.get("paymentUrl");
+
+            if (paymentUrlNode == null) {
+                throw new RuntimeException("Payment URL not found");
+            }
+            return paymentUrlNode.asText();
+        }
+        throw new RuntimeException(response.body());
     }
 
     public String updateAvatar(File selectedFile) {
@@ -78,6 +104,24 @@ public class AuthService {
 
         System.out.println("=== GET /users/" + id + " ===");
         System.out.println("Status = " + response.statusCode());
+        System.out.println("Body   = " + response.body());
+
+        if(response.statusCode() == 200){
+            if (node == null) {
+                throw new RuntimeException("User data not found");
+            }
+            return mapper.treeToValue(node, Users.class);
+        }
+        else {
+            String message = node.get("message").asText();
+            throw new RuntimeException(message);
+        }
+    }
+    public Users getUserByToken() throws IOException, InterruptedException {
+        String endpoint = "users/me";
+        HttpResponse<String> response = ApiClient.get(endpoint);
+        JsonNode node = mapper.readTree(response.body());
+
         System.out.println("Body   = " + response.body());
 
         if(response.statusCode() == 200){

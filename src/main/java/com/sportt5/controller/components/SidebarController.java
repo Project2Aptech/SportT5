@@ -5,6 +5,7 @@ import com.sportt5.model.Users;
 import com.sportt5.model.enums.Roles;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -13,6 +14,15 @@ import javafx.scene.layout.HBox;
 
 
 public class SidebarController {
+    private static SidebarController instance;
+
+    public SidebarController() {
+    }
+
+    public static SidebarController getInstance() {
+        return instance;
+    }
+
     //Home Sidebar
     @FXML private Label profileNameLabel, profileTierLabel, brandLabel;
     @FXML private ImageView sidebarAvatar;
@@ -21,9 +31,9 @@ public class SidebarController {
     @FXML private HBox artistDashboardNavItem, artistMusicNavItem, artistUploadNavItem, artistAnalyticsNavItem, artistFansNavItem, exitArtistNavItem;
     //Admin Sidebar
     @FXML private HBox adminDashboardNavItem, adminUserNavItem, adminReviewNavItem, adminAnalyticsNavItem, exitAdminNavItem;
+
     //App controller
     private AppController appController;
-
     public void setAppController(AppController appController) { this.appController = appController; }
     public HBox getAccountNavItem() { return accountNavItem; }
     public HBox getHomeNavItem() { return homeNavItem; }
@@ -64,23 +74,31 @@ public class SidebarController {
         }
     }
 
+    public void loadProfile(){
+        Users user = UserSession.getInstance().getCurrentUser();
+            if (profileNameLabel != null && user != null) {
+                profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
+            }
+            if (profileTierLabel != null && user != null) {
+                profileTierLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
+            }
+            if (sidebarAvatar != null && user != null) {
+                String url = ApiClient.resolveUrl(user.getAvatarUrl());
+                if (url != null) sidebarAvatar.setImage(new Image(url, true));
+            }
+    }
     @FXML
     public void initialize() {
+        if (profileNameLabel != null) {
+            instance = this;
+        }
+
         Users user = UserSession.getInstance().getCurrentUser();
         Roles role = user != null ? user.getRole() : null;
 
         System.out.println("Slide bar " + user);
 
-        if (profileNameLabel != null && user != null) {
-            profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
-        }
-        if (profileTierLabel != null && user != null) {
-            profileTierLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
-        }
-        if (sidebarAvatar != null && user != null) {
-            String url = ApiClient.resolveUrl(user.getAvatarUrl());
-            if (url != null) sidebarAvatar.setImage(new Image(url, true));
-        }
+        loadProfile();
 
         //<-----Home sidebar----->
         if (brandLabel != null) {

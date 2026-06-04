@@ -42,15 +42,10 @@ public class AccountController {
     @FXML private ProgressIndicator progressIndicator;
 
     private final AuthService authService = new AuthService();
-//    private SidebarController sidebarController;
-//
-//    public SidebarController getSidebarController() {
-//        return sidebarController;
-//    }
+    SidebarController sidebar = SidebarController.getInstance();
 
     @FXML
     public void initialize() {
-        loadAccountType();
         loadUserProfile();
     }
 
@@ -73,9 +68,7 @@ public class AccountController {
             ctrl.initData(UserSession.getInstance().getCurrentUser());
             dialog.showAndWait();
 
-            // Refresh UI to reflect new subscription tier
             loadUserProfile();
-
         } catch (Exception e) {
             showError("Error " + e.getMessage());
             System.out.println(e.getMessage());
@@ -101,42 +94,18 @@ public class AccountController {
             stage.setScene(scene);
             stage.showAndWait();
 
-
+            System.out.println("Sidebar: "+sidebar);
             loadUserProfile();
         } catch (IOException e) {
             showError("Unable to open edit dialog: " + e.getMessage());
         }
     }
 
-    public void loadAccountType(){
-        Users user = UserSession.getInstance().getCurrentUser();
-
-        if (planLabel != null && user != null) {
-            planLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
-        }
-        if (accountTypeHeader != null && user != null) {
-            accountTypeHeader.setText(
-                    String.format("%s Member",
-                            user.getAccountType() != null ? user.getAccountType().name() : "NORMAL"
-                    )
-            );
-        }
-        switch(user.getAccountType()){
-            case PRO -> priceLabel.setText("9.99/month");
-            case PREMIUM  -> priceLabel.setText("14.99/month");
-            default -> priceLabel.setText("Free");
-        }
-        emailLabel.setText(nonNull(user.getEmail()));
-        checkEmail.setText((user.getEmail() != null ? "V" : "X"));
-    }
 
     public void loadUserProfile(){
-        UserSession session = UserSession.getInstance();
-        int userId = (session != null) ? session.getCurrentUserId() : -1;
-
         new Thread(() -> {
             try {
-                Users fresh = authService.getUserById(userId);
+                Users fresh = authService.getUserByToken();
                 UserSession.setCurrentUser(fresh);
                 Users user = UserSession.getInstance().getCurrentUser();
 
@@ -144,7 +113,12 @@ public class AccountController {
 
                 Platform.runLater(() -> {
                     bindToUi(user);
+
+                    if (sidebar != null) {
+                        sidebar.loadProfile();
+                    }
                 });
+
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     showError("Failed to load profile: " + e.getMessage());
@@ -154,9 +128,6 @@ public class AccountController {
     }
     private void bindToUi(Users u) {
         displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : "User"));
-//        String planText = (u.getAccountType() != null) ? u.getAccountType().name() : "UNKNOWN";
-//        System.out.println("Setting planLabel to: " + planText);
-//        planLabel.setText(planText);
 
         System.out.println("Avatar URL = " + u.getAvatarUrl());
         String avatarUrl = ApiClient.resolveUrl(u.getAvatarUrl());
@@ -176,6 +147,24 @@ public class AccountController {
         } else {
             billingDateLabel.setText("Member since N/A");
         }
+
+        if (planLabel != null && u != null) {
+            planLabel.setText(u.getAccountType() != null ? u.getAccountType().name() : "NORMAL");
+        }
+        if (accountTypeHeader != null && u != null) {
+            accountTypeHeader.setText(
+                    String.format("%s Member",
+                            u.getAccountType() != null ? u.getAccountType().name() : "NORMAL"
+                    )
+            );
+        }
+        switch(u.getAccountType()){
+            case PRO -> priceLabel.setText("9.99/month");
+            case PREMIUM  -> priceLabel.setText("14.99/month");
+            default -> priceLabel.setText("Free");
+        }
+        emailLabel.setText(nonNull(u.getEmail()));
+        checkEmail.setText((u.getEmail() != null ? "V" : "X"));
     }
 
     private String nonNull(String s) {

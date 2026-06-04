@@ -82,7 +82,7 @@ public class AdminService {
         }
     }
     public SongResponse getSong() throws IOException, InterruptedException {
-        String endpoint = "songs";
+        String endpoint = "admin/songs";
         HttpResponse<String> response = ApiClient.get(endpoint);
         JsonNode node = mapper.readTree(response.body());
 

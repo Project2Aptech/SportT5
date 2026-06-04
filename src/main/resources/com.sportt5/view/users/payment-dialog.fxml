@@ -23,7 +23,7 @@
                        fitHeight="220"
                        preserveRatio="true"/>
 
-            <Label text="Quét mã QR để thanh toán"/>
+            <Label text="Scan the QR code to make a payment"/>
 
             <ProgressIndicator fx:id="loadingSpinner"
                                visible="false"/>

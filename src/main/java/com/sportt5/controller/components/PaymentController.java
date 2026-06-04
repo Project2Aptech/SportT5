@@ -9,17 +9,20 @@ import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.net.URI;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class PaymentController {
-
     @FXML
     private Label planLabel;
     @FXML private Label errorLabel;
@@ -32,47 +35,42 @@ public class PaymentController {
 
     @FXML
     public void initialize() {
-        var qrUrl = getClass().getResource("/com/sportt5/images/qrCode.png");
+        var qrUrl = getClass().getResource("/com.sportt5/img/qrCode.png");
         if (qrUrl != null) {
             qrImageView.setImage(new Image(qrUrl.toExternalForm()));
         } else {
-            System.err.println("[WARN] QR code image not found at /com/sportt5/images/qrCode.png");
+            System.err.println("[WARN] QR code image not found at /com.sportt5/img/qrCode.png");
         }
     }
 
     public void initData(String tier, String price, Users user) {
         this.selectedTier = tier;
         this.currentUser = user;
-        planLabel.setText("Mua gói: " + tier + " – $" + price + " / tháng");
+        planLabel.setText("Buy a package: " + tier + " – $" + price + " / month");
     }
 
     @FXML
     private void onConfirm() {
-        errorLabel.setText("");
+        String planType = selectedTier;
+        int userId = currentUser.getId();
 
         new Thread(() -> {
             try {
-                Map<String, Object> updates = new HashMap<>();
-                updates.put("accountType", selectedTier);
+                String paymentUrl = authService.paymentPlan(selectedTier, userId);
 
-                Users userCurrent = authService.updateUser(currentUser.getId(), updates);
-                System.out.println("Payment updated user: " + userCurrent);
-                if (userCurrent != null && userCurrent.getAccountType() != null) {
-                    System.out.println("New account type after payment: " + userCurrent.getAccountType().name());
-                }
-                Platform.runLater(() -> {
-                    if (userCurrent != null) {
-                        UserSession.getInstance().setCurrentUser(userCurrent);
+                Desktop.getDesktop().browse(
+                        URI.create(paymentUrl)
+                );
 
-                        errorLabel.setText("Payment success");
-                        Stage stage =
-                                (Stage) confirmBtn.getScene().getWindow();
-                        stage.close();
+                Alert alert = new Alert(
+                        Alert.AlertType.INFORMATION
+                );
+                alert.setHeaderText("Payment");
+                alert.setContentText(
+                        "Complete payment in browser, then click OK."
+                );
 
-                    } else {
-                        errorLabel.setText("Payment failed");
-                    }
-                });
+                alert.showAndWait();
 
             } catch (Exception e) {
                 Platform.runLater(() ->

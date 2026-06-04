@@ -11,7 +11,7 @@
     <content>
         <VBox spacing="20" alignment="CENTER">
             <!-- Title -->
-            <Label text="Chọn gói thuê bao"
+            <Label text="Select a subscription package"
                    styleClass="dialog-title"/>
 
             <!-- Cards container -->

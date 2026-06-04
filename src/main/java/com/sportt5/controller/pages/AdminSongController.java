@@ -4,6 +4,7 @@ import com.sportt5.model.SongResponse;
 import com.sportt5.model.Songs;
 import com.sportt5.model.UserResponse;
 import com.sportt5.model.Users;
+import com.sportt5.model.enums.Status;
 import com.sportt5.service.AdminService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -16,13 +17,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.sportt5.model.enums.Status.DELETED;
+import static com.sportt5.model.enums.Status.LIVE;
+
 public class AdminSongController {
     @FXML private GridPane tableGrid;
     private final AdminService adminService = new AdminService();
+    private List<Songs> songs;
+    private List<Users> users;
+    private boolean liveFirst = true;
 
     @FXML
     public void initialize() {
@@ -32,10 +40,10 @@ public class AdminSongController {
         new Thread(() -> {
             try {
                 UserResponse responseUser = adminService.getUser();
-                List<Users> users = responseUser.getContent();
+                users = responseUser.getContent();
 
                 SongResponse responseSong = adminService.getSong();
-                List<Songs> songs = responseSong.getContent();
+                songs = responseSong.getContent();
 
                 Platform.runLater(() -> {
                     renderTable(songs,users);
@@ -44,6 +52,22 @@ public class AdminSongController {
                 throw new RuntimeException(e);
             }
         }).start();
+    }
+    public void sortSongLive(){
+        if (liveFirst) {
+            songs.sort(Comparator.comparingInt(
+                    s -> s.getStatus() == Status.LIVE ? 1 : 0
+            ));
+        } else {
+            songs.sort(Comparator.comparingInt(
+                    s -> s.getStatus() == Status.LIVE ? 0 : 1
+            ));
+        }
+
+        liveFirst = !liveFirst;
+
+        renderTable(songs, users);
+
     }
     private void openPublishSong(Songs song) {
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);

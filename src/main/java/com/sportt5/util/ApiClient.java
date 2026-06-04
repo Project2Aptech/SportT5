@@ -38,6 +38,12 @@ public class ApiClient {
                 .build();
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
+    public static HttpResponse<String> post(String endpoint) throws IOException, InterruptedException {
+        HttpRequest request = builder(endpoint)
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
 
     public static HttpResponse<String> put(String endpoint, String jsonBody) throws IOException, InterruptedException {
         HttpRequest request = builder(endpoint)
