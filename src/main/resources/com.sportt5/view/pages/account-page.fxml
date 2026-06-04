@@ -109,7 +109,7 @@
 
                         <Region HBox.hgrow="ALWAYS" />
 
-                        <Button text="Change"
+                        <Button text="Change" onAction = "#changePassword"
                                 styleClass="change-button" />
                     </HBox>
                 </VBox>ươpo

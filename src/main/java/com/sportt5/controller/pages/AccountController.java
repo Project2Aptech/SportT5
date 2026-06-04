@@ -1,7 +1,10 @@
 package com.sportt5.controller.pages;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sportt5.App;
 import com.sportt5.controller.EditProfileController;
+import com.sportt5.controller.components.ResetPasswordController;
 import com.sportt5.controller.components.SidebarController;
 import com.sportt5.controller.components.SubscriptionController;
 import com.sportt5.model.Users;
@@ -24,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -47,6 +51,37 @@ public class AccountController {
     @FXML
     public void initialize() {
         loadUserProfile();
+    }
+
+
+    @FXML
+    public void changePassword(){
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com.sportt5/view/components/reset-password.fxml")
+            );
+
+            Parent root = loader.load();
+            ResetPasswordController ctrl = loader.getController();
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(
+                    getClass()
+                            .getResource("/com.sportt5/css/account.css")
+                            .toExternalForm()
+            );
+
+            Stage stage = new Stage();
+            stage.setTitle("Reset Password");
+
+            ctrl.initData(UserSession.getInstance().getToken());
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

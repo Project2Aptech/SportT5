@@ -30,7 +30,6 @@
                 <HBox alignment="CENTER_LEFT">
                     <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon revenue-icon"><Label text="♙" /></StackPane>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Label text="+5.3%" styleClass="trend-up" />
                 </HBox>
                 <Label text="TOTAL USERS" styleClass="metric-label" />
                 <Label fx:id="totalUser" text="128,440" styleClass="metric-value" />
@@ -47,7 +46,6 @@
                 <HBox alignment="CENTER_LEFT">
                     <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon listener-icon"><Label text="▥" /></StackPane>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Label text="+11.8%" styleClass="trend-blue" />
                 </HBox>
                 <Label text="TRACKS UPLOADED" styleClass="metric-label" />
                 <Label fx:id="trackUploaded" text="94,210" styleClass="metric-value" />
@@ -57,7 +55,6 @@
                 <HBox alignment="CENTER_LEFT">
                     <StackPane prefWidth="34.0" prefHeight="30.0" styleClass="metric-icon growth-icon"><Label text="↗" /></StackPane>
                     <Region HBox.hgrow="ALWAYS" />
-                    <Label text="+18%" styleClass="trend-neutral" />
                 </HBox>
                 <Label text="PLATFORM REVENUE" styleClass="metric-label" />
                 <Label text="\$218,900" styleClass="metric-value" />
@@ -76,9 +73,6 @@
             <HBox alignment="CENTER_LEFT">
                 <Label text="Recent Users" styleClass="panel-title" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button text="View All"
-                        onAction="#handleViewAllUsers"
-                        styleClass="filter-button" />
             </HBox>
             <GridPane fx:id="userGridDashboard"
                       hgap="18.0"
@@ -98,7 +92,6 @@
                 <Label text="PLAN" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
                 <Label text="JOINED" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
                 <Label text="ACTIONS" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
-
             </GridPane>
 
         </VBox>

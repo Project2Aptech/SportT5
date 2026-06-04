@@ -38,6 +38,20 @@ public class ApiClient {
                 .build();
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
+
+    public static HttpResponse<String> postNoToken(String endpoint, String jsonBody) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + endpoint))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        return client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+    }
+
     public static HttpResponse<String> post(String endpoint) throws IOException, InterruptedException {
         HttpRequest request = builder(endpoint)
                 .POST(HttpRequest.BodyPublishers.noBody())
