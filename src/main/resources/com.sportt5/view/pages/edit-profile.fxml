@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
 <AnchorPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.sportt5.controller.EditProfileController"
@@ -50,9 +51,10 @@
             <Label text="Avatar"
                    styleClass="input-label"/>
 
-            <TextField fx:id="avatarUrlField"
-                       promptText="Avatar URL"
-                       prefHeight="38"/>
+            <ImageView fx:id="avatarImageView"
+                       fitWidth="80"
+                       fitHeight="80"
+                       preserveRatio="true"/>
 
             <Button text="Choose Avatar"
                     onAction="#handleChooseAvatar"/>
@@ -90,7 +92,7 @@
     <HBox spacing="16"
           alignment="CENTER"
           layoutX="118"
-          layoutY="550">
+          layoutY="600">
 
         <Button text="Save"
                 fx:id="saveButton"
@@ -105,7 +107,6 @@
                 prefWidth="92"
                 prefHeight="38"/>
     </HBox>
-
 </AnchorPane>
 
 
