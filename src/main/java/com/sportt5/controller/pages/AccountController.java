@@ -10,6 +10,7 @@ import com.sportt5.controller.components.SubscriptionController;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.Roles;
 import com.sportt5.service.AuthService;
+import com.sportt5.session.TokenStorage;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
@@ -210,7 +211,7 @@ public class AccountController {
     @FXML
     public void handleSignOut(ActionEvent event) {
         UserSession.cleanSession();
-
+        TokenStorage.clearToken();
         try {
             Parent root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/auth/auth-view.fxml"));
 
