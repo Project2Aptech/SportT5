@@ -23,7 +23,6 @@ public class LibraryService {
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-    //════════════════════Main methods to get objects════════════════════
     public JsonNode getLikedSongs() throws IOException, InterruptedException {
         String token = UserSession.getInstance().getToken();
 

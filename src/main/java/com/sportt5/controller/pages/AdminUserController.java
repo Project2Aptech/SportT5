@@ -144,9 +144,7 @@ public class AdminUserController {
                     loadUserProfile();
                 }
                 else {
-                    new Alert(
-                            Alert.AlertType.ERROR,
-                            "Failed to delete user."
+                    new Alert(Alert.AlertType.ERROR, "Failed to delete user."
                     ).showAndWait();
                 }
             } catch (Exception e) {
@@ -172,10 +170,6 @@ public class AdminUserController {
 
         for (Users user : users) {
             HBox nameBox = new HBox(12);
-//            StackPane avatar = new StackPane();
-//            avatar.setPrefSize(34, 34);
-//            avatar.getStyleClass().addAll("admin-thumb", "thumb-pink");
-
             VBox infoBox = new VBox(2);
 
             Label nameLabel = new Label(user.getDisplayName());
@@ -230,8 +224,6 @@ public class AdminUserController {
             HBox actionBox = new HBox(8);
 
             Button editBtn = new Button("️Edit");
-//            Button deactivateBtn = new Button("🚫");
-
             Button statusBtn = new Button(
                     user.isActive() ? "🚫" : "🔓"
             );

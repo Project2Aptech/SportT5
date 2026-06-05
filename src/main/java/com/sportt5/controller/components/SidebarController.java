@@ -12,15 +12,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class SidebarController {
-    private static SidebarController instance;
+    private static final List<SidebarController> instances = new ArrayList<>();
 
     public SidebarController() {
     }
 
-    public static SidebarController getInstance() {
-        return instance;
+    public static void updateAllProfiles(Users user) {
+        for (SidebarController ctrl : instances) {
+            ctrl.loadProfile(user);
+        }
     }
 
     //Home Sidebar
@@ -38,7 +43,7 @@ public class SidebarController {
     public HBox getAccountNavItem() { return accountNavItem; }
     public HBox getHomeNavItem() { return homeNavItem; }
     public HBox getLibraryItem() { return libraryItem; }
-public HBox getArtistItem() { return artistItem; }
+    public HBox getArtistItem() { return artistItem; }
     public HBox getAdminItem() { return adminItem; }
     public HBox getArtistDashboardNavItem() { return artistDashboardNavItem; }
     public HBox getArtistMusicNavItem() { return artistMusicNavItem; }
@@ -72,8 +77,7 @@ public HBox getArtistItem() { return artistItem; }
         }
     }
 
-    public void loadProfile(){
-        Users user = UserSession.getInstance().getCurrentUser();
+    public void loadProfile(Users user){
             if (profileNameLabel != null && user != null) {
                 profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
             }
@@ -87,15 +91,15 @@ public HBox getArtistItem() { return artistItem; }
     }
     @FXML
     public void initialize() {
-        if (profileNameLabel != null) {
-            instance = this;
+        if (!instances.contains(this)) {
+            instances.add(this);
         }
 
         Users user = UserSession.getInstance().getCurrentUser();
         Roles role = user != null ? user.getRole() : null;
         System.out.println("Slide bar " + user);
 
-        loadProfile();
+        loadProfile(user);
 
         //<-----Home sidebar----->
         if (brandLabel != null) {
