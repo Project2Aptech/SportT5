@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="adminSettingsPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="20.0" styleClass="admin-body">
+        <VBox spacing="4.0">
+            <Label text="Admin Settings" styleClass="admin-title" />
+            <Label text="Artist profile, publishing defaults, payout details, and team roles." styleClass="admin-subtitle" />
+        </VBox>
+
+        <HBox spacing="22.0">
+            <VBox spacing="16.0" prefWidth="330.0" styleClass="admin-panel">
+                <Label text="Artist Profile" styleClass="panel-title" />
+                <StackPane prefWidth="92.0" prefHeight="92.0" styleClass="account-avatar-large"><Label text="A" /></StackPane>
+                <VBox spacing="6.0"><Label text="DISPLAY NAME" styleClass="field-label" /><TextField text="Aura Studio" styleClass="auth-input" /></VBox>
+                <VBox spacing="6.0"><Label text="PUBLIC EMAIL" styleClass="field-label" /><TextField text="aura@sportt5.local" styleClass="auth-input" /></VBox>
+                <Button text="Save Profile" styleClass="upload-button" />
+            </VBox>
+
+            <VBox spacing="16.0" HBox.hgrow="ALWAYS" styleClass="admin-panel">
+                <Label text="Publishing Defaults" styleClass="panel-title" />
+                <CheckBox text="Auto-submit new releases for review" selected="true" styleClass="remember-check" />
+                <CheckBox text="Enable pre-save pages by default" selected="true" styleClass="remember-check" />
+                <CheckBox text="Show revenue estimates on dashboard" selected="true" styleClass="remember-check" />
+                <VBox spacing="6.0"><Label text="DEFAULT GENRE" styleClass="field-label" /><TextField text="Electronic" styleClass="auth-input" /></VBox>
+                <VBox spacing="6.0"><Label text="PAYOUT ACCOUNT" styleClass="field-label" /><TextField text="•••• 4208" styleClass="auth-input" /></VBox>
+                <HBox alignment="CENTER_RIGHT"><Button text="Update Settings" styleClass="upload-button" /></HBox>
+            </VBox>
+        </HBox>
+
+        <VBox spacing="14.0" styleClass="admin-panel">
+            <Label text="Language" styleClass="panel-title" />
+            <Label text="Choose the display language for this device." styleClass="admin-subtitle" />
+            <HBox spacing="10.0">
+                <Button text="English" styleClass="language-button" />
+                <Button text="Tiếng Việt" styleClass="language-button" />
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

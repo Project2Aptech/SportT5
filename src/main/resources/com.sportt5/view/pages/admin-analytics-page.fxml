@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="adminAnalyticsPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT">
+            <VBox spacing="4.0">
+                <Label text="Analytics" styleClass="admin-title" />
+                <Label text="Streams, revenue, listeners, and audience movement." styleClass="admin-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Last 30 Days" styleClass="follow-button" />
+        </HBox>
+
+        <HBox spacing="18.0">
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="STREAMS" styleClass="metric-label" /><Label text="2.8M" styleClass="metric-value" /><Label text="+18.4\% from last period" styleClass="rank-up" /></VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="SAVES" styleClass="metric-label" /><Label text="184K" styleClass="metric-value" /><Label text="+9.1\% from last period" styleClass="rank-up" /></VBox>
+            <VBox spacing="8.0" HBox.hgrow="ALWAYS" styleClass="metric-card"><Label text="AVG COMPLETION" styleClass="metric-label" /><Label text="71\%" styleClass="metric-value" /><Label text="+4.8\% from last period" styleClass="rank-up" /></VBox>
+        </HBox>
+
+        <HBox spacing="18.0">
+            <VBox spacing="14.0" HBox.hgrow="ALWAYS" styleClass="admin-panel">
+                <Label text="Streams Trend" styleClass="panel-title" />
+                <StackPane prefHeight="260.0" styleClass="chart-area">
+                    <Pane styleClass="chart-grid" />
+                    <Pane styleClass="chart-fill analytics-fill" />
+                </StackPane>
+            </VBox>
+            <VBox spacing="14.0" prefWidth="300.0" styleClass="admin-panel">
+                <Label text="Top Countries" styleClass="panel-title" />
+                <HBox alignment="CENTER_LEFT"><Label text="United States" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="38\%" styleClass="rank-up" /></HBox>
+                <HBox alignment="CENTER_LEFT"><Label text="Vietnam" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="21\%" styleClass="rank-up" /></HBox>
+                <HBox alignment="CENTER_LEFT"><Label text="Germany" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="14\%" styleClass="rank-up" /></HBox>
+                <HBox alignment="CENTER_LEFT"><Label text="Japan" styleClass="table-title" /><Region HBox.hgrow="ALWAYS" /><Label text="9\%" styleClass="rank-up" /></HBox>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

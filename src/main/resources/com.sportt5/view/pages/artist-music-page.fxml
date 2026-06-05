@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:id="artistMusicPage" visible="false" managed="false" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+    <VBox spacing="18.0" styleClass="admin-body">
+        <HBox alignment="CENTER_LEFT"><VBox spacing="4.0"><Label text="My Music" styleClass="admin-title" /><Label text="Manage your singles, albums, drafts, and submission status." styleClass="admin-subtitle" /></VBox><Region HBox.hgrow="ALWAYS" /><Button text="New Release" styleClass="upload-button" /></HBox>
+        <HBox spacing="14.0"><Button text="All Releases" styleClass="genre-chip-active" /><Button text="Live" styleClass="genre-chip" /><Button text="Pending" styleClass="genre-chip" /><Button text="Drafts" styleClass="genre-chip" /></HBox>
+        <VBox spacing="12.0" styleClass="admin-panel">
+            <Label text="Release Library" styleClass="panel-title" />
+            <GridPane hgap="18.0" vgap="16.0" styleClass="admin-table">
+                <columnConstraints><ColumnConstraints percentWidth="34.0" /><ColumnConstraints percentWidth="16.0" /><ColumnConstraints percentWidth="16.0" /><ColumnConstraints percentWidth="16.0" /><ColumnConstraints percentWidth="18.0" /></columnConstraints>
+                <Label text="TITLE" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" /><Label text="TYPE" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" /><Label text="DATE" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" /><Label text="STATUS" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" /><Label text="ACTIONS" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
+                <Label text="Midnight Resonance" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="table-title" /><Label text="Single" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="table-text" /><Label text="Oct 12" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="table-text" /><Label text="LIVE" GridPane.rowIndex="1" GridPane.columnIndex="3" styleClass="status-live" /><Label text="Edit  •••" GridPane.rowIndex="1" GridPane.columnIndex="4" styleClass="row-action" />
+                <Label text="Urban Echoes" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="table-title" /><Label text="Album" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="table-text" /><Label text="Sep 28" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="table-text" /><Label text="LIVE" GridPane.rowIndex="2" GridPane.columnIndex="3" styleClass="status-live" /><Label text="Edit  •••" GridPane.rowIndex="2" GridPane.columnIndex="4" styleClass="row-action" />
+                <Label text="Prism Drift" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="table-title" /><Label text="Single" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="table-text" /><Label text="Draft" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="table-text" /><Label text="PENDING" GridPane.rowIndex="3" GridPane.columnIndex="3" styleClass="status-review" /><Label text="Edit  •••" GridPane.rowIndex="3" GridPane.columnIndex="4" styleClass="row-action" />
+            </GridPane>
+        </VBox>
+    </VBox>
+</ScrollPane>
