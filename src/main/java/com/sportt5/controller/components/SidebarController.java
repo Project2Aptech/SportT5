@@ -1,5 +1,6 @@
 package com.sportt5.controller.components;
 
+import com.sportt5.App;
 import com.sportt5.controller.AppController;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.Roles;
@@ -86,7 +87,11 @@ public class SidebarController {
             }
             if (sidebarAvatar != null && user != null) {
                 String url = ApiClient.resolveUrl(user.getAvatarUrl());
-                if (url != null) sidebarAvatar.setImage(new Image(url, true));
+                if (url != null) {
+                    sidebarAvatar.setImage(new Image(url, true));
+                } else {
+                    sidebarAvatar.setImage(new Image(App.class.getResource("/com.sportt5/img/avatar.png").toExternalForm()));
+                }
             }
     }
     @FXML
@@ -156,6 +161,33 @@ public class SidebarController {
                     }
                 });
             }
+
+            //<-----Admin sidebar----->
+            if (adminDashboardNavItem != null) {
+                adminDashboardNavItem.setOnMouseClicked(e -> {
+                    if (appController != null) appController.showAdminDashBoardPage();
+                });
+            }
+            if (adminUserNavItem != null) {
+                adminUserNavItem.setOnMouseClicked(e -> {
+                    if (appController != null) appController.showAdminUserPage();
+                });
+            }
+            if (adminReviewNavItem != null) {
+                adminReviewNavItem.setOnMouseClicked(e -> {
+                    if (appController != null) appController.showAdminReviewPage();
+                });
+            }
+            if (adminAnalyticsNavItem != null) {
+                adminAnalyticsNavItem.setOnMouseClicked(e -> {
+                    if (appController != null) appController.showAdminAnalyticsPage();
+                });
+            }
+            if (exitAdminNavItem != null) {
+                exitAdminNavItem.setOnMouseClicked(e -> {
+                    if (appController != null) appController.showHomeSideBar();
+                });
+            }
         }
 
         //<-----Artist sidebar----->
@@ -189,32 +221,7 @@ public class SidebarController {
                 if (appController != null) appController.showHomeSideBar();
             });
         }
-        //<-----Admin sidebar----->
-        if (adminDashboardNavItem != null) {
-            adminDashboardNavItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showAdminDashBoardPage();
-            });
-        }
-        if (adminUserNavItem != null) {
-            adminUserNavItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showAdminUserPage();
-            });
-        }
-        if (adminReviewNavItem != null) {
-            adminReviewNavItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showAdminReviewPage();
-            });
-        }
-        if (adminAnalyticsNavItem != null) {
-            adminAnalyticsNavItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showAdminAnalyticsPage();
-            });
-        }
-        if (exitAdminNavItem != null) {
-            exitAdminNavItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showHomeSideBar();
-            });
-        }
+
     }
 
 

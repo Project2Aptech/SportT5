@@ -20,8 +20,6 @@ public class AdminService {
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-
-
     public boolean updateUserRole(int userId,String accountType, String role) throws IOException, InterruptedException {
         String endpoint = String.format("admin/users/%d/role", userId);
         String jsonPayload = String.format("""
