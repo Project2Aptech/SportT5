@@ -161,33 +161,6 @@ public class SidebarController {
                     }
                 });
             }
-
-            //<-----Admin sidebar----->
-            if (adminDashboardNavItem != null) {
-                adminDashboardNavItem.setOnMouseClicked(e -> {
-                    if (appController != null) appController.showAdminDashBoardPage();
-                });
-            }
-            if (adminUserNavItem != null) {
-                adminUserNavItem.setOnMouseClicked(e -> {
-                    if (appController != null) appController.showAdminUserPage();
-                });
-            }
-            if (adminReviewNavItem != null) {
-                adminReviewNavItem.setOnMouseClicked(e -> {
-                    if (appController != null) appController.showAdminReviewPage();
-                });
-            }
-            if (adminAnalyticsNavItem != null) {
-                adminAnalyticsNavItem.setOnMouseClicked(e -> {
-                    if (appController != null) appController.showAdminAnalyticsPage();
-                });
-            }
-            if (exitAdminNavItem != null) {
-                exitAdminNavItem.setOnMouseClicked(e -> {
-                    if (appController != null) appController.showHomeSideBar();
-                });
-            }
         }
 
         //<-----Artist sidebar----->
@@ -221,8 +194,31 @@ public class SidebarController {
                 if (appController != null) appController.showHomeSideBar();
             });
         }
-
+        //<-----Admin sidebar----->
+        if (adminDashboardNavItem != null) {
+            adminDashboardNavItem.setOnMouseClicked(e -> {
+                if (appController != null) appController.showAdminDashBoardPage();
+            });
+        }
+        if (adminUserNavItem != null) {
+            adminUserNavItem.setOnMouseClicked(e -> {
+                if (appController != null) appController.showAdminUserPage();
+            });
+        }
+        if (adminReviewNavItem != null) {
+            adminReviewNavItem.setOnMouseClicked(e -> {
+                if (appController != null) appController.showAdminReviewPage();
+            });
+        }
+        if (adminAnalyticsNavItem != null) {
+            adminAnalyticsNavItem.setOnMouseClicked(e -> {
+                if (appController != null) appController.showAdminAnalyticsPage();
+            });
+        }
+        if (exitAdminNavItem != null) {
+            exitAdminNavItem.setOnMouseClicked(e -> {
+                if (appController != null) appController.showHomeSideBar();
+            });
+        }
     }
-
-
 }
