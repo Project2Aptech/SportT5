@@ -121,26 +121,8 @@ public class LibraryController {
                         if (favSongContent.isEmpty()) favouritesCount.setText("0 songs");
                         else favouritesCount.setText(favSongContent.size() == 1 ? "01 song" : String.format("%02d songs", favSongContent.size()));
                         //Liked btn
-                        likedBtn.setOnMouseClicked(e -> {
-                            playlistSongsTitle.setText("Liked songs");
-                            dateAdded.setText("LIKED AT");
-
-                            playlistSongsTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
-
-                            int rowIdx = 0;
-                            for (JsonNode node : favSongContent) {
-                                try {
-                                    Songs song = mapper.treeToValue(node, Songs.class);
-                                    rowIdx ++;
-                                    String artistName = usersMap.getOrDefault(song.getArtistId(), "Unknown");
-                                    String[] likedAt = node.get("likedAt").asText().split("T");
-
-                                    addSongToTable(playlistSongsTable, rowIdx, song, artistName, "", likedAt[0]);
-                                } catch (JsonProcessingException ex) {
-                                    throw new RuntimeException(ex);
-                                }
-                            }
-                        });
+                        showFavouriteSongs(favSongContent);
+                        likedBtn.setOnMouseClicked(e -> showFavouriteSongs(favSongContent));
                     }
                 });
             } catch (Exception e) {
@@ -429,5 +411,26 @@ public class LibraryController {
         table.add(lblDate, 3, index);
         table.add(lblDuration, 4, index);
         table.add(lblAction, 5, index);
+    }
+
+    private void showFavouriteSongs(JsonNode content) {
+        playlistSongsTitle.setText("Liked songs");
+        dateAdded.setText("LIKED AT");
+
+        playlistSongsTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
+
+        int rowIdx = 0;
+        for (JsonNode node : content) {
+            try {
+                Songs song = mapper.treeToValue(node, Songs.class);
+                rowIdx ++;
+                String artistName = usersMap.getOrDefault(song.getArtistId(), "Unknown");
+                String[] likedAt = node.get("likedAt").asText().split("T");
+
+                addSongToTable(playlistSongsTable, rowIdx, song, artistName, "", likedAt[0]);
+            } catch (JsonProcessingException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
 }
