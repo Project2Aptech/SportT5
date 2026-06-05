@@ -10,9 +10,14 @@ import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -58,6 +63,77 @@ public class LibraryService {
         List<Songs> songs = getResponseWithoutToken(String.format("playlists/%d/songs", id), Songs.class);
         if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
         return songs;
+    }
+
+    public Playlists createPlaylist(String title) throws IOException, InterruptedException {
+        String body = mapper.writeValueAsString(Map.of(
+                "title", title,
+                "description", "Created from SportT5 desktop",
+                "coverUrl", "images/playlists/playlist1.jpeg",
+                "isPublic", false
+        ));
+        HttpResponse<String> response = ApiClient.post("playlists", body);
+        if (response.statusCode() == 201 || response.statusCode() == 200) {
+            return mapper.readValue(response.body(), Playlists.class);
+        }
+        throw new RuntimeException(extractMessage(response));
+    }
+
+    public void deletePlaylist(int playlistId) throws IOException, InterruptedException {
+        expectSuccess(ApiClient.delete("playlists/" + playlistId));
+    }
+
+    public void addSongToPlaylist(int playlistId, int songId) throws IOException, InterruptedException {
+        expectSuccess(ApiClient.post(String.format("playlists/%d/songs/%d", playlistId, songId)));
+    }
+
+    public void removeSongFromPlaylist(int playlistId, int songId) throws IOException, InterruptedException {
+        expectSuccess(ApiClient.delete(String.format("playlists/%d/songs/%d", playlistId, songId)));
+    }
+
+    public void likeSong(int songId) throws IOException, InterruptedException {
+        expectSuccess(ApiClient.post("liked-songs/" + songId));
+    }
+
+    public void unlikeSong(int songId) throws IOException, InterruptedException {
+        expectSuccess(ApiClient.delete("liked-songs/" + songId));
+    }
+
+    public List<Songs> searchSongs(String query) throws IOException, InterruptedException {
+        String encoded = URLEncoder.encode(query, StandardCharsets.UTF_8);
+        List<Songs> songs = getResponseWithoutToken("songs/search?title=" + encoded, Songs.class);
+        if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
+        return songs;
+    }
+
+    public Path downloadSong(Songs song) throws IOException, InterruptedException {
+        String resolvedUrl = ApiClient.resolveUrl(song.getFileUrl());
+        if (resolvedUrl == null) {
+            throw new RuntimeException("Song has no downloadable file");
+        }
+
+        String filename = filenameFrom(song);
+        Path targetDir = Path.of(System.getProperty("user.home"), "Downloads", "SportT5");
+        Files.createDirectories(targetDir);
+        Path target = targetDir.resolve(filename);
+
+        if (resolvedUrl.startsWith("file:")) {
+            try (var input = URI.create(resolvedUrl).toURL().openStream()) {
+                Files.copy(input, target, StandardCopyOption.REPLACE_EXISTING);
+            }
+            return target;
+        }
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(resolvedUrl))
+                .GET()
+                .build();
+        HttpResponse<byte[]> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofByteArray());
+        if (response.statusCode() >= 200 && response.statusCode() < 300) {
+            Files.write(target, response.body());
+            return target;
+        }
+        throw new RuntimeException("Download failed with HTTP " + response.statusCode());
     }
 
     public List<Songs> getSongByGenre(Set<Integer> genreIds, boolean matchAll) throws IOException, InterruptedException {
@@ -182,5 +258,28 @@ public class LibraryService {
         HttpResponse<String> response = ApiClient.get(s);
         if (response.statusCode() == 200) return mapper.readValue(response.body(), c);
         throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
+    }
+
+    private void expectSuccess(HttpResponse<String> response) throws IOException {
+        if (response.statusCode() >= 200 && response.statusCode() < 300) return;
+        throw new RuntimeException(extractMessage(response));
+    }
+
+    private String extractMessage(HttpResponse<String> response) throws IOException {
+        JsonNode body = mapper.readTree(response.body());
+        JsonNode message = body.get("message");
+        return message != null ? message.asText() : "HTTP " + response.statusCode();
+    }
+
+    private String filenameFrom(Songs song) {
+        String fileUrl = song.getFileUrl();
+        if (fileUrl != null && !fileUrl.isBlank()) {
+            int slash = fileUrl.lastIndexOf('/');
+            String name = slash >= 0 ? fileUrl.substring(slash + 1) : fileUrl;
+            if (!name.isBlank()) return name;
+        }
+        return song.getTitle().toLowerCase()
+                .replaceAll("[^a-z0-9]+", "-")
+                .replaceAll("(^-|-$)", "") + ".mp3";
     }
 }

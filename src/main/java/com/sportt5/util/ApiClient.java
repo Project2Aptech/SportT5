@@ -19,7 +19,10 @@ public class ApiClient {
 
     public static String resolveUrl(String url) {
         if (url == null || url.isBlank()) return null;
-        return url.startsWith("http") ? url : SERVER_ROOT + url;
+        if (url.startsWith("http")) return url;
+        var resource = ApiClient.class.getResource("/com.sportt5/" + url);
+        if (resource != null) return resource.toExternalForm();
+        return SERVER_ROOT + url;
     }
 
     public static HttpClient getClient() {

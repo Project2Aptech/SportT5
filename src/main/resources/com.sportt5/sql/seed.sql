@@ -15,29 +15,29 @@ INSERT INTO users (
     is_active
 )
 VALUES
-    ('admin1','admin1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ADMIN','PREMIUM','Admin One','avatars/admin1.jpg','System administrator','1995-01-01',TRUE),
+    ('admin1','admin1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ADMIN','PREMIUM','Admin One','images/avatar.png','System administrator','1995-01-01',TRUE),
 
-    ('artist1','artist1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist One','avatars/artist1.jpg','Pop artist','1998-02-10',TRUE),
+    ('artist1','artist1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist One','images/artists/artist1.jpeg','Pop artist','1998-02-10',TRUE),
 
-    ('artist2','artist2@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PREMIUM','Artist Two','avatars/artist2.jpg','Rock artist','1997-03-12',TRUE),
+    ('artist2','artist2@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PREMIUM','Artist Two','images/artists/artist2.jpeg','Rock artist','1997-03-12',TRUE),
 
-    ('artist3','artist3@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Three','avatars/artist3.jpg','Jazz artist','1996-04-14',TRUE),
+    ('artist3','artist3@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Three','images/artists/artist3.jpeg','Jazz artist','1996-04-14',TRUE),
 
-    ('user1','user1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','NORMAL','User One','avatars/user1.jpg','Music lover','2000-05-11',TRUE),
+    ('user1','user1@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','NORMAL','User One','images/avatar.png','Music lover','2000-05-11',TRUE),
 
-    ('user2','user2@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','PREMIUM','User Two','avatars/user2.jpg','Playlist collector','2001-06-21',TRUE),
+    ('user2','user2@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','PREMIUM','User Two','images/avatar.png','Playlist collector','2001-06-21',TRUE),
 
-    ('user3','user3@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','NORMAL','User Three','avatars/user3.jpg','EDM fan','2002-07-15',TRUE),
+    ('user3','user3@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','NORMAL','User Three','images/avatar.png','EDM fan','2002-07-15',TRUE),
 
-    ('user4','user4@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','PRO','User Four','avatars/user4.jpg','Chill music fan','1999-08-18',TRUE),
+    ('user4','user4@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','USER','PRO','User Four','images/avatar.png','Chill music fan','1999-08-18',TRUE),
 
-    ('artist4','artist4@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PREMIUM','Artist Four','avatars/artist4.jpg','Hip hop artist','1994-09-19',TRUE),
+    ('artist4','artist4@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PREMIUM','Artist Four','images/artists/artist4.jpeg','Hip hop artist','1994-09-19',TRUE),
 
-    ('artist5','artist5@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Five','avatars/artist5.jpg','Lo-fi producer','1993-10-20',TRUE),
+    ('artist5','artist5@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Five','images/artists/artist5.jpeg','Lo-fi producer','1993-10-20',TRUE),
 
-    ('artist6','artist6@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','NORMAL','Artist Six','avatars/artist6.jpg','Indie singer','1992-11-05',TRUE),
+    ('artist6','artist6@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','NORMAL','Artist Six','images/artists/artist6.jpeg','Indie singer','1992-11-05',TRUE),
 
-    ('artist7','artist7@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Seven','avatars/artist7.jpg','Rap artist','1991-12-15',TRUE);
+    ('artist7','artist7@sportt5.com','$2a$10$NJWg8R5zygzBWrOZlrA3TOw/rWr3ZUUSofU7GFLx5VL0iRv99DsOG','ARTIST','PRO','Artist Seven','images/artists/artist7.jpeg','Rap artist','1991-12-15',TRUE);
 
 /* =====================================================
    GENRES
@@ -67,18 +67,18 @@ INSERT INTO albums (
     release_date
 )
 VALUES
-    (2,'Pop Dreams','covers/pop_dreams.jpg','2024-01-01'),
-    (3,'Rock Legends','covers/rock_legends.jpg','2024-01-10'),
-    (4,'Smooth Jazz','covers/smooth_jazz.jpg','2024-01-15'),
-    (9,'Hip Hop Streets','covers/hiphop_streets.jpg','2024-01-20'),
-    (10,'LoFi Nights','covers/lofi_nights.jpg','2024-01-25'),
-    (2,'Summer Pop','covers/summer_pop.jpg','2024-02-01'),
-    (3,'Metal Fire','covers/metal_fire.jpg','2024-02-10'),
-    (4,'Jazz Lounge','covers/jazz_lounge.jpg','2024-02-15'),
-    (9,'Rap World','covers/rap_world.jpg','2024-02-20'),
-    (10,'Chill Beats','covers/chill_beats.jpg','2024-02-25'),
-    (11,'Indie Souls','covers/indie_souls.jpg','2024-03-01'),
-    (12,'Street Rap','covers/street_rap.jpg','2024-03-10');
+    (2,'Pop Dreams','images/albums/album1.jpeg','2024-01-01'),
+    (3,'Rock Legends','images/albums/album2.jpeg','2024-01-10'),
+    (4,'Smooth Jazz','images/albums/album3.jpeg','2024-01-15'),
+    (9,'Hip Hop Streets','images/albums/album4.jpeg','2024-01-20'),
+    (10,'LoFi Nights','images/albums/album5.jpeg','2024-01-25'),
+    (2,'Summer Pop','images/albums/album6.jpeg','2024-02-01'),
+    (3,'Metal Fire','images/albums/album7.jpeg','2024-02-10'),
+    (4,'Jazz Lounge','images/albums/album8.jpeg','2024-02-15'),
+    (9,'Rap World','images/albums/album9.jpeg','2024-02-20'),
+    (10,'Chill Beats','images/albums/album10.jpeg','2024-02-25'),
+    (11,'Indie Souls','images/albums/album11.jpeg','2024-03-01'),
+    (12,'Street Rap','images/albums/album12.jpeg','2024-03-10');
 
 /* =====================================================
    SONGS
@@ -103,7 +103,7 @@ VALUES
         'E Là Không Thể',
         210,
         'songs/e-la-khong-the.mp3',
-        'covers/song1.jpg',
+        'images/songs/song1.jpeg',
         1,
         1200,
         'LIVE',
@@ -116,7 +116,7 @@ VALUES
         'Chiều Thu Hoa Bóng Nắng',
         205,
         'songs/chieu-thu-hoa-bong-nang.mp3',
-        'covers/song2.jpg',
+        'images/songs/song2.jpeg',
         2,
         1800,
         'LIVE',
@@ -129,7 +129,7 @@ VALUES
         'Đông Phai Mờ Dáng Ai',
         240,
         'songs/dong-phai-mo-dang-ai.mp3',
-        'covers/song3.jpg',
+        'images/songs/song3.jpeg',
         3,
         1500,
         'LIVE',
@@ -142,7 +142,7 @@ VALUES
         'Hoa Nở Không Màu',
         250,
         'songs/hoa-no-khong-mau.mp3',
-        'covers/song4.jpg',
+        'images/songs/song4.jpeg',
         1,
         3500,
         'LIVE',
@@ -155,7 +155,7 @@ VALUES
         'Cay',
         200,
         'songs/cay.mp3',
-        'covers/song5.jpg',
+        'images/songs/song5.jpeg',
         2,
         900,
         'LIVE',
@@ -168,7 +168,7 @@ VALUES
         'Hôm Nay Em Cưới Rồi',
         230,
         'songs/hom-nay-em-cuoi-roi.mp3',
-        'covers/song6.jpg',
+        'images/songs/song6.jpeg',
         1,
         1700,
         'LIVE',
@@ -181,7 +181,7 @@ VALUES
         'Lời Tâm Sự Số 3',
         260,
         'songs/loi-tam-su-so-3.mp3',
-        'covers/song7.jpg',
+        'images/songs/song7.jpeg',
         2,
         1100,
         'LIVE',
@@ -194,7 +194,7 @@ VALUES
         'Bước Qua Đời Nhau',
         240,
         'songs/buoc-qua-doi-nhau.mp3',
-        'covers/song8.jpg',
+        'images/songs/song8.jpeg',
         1,
         4200,
         'LIVE',
@@ -207,7 +207,7 @@ VALUES
         'Lá Xa Lìa Cành',
         220,
         'songs/la-xa-lia-canh.mp3',
-        'covers/song9.jpg',
+        'images/songs/song9.jpeg',
         2,
         3900,
         'LIVE',
@@ -220,7 +220,7 @@ VALUES
         'Thích Thì Đến',
         210,
         'songs/thich-thi-den.mp3',
-        'covers/song10.jpg',
+        'images/songs/song10.jpeg',
         3,
         2500,
         'LIVE',
@@ -233,7 +233,7 @@ VALUES
         'Bài Này Chill Phết',
         230,
         'songs/bai-nay-chill-phet.mp3',
-        'covers/song11.jpg',
+        'images/songs/song11.jpeg',
         1,
         5100,
         'LIVE',
@@ -246,7 +246,7 @@ VALUES
         'Già Vợ Yếu',
         215,
         'songs/gia-vo-yeu.mp3',
-        'covers/song12.jpg',
+        'images/songs/song12.jpeg',
         2,
         1300,
         'LIVE',
@@ -259,7 +259,7 @@ VALUES
         'Sau Lời Từ Khước',
         260,
         'songs/sau-loi-tu-khuoc.mp3',
-        'covers/song13.jpg',
+        'images/songs/song13.jpeg',
         1,
         3000,
         'LIVE',
@@ -272,7 +272,7 @@ VALUES
         'Họ Chưa Từng Sai',
         250,
         'songs/ho-chua-tung-sai.mp3',
-        'covers/song14.jpg',
+        'images/songs/song14.jpeg',
         2,
         2800,
         'LIVE',
@@ -285,7 +285,7 @@ VALUES
         'Anh Đã Không Biết Cách Yêu Em',
         235,
         'songs/anh-da-khong-biet-cach-yeu-em.mp3',
-        'covers/song15.jpg',
+        'images/songs/song15.jpeg',
         1,
         1400,
         'LIVE',
@@ -298,7 +298,7 @@ VALUES
         'Còn Gì Đau Hơn Chữ Đã Từng',
         245,
         'songs/con-gi-dau-hon-chu-da-tung.mp3',
-        'covers/song16.jpg',
+        'images/songs/song16.jpeg',
         2,
         3600,
         'LIVE',
@@ -311,7 +311,7 @@ VALUES
         'Ai Là Người Thương Em',
         220,
         'songs/ai-la-nguoi-thuong-em.mp3',
-        'covers/song17.jpg',
+        'images/songs/song17.jpeg',
         1,
         4100,
         'LIVE',
@@ -324,7 +324,7 @@ VALUES
         'Âm Thầm Bên Em',
         255,
         'songs/am-tham-ben-em.mp3',
-        'covers/song18.jpg',
+        'images/songs/song18.jpeg',
         2,
         8000,
         'LIVE',
@@ -337,7 +337,7 @@ VALUES
         'Ngày Mai Người Ta Lấy Chồng',
         240,
         'songs/ngay-mai-nguoi-ta-lay-chong.mp3',
-        'covers/song19.jpg',
+        'images/songs/song19.jpeg',
         1,
         4600,
         'LIVE',
@@ -467,25 +467,25 @@ INSERT INTO playlists (
     is_public
 )
 VALUES
-    (5,'Morning Chill','Relax morning playlist','covers/p1.jpg',TRUE),
+    (5,'Morning Chill','Relax morning playlist','images/playlists/playlist1.jpeg',TRUE),
 
-    (6,'Workout Hits','Gym playlist','covers/p2.jpg',TRUE),
+    (6,'Workout Hits','Gym playlist','images/playlists/playlist2.jpeg',TRUE),
 
-    (7,'Late Night Coding','Coding playlist','covers/p3.jpg',TRUE),
+    (7,'Late Night Coding','Coding playlist','images/playlists/playlist3.jpeg',TRUE),
 
-    (8,'Study Time','Study playlist','covers/p4.jpg',TRUE),
+    (8,'Study Time','Study playlist','images/playlists/playlist4.jpeg',TRUE),
 
-    (5,'Jazz Cafe','Cafe vibes','covers/p5.jpg',TRUE),
+    (5,'Jazz Cafe','Cafe vibes','images/playlists/playlist5.jpeg',TRUE),
 
-    (6,'Rock Energy','Rock playlist','covers/p6.jpg',TRUE),
+    (6,'Rock Energy','Rock playlist','images/playlists/playlist6.jpeg',TRUE),
 
-    (7,'Pop Mood','Pop playlist','covers/p7.jpg',TRUE),
+    (7,'Pop Mood','Pop playlist','images/playlists/playlist7.jpeg',TRUE),
 
-    (8,'LoFi Sleep','Sleep playlist','covers/p8.jpg',TRUE),
+    (8,'LoFi Sleep','Sleep playlist','images/playlists/playlist8.jpeg',TRUE),
 
-    (5,'Rap Party','Party playlist','covers/p9.jpg',TRUE),
+    (5,'Rap Party','Party playlist','images/playlists/playlist9.jpeg',TRUE),
 
-    (6,'Indie Relax','Relax indie songs','covers/p10.jpg',TRUE);
+    (6,'Indie Relax','Relax indie songs','images/playlists/playlist10.jpeg',TRUE);
 
 /* =====================================================
    PLAYLIST SONGS

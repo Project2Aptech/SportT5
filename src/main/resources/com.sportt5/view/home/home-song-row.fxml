@@ -32,6 +32,7 @@
         <Label fx:id="lblArtist" text="Daft Punk" styleClass="track-artist" />
     </VBox>
     <Region HBox.hgrow="ALWAYS" />
-    <Label text="♡" styleClass="row-action" />
-    <Label text="•••" styleClass="row-action" />
+    <Label fx:id="likeAction" text="♡" styleClass="row-action" />
+    <Label fx:id="playlistAction" text="+" styleClass="row-action" />
+    <Label fx:id="downloadAction" text="⇩" styleClass="row-action" />
 </HBox>

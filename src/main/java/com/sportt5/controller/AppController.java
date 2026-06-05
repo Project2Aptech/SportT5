@@ -83,6 +83,14 @@ public class AppController {
         }
         showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryItem());
     }
+
+    public void searchLibrary(String query) {
+        if (libraryPageController == null) return;
+        if (!libraryPage.isVisible()) {
+            showLibraryPage();
+        }
+        libraryPageController.searchSongs(query);
+    }
     @FXML public void showAccountPage() { showPage(accountPage, topBarController.getAccountTopBar(), sidebarController.getAccountNavItem()); }
 
     // ════════════════════════════════════════════════════════════════════════
