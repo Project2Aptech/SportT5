@@ -57,7 +57,7 @@
                     <Region HBox.hgrow="ALWAYS" />
                 </HBox>
                 <Label text="PLATFORM REVENUE" styleClass="metric-label" />
-                <Label text="\$218,900" styleClass="metric-value" />
+                <Label fx:id="amountText" text="\$0,0" styleClass="metric-value" />
                 <HBox alignment="BOTTOM_LEFT" spacing="7.0" styleClass="followers-bars">
                     <Region prefWidth="7.0" prefHeight="14.0" />
                     <Region prefWidth="7.0" prefHeight="24.0" />

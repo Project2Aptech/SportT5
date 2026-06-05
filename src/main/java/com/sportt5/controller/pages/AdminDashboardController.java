@@ -1,10 +1,7 @@
 package com.sportt5.controller.pages;
 
 import com.sportt5.controller.AppController;
-import com.sportt5.model.SongResponse;
-import com.sportt5.model.Songs;
-import com.sportt5.model.UserResponse;
-import com.sportt5.model.Users;
+import com.sportt5.model.*;
 import com.sportt5.service.AdminService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -32,7 +29,7 @@ public class AdminDashboardController {
     @FXML private GridPane userGridDashboard;
     @FXML private Label totalUser;
     @FXML private Label trackUploaded;
-    private AppController appController;
+    @FXML private Label amountText;
 
     @FXML
     public void initialize() {
@@ -48,23 +45,27 @@ public class AdminDashboardController {
                 SongResponse responseSong = adminService.getSong();
                 List<Songs> songs = responseSong.getContent();
 
+                SubscriptionsResponse responseSub = adminService.getSubscriptions();
+                List<Subscriptions> subscriptions = responseSub.getContent();
+
+                double totalAmount = 0;
+                for (Subscriptions s : subscriptions) {
+                    if (s.getAmount() != null) {
+                        totalAmount += s.getAmount().doubleValue();
+                    }
+                }
+                double finalTotalAmount = totalAmount;
+
                 Platform.runLater(() -> {
                     totalUser.setText(String.valueOf(users.size()));
                     trackUploaded.setText(String.valueOf(songs.size()));
+                    amountText.setText(String.format("$%.2f", finalTotalAmount));
                     renderUsersDashboard(users);
                 });
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }).start();
-    }
-    @FXML
-    private void handleViewAllUsers(ActionEvent event) {
-//        System.out.println("appController = " + appController);
-//
-//        if (appController != null) {
-//            appController.showAdminUserPage();
-//        }
     }
 
     private void renderUsersDashboard(List<Users> users) {

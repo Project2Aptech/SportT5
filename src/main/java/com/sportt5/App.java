@@ -29,7 +29,6 @@ public class App extends Application {
                 UserSession.setCurrentUser(user);
                 validToken = true;
             } catch (Exception e) {
-                System.out.println("Saved token is invalid or expired.");
                 UserSession.cleanSession();
                 TokenStorage.clearToken();
             }

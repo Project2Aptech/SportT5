@@ -93,7 +93,6 @@ public HBox getArtistItem() { return artistItem; }
 
         Users user = UserSession.getInstance().getCurrentUser();
         Roles role = user != null ? user.getRole() : null;
-
         System.out.println("Slide bar " + user);
 
         loadProfile();
@@ -119,7 +118,7 @@ public HBox getArtistItem() { return artistItem; }
                 if (appController != null) appController.showLibraryPage();
             });
         }
-if (artistItem != null) {
+    if (artistItem != null) {
 
             boolean canShowArtist =
                     role == Roles.ADMIN ||
@@ -142,9 +141,7 @@ if (artistItem != null) {
             });
         }
         if (adminItem != null) {
-
             boolean isAdmin = role == Roles.ADMIN;
-
             adminItem.setVisible(isAdmin);
             adminItem.setManaged(isAdmin);
 
