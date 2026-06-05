@@ -1,8 +1,7 @@
 package com.sportt5.controller.pages;
 
 import com.sportt5.controller.AppController;
-import com.sportt5.model.UserResponse;
-import com.sportt5.model.Users;
+import com.sportt5.model.*;
 import com.sportt5.service.AdminService;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,6 +15,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +29,7 @@ public class AdminDashboardController {
     @FXML private GridPane userGridDashboard;
     @FXML private Label totalUser;
     @FXML private Label trackUploaded;
-    private AppController appController;
+    @FXML private Label amountText;
 
     @FXML
     public void initialize() {
@@ -39,8 +41,25 @@ public class AdminDashboardController {
             try {
                 UserResponse response = adminService.getUser();
                 List<Users> users = response.getContent();
-                System.out.println(users.size());
+
+                SongResponse responseSong = adminService.getSong();
+                List<Songs> songs = responseSong.getContent();
+
+                SubscriptionsResponse responseSub = adminService.getSubscriptions();
+                List<Subscriptions> subscriptions = responseSub.getContent();
+
+                double totalAmount = 0;
+                for (Subscriptions s : subscriptions) {
+                    if (s.getAmount() != null) {
+                        totalAmount += s.getAmount().doubleValue();
+                    }
+                }
+                double finalTotalAmount = totalAmount;
+
                 Platform.runLater(() -> {
+                    totalUser.setText(String.valueOf(users.size()));
+                    trackUploaded.setText(String.valueOf(songs.size()));
+                    amountText.setText(String.format("$%.2f", finalTotalAmount));
                     renderUsersDashboard(users);
                 });
             } catch (Exception e) {
@@ -48,15 +67,18 @@ public class AdminDashboardController {
             }
         }).start();
     }
-    @FXML
-    private void handleViewAllUsers(ActionEvent event) {
-//        if (appController != null) appController.showAdminUserPage();
-    }
+
     private void renderUsersDashboard(List<Users> users) {
         userGridDashboard.getChildren().removeIf(node -> {
             Integer row = GridPane.getRowIndex(node);
-            return row != null && row > 0;
+
+            if (row == null) {
+                return false;
+            }
+
+            return row > 0;
         });
+
         List<Users> latestUsers = users.stream()
                 .filter(u -> u.getCreatedAt() != null)
                 .sorted(Comparator.comparing(Users::getCreatedAt).reversed())
@@ -66,9 +88,6 @@ public class AdminDashboardController {
 
         for (Users user : latestUsers) {
             HBox nameBox = new HBox(12);
-//            StackPane avatar = new StackPane();
-//            avatar.setPrefSize(34, 34);
-//            avatar.getStyleClass().addAll("admin-thumb", "thumb-pink");
 
             VBox infoBox = new VBox(2);
 
@@ -85,10 +104,18 @@ public class AdminDashboardController {
 
             Label emailLabel = new Label(user.getEmail());
 
-            Label planLabel = new Label(
-                    user.getAccountType() != null
-                            ? user.getAccountType().toString()
-                            : "NORMAL"
+            String plan = user.getAccountType() != null
+                    ? user.getAccountType().name()
+                    : "NORMAL";
+
+            Label planLabel = new Label(plan);
+
+            planLabel.getStyleClass().add(
+                    switch (plan) {
+                        case "PRO" -> "plan-pro";
+                        case "PREMIUM" -> "plan-premium";
+                        default -> "plan-normal";
+                    }
             );
 
             Label joinedLabel = new Label(

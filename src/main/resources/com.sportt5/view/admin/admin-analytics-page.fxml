@@ -9,39 +9,81 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            visible="false" managed="false"
-            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sportt5.controller.pages.AdminAnalyticsController"
+            fitToWidth="true"
+            hbarPolicy="NEVER"
+            vbarPolicy="AS_NEEDED"
+            styleClass="home-scroll">
+
     <VBox spacing="18.0" styleClass="admin-body">
+
+        <!-- HEADER -->
         <HBox alignment="CENTER_LEFT" spacing="18.0">
+
             <VBox spacing="5.0">
-                <Label text="Analytics" styleClass="admin-title" />
-                <Label text="Platform-wide streams, revenue, and growth trends." styleClass="admin-subtitle" />
+                <Label text="Analytics" styleClass="admin-title"/>
+                <Label text="Platform-wide subscriptions and revenue overview."
+                       styleClass="admin-subtitle"/>
             </VBox>
-            <Region HBox.hgrow="ALWAYS" />
+
+            <Region HBox.hgrow="ALWAYS"/>
+
             <HBox spacing="6.0" styleClass="chart-tabs">
-                <Button text="7 Days" styleClass="chart-tab-active" />
-                <Button text="30 Days" styleClass="chart-tab" />
-                <Button text="1 Year" styleClass="chart-tab" />
+                <VBox styleClass="summary-card">
+                    <Label text="Total PRO Users"/>
+                    <Label fx:id="totalProLabel" text="0" styleClass="summary-value"/>
+                </VBox>
+
+                <VBox styleClass="summary-card">
+                    <Label text="Total PREMIUM Users"/>
+                    <Label fx:id="totalPremiumLabel" text="0" styleClass="summary-value"/>
+                </VBox>
+
+                <VBox styleClass="summary-card">
+                    <Label text="Total Revenue"/>
+                    <Label fx:id="totalRevenueLabel" text="0.00" styleClass="summary-value"/>
+                </VBox>
             </HBox>
+
         </HBox>
 
-        <VBox spacing="14.0" styleClass="admin-panel">
-            <HBox alignment="CENTER_LEFT">
-                <Label text="Platform Revenue" styleClass="panel-title" />
-                <Region HBox.hgrow="ALWAYS" />
-            </HBox>
-            <StackPane prefHeight="210.0" styleClass="chart-area">
-                <Pane styleClass="chart-grid" />
-                <Pane styleClass="chart-fill" />
-                <HBox alignment="BOTTOM_LEFT" spacing="48.0" StackPane.alignment="BOTTOM_LEFT" styleClass="chart-points">
-                    <Label text="01 Oct" />
-                    <Label text="07 Oct" />
-                    <Label text="14 Oct" />
-                    <Label text="21 Oct" />
-                    <Label text="30 Oct" />
-                </HBox>
-            </StackPane>
+        <!-- TABLE -->
+        <VBox spacing="12.0" styleClass="admin-panel">
+
+            <GridPane fx:id="userGrid"
+                      hgap="18.0"
+                      vgap="16.0"
+                      styleClass="admin-table">
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="10.0" />
+                    <ColumnConstraints percentWidth="15.0" />
+                    <ColumnConstraints percentWidth="12.0" />
+                    <ColumnConstraints percentWidth="10.0" />
+                    <ColumnConstraints percentWidth="15.0" />
+                    <ColumnConstraints percentWidth="18.0" />
+                    <ColumnConstraints percentWidth="20.0" />
+                </columnConstraints>
+
+                <!-- HEADER ROW -->
+                <Label text="ID" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="table-head" />
+                <Label text="USER ID" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="table-head" />
+                <Label text="PLAN TYPE" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="table-head" />
+                <Label text="AMOUNT" GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="table-head" />
+                <Label text="STATUS" GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="table-head" />
+                <Label text="START DATE" GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="table-head" />
+                <Label text="EXPIRE DATE" GridPane.rowIndex="0" GridPane.columnIndex="6" styleClass="table-head" />
+
+            </GridPane>
+
         </VBox>
+
     </VBox>
+
 </ScrollPane>

@@ -380,3 +380,37 @@
 .cancel-btn:hover {
     -fx-background-color: #dc2626;
 }
+
+
+/* ===================== SUMMARY CARDS ===================== */
+.summary-card {
+    -fx-background-color: #000000;
+    -fx-padding: 16;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-min-width: 200;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0.2, 0, 4);
+}
+
+.summary-card Label {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+}
+
+.summary-value {
+    -fx-text-fill: #35a300;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.chart-tab {
+    -fx-padding: 6 12;
+    -fx-background-radius: 8;
+}
+
+.chart-tab-active {
+    -fx-background-color: #35a300;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
