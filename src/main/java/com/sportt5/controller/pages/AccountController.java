@@ -34,7 +34,6 @@ import java.util.Locale;
 
 
 public class AccountController {
-    //UI element
     @FXML private Label displayNameLabel,accountTypeHeader;
     @FXML private Label emailLabel;
     @FXML private Label checkEmail;
@@ -43,11 +42,7 @@ public class AccountController {
     @FXML private Label priceLabel;
     @FXML private ImageView avatarImageView;
 
-    //icon loading
-    @FXML private ProgressIndicator progressIndicator;
-
     private final AuthService authService = new AuthService();
-    SidebarController sidebar = SidebarController.getInstance();
 
     @FXML
     public void initialize() {
@@ -109,9 +104,8 @@ public class AccountController {
             showError("Error " + e.getMessage());
             System.out.println(e.getMessage());
         }
-
-
     }
+
     public void handleEditProfile(){
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("/com.sportt5/view/pages/edit-profile.fxml"));
@@ -130,13 +124,11 @@ public class AccountController {
             stage.setScene(scene);
             stage.showAndWait();
 
-            System.out.println("Sidebar: "+sidebar);
             loadUserProfile();
         } catch (IOException e) {
             showError("Unable to open edit dialog: " + e.getMessage());
         }
     }
-
 
     public void loadUserProfile(){
         new Thread(() -> {
@@ -145,14 +137,9 @@ public class AccountController {
                 UserSession.setCurrentUser(fresh);
                 Users user = UserSession.getInstance().getCurrentUser();
 
-                System.out.println("====fresh======\n" + user);
-
                 Platform.runLater(() -> {
                     bindToUi(user);
-
-                    if (sidebar != null) {
-                        sidebar.loadProfile();
-                    }
+                    SidebarController.updateAllProfiles(user);
                 });
 
             } catch (Exception e) {
@@ -162,6 +149,7 @@ public class AccountController {
             }
         }).start();
     }
+
     private void bindToUi(Users u) {
         displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : "User"));
 

@@ -17,7 +17,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root;
-
         String token = TokenStorage.loadToken();
         boolean validToken = false;
 

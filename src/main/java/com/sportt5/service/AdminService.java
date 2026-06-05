@@ -46,14 +46,12 @@ public class AdminService {
     public boolean updateStatusSong(int songId) throws IOException, InterruptedException {
         String endpoint = String.format("admin/songs/%d/publish", songId);
         HttpResponse<String> response = ApiClient.patch(endpoint);
-
         return response.statusCode() == 204;
     }
 
     public boolean deleteUser(int userId) throws IOException, InterruptedException {
         String endpoint = String.format("admin/users/%d", userId);
         HttpResponse<String> response = ApiClient.delete(endpoint);
-
         return response.statusCode() == 204;
     }
     public boolean deleteSong(int songId) throws IOException, InterruptedException {
