@@ -9,6 +9,7 @@ import com.sportt5.model.enums.AccountType;
 import com.sportt5.model.enums.RequiredAccountType;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
+import java.net.http.HttpResponse;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -27,14 +28,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 
 public class PlayerBarController {
 
@@ -90,36 +83,28 @@ public class PlayerBarController {
     }
 
     public void playSong(Songs song) {
-        if (song.getFileUrl() == null || song.getFileUrl().isBlank()) {
-            nowTitle.setText(song.getTitle());
-            nowArtist.setText("Loading...");
-            new Thread(() -> {
-                try {
-                    HttpResponse<String> resp = ApiClient.get("songs/" + song.getId());
-                    if (resp.statusCode() == 200) {
-                        Songs full = mapper.readValue(resp.body(), Songs.class);
-                        Platform.runLater(() -> {
-                            if (!canAccess(full)) {
-                                showAccessDenied(full);
-                            } else {
-                                doPlay(full);
-                            }
-                        });
-                    } else {
-                        Platform.runLater(() -> nowArtist.setText("Cannot load song (HTTP " + resp.statusCode() + ")"));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Platform.runLater(() -> nowArtist.setText("Connection error"));
+        nowTitle.setText(song.getTitle());
+        nowArtist.setText("Loading...");
+        new Thread(() -> {
+            try {
+                HttpResponse<String> resp = ApiClient.get("songs/" + song.getId());
+                if (resp.statusCode() == 200) {
+                    Songs full = mapper.readValue(resp.body(), Songs.class);
+                    Platform.runLater(() -> {
+                        if (!canAccess(full)) {
+                            showAccessDenied(full);
+                        } else {
+                            doPlay(full);
+                        }
+                    });
+                } else {
+                    Platform.runLater(() -> nowArtist.setText("Cannot load song (HTTP " + resp.statusCode() + ")"));
                 }
-            }).start();
-        } else {
-            if (!canAccess(song)) {
-                showAccessDenied(song);
-            } else {
-                doPlay(song);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Platform.runLater(() -> nowArtist.setText("Connection error"));
             }
-        }
+        }).start();
     }
 
     // Kiểm tra user.accountType >= song.requiredAccountType theo thứ tự NORMAL < PRO < PREMIUM
@@ -153,38 +138,19 @@ public class PlayerBarController {
         String coverUrl = ApiClient.resolveUrl(song.getCoverUrl());
         if (coverUrl != null) coverImage.setImage(new Image(coverUrl, true));
 
-        String audioUrl = "https://res.cloudinary.com/dnnhtiafm/video/upload/v1780049933/songs/vvl3mnidrzjplepxke69.mp3";
+        String audioUrl = resolveAudioUrl(song.getFileUrl());
+        if (audioUrl == null) {
+            nowArtist.setText("No audio file available");
+            return;
+        }
 
         double volume = volumeBar.getProgress();
-        new Thread(() -> {
-            try {
-                Path tmp = downloadToTemp(audioUrl);
-                Platform.runLater(() -> playFromTemp(tmp, volume));
-            } catch (Exception e) {
-                e.printStackTrace();
-                Platform.runLater(() -> nowArtist.setText("Download error: " + e.getMessage()));
-            }
-        }).start();
+        Platform.runLater(() -> playFromUrl(audioUrl, volume));
     }
 
-    private Path downloadToTemp(String url) throws Exception {
-        HttpClient http = HttpClient.newBuilder()
-                .followRedirects(HttpClient.Redirect.ALWAYS)
-                .build();
-        HttpRequest req = HttpRequest.newBuilder().uri(URI.create(url)).GET().build();
-        HttpResponse<InputStream> resp = http.send(req, HttpResponse.BodyHandlers.ofInputStream());
-        if (resp.statusCode() / 100 != 2) throw new Exception("HTTP " + resp.statusCode());
-        Path tmp = Files.createTempFile("sportt5_", ".mp3");
-        tmp.toFile().deleteOnExit();
-        try (InputStream in = resp.body()) {
-            Files.copy(in, tmp, StandardCopyOption.REPLACE_EXISTING);
-        }
-        return tmp;
-    }
-
-    private void playFromTemp(Path tmp, double volume) {
+    private void playFromUrl(String url, double volume) {
         try {
-            Media media = new Media(tmp.toUri().toString());
+            Media media = new Media(url);
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setVolume(volume);
 
@@ -279,9 +245,6 @@ public class PlayerBarController {
     }
 
     private String resolveAudioUrl(String fileUrl) {
-        // TODO: remove hardcode, restore logic below
-        return "https://res.cloudinary.com/dnnhtiafm/video/upload/v1780049933/songs/vvl3mnidrzjplepxke69.mp3";
-        /*
         if (fileUrl == null || fileUrl.isBlank()) return null;
         if (fileUrl.startsWith("http")) return fileUrl;
 
@@ -296,7 +259,6 @@ public class PlayerBarController {
         if (devFile.exists()) return devFile.toURI().toString();
 
         return ApiClient.resolveUrl(fileUrl);
-        */
     }
 
     private String formatDuration(Duration d) {
