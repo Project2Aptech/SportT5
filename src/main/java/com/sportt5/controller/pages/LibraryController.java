@@ -116,7 +116,9 @@ public class LibraryController {
                 JsonNode favSongContent = libraryService.getLikedSongs();
 
                 Platform.runLater(() -> {
-                    if (favSongContent.isArray()) {
+                    if (favSongContent.isEmpty() || !favSongContent.isArray()) {
+                        emptyList(playlistSongsTable);
+                    } else if (favSongContent.isArray()) {
                         //Set count of liked songs
                         if (favSongContent.isEmpty()) favouritesCount.setText("0 songs");
                         else favouritesCount.setText(favSongContent.size() == 1 ? "01 song" : String.format("%02d songs", favSongContent.size()));
@@ -139,7 +141,7 @@ public class LibraryController {
                 List<Playlists> playlists = libraryService.getUserPlaylists();
 
                 Platform.runLater(() -> {
-                    if (playlists != null) {
+                    if (!playlists.isEmpty()) {
                         for (Playlists p : playlists) {
                             //Card properties
                             StackPane card = new StackPane();
@@ -217,11 +219,16 @@ public class LibraryController {
 
                                     List<Songs> songs = libraryService.getSongByGenre(selectedGenreIds, true);
 
-                                    if (songs.isEmpty()) songCountLabel.setText("0 songs");
-                                    else songCountLabel.setText(songs.size() == 1 ? "01 song" : String.format("%02d songs", songs.size()));
+                                    if (songs.isEmpty()) {
+                                        songCountLabel.setText("0 songs");
+                                        emptyList(songListTable);
+                                    }
+                                    else {
+                                        songCountLabel.setText(songs.size() == 1 ? "01 song" : String.format("%02d songs", songs.size()));
+                                        notEmptyList(songListTable);
+                                    }
 
                                     songListTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
-
                                     int rowIdx = 0;
                                     for (Songs s : songs) {
                                         rowIdx ++;
@@ -298,6 +305,8 @@ public class LibraryController {
                                 }
                             }
                         });
+                    } else {
+                        emptyList(artistSongTable);
                     }
                 });
             } catch (Exception e) {
@@ -365,6 +374,8 @@ public class LibraryController {
                                 }
                             }
                         });
+                    } else {
+                        emptyList(albumSongTable);
                     }
                 });
             } catch (Exception e) {
@@ -432,5 +443,52 @@ public class LibraryController {
                 throw new RuntimeException(ex);
             }
         }
+    }
+
+    private void emptyList(GridPane table) {
+        table.getChildren().clear();
+        table.getColumnConstraints().clear();
+        ColumnConstraints c = new ColumnConstraints();
+        c.setPercentWidth(100);
+        table.getColumnConstraints().add(c);
+        Label noSong = new Label("NO SONG");
+        noSong.getStyleClass().add("table-title");
+        table.add(noSong, 0, 0);
+    }
+
+    private void notEmptyList(GridPane table) {
+        table.getChildren().clear();
+        table.getColumnConstraints().clear();
+        ColumnConstraints c0 = new ColumnConstraints();
+        c0.setPercentWidth(8);
+        ColumnConstraints c1 = new ColumnConstraints();
+        c1.setPercentWidth(28);
+        ColumnConstraints c2 = new ColumnConstraints();
+        c2.setPercentWidth(28);
+        ColumnConstraints c3 = new ColumnConstraints();
+        c3.setPercentWidth(22);
+        ColumnConstraints c4 = new ColumnConstraints();
+        c4.setPercentWidth(8);
+        ColumnConstraints c5 = new ColumnConstraints();
+        c5.setPercentWidth(6);
+        table.getColumnConstraints().addAll(c0, c1, c2, c3, c4, c5);
+        Label lblIdx = new Label("#");
+        lblIdx.getStyleClass().add("table-head");
+        Label lblTitle = new Label("TITLE");
+        lblTitle.getStyleClass().add("table-head");
+        Label lblAlbum = new Label("ALBUM");
+        lblAlbum.getStyleClass().add("table-head");
+        Label lblDate = new Label("DATE ADDED");
+        lblDate.getStyleClass().add("table-head");
+        Label lblDuration = new Label("DURATION");
+        lblDuration.getStyleClass().add("table-head");
+        Label lblActions = new Label("ACTIONS");
+        lblActions.getStyleClass().add("table-head");
+        table.add(lblIdx, 0, 0);
+        table.add(lblTitle, 1, 0);
+        table.add(lblAlbum, 2, 0);
+        table.add(lblDate, 3, 0);
+        table.add(lblDuration, 4, 0);
+        table.add(lblActions, 5, 0);
     }
 }
