@@ -4,8 +4,10 @@ import com.sportt5.model.SongResponse;
 import com.sportt5.model.Songs;
 import com.sportt5.model.UserResponse;
 import com.sportt5.model.Users;
+import com.sportt5.model.enums.Roles;
 import com.sportt5.model.enums.Status;
 import com.sportt5.service.AdminService;
+import com.sportt5.session.UserSession;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -34,6 +36,12 @@ public class AdminSongController {
 
     @FXML
     public void initialize() {
+        Users currentUser = UserSession.getInstance().getCurrentUser();
+
+        if (currentUser == null ||
+                currentUser.getRole() != Roles.ADMIN) {
+            return;
+        }
         loadSong();
     }
     public void loadSong(){

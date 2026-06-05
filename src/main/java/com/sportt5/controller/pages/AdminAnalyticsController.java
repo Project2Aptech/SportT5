@@ -1,7 +1,9 @@
 package com.sportt5.controller.pages;
 
 import com.sportt5.model.*;
+import com.sportt5.model.enums.Roles;
 import com.sportt5.service.AdminService;
+import com.sportt5.session.UserSession;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,6 +22,12 @@ public class AdminAnalyticsController {
 
     @FXML
     public void initialize() {
+        Users currentUser = UserSession.getInstance().getCurrentUser();
+
+        if (currentUser == null ||
+                currentUser.getRole() != Roles.ADMIN) {
+            return;
+        }
         loadAnalytics();
     }
     public void loadAnalytics(){

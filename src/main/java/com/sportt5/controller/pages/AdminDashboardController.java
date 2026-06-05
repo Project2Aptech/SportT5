@@ -2,7 +2,9 @@ package com.sportt5.controller.pages;
 
 import com.sportt5.controller.AppController;
 import com.sportt5.model.*;
+import com.sportt5.model.enums.Roles;
 import com.sportt5.service.AdminService;
+import com.sportt5.session.UserSession;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +35,12 @@ public class AdminDashboardController {
 
     @FXML
     public void initialize() {
+        Users currentUser = UserSession.getInstance().getCurrentUser();
+
+        if (currentUser == null ||
+                currentUser.getRole() != Roles.ADMIN) {
+            return;
+        }
         loadUserProfile();
     }
 

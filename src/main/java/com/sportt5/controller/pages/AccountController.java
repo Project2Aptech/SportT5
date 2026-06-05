@@ -151,7 +151,7 @@ public class AccountController {
     }
 
     private void bindToUi(Users u) {
-        displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : "User"));
+        displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : u.getUsername()));
 
         System.out.println("Avatar URL = " + u.getAvatarUrl());
         String avatarUrl = ApiClient.resolveUrl(u.getAvatarUrl());
