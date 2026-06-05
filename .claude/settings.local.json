@@ -38,7 +38,9 @@
       "Bash(del \"D:\\\\Code\\\\SportT5\\\\src\\\\main\\\\resources\\\\com.sportt5\\\\view\\\\admin\\\\add-user-dialog.fxml\")",
       "Bash(del \"D:\\\\Code\\\\SportT5\\\\src\\\\main\\\\java\\\\com\\\\sportt5\\\\controller\\\\pages\\\\AddUserDialogController.java\")",
       "Bash(Select-Object FullName)",
-      "Bash(Format-Table -AutoSize)"
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem \"D:\\\\Code\\\\sping_server\\\\src\" -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName)",
+      "PowerShell(Get-Command *)"
     ]
   }
 }

@@ -71,6 +71,12 @@ public class LibraryService {
         return songs;
     }
 
+    public List<Songs> getAllSongs() throws IOException, InterruptedException {
+        List<Songs> songs = getResponseWithoutToken("songs?size=1000", Songs.class);
+        if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
+        return songs;
+    }
+
     public Albums getAlbumDetails(int id) throws IOException, InterruptedException {
         return getResponseWithoutToken3(String.format("albums/%d", id), Albums.class);
     }
