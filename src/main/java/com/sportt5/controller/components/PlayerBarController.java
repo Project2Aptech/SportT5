@@ -83,36 +83,28 @@ public class PlayerBarController {
     }
 
     public void playSong(Songs song) {
-        if (song.getFileUrl() == null || song.getFileUrl().isBlank()) {
-            nowTitle.setText(song.getTitle());
-            nowArtist.setText("Loading...");
-            new Thread(() -> {
-                try {
-                    HttpResponse<String> resp = ApiClient.get("songs/" + song.getId());
-                    if (resp.statusCode() == 200) {
-                        Songs full = mapper.readValue(resp.body(), Songs.class);
-                        Platform.runLater(() -> {
-                            if (!canAccess(full)) {
-                                showAccessDenied(full);
-                            } else {
-                                doPlay(full);
-                            }
-                        });
-                    } else {
-                        Platform.runLater(() -> nowArtist.setText("Cannot load song (HTTP " + resp.statusCode() + ")"));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Platform.runLater(() -> nowArtist.setText("Connection error"));
+        nowTitle.setText(song.getTitle());
+        nowArtist.setText("Loading...");
+        new Thread(() -> {
+            try {
+                HttpResponse<String> resp = ApiClient.get("songs/" + song.getId());
+                if (resp.statusCode() == 200) {
+                    Songs full = mapper.readValue(resp.body(), Songs.class);
+                    Platform.runLater(() -> {
+                        if (!canAccess(full)) {
+                            showAccessDenied(full);
+                        } else {
+                            doPlay(full);
+                        }
+                    });
+                } else {
+                    Platform.runLater(() -> nowArtist.setText("Cannot load song (HTTP " + resp.statusCode() + ")"));
                 }
-            }).start();
-        } else {
-            if (!canAccess(song)) {
-                showAccessDenied(song);
-            } else {
-                doPlay(song);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Platform.runLater(() -> nowArtist.setText("Connection error"));
             }
-        }
+        }).start();
     }
 
     // Kiểm tra user.accountType >= song.requiredAccountType theo thứ tự NORMAL < PRO < PREMIUM
