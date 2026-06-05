@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/pages/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/controller/pages/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sportt5/service/LibraryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sportt5/service/LibraryService.java" afterDir="false" />
-    </list>
+    <list default="true" id="348014a0-dc6d-49aa-a0df-d1454f8589b2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,7 +142,7 @@
       <workItem from="1780408586215" duration="82000" />
       <workItem from="1780489308799" duration="4881000" />
       <workItem from="1780529759791" duration="6261000" />
-      <workItem from="1780565629584" duration="6565000" />
+      <workItem from="1780565629584" duration="6639000" />
     </task>
     <servers />
   </component>
