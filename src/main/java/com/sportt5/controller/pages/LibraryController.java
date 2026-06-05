@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sportt5.controller.components.PlayerBarController;
 import com.sportt5.model.Albums;
 import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;
@@ -217,7 +218,7 @@ public class LibraryController {
                                         genreName.getStyleClass().add("genre-chip-active");
                                     }
 
-                                    List<Songs> songs = libraryService.getSongByGenre(selectedGenreIds, true);
+                                    List<Songs> songs = libraryService.getSongByGenre(selectedGenreIds, false);
 
                                     if (songs.isEmpty()) {
                                         songCountLabel.setText("0 songs");
@@ -392,6 +393,7 @@ public class LibraryController {
         if (artistName.isEmpty()) {
             Label lblTitle = new Label(s.getTitle());
             lblTitle.getStyleClass().add("table-title");
+            lblTitle.setOnMouseClicked(e -> { if (PlayerBarController.getInstance() != null) PlayerBarController.getInstance().playSong(s); });
             table.add(lblTitle, 1, index);
         } else {
             VBox titleBox = new VBox(2.0);
@@ -400,6 +402,7 @@ public class LibraryController {
             lblTitle.getStyleClass().add("table-title");
             lblArtist.getStyleClass().add("table-artist");
             titleBox.getChildren().addAll(lblTitle, lblArtist);
+            titleBox.setOnMouseClicked(e -> { if (PlayerBarController.getInstance() != null) PlayerBarController.getInstance().playSong(s); });
             table.add(titleBox, 1, index);
         }
         //Album
