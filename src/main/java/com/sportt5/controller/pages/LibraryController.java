@@ -30,9 +30,9 @@ import static javafx.geometry.Pos.BOTTOM_LEFT;
 
 public class LibraryController {
     // Tabs
-    @FXML private Label tabPlaylists, tabGenres, tabArtists, tabAlbums, tabDownloaded;
+    @FXML private Label tabPlaylists, tabSongs, tabArtists, tabAlbums, tabDownloaded;
     // Views
-    @FXML private VBox playlistsView, genresView, artistsView, albumsView;
+    @FXML private VBox playlistsView, songsView, artistsView, albumsView;
     // Playlists view
     @FXML private StackPane likedBtn;
     @FXML private Label dateAdded;
@@ -73,7 +73,7 @@ public class LibraryController {
     public void initialize() {
         if (tabPlaylists != null) {
             tabPlaylists.setOnMouseClicked(e -> showTab(tabPlaylists, playlistsView));
-            tabGenres.setOnMouseClicked(e -> showTab(tabGenres, genresView));
+            tabSongs.setOnMouseClicked(e -> showTab(tabSongs, songsView));
             tabArtists.setOnMouseClicked(e -> showTab(tabArtists, artistsView));
             tabAlbums.setOnMouseClicked(e -> showTab(tabAlbums, albumsView));
             tabDownloaded.setOnMouseClicked(e -> showTab(tabDownloaded, null));
@@ -81,12 +81,12 @@ public class LibraryController {
     }
 
     private void showTab(Label activeTab, VBox view) {
-        for (Label t : new Label[]{tabPlaylists, tabGenres, tabArtists, tabAlbums, tabDownloaded}) {
+        for (Label t : new Label[]{tabPlaylists, tabSongs, tabArtists, tabAlbums, tabDownloaded}) {
             t.getStyleClass().setAll("library-tab");
         }
         activeTab.getStyleClass().setAll("library-tab-active");
         setVisible(playlistsView, false);
-        setVisible(genresView, false);
+        setVisible(songsView, false);
         setVisible(artistsView, false);
         setVisible(albumsView, false);
         if (view != null) setVisible(view, true);
@@ -194,8 +194,8 @@ public class LibraryController {
             }
         }).start();
     }
-    //════════════════════Genres view════════════════════
-    public void filterGenres() {
+    //════════════════════Songs view════════════════════
+    public void filterSongs() {
         if (session == null || session.getCurrentUserId() == -1) return;
 
         new Thread(() -> {
