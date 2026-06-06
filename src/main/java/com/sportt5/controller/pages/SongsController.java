@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 
-public class GenreController {
+public class SongsController {
 
     @FXML private FlowPane genreChipsBox;
     @FXML private VBox songListVBox;
