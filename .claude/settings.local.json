@@ -40,7 +40,9 @@
       "Bash(Select-Object FullName)",
       "Bash(Format-Table -AutoSize)",
       "PowerShell(Get-ChildItem \"D:\\\\Code\\\\sping_server\\\\src\" -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName)",
-      "PowerShell(Get-Command *)"
+      "PowerShell(Get-Command *)",
+      "Bash(curl -s -u \"452977938687841:PL-ULSXDdA308Ld4-brgJoTqJzY\" \"https://api.cloudinary.com/v1_1/dnnhtiafm/resources/image?max_results=500&type=upload\")",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(r['public_id'], r['secure_url']\\) for r in data['resources']]\")"
     ]
   }
 }
