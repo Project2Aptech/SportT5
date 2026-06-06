@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sportt5.controller.components.PlayerBarController;
 import com.sportt5.model.Albums;
 import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;
@@ -202,47 +203,91 @@ public class LibraryController {
                 List<Integer> genres = new ArrayList<>(genresMap.keySet());
 
                 Platform.runLater(() -> {
-                    if (!genres.isEmpty()) {
-                        for (Integer i : genres) {
-                            Label genreName = new Label(genresMap.get(i));
-                            genreName.getStyleClass().add("genre-chip");
-                            final int currId = i;
-                            genreName.setOnMouseClicked(e -> {
-                                try {
-                                    if(selectedGenreIds.contains(currId)) {
-                                        selectedGenreIds.remove(currId);
-                                        genreName.getStyleClass().remove("genre-chip-active");
-                                    } else {
-                                        selectedGenreIds.add(currId);
-                                        genreName.getStyleClass().add("genre-chip-active");
-                                    }
-
-                                    List<Songs> songs = libraryService.getSongByGenre(selectedGenreIds, true);
-
-                                    if (songs.isEmpty()) {
-                                        songCountLabel.setText("0 songs");
-                                        emptyList(songListTable);
-                                    }
-                                    else {
-                                        songCountLabel.setText(songs.size() == 1 ? "01 song" : String.format("%02d songs", songs.size()));
-                                        notEmptyList(songListTable);
-                                    }
-
-                                    songListTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
+                    Label allChip = new Label("All");
+                    allChip.getStyleClass().addAll("genre-chip", "genre-chip-active");
+                    allChip.setOnMouseClicked(e -> {
+                        selectedGenreIds.clear();
+                        genreChipsBox.getChildren().forEach(n -> {
+                            if (n instanceof Label lbl) lbl.getStyleClass().remove("genre-chip-active");
+                        });
+                        allChip.getStyleClass().add("genre-chip-active");
+                        new Thread(() -> {
+                            try {
+                                final List<Songs> result = libraryService.getAllSongs();
+                                Platform.runLater(() -> {
+                                    songCountLabel.setText(result.isEmpty() ? "0 songs" : result.size() == 1 ? "01 song" : String.format("%02d songs", result.size()));
+                                    if (result.isEmpty()) { emptyList(songListTable); return; }
+                                    notEmptyList(songListTable);
+                                    songListTable.getChildren().removeIf(nd -> GridPane.getRowIndex(nd) != null && GridPane.getRowIndex(nd) > 0);
                                     int rowIdx = 0;
-                                    for (Songs s : songs) {
-                                        rowIdx ++;
-                                        String artistName = usersMap.getOrDefault(s.getArtistId(), "Unknown");
-                                        String albumName = albumsMap.getOrDefault(s.getAlbumId(), "Unknown");
-
-                                        addSongToTable(songListTable, rowIdx, s, artistName, albumName, "");
+                                    for (Songs s : result) {
+                                        rowIdx++;
+                                        addSongToTable(songListTable, rowIdx, s, usersMap.getOrDefault(s.getArtistId(), "Unknown"), albumsMap.getOrDefault(s.getAlbumId(), "Unknown"), "");
                                     }
-                                } catch (Exception ex) {
-                                    ex.printStackTrace();
+                                });
+                            } catch (Exception ex) { ex.printStackTrace(); }
+                        }).start();
+                    });
+                    genreChipsBox.getChildren().add(allChip);
+
+                    // Tự động load tất cả bài hát khi mở tab genres
+                    new Thread(() -> {
+                        try {
+                            final List<Songs> result = libraryService.getAllSongs();
+                            Platform.runLater(() -> {
+                                songCountLabel.setText(result.isEmpty() ? "0 songs" : result.size() == 1 ? "01 song" : String.format("%02d songs", result.size()));
+                                if (result.isEmpty()) { emptyList(songListTable); return; }
+                                notEmptyList(songListTable);
+                                songListTable.getChildren().removeIf(nd -> GridPane.getRowIndex(nd) != null && GridPane.getRowIndex(nd) > 0);
+                                int rowIdx = 0;
+                                for (Songs s : result) {
+                                    rowIdx++;
+                                    addSongToTable(songListTable, rowIdx, s, usersMap.getOrDefault(s.getArtistId(), "Unknown"), albumsMap.getOrDefault(s.getAlbumId(), "Unknown"), "");
                                 }
                             });
-                            genreChipsBox.getChildren().add(genreName);
-                        }
+                        } catch (Exception ex) { ex.printStackTrace(); }
+                    }).start();
+
+                    for (Integer i : genres) {
+                        Label genreName = new Label(genresMap.get(i));
+                        genreName.getStyleClass().add("genre-chip");
+                        final int currId = i;
+                        genreName.setOnMouseClicked(e -> {
+                            try {
+                                allChip.getStyleClass().remove("genre-chip-active");
+                                if(selectedGenreIds.contains(currId)) {
+                                    selectedGenreIds.remove(currId);
+                                    genreName.getStyleClass().remove("genre-chip-active");
+                                } else {
+                                    selectedGenreIds.add(currId);
+                                    genreName.getStyleClass().add("genre-chip-active");
+                                }
+
+                                List<Songs> songs = libraryService.getSongByGenre(selectedGenreIds, false);
+
+                                if (songs.isEmpty()) {
+                                    songCountLabel.setText("0 songs");
+                                    emptyList(songListTable);
+                                }
+                                else {
+                                    songCountLabel.setText(songs.size() == 1 ? "01 song" : String.format("%02d songs", songs.size()));
+                                    notEmptyList(songListTable);
+                                }
+
+                                songListTable.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) > 0);
+                                int rowIdx = 0;
+                                for (Songs s : songs) {
+                                    rowIdx++;
+                                    String artistName = usersMap.getOrDefault(s.getArtistId(), "Unknown");
+                                    String albumName = albumsMap.getOrDefault(s.getAlbumId(), "Unknown");
+
+                                    addSongToTable(songListTable, rowIdx, s, artistName, albumName, "");
+                                }
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
+                        });
+                        genreChipsBox.getChildren().add(genreName);
                     }
                 });
             } catch (Exception e) {
@@ -392,6 +437,7 @@ public class LibraryController {
         if (artistName.isEmpty()) {
             Label lblTitle = new Label(s.getTitle());
             lblTitle.getStyleClass().add("table-title");
+            lblTitle.setOnMouseClicked(e -> { if (PlayerBarController.getInstance() != null) PlayerBarController.getInstance().playSong(s); });
             table.add(lblTitle, 1, index);
         } else {
             VBox titleBox = new VBox(2.0);
@@ -400,6 +446,7 @@ public class LibraryController {
             lblTitle.getStyleClass().add("table-title");
             lblArtist.getStyleClass().add("table-artist");
             titleBox.getChildren().addAll(lblTitle, lblArtist);
+            titleBox.setOnMouseClicked(e -> { if (PlayerBarController.getInstance() != null) PlayerBarController.getInstance().playSong(s); });
             table.add(titleBox, 1, index);
         }
         //Album
