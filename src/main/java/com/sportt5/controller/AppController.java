@@ -77,7 +77,7 @@ public class AppController {
             libraryPageController.clearAllBox();
             libraryPageController.loadPlaylists();
             libraryPageController.loadFavouritesSongs();
-            libraryPageController.filterGenres();
+            libraryPageController.filterSongs();
             libraryPageController.filterAlbums();
             libraryPageController.filterArtist();
         }

@@ -22,7 +22,7 @@
         <!-- Tab bar -->
         <HBox spacing="28.0" styleClass="library-tabs">
             <Label fx:id="tabPlaylists"  text="Playlists"   styleClass="library-tab-active" />
-            <Label fx:id="tabGenres"     text="Genres"      styleClass="library-tab" />
+            <Label fx:id="tabSongs"      text="Songs"       styleClass="library-tab" />
             <Label fx:id="tabArtists"    text="Artists"     styleClass="library-tab" />
             <Label fx:id="tabAlbums"     text="Albums"      styleClass="library-tab" />
             <Label fx:id="tabDownloaded" text="Downloaded"  styleClass="library-tab" />
@@ -72,7 +72,7 @@
         </VBox>
 
         <!-- === GENRES VIEW === -->
-        <VBox fx:id="genresView" visible="false" managed="false" spacing="18.0">
+        <VBox fx:id="songsView" visible="false" managed="false" spacing="18.0">
             <FlowPane fx:id="genreChipsBox" hgap="10.0" vgap="10.0"/>
             <HBox alignment="CENTER_LEFT">
                 <Region HBox.hgrow="ALWAYS" />
