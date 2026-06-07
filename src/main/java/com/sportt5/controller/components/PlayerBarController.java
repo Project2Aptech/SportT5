@@ -219,6 +219,10 @@ public class PlayerBarController {
         }
     }
 
+    public void stop() {
+        stopCurrent();
+    }
+
     private void stopCurrent() {
         stopProgressTimeline();
         spinAnimation.stop();

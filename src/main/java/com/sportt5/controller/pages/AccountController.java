@@ -198,6 +198,10 @@ public class AccountController {
 
     @FXML
     public void handleSignOut(ActionEvent event) {
+        com.sportt5.controller.components.PlayerBarController player =
+                com.sportt5.controller.components.PlayerBarController.getInstance();
+        if (player != null) player.stop();
+
         UserSession.cleanSession();
         TokenStorage.clearToken();
         try {
