@@ -1,18 +1,34 @@
 package com.sportt5.controller.components;
 
+import com.sportt5.App;
 import com.sportt5.controller.AppController;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.Roles;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class SidebarController {
+    private static final List<SidebarController> instances = new ArrayList<>();
+
+    public SidebarController() {
+    }
+
+    public static void updateAllProfiles(Users user) {
+        for (SidebarController ctrl : instances) {
+            ctrl.loadProfile(user);
+        }
+    }
+
     //Home Sidebar
     @FXML private Label profileNameLabel, profileTierLabel, brandLabel;
     @FXML private ImageView sidebarAvatar;
@@ -21,14 +37,14 @@ public class SidebarController {
     @FXML private HBox artistDashboardNavItem, artistMusicNavItem, artistUploadNavItem, artistAnalyticsNavItem, artistFansNavItem, exitArtistNavItem;
     //Admin Sidebar
     @FXML private HBox adminDashboardNavItem, adminUserNavItem, adminReviewNavItem, adminAnalyticsNavItem, exitAdminNavItem;
+
     //App controller
     private AppController appController;
-
     public void setAppController(AppController appController) { this.appController = appController; }
     public HBox getAccountNavItem() { return accountNavItem; }
     public HBox getHomeNavItem() { return homeNavItem; }
     public HBox getLibraryItem() { return libraryItem; }
-public HBox getArtistItem() { return artistItem; }
+    public HBox getArtistItem() { return artistItem; }
     public HBox getAdminItem() { return adminItem; }
     public HBox getArtistDashboardNavItem() { return artistDashboardNavItem; }
     public HBox getArtistMusicNavItem() { return artistMusicNavItem; }
@@ -39,6 +55,7 @@ public HBox getArtistItem() { return artistItem; }
     public HBox getAdminUserNavItem() { return adminUserNavItem; }
     public HBox getAdminReviewNavItem() { return adminReviewNavItem; }
     public HBox getAdminAnalyticsNavItem() { return adminAnalyticsNavItem; }
+
 
     public void resetNavStyles() {
         if (homeNavItem != null) {
@@ -61,21 +78,33 @@ public HBox getArtistItem() { return artistItem; }
         }
     }
 
+    public void loadProfile(Users user){
+            if (profileNameLabel != null && user != null) {
+                profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
+            }
+            if (profileTierLabel != null && user != null) {
+                profileTierLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
+            }
+            if (sidebarAvatar != null && user != null) {
+                String url = ApiClient.resolveUrl(user.getAvatarUrl());
+                if (url != null) {
+                    sidebarAvatar.setImage(new Image(url, true));
+                } else {
+                    sidebarAvatar.setImage(new Image(App.class.getResource("/com.sportt5/img/avatar.png").toExternalForm()));
+                }
+            }
+    }
     @FXML
     public void initialize() {
+        if (!instances.contains(this)) {
+            instances.add(this);
+        }
+
         Users user = UserSession.getInstance().getCurrentUser();
         Roles role = user != null ? user.getRole() : null;
+        System.out.println("Slide bar " + user);
 
-        if (profileNameLabel != null && user != null) {
-            profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
-        }
-        if (profileTierLabel != null && user != null) {
-            profileTierLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
-        }
-        if (sidebarAvatar != null && user != null) {
-            String url = ApiClient.resolveUrl(user.getAvatarUrl());
-            if (url != null) sidebarAvatar.setImage(new Image(url, true));
-        }
+        loadProfile(user);
 
         //<-----Home sidebar----->
         if (brandLabel != null) {
@@ -98,7 +127,7 @@ public HBox getArtistItem() { return artistItem; }
                 if (appController != null) appController.showLibraryPage();
             });
         }
-if (artistItem != null) {
+    if (artistItem != null) {
 
             boolean canShowArtist =
                     role == Roles.ADMIN ||
@@ -121,9 +150,7 @@ if (artistItem != null) {
             });
         }
         if (adminItem != null) {
-
             boolean isAdmin = role == Roles.ADMIN;
-
             adminItem.setVisible(isAdmin);
             adminItem.setManaged(isAdmin);
 

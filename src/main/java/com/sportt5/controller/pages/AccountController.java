@@ -1,9 +1,16 @@
 package com.sportt5.controller.pages;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sportt5.App;
 import com.sportt5.controller.EditProfileController;
+import com.sportt5.controller.components.ResetPasswordController;
+import com.sportt5.controller.components.SidebarController;
+import com.sportt5.controller.components.SubscriptionController;
 import com.sportt5.model.Users;
+import com.sportt5.model.enums.Roles;
 import com.sportt5.service.AuthService;
+import com.sportt5.session.TokenStorage;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
@@ -18,13 +25,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.http.HttpResponse;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 
 public class AccountController {
-    //UI element
-    @FXML private Label displayNameLabel;
+    @FXML private Label displayNameLabel,accountTypeHeader;
     @FXML private Label emailLabel;
     @FXML private Label checkEmail;
     @FXML private Label planLabel;
@@ -32,15 +42,70 @@ public class AccountController {
     @FXML private Label priceLabel;
     @FXML private ImageView avatarImageView;
 
-    //icon loading
-    @FXML private ProgressIndicator progressIndicator;
-
     private final AuthService authService = new AuthService();
 
     @FXML
     public void initialize() {
         loadUserProfile();
     }
+
+
+    @FXML
+    public void changePassword(){
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/com.sportt5/view/components/reset-password.fxml")
+            );
+
+            Parent root = loader.load();
+            ResetPasswordController ctrl = loader.getController();
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(
+                    getClass()
+                            .getResource("/com.sportt5/css/account.css")
+                            .toExternalForm()
+            );
+
+            Stage stage = new Stage();
+            stage.setTitle("Reset Password");
+
+            ctrl.initData(UserSession.getInstance().getToken());
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void handleBuySubscription(){
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.sportt5/view/users/subscription-plans.fxml"));
+            DialogPane pane = loader.load();
+            pane.getStylesheets().add(
+                    App.class.getResource("/com.sportt5/css/dialog.css").toExternalForm()
+            );
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initOwner(avatarImageView.getScene().getWindow());
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initStyle(StageStyle.UTILITY);
+
+            SubscriptionController ctrl = loader.getController();
+            ctrl.initData(UserSession.getInstance().getCurrentUser());
+            dialog.showAndWait();
+
+            loadUserProfile();
+        } catch (Exception e) {
+            showError("Error " + e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void handleEditProfile(){
         try {
             FXMLLoader loader = new FXMLLoader(App.class.getResource("/com.sportt5/view/pages/edit-profile.fxml"));
@@ -66,36 +131,28 @@ public class AccountController {
     }
 
     public void loadUserProfile(){
-        UserSession session = UserSession.getInstance();
-        int userId = (session != null) ? session.getCurrentUserId() : -1;
+        new Thread(() -> {
+            try {
+                Users fresh = authService.getUserByToken();
+                UserSession.setCurrentUser(fresh);
+                Users user = UserSession.getInstance().getCurrentUser();
 
-
-        new Thread(()->{
-            try{
-            Users fresh = authService.getUserById(userId);
-            UserSession.setCurrentUser(fresh);
-
-            if (fresh == null) {
-                showError("User is null");
-            }
-
-            Platform.runLater(() -> {
-                bindToUi(fresh);
-            });
+                Platform.runLater(() -> {
+                    bindToUi(user);
+                    SidebarController.updateAllProfiles(user);
+                });
 
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     showError("Failed to load profile: " + e.getMessage());
                 });
             }
-
         }).start();
     }
+
     private void bindToUi(Users u) {
-        displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : "User"));
-        emailLabel.setText(nonNull(u.getEmail()));
-        planLabel.setText(u.getAccountType() != null ? u.getAccountType().name() : "NORMAL");
-        checkEmail.setText((u.getEmail() != null ? "V" : "X"));
+        displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : u.getUsername()));
+
         System.out.println("Avatar URL = " + u.getAvatarUrl());
         String avatarUrl = ApiClient.resolveUrl(u.getAvatarUrl());
         if (avatarUrl != null) {
@@ -103,6 +160,35 @@ public class AccountController {
         } else {
             avatarImageView.setImage(new Image(App.class.getResource("/com.sportt5/img/avatar.png").toExternalForm()));
         }
+
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH);
+
+        if (u.getCreatedAt() != null) {
+            billingDateLabel.setText(
+                    "Member since " + u.getCreatedAt().format(formatter)
+            );
+        } else {
+            billingDateLabel.setText("Member since N/A");
+        }
+
+        if (planLabel != null && u != null) {
+            planLabel.setText(u.getAccountType() != null ? u.getAccountType().name() : "NORMAL");
+        }
+        if (accountTypeHeader != null && u != null) {
+            accountTypeHeader.setText(
+                    String.format("%s Member",
+                            u.getAccountType() != null ? u.getAccountType().name() : "NORMAL"
+                    )
+            );
+        }
+        switch(u.getAccountType()){
+            case PRO -> priceLabel.setText("9.99/month");
+            case PREMIUM  -> priceLabel.setText("14.99/month");
+            default -> priceLabel.setText("Free");
+        }
+        emailLabel.setText(nonNull(u.getEmail()));
+        checkEmail.setText((u.getEmail() != null ? "V" : "X"));
     }
 
     private String nonNull(String s) {
@@ -113,7 +199,7 @@ public class AccountController {
     @FXML
     public void handleSignOut(ActionEvent event) {
         UserSession.cleanSession();
-
+        TokenStorage.clearToken();
         try {
             Parent root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/auth/auth-view.fxml"));
 

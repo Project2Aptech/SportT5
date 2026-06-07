@@ -27,7 +27,6 @@ public class ApiClient {
     }
 
     // ── HTTP methods ─────────────────────────────────────────────────────────
-
     public static HttpResponse<String> get(String endpoint) throws IOException, InterruptedException {
         HttpRequest request = builder(endpoint).GET().build();
         return client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -36,6 +35,26 @@ public class ApiClient {
     public static HttpResponse<String> post(String endpoint, String jsonBody) throws IOException, InterruptedException {
         HttpRequest request = builder(endpoint)
                 .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public static HttpResponse<String> postNoToken(String endpoint, String jsonBody) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + endpoint))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        return client.send(
+                request,
+                HttpResponse.BodyHandlers.ofString()
+        );
+    }
+
+    public static HttpResponse<String> post(String endpoint) throws IOException, InterruptedException {
+        HttpRequest request = builder(endpoint)
+                .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
@@ -52,6 +71,23 @@ public class ApiClient {
                 .method("PATCH", HttpRequest.BodyPublishers.ofString(jsonBody))
                 .build();
         return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+    public static HttpResponse<String> patchBuilder(String endpoint, String jsonBody) throws IOException, InterruptedException {
+        return client.send(
+                builder(endpoint)
+                        .method("PATCH", HttpRequest.BodyPublishers.ofString(jsonBody))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+    }
+    public static HttpResponse<String> patch(String endpoint)
+            throws IOException, InterruptedException {
+
+        return client.send(
+                builder(endpoint)
+                        .method("PATCH", HttpRequest.BodyPublishers.noBody())
+                        .build(),
+                HttpResponse.BodyHandlers.ofString()
+        );
     }
 
     public static HttpResponse<String> delete(String endpoint) throws IOException, InterruptedException {

@@ -3,6 +3,7 @@ package com.sportt5.model;
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sportt5.model.enums.AccountType;
 import com.sportt5.model.enums.Roles;
 
@@ -28,16 +29,18 @@ public class Users {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
+    @JsonProperty("isActive")
     private boolean isActive = true;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
+
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime updatedAt;
 
     public Users() {
     }
 
-    public Users(int id, String username, String email, String passwordHash, Roles role, AccountType accountType, String displayName, String avatarUrl, String bio, LocalDate birthDate, boolean isActive) {
+    public Users(int id, String username, String email, String passwordHash, Roles role, AccountType accountType, String displayName, String avatarUrl, String bio, LocalDate birthDate, boolean isActive,  LocalDateTime createdAt) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -49,6 +52,7 @@ public class Users {
         this.bio = bio;
         this.birthDate = birthDate;
         this.isActive = isActive;
+        this.createdAt = createdAt;
     }
 
     public int getId() {
@@ -137,5 +141,10 @@ public class Users {
 
     public void setActive(boolean isActive) {
         this.isActive = isActive;
+    }
+
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }

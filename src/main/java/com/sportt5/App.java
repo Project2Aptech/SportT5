@@ -1,5 +1,9 @@
 package com.sportt5;
 
+import com.sportt5.model.Users;
+import com.sportt5.service.AuthService;
+import com.sportt5.session.TokenStorage;
+import com.sportt5.session.UserSession;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,9 +16,28 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/auth/auth-view.fxml"));
+        Parent root;
+        String token = TokenStorage.loadToken();
+        boolean validToken = false;
 
-//        Parent root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/view.fxml"));
+        if (token != null && !token.isBlank()) {
+            UserSession.startSession(token, null);
+            try {
+                AuthService authService = new AuthService();
+                Users user = authService.getUserByToken();
+                UserSession.setCurrentUser(user);
+                validToken = true;
+            } catch (Exception e) {
+                UserSession.cleanSession();
+                TokenStorage.clearToken();
+            }
+        }
+
+        if (validToken) {
+            root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/view.fxml"));
+        } else {
+            root = FXMLLoader.load(App.class.getResource("/com.sportt5/view/auth/auth-view.fxml"));
+        }
         Scene scene = new Scene(root, MAIN_WIDTH, MAIN_HEIGHT);
         scene.getStylesheets().add(App.class.getResource("/com.sportt5/css/style.css").toExternalForm());
 

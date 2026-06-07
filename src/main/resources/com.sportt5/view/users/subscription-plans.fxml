@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import java.lang.String?>
+<DialogPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sportt5.controller.components.SubscriptionController">
+
+    <content>
+        <VBox spacing="20" alignment="CENTER">
+            <!-- Title -->
+            <Label text="Select a subscription package"
+                   styleClass="dialog-title"/>
+
+            <!-- Cards container -->
+            <HBox spacing="15" alignment="CENTER">
+
+                <VBox  fx:id="normalCard"
+                       alignment="CENTER"
+                       prefWidth="180"
+                       styleClass="tier-card"
+                       spacing="10">
+                    <Label text="NORMAL" styleClass="tier-title"/>
+                    <Label text="Free" styleClass="tier-price"/>
+                    <Button fx:id="normalBtn"
+                            text="Buy"
+                            onAction="#handleBuyNormal"
+                            styleClass="tier-button"
+                           />
+                </VBox>
+
+                <!-- ==== PRO ==== -->
+                <VBox fx:id="proCard" styleClass="tier-card" alignment="CENTER"
+                      prefWidth="180" spacing="10">
+                    <Label text="PRO" styleClass="tier-title"/>
+                    <Label text="9.99 / month" styleClass="tier-price"/>
+                    <Button fx:id="proBtn" text="Buy"
+                            onAction="#handleBuyPro"
+                            styleClass="tier-button"/>
+                </VBox>
+
+                <!-- ==== PREMIUM ==== -->
+                <VBox fx:id="premiumCard" styleClass="tier-card" alignment="CENTER"
+                      prefWidth="180" spacing="10">
+                    <Label text="PREMIUM" styleClass="tier-title"/>
+                    <Label text="14.99 / month" styleClass="tier-price"/>
+                    <Button fx:id="premiumBtn"
+                            text="Buy"
+                            onAction="#handleBuyPremium"
+                            styleClass="tier-button"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </content>
+
+    <buttonTypes>
+        <ButtonType text="CANCEL" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane>

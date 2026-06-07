@@ -36,12 +36,12 @@
             <HBox alignment="CENTER_LEFT">
                 <Label text="PASSWORD" styleClass="field-label" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button text="Forgot Password?" styleClass="link-button" />
+                <Button onAction="#handleForgotPassword" text="Forgot Password?" styleClass="link-button" />
             </HBox>
             <PasswordField fx:id="loginPasswordField" promptText="••••••••" styleClass="auth-input" />
         </VBox>
         <HBox alignment="CENTER_LEFT" maxWidth="320.0" spacing="8.0">
-            <CheckBox text="Remember this device." styleClass="remember-check" />
+            <CheckBox fx:id="rememberCheck"  onAction="#rememberUser" text="Remember this device." styleClass="remember-check" />
         </HBox>
         <Label fx:id="loginStatusLabel" text="" minHeight="16.0" maxWidth="320.0" wrapText="true" styleClass="auth-status" />
         <Button onAction="#handleSignIn" text="SIGN IN" maxWidth="320.0" styleClass="auth-submit" />
