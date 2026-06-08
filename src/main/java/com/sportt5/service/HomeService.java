@@ -10,6 +10,9 @@ import com.sportt5.model.Songs;
 import com.sportt5.util.ApiClient;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
@@ -18,6 +21,13 @@ public class HomeService {
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+    public HttpRequest createDownloadRequest(Songs song) {
+        return HttpRequest.newBuilder()
+                .uri(URI.create(song.getFileUrl()))
+                .GET()
+                .build();
+    }
 
     public List<Albums> getHomeAlbums() throws IOException, InterruptedException {
         HttpResponse<String> response = ApiClient.get("albums?size=10");
