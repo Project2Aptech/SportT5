@@ -40,6 +40,10 @@ public class SidebarController {
 
     //App controller
     private AppController appController;
+
+    public static void refreshAll(Users fresh) {
+    }
+
     public void setAppController(AppController appController) { this.appController = appController; }
     public HBox getAccountNavItem() { return accountNavItem; }
     public HBox getHomeNavItem() { return homeNavItem; }

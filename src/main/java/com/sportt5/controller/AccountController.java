@@ -1,6 +1,7 @@
 package com.sportt5.controller;
 
 import com.sportt5.App;
+import com.sportt5.controller.components.SidebarController;
 import com.sportt5.model.Users;
 import com.sportt5.service.AuthService;
 import com.sportt5.session.UserSession;
