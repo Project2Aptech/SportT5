@@ -28,8 +28,8 @@
         <TextField promptText="Search artists, songs, podcasts..." prefWidth="360.0" maxWidth="360.0" styleClass="store-search" />
         <Region HBox.hgrow="ALWAYS" />
     </HBox>
-<!--    <HBox fx:id="artistTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar admin-topbar">-->
-<!--        <TextField promptText="Search analytics, tracks, or fans..." prefWidth="360.0" maxWidth="360.0" styleClass="store-search" />-->
-<!--        <Region HBox.hgrow="ALWAYS" />-->
-<!--    </HBox>-->
+    <HBox fx:id="artistTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar admin-topbar">
+        <TextField promptText="Search analytics, tracks, or fans..." prefWidth="360.0" maxWidth="360.0" styleClass="store-search" />
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
 </StackPane>

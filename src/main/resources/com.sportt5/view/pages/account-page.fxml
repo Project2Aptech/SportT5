@@ -112,7 +112,7 @@
                         <Button text="Change" onAction = "#changePassword"
                                 styleClass="change-button" />
                     </HBox>
-                </VBox>ươpo
+                </VBox>
             </VBox>
 
         </HBox>

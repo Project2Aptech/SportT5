@@ -4,13 +4,22 @@ import com.sportt5.model.Songs;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.AccountType;
 import com.sportt5.model.enums.RequiredAccountType;
+import com.sportt5.service.HomeService;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class HomeSongRowController {
     @FXML private HBox rowRoot;
@@ -19,10 +28,50 @@ public class HomeSongRowController {
     @FXML private Label lblTitle;
     @FXML private Label lblArtist;
     @FXML private Label lockBadge;
+    private Songs currentSong;
+    private HomeService homeService = new HomeService();
+
+    @FXML
+    public void downloadSongs(ActionEvent event) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request =
+                    homeService.createDownloadRequest(currentSong);
+
+            String fileName = currentSong.getTitle()
+                    .replaceAll("[\\\\/:*?\"<>|]", "_")
+                    + ".mp3";
+
+            Path path = Paths.get(
+                    System.getProperty("user.home"),
+                    "Downloads",
+                    fileName
+            );
+
+            client.send(
+                    request,
+                    HttpResponse.BodyHandlers.ofFile(path)
+            );
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Download");
+            alert.setHeaderText(null);
+            alert.setContentText("Downloaded done :\n" + path);
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void setSong(int index, Songs song, String artistName) {
+        this.currentSong = song;
+
         lblTitle.setText(song.getTitle());
         lblArtist.setText(artistName);
+
         String url = ApiClient.resolveUrl(song.getCoverUrl());
         if (url != null) imgTrackCover.setImage(new Image(url, true));
 
