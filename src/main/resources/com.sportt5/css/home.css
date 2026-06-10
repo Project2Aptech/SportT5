@@ -212,3 +212,18 @@
     -fx-font-size: 16px;
     -fx-font-weight: 800;
 }
+
+.download-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+}
+
+.download-btn:hover {
+    -fx-text-fill: -c-text-body;
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 6;
+}

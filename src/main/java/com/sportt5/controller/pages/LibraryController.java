@@ -153,6 +153,9 @@ public class LibraryController {
                             Image coverImg = new Image(ApiClient.resolveUrl(p.getCoverUrl()), true);
                             ImageView imgView = new ImageView();
                             imgView.setImage(coverImg);
+                            imgView.setFitWidth(130);
+                            imgView.setFitHeight(130);
+                            imgView.setPreserveRatio(false);
                             //Title box
                             VBox titleBox = new VBox();
                             titleBox.setAlignment(BOTTOM_LEFT);
