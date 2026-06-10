@@ -34,7 +34,7 @@ public class SidebarController {
     @FXML private ImageView sidebarAvatar;
     @FXML private HBox homeNavItem, libraryItem, artistItem, accountNavItem, adminItem;
     //Artist Sidebar
-    @FXML private HBox artistDashboardNavItem, artistMusicNavItem, artistUploadNavItem, artistAnalyticsNavItem, artistFansNavItem, exitArtistNavItem;
+    @FXML private HBox artistDashboardNavItem, artistMusicNavItem, artistUploadNavItem,artistFansNavItem, exitArtistNavItem;
     //Admin Sidebar
     @FXML private HBox adminDashboardNavItem, adminUserNavItem, adminReviewNavItem, adminAnalyticsNavItem, exitAdminNavItem;
 
@@ -49,7 +49,6 @@ public class SidebarController {
     public HBox getArtistDashboardNavItem() { return artistDashboardNavItem; }
     public HBox getArtistMusicNavItem() { return artistMusicNavItem; }
     public HBox getArtistUploadNavItem() { return artistUploadNavItem; }
-    public HBox getArtistAnalyticsNavItem() { return artistAnalyticsNavItem; }
     public HBox getArtistFansNavItem() { return artistFansNavItem; }
     public HBox getAdminDashboardNavItem() { return adminDashboardNavItem; }
     public HBox getAdminUserNavItem() { return adminUserNavItem; }
@@ -66,9 +65,7 @@ public class SidebarController {
         }
         else if (artistDashboardNavItem != null) {
             artistDashboardNavItem.getStyleClass().setAll("nav-item");
-            artistMusicNavItem.getStyleClass().setAll("nav-item");
             artistUploadNavItem.getStyleClass().setAll("nav-item");
-            artistAnalyticsNavItem.getStyleClass().setAll("nav-item");
             artistFansNavItem.getStyleClass().setAll("nav-item");
         } else if (adminDashboardNavItem != null) {
             adminDashboardNavItem.getStyleClass().setAll("nav-item");
@@ -177,11 +174,6 @@ public class SidebarController {
         if (artistUploadNavItem != null) {
             artistUploadNavItem.setOnMouseClicked(e -> {
                 if (appController != null) appController.showArtistUploadPage();
-            });
-        }
-        if (artistAnalyticsNavItem != null) {
-            artistAnalyticsNavItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showArtistAnalyticsPage();
             });
         }
         if (artistFansNavItem != null) {

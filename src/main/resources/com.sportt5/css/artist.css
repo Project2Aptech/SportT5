@@ -1,0 +1,197 @@
+/* ── Update Song Dialog ────────────────────────────────────────── */
+
+.custom-dialog {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #2e2e2e;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.custom-dialog .header-panel,
+.custom-dialog .header-panel .label {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.custom-dialog .button-bar {
+    -fx-background-color: #1a1a1a;
+    -fx-padding: 0 24 20 24;
+}
+
+.dialog-form {
+    -fx-background-color: #1a1a1a;
+}
+
+.dialog-heading {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 6 0;
+}
+
+.dialog-label {
+    -fx-text-fill: #a0a0a0;
+    -fx-font-size: 12px;
+}
+
+.dialog-field {
+    -fx-background-color: #2a2a2a;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #555555;
+    -fx-border-color: #3a3a3a;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+}
+
+.dialog-field:focused {
+    -fx-border-color: #1db954;
+    -fx-border-width: 1.5;
+}
+
+.dialog-combo {
+    -fx-background-color: #2a2a2a;
+    -fx-border-color: #3a3a3a;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 2 8;
+}
+
+.dialog-combo .list-cell,
+.dialog-combo .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-background-color: transparent;
+}
+
+.dialog-combo:focused {
+    -fx-border-color: #1db954;
+    -fx-border-width: 1.5;
+}
+
+.dialog-combo .combo-box-popup .list-view {
+    -fx-background-color: #2a2a2a;
+    -fx-border-color: #3a3a3a;
+}
+
+.dialog-combo .combo-box-popup .list-cell:hover {
+    -fx-background-color: #333333;
+}
+
+.dialog-btn-ok {
+    -fx-background-color: #1db954;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 24;
+    -fx-cursor: hand;
+}
+
+.dialog-btn-ok:hover {
+    -fx-background-color: #1ed760;
+}
+
+.dialog-btn-cancel {
+    -fx-background-color: #2a2a2a;
+    -fx-text-fill: #a0a0a0;
+    -fx-border-color: #3a3a3a;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 24;
+    -fx-cursor: hand;
+}
+
+.dialog-btn-cancel:hover {
+    -fx-background-color: #333333;
+    -fx-text-fill: #ffffff;
+}
+
+.track-cell-clickable {
+    -fx-cursor: hand;
+}
+
+.track-cell-clickable:hover .table-title {
+    -fx-text-fill: #1db954;
+}
+
+.track-cell-clickable:hover {
+    -fx-background-color: transparent;
+}
+
+.status-live {
+    -fx-text-fill: #1db954;
+    -fx-font-weight: bold;
+}
+
+.status-review {
+    -fx-text-fill: #ef4444;
+    -fx-font-weight: bold;
+}
+
+/* ── Dark ComboBox ───────────────────────────────────────────── */
+.dark-combo {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #333;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+}
+.dark-combo .list-cell {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: #ffffff;
+}
+.dark-combo .list-cell:hover,
+.dark-combo .list-cell:focused {
+    -fx-background-color: #2a2a2a;
+}
+.dark-combo .arrow-button {
+    -fx-background-color: transparent;
+}
+.dark-combo .arrow {
+    -fx-background-color: #00e676;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: #1e1e1e;
+    -fx-border-color: #333;
+}
+
+/* ── Song row ────────────────────────────────────────────────── */
+.song-row {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #2a2a2a;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 14;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.add-track-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #00e676;
+    -fx-border-color: #00e676;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.remove-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ff5252;
+    -fx-border-color: #ff5252;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-font-size: 11px;
+}
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.upload-progress > .bar {
+    -fx-background-color: #00e676;
+    -fx-background-radius: 4;
+}
+.upload-progress > .track {
+    -fx-background-color: #2a2a2a;
+    -fx-background-radius: 4;
+}

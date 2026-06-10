@@ -37,17 +37,9 @@
             <Label text="⌂" styleClass="nav-icon" />
             <Label text="Dashboard" />
         </HBox>
-        <HBox fx:id="artistMusicNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-            <Label text="▥" styleClass="nav-icon" />
-            <Label text="My Music" />
-        </HBox>
         <HBox fx:id="artistUploadNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="⊕" styleClass="nav-icon" />
             <Label text="Upload" />
-        </HBox>
-        <HBox fx:id="artistAnalyticsNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
-            <Label text="↗" styleClass="nav-icon" />
-            <Label text="Analytics" />
         </HBox>
         <HBox fx:id="artistFansNavItem" alignment="CENTER_LEFT" spacing="11.0" styleClass="nav-item">
             <Label text="♙" styleClass="nav-icon" />

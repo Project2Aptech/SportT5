@@ -107,4 +107,25 @@ public class ApiClient {
         }
         return builder;
     }
+
+    public static HttpResponse<String> postMultipart(String endpoint,
+                                                     String boundary,
+                                                     byte[] body)
+            throws IOException, InterruptedException {
+
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + endpoint))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary);
+
+        UserSession session = UserSession.getInstance();
+        if (session != null && session.getToken() != null && !session.getToken().isBlank()) {
+            builder.header("Authorization", "Bearer " + session.getToken());
+        }
+
+        HttpRequest request = builder
+                .POST(HttpRequest.BodyPublishers.ofByteArray(body))
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
 }

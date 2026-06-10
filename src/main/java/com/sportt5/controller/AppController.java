@@ -51,6 +51,10 @@ public class AppController {
 @FXML private HomeController homePageController;
     @FXML private LibraryController libraryPageController;
 
+    private static AppController instance;
+
+    public static AppController getInstance() { return instance; }
+
     @FXML
     public void initialize() {
         sidebarController.setAppController(this);
@@ -58,7 +62,10 @@ public class AppController {
         if (adminSidebarController  != null) adminSidebarController.setAppController(this);
         topBarController.setAppController(this);
         showHomePage();
+        instance = this;
     }
+
+
 
     // ════════════════════════════════════════════════════════════════════════
     // Home navigation
@@ -127,11 +134,6 @@ public class AppController {
     public void showArtistUploadPage() {
         showPage(artistUploadPage, topBarController.getArtistTopBar(),
                 artistSidebarController != null ? artistSidebarController.getArtistUploadNavItem() : null);
-    }
-
-    public void showArtistAnalyticsPage() {
-        showPage(artistAnalyticsPage, topBarController.getArtistTopBar(),
-                artistSidebarController != null ? artistSidebarController.getArtistAnalyticsNavItem() : null);
     }
 
     public void showArtistFanPage() {

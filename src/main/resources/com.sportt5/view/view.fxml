@@ -39,9 +39,7 @@
 <fx:include fx:id="accountPage" source="pages/account-page.fxml"/>
                     <!--Artist-->
                     <fx:include fx:id="artistDashBoardPage" source="artist/artist-dashboard-page.fxml" />
-                    <fx:include fx:id="artistMusicPage" source="artist/artist-music-page.fxml" />
                     <fx:include fx:id="artistUploadPage" source="artist/artist-upload-page.fxml" />
-                    <fx:include fx:id="artistAnalyticsPage" source="artist/artist-analytics-page.fxml" />
                     <fx:include fx:id="artistFanPage" source="artist/artist-fans-page.fxml" />
                     <!--Admin-->
                     <fx:include fx:id="adminDashBoardPage" source="admin/admin-page.fxml" />
