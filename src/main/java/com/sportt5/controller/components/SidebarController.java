@@ -59,16 +59,14 @@ public class SidebarController {
 
     public void resetNavStyles() {
         if (homeNavItem != null) {
-        accountNavItem.getStyleClass().setAll("nav-item");
-        homeNavItem.getStyleClass().setAll("nav-item");
-        libraryItem.getStyleClass().setAll("nav-item");
-        artistItem.getStyleClass().setAll("nav-item");
+            accountNavItem.getStyleClass().setAll("nav-item");
+            homeNavItem.getStyleClass().setAll("nav-item");
+            libraryItem.getStyleClass().setAll("nav-item");
+            artistItem.getStyleClass().setAll("nav-item");
         }
         else if (artistDashboardNavItem != null) {
             artistDashboardNavItem.getStyleClass().setAll("nav-item");
-            artistMusicNavItem.getStyleClass().setAll("nav-item");
             artistUploadNavItem.getStyleClass().setAll("nav-item");
-            artistAnalyticsNavItem.getStyleClass().setAll("nav-item");
             artistFansNavItem.getStyleClass().setAll("nav-item");
         } else if (adminDashboardNavItem != null) {
             adminDashboardNavItem.getStyleClass().setAll("nav-item");
@@ -79,20 +77,20 @@ public class SidebarController {
     }
 
     public void loadProfile(Users user){
-            if (profileNameLabel != null && user != null) {
-                profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
+        if (profileNameLabel != null && user != null) {
+            profileNameLabel.setText(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
+        }
+        if (profileTierLabel != null && user != null) {
+            profileTierLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
+        }
+        if (sidebarAvatar != null && user != null) {
+            String url = ApiClient.resolveUrl(user.getAvatarUrl());
+            if (url != null) {
+                sidebarAvatar.setImage(new Image(url, true));
+            } else {
+                sidebarAvatar.setImage(new Image(App.class.getResource("/com.sportt5/img/avatar.png").toExternalForm()));
             }
-            if (profileTierLabel != null && user != null) {
-                profileTierLabel.setText(user.getAccountType() != null ? user.getAccountType().name() : "NORMAL");
-            }
-            if (sidebarAvatar != null && user != null) {
-                String url = ApiClient.resolveUrl(user.getAvatarUrl());
-                if (url != null) {
-                    sidebarAvatar.setImage(new Image(url, true));
-                } else {
-                    sidebarAvatar.setImage(new Image(App.class.getResource("/com.sportt5/img/avatar.png").toExternalForm()));
-                }
-            }
+        }
     }
     @FXML
     public void initialize() {
@@ -127,7 +125,7 @@ public class SidebarController {
                 if (appController != null) appController.showLibraryPage();
             });
         }
-    if (artistItem != null) {
+        if (artistItem != null) {
 
             boolean canShowArtist =
                     role == Roles.ADMIN ||
@@ -177,11 +175,6 @@ public class SidebarController {
         if (artistUploadNavItem != null) {
             artistUploadNavItem.setOnMouseClicked(e -> {
                 if (appController != null) appController.showArtistUploadPage();
-            });
-        }
-        if (artistAnalyticsNavItem != null) {
-            artistAnalyticsNavItem.setOnMouseClicked(e -> {
-                if (appController != null) appController.showArtistAnalyticsPage();
             });
         }
         if (artistFansNavItem != null) {
