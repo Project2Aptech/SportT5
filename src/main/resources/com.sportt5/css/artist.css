@@ -186,6 +186,44 @@
     -fx-font-size: 11px;
 }
 
+/* ── Action icon buttons ─────────────────────────────────────── */
+.action-edit-btn, .action-delete-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 3 7;
+    -fx-background-radius: 6;
+    -fx-min-width: 28;
+    -fx-min-height: 28;
+}
+
+.action-edit-btn {
+    -fx-text-fill: -c-text-muted;
+}
+
+.action-edit-btn:hover {
+    -fx-background-color: -c-accent-subtle;
+    -fx-text-fill: -c-accent;
+}
+
+.action-edit-btn:pressed {
+    -fx-background-color: -c-accent-subtle2;
+}
+
+.action-delete-btn {
+    -fx-text-fill: -c-text-muted;
+}
+
+.action-delete-btn:hover {
+    -fx-background-color: rgba(239, 68, 68, 0.15);
+    -fx-text-fill: #ef4444;
+}
+
+.action-delete-btn:pressed {
+    -fx-background-color: rgba(239, 68, 68, 0.25);
+}
+
 /* ── Progress bar ────────────────────────────────────────────── */
 .upload-progress > .bar {
     -fx-background-color: #00e676;

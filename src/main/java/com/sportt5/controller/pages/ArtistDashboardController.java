@@ -255,9 +255,27 @@ public class ArtistDashboardController {
             Label streamsLabel = new Label(item.streams);
             streamsLabel.getStyleClass().add("table-text");
 
-            Button actionsBtn = new Button("•••");
-            actionsBtn.getStyleClass().add("row-action");
-            actionsBtn.setOnAction(e -> onRowAction(fi, actionsBtn));
+            // ── Action buttons ────────────────────────────────────────────────
+            HBox actionBox = new HBox(4);
+            actionBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+
+            if ("SONG".equals(item.type)) {
+                Button btnEdit = new Button("✎");
+                btnEdit.getStyleClass().add("action-edit-btn");
+                btnEdit.setOnAction(e -> handleUpdateSong(fi));
+
+                Button btnDelete = new Button("✕");
+                btnDelete.getStyleClass().add("action-delete-btn");
+                btnDelete.setOnAction(e -> handleDeleteSong(fi));
+
+                actionBox.getChildren().addAll(btnEdit, btnDelete);
+            } else {
+                Button btnDelete = new Button("✕");
+                btnDelete.getStyleClass().add("action-delete-btn");
+                btnDelete.setOnAction(e -> handleDeleteAlbum(fi));
+
+                actionBox.getChildren().add(btnDelete);
+            }
 
             // ── Row hover highlight ───────────────────────────────────────────
             String statusStyle = switch (item.statusStyle) {
@@ -269,19 +287,19 @@ public class ArtistDashboardController {
             statusLabel.setStyle(statusStyle);
 
             List<javafx.scene.Node> rowNodes =
-                    List.of(trackCell, dateLabel, statusLabel, streamsLabel, actionsBtn);
+                    List.of(trackCell, dateLabel, statusLabel, streamsLabel, actionBox);
             for (javafx.scene.Node node : rowNodes) {
                 node.setOnMouseEntered(e -> rowNodes.forEach(n -> {
                     if (n == statusLabel) {
                         n.setStyle(statusStyle + " -fx-background-color: rgba(255,255,255,0.04);");
-                    } else {
+                    } else if (n != actionBox) {
                         n.setStyle("-fx-background-color: rgba(255,255,255,0.04);");
                     }
                 }));
                 node.setOnMouseExited(e -> rowNodes.forEach(n -> {
                     if (n == statusLabel) {
                         n.setStyle(statusStyle);
-                    } else {
+                    } else if (n != actionBox) {
                         n.setStyle("");
                     }
                 }));
@@ -291,7 +309,7 @@ public class ArtistDashboardController {
             contentTable.add(dateLabel,    1, row);
             contentTable.add(statusLabel,  2, row);
             contentTable.add(streamsLabel, 3, row);
-            contentTable.add(actionsBtn,   4, row);
+            contentTable.add(actionBox,    4, row);
             row++;
         }
 

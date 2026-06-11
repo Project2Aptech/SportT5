@@ -66,10 +66,10 @@ public class SidebarController {
         }
         else if (artistDashboardNavItem != null) {
             artistDashboardNavItem.getStyleClass().setAll("nav-item");
-            artistMusicNavItem.getStyleClass().setAll("nav-item");
-            artistUploadNavItem.getStyleClass().setAll("nav-item");
-            artistAnalyticsNavItem.getStyleClass().setAll("nav-item");
-            artistFansNavItem.getStyleClass().setAll("nav-item");
+            if (artistMusicNavItem != null) artistMusicNavItem.getStyleClass().setAll("nav-item");
+            if (artistUploadNavItem != null) artistUploadNavItem.getStyleClass().setAll("nav-item");
+            if (artistAnalyticsNavItem != null) artistAnalyticsNavItem.getStyleClass().setAll("nav-item");
+            if (artistFansNavItem != null) artistFansNavItem.getStyleClass().setAll("nav-item");
         } else if (adminDashboardNavItem != null) {
             adminDashboardNavItem.getStyleClass().setAll("nav-item");
             adminUserNavItem.getStyleClass().setAll("nav-item");
