@@ -229,6 +229,35 @@
     -fx-border-color: transparent;
 }
 
+.like-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+    -fx-background-radius: 6;
+}
+.like-btn:hover {
+    -fx-text-fill: #ff5c8a;
+    -fx-background-color: rgba(255, 92, 138, 0.14);
+}
+
+.add-to-playlist-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 14px;
+    -fx-font-weight: 900;
+    -fx-cursor: hand;
+    -fx-padding: 4 8 4 8;
+    -fx-background-radius: 6;
+}
+.add-to-playlist-btn:hover {
+    -fx-text-fill: #5ba4f5;
+    -fx-background-color: rgba(91, 164, 245, 0.14);
+    -fx-border-color: transparent;
+}
+
 .search-popup {
     -fx-background-color: #1e1e2e;
     -fx-border-color: #444;

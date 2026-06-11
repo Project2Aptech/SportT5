@@ -13,11 +13,18 @@ import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 
 import java.io.IOException;
 import java.net.URI;
@@ -36,6 +43,7 @@ public class HomeSongRowController {
     @FXML private Label lblArtist;
     @FXML private Label lockBadge;
     @FXML private Label likeBtn;
+    @FXML private Label addToPlaylistBtn;
     //User session
     private final UserSession session = UserSession.getInstance();
     //Mapper
@@ -102,6 +110,9 @@ public class HomeSongRowController {
         String url = ApiClient.resolveUrl(song.getCoverUrl());
         if (url != null) imgTrackCover.setImage(new Image(url, true));
 
+        if (addToPlaylistBtn != null)
+            addToPlaylistBtn.setOnMouseClicked(e -> showAddToPlaylistDialog());
+
         boolean locked = !canAccess(song);
         if (locked) applyLockedState(index, song);
         else applyUnlockedState(index, song);
@@ -144,6 +155,33 @@ public class HomeSongRowController {
         return userType.ordinal() >= required.ordinal();
     }
 
+    private void showAddToPlaylistDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/com.sportt5/view/users/playlist-select-dialog.fxml"));
+            DialogPane pane = loader.load();
+            pane.getButtonTypes().add(ButtonType.CLOSE);
+            Node closeNode = pane.lookupButton(ButtonType.CLOSE);
+            closeNode.setVisible(false);
+            closeNode.setManaged(false);
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.setOnShown(e -> pane.getScene().getStylesheets()
+                .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+
+            Button cancelBtn = (Button) pane.lookup("#cancelBtn");
+            Button addBtn    = (Button) pane.lookup("#addBtn");
+            if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
+            if (addBtn    != null) addBtn.setOnAction(e -> dialog.close());
+
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void likedSongActions() {
         if (session == null || session.getCurrentUserId() == -1) return;
         new Thread(() -> {
@@ -151,33 +189,36 @@ public class HomeSongRowController {
                 boolean likedStatus = homeService.checkSongLikedStatus(currentSong.getId());
                 Platform.runLater(() -> {
                     if (canAccess(currentSong)) {
-                        if (likedStatus) {
-                            likeBtn.setText("♥");
-                            likeBtn.setOnMouseClicked(e -> {
-                                try {
-                                    likeBtn.setText("♡");
-                                    boolean result = homeService.unlikeASong(currentSong.getId());
-                                } catch (Exception ex) {
-                                    ex.printStackTrace();
-                                }
-                            });
-                        } else {
-                            likeBtn.setText("♡");
-                            likeBtn.setOnMouseClicked(e -> {
-                                try {
-                                    likeBtn.setText("♥");
-                                    boolean result = homeService.likeASong(currentSong.getId());
-                                } catch (Exception ex) {
-                                    ex.printStackTrace();
-                                }
-                            });
-                        }
+                        setLikeState(likedStatus);
                     }
                 });
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    private void setLikeState(boolean liked) {
+        if (liked) {
+            likeBtn.setText("♥");
+            likeBtn.setOnMouseClicked(e -> {
+                try {
+                    homeService.unlikeASong(currentSong.getId());
+                    Platform.runLater(() -> setLikeState(false));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+        } else {
+            likeBtn.setText("♡");
+            likeBtn.setOnMouseClicked(e -> {
+                try {
+                    homeService.likeASong(currentSong.getId());
+                    Platform.runLater(() -> setLikeState(true));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }
     }
 }

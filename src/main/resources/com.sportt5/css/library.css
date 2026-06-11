@@ -392,3 +392,218 @@
 .thumb-gold {
     -fx-background-color: linear-gradient(to bottom right, #0e0b08, #d8a633, #171009);
 }
+
+/* ── Playlist select dialog ── */
+.pl-select-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+.pl-select-scroll .viewport {
+    -fx-background-color: transparent;
+}
+.pl-select-list {
+    -fx-padding: 2;
+}
+.pl-select-item {
+    -fx-background-color: -c-bg-card;
+    -fx-background-radius: 8;
+    -fx-padding: 10 14 10 14;
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+    -fx-max-width: Infinity;
+}
+.pl-select-item:hover {
+    -fx-background-color: -c-bg-card-hover;
+}
+.pl-select-item-active {
+    -fx-background-color: -c-accent-subtle3;
+    -fx-text-fill: -c-accent;
+    -fx-border-color: -c-accent;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+/* ── Library row action labels (smaller than home to fit 10% column) ── */
+.library-body .like-btn,
+.library-body .add-to-playlist-btn,
+.library-body .download-btn {
+    -fx-padding: 2 5 2 5;
+    -fx-font-size: 13px;
+}
+
+/* ── Remove song from playlist button ── */
+.playlist-remove-song-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 11px;
+    -fx-padding: 2 5 2 5;
+    -fx-cursor: hand;
+    -fx-background-radius: 4;
+}
+.playlist-remove-song-btn:hover {
+    -fx-background-color: rgba(200, 30, 30, 0.15);
+    -fx-text-fill: #e74c3c;
+}
+
+/* ── Add Playlist button ── */
+.add-playlist-btn {
+    -fx-background-color: -c-accent;
+    -fx-text-fill: -c-accent-on;
+    -fx-background-radius: 20;
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+    -fx-padding: 6 16 6 16;
+    -fx-cursor: hand;
+}
+.add-playlist-btn:hover {
+    -fx-opacity: 0.85;
+}
+
+/* ── Playlist card action buttons (edit / delete) ── */
+.playlist-action-btn {
+    -fx-background-color: rgba(0,0,0,0.65);
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-padding: 4 6 4 6;
+    -fx-cursor: hand;
+}
+.playlist-action-btn:hover {
+    -fx-background-color: rgba(30,30,30,0.92);
+}
+.playlist-delete-btn:hover {
+    -fx-background-color: rgba(200,30,30,0.82);
+}
+
+/* ── Playlist dialogs ── */
+.pl-dialog-pane {
+    -fx-background-color: #161616;
+    -fx-background-radius: 14;
+}
+.pl-dialog-pane .content {
+    -fx-background-color: #161616;
+}
+.pl-dialog-body {
+    -fx-padding: 8 4 4 4;
+}
+.pl-dialog-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -c-text-heading;
+}
+
+/* Cover frame */
+.pl-cover-frame {
+    -fx-background-color: -c-bg-overlay;
+    -fx-background-radius: 8;
+}
+.pl-cover-frame-large {
+    -fx-background-radius: 10;
+}
+.pl-cover-placeholder {
+    -fx-font-size: 38px;
+    -fx-text-fill: -c-text-muted;
+}
+.pl-cover-placeholder-large {
+    -fx-font-size: 52px;
+}
+.pl-cover-hover-overlay {
+    -fx-background-color: rgba(0,0,0,0.55);
+    -fx-background-radius: 8;
+    -fx-opacity: 0;
+}
+.pl-cover-frame:hover .pl-cover-hover-overlay {
+    -fx-opacity: 1;
+}
+.pl-cover-camera {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+.pl-cover-change-text {
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+    -fx-text-fill: white;
+}
+
+/* Fields */
+.pl-field-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -c-text-muted;
+}
+.pl-text-field {
+    -fx-background-color: -c-bg-card;
+    -fx-background-radius: 7;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 7;
+    -fx-text-fill: -c-text-primary;
+    -fx-prompt-text-fill: -c-text-muted;
+    -fx-font-size: 12px;
+    -fx-padding: 8 12 8 12;
+}
+.pl-text-field:focused {
+    -fx-border-color: -c-accent;
+}
+.pl-text-area {
+    -fx-background-color: -c-bg-card;
+    -fx-background-radius: 7;
+    -fx-border-color: -c-border;
+    -fx-border-radius: 7;
+    -fx-text-fill: -c-text-primary;
+    -fx-prompt-text-fill: -c-text-muted;
+    -fx-font-size: 12px;
+}
+.pl-text-area:focused {
+    -fx-border-color: -c-accent;
+}
+
+/* Buttons */
+.pl-btn-cancel {
+    -fx-background-color: -c-bg-card;
+    -fx-background-radius: 20;
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-padding: 8 22 8 22;
+    -fx-cursor: hand;
+}
+.pl-btn-cancel:hover {
+    -fx-background-color: -c-bg-card-hover;
+}
+.pl-btn-save {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 20;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 11px;
+    -fx-font-weight: 900;
+    -fx-padding: 8 22 8 22;
+    -fx-cursor: hand;
+}
+.pl-btn-save:hover {
+    -fx-opacity: 0.85;
+}
+
+/* Delete dialog */
+.pl-delete-icon {
+    -fx-font-size: 40px;
+}
+.pl-delete-desc {
+    -fx-font-size: 12px;
+    -fx-text-fill: -c-text-muted;
+    -fx-max-width: 280;
+}
+.pl-btn-delete {
+    -fx-background-color: #c0392b;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 900;
+    -fx-padding: 8 22 8 22;
+    -fx-cursor: hand;
+}
+.pl-btn-delete:hover {
+    -fx-background-color: #e74c3c;
+}

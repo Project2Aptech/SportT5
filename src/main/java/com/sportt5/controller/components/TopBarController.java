@@ -1,6 +1,7 @@
 package com.sportt5.controller.components;
 
 import com.sportt5.controller.AppController;
+import com.sportt5.model.Albums;
 import com.sportt5.model.Songs;
 import com.sportt5.model.Users;
 import com.sportt5.service.LibraryService;
@@ -38,10 +39,12 @@ public class TopBarController {
 
     private final LibraryService libraryService = new LibraryService();
     private List<Users> allArtists = new ArrayList<>();
+    private List<Albums> allAlbums = new ArrayList<>();
     private Map<Integer, String> genresMap = new HashMap<>();
 
     private final Popup suggestionPopup = new Popup();
     private final VBox suggestionVBox = new VBox();
+    private boolean programmaticChange = false;
 
     public void setAppController(AppController appController) {
         this.appController = appController;
@@ -56,6 +59,7 @@ public class TopBarController {
         new Thread(() -> {
             try {
                 allArtists = libraryService.getAllArtists();
+                allAlbums = libraryService.getAllAlbums();
                 genresMap = libraryService.getGenresMap();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -70,6 +74,7 @@ public class TopBarController {
         PauseTransition pause = new PauseTransition(Duration.millis(350));
 
         field.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (programmaticChange) { programmaticChange = false; return; }
             String kw = newValue.trim();
             pause.setOnFinished(event -> {showSuggestions(field, kw);});
             pause.playFromStart();
@@ -79,7 +84,9 @@ public class TopBarController {
             String keyword = field.getText().trim();
             suggestionPopup.hide();
             if (!keyword.isBlank() && appController != null) {
+                programmaticChange = true;
                 homeSearchField.setText(keyword);
+                programmaticChange = true;
                 librarySearchField.setText(keyword);
                 appController.showLibraryPageWithSearch(keyword, "song");
             }
@@ -111,27 +118,41 @@ public class TopBarController {
                 .limit(3)
                 .collect(Collectors.toList());
 
+        List<Albums> matchedAlbums = allAlbums.stream()
+                .filter(a -> a.getTitle() != null && a.getTitle().toLowerCase().contains(kw))
+                .limit(3)
+                .collect(Collectors.toList());
+
         new Thread(() -> {
             try {
                 List<Songs> matchedSongs = libraryService.searchSongs(keyword);
                 List<Songs> limitedSongs = matchedSongs.stream().limit(5).collect(Collectors.toList());
-                Platform.runLater(() -> buildSuggestions(field, limitedSongs, matchedArtist, matchesGenres));
+                Platform.runLater(() -> buildSuggestions(field, limitedSongs, matchedArtist, matchedAlbums, matchesGenres));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
     }
 
-    private void buildSuggestions(TextField field, List<Songs> songs, List<Users> artists, List<String> genres) {
-        System.out.println("buildSuggestions: songs=" + songs.size() + " artists=" + artists.size() + " genres=" + genres.size());
+    private void buildSuggestions(TextField field, List<Songs> songs, List<Users> artists, List<Albums> albums, List<String> genres) {
         suggestionVBox.getChildren().clear();
         boolean hasAny = false;
         if (!songs.isEmpty()) {
             hasAny = true;
             suggestionVBox.getChildren().add(sectionHeader("Songs"));
-            for  (Songs song : songs) {
+            for (Songs song : songs) {
                 Label item = suggestionItem(song.getTitle());
                 item.setOnMouseClicked(e -> selectSuggestion(song.getTitle(), "song"));
+                suggestionVBox.getChildren().add(item);
+            }
+        }
+
+        if (!albums.isEmpty()) {
+            hasAny = true;
+            suggestionVBox.getChildren().add(sectionHeader("Albums"));
+            for (Albums album : albums) {
+                Label item = suggestionItem(album.getTitle());
+                item.setOnMouseClicked(e -> selectSuggestion(album.getTitle(), "album"));
                 suggestionVBox.getChildren().add(item);
             }
         }
@@ -139,7 +160,7 @@ public class TopBarController {
         if (!artists.isEmpty()) {
             hasAny = true;
             suggestionVBox.getChildren().add(sectionHeader("Artist"));
-            for  (Users artist : artists) {
+            for (Users artist : artists) {
                 Label item = suggestionItem(artist.getDisplayName());
                 item.setOnMouseClicked(e -> selectSuggestion(artist.getDisplayName(), "artist"));
                 suggestionVBox.getChildren().add(item);
@@ -182,7 +203,9 @@ public class TopBarController {
 
     private void selectSuggestion(String value, String type) {
         suggestionPopup.hide();
+        programmaticChange = true;
         homeSearchField.setText(value);
+        programmaticChange = true;
         librarySearchField.setText(value);
         if (appController != null) {
             appController.showLibraryPageWithSearch(value, type);

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="pl-dialog-pane">
+
+    <content>
+        <VBox spacing="18" prefWidth="380" styleClass="pl-dialog-body">
+
+            <Label text="Edit Playlist" styleClass="pl-dialog-title" />
+
+            <!-- Cover preview -->
+            <HBox spacing="18" alignment="CENTER_LEFT">
+                <StackPane styleClass="pl-cover-frame" prefWidth="90" prefHeight="90"
+                           minWidth="90" minHeight="90">
+                    <ImageView fx:id="coverPreview" fitWidth="90" fitHeight="90"
+                               preserveRatio="false" />
+                    <Label text="♪" styleClass="pl-cover-placeholder" />
+                </StackPane>
+
+                <VBox spacing="10" HBox.hgrow="ALWAYS">
+                    <Label text="Playlist Name" styleClass="pl-field-label" />
+                    <TextField fx:id="nameField" promptText="Enter playlist name..."
+                               styleClass="pl-text-field" />
+
+                    <Label text="Cover URL" styleClass="pl-field-label" />
+                    <TextField fx:id="coverUrlField" promptText="https://..."
+                               styleClass="pl-text-field" />
+                </VBox>
+            </HBox>
+
+            <!-- Action buttons -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Cancel" styleClass="pl-btn-cancel" fx:id="cancelBtn" />
+                <Button text="Save Changes" styleClass="pl-btn-save" fx:id="saveBtn" />
+            </HBox>
+
+        </VBox>
+    </content>
+
+</DialogPane>

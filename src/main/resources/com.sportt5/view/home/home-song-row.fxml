@@ -32,7 +32,10 @@
         <Label fx:id="lblArtist" text="Daft Punk" styleClass="track-artist" />
     </VBox>
     <Region HBox.hgrow="ALWAYS" />
-    <Label fx:id="likeBtn" text="♡" styleClass="row-action" />
+    <Label fx:id="likeBtn" text="♡" styleClass="row-action, like-btn" />
+    <Label fx:id="addToPlaylistBtn" text="+" styleClass="row-action, add-to-playlist-btn">
+        <tooltip><Tooltip text="Add to playlist" /></tooltip>
+    </Label>
     <Button onAction="#downloadSongs" text="⬇" styleClass="row-action, download-btn">
         <tooltip><Tooltip text="Download" /></tooltip>
     </Button>

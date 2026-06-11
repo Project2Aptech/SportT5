@@ -17,14 +17,20 @@ import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
@@ -41,10 +47,11 @@ import static javafx.geometry.Pos.BOTTOM_LEFT;
 
 public class LibraryController {
     // Tabs
-    @FXML private Label tabPlaylists, tabSongs, tabArtists, tabAlbums, tabDownloaded;
+    @FXML private Label tabPlaylists, tabSongs, tabArtists, tabAlbums;
     // Views
     @FXML private VBox playlistsView, songsView, artistsView, albumsView;
     // Playlists view
+    @FXML private Button addPlaylistBtn;
     @FXML private StackPane likedBtn;
     @FXML private Label dateAdded;
     @FXML private Label favouritesCount;
@@ -91,12 +98,14 @@ public class LibraryController {
             tabSongs.setOnMouseClicked(e -> showTab(tabSongs, songsView));
             tabArtists.setOnMouseClicked(e -> showTab(tabArtists, artistsView));
             tabAlbums.setOnMouseClicked(e -> showTab(tabAlbums, albumsView));
-            tabDownloaded.setOnMouseClicked(e -> showTab(tabDownloaded, null));
+        }
+        if (addPlaylistBtn != null) {
+            addPlaylistBtn.setOnAction(e -> showPlaylistAddDialog());
         }
     }
 
     private void showTab(Label activeTab, VBox view) {
-        for (Label t : new Label[]{tabPlaylists, tabSongs, tabArtists, tabAlbums, tabDownloaded}) {
+        for (Label t : new Label[]{tabPlaylists, tabSongs, tabArtists, tabAlbums}) {
             t.getStyleClass().setAll("library-tab");
         }
         activeTab.getStyleClass().setAll("library-tab-active");
@@ -180,8 +189,34 @@ public class LibraryController {
                             title.getStyleClass().add("lib-playlist-name");
                             title.setWrapText(true);
                             titleBox.getChildren().add(title);
+                            //Actions overlay (edit / delete) — shown on hover
+                            HBox actionsOverlay = new HBox(4);
+                            actionsOverlay.setAlignment(javafx.geometry.Pos.TOP_RIGHT);
+                            StackPane.setAlignment(actionsOverlay, javafx.geometry.Pos.TOP_RIGHT);
+                            actionsOverlay.setStyle("-fx-padding: 6 6 0 0;");
+                            actionsOverlay.setVisible(false);
+                            actionsOverlay.setPickOnBounds(false);
+
+                            Label editBtn = new Label("✏");
+                            editBtn.getStyleClass().add("playlist-action-btn");
+                            editBtn.setOnMouseClicked(e -> {
+                                e.consume();
+                                showPlaylistEditDialog();
+                            });
+
+                            Label deleteBtn = new Label("🗑");
+                            deleteBtn.getStyleClass().addAll("playlist-action-btn", "playlist-delete-btn");
+                            deleteBtn.setOnMouseClicked(e -> {
+                                e.consume();
+                                showPlaylistDeleteConfirm(p.getTitle());
+                            });
+
+                            actionsOverlay.getChildren().addAll(editBtn, deleteBtn);
+
                             //Put nodes into card
-                            card.getChildren().addAll(imgView, titleBox);
+                            card.getChildren().addAll(imgView, titleBox, actionsOverlay);
+                            card.setOnMouseEntered(e -> actionsOverlay.setVisible(true));
+                            card.setOnMouseExited(e -> actionsOverlay.setVisible(false));
                             card.setOnMouseClicked(e -> {
                                 try {
                                     playlistSongsTitle.setText("Playlist's Songs");
@@ -196,7 +231,7 @@ public class LibraryController {
                                         String artistName = usersMap.getOrDefault(s.getArtistId(), "Unknown");
                                         String albumName = albumsMap.getOrDefault(s.getAlbumId(), "Unknown");
 
-                                        addSongToTable(playlistSongsTable, rowIdx, s, artistName, albumName, "");
+                                        addSongToTable(playlistSongsTable, rowIdx, s, artistName, albumName, "", p.getId());
                                     }
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
@@ -387,6 +422,7 @@ public class LibraryController {
 
                 Platform.runLater(() -> {
                     if (!albums.isEmpty()) {
+                        allAlbumsCache = new ArrayList<>(albums);
                         albumComboBox.getItems().addAll(albums);
                         //Set items name
                         albumComboBox.setConverter(new StringConverter<Albums>() {
@@ -475,32 +511,32 @@ public class LibraryController {
         //Artists
         Platform.runLater(() -> {
             if (allArtistCache.isEmpty()) allArtistCache = new ArrayList<>(artistComboBox.getItems());
-            List<Users> matched = allArtistCache.stream()
-                        .filter(u -> u.getDisplayName() != null && u.getDisplayName().toLowerCase().contains(kw))
-                        .collect(Collectors.toList());
-            artistComboBox.getItems().setAll(matched.isEmpty() ? allArtistCache : matched);
-            if (!matched.isEmpty()) {
-                artistComboBox.getSelectionModel().selectFirst();
-            }
+            artistComboBox.getItems().setAll(allArtistCache);
+            allArtistCache.stream()
+                    .filter(u -> u.getDisplayName() != null && u.getDisplayName().toLowerCase().contains(kw))
+                    .findFirst()
+                    .ifPresent(u -> artistComboBox.getSelectionModel().select(u));
             if ("artist".equals(type)) showTab(tabArtists, artistsView);
         });
 
         //Albums
         Platform.runLater(() -> {
             if (allAlbumsCache.isEmpty()) allAlbumsCache = new ArrayList<>(albumComboBox.getItems());
-            List<Albums> matched = allAlbumsCache.stream()
+            albumComboBox.getItems().setAll(allAlbumsCache);
+            allAlbumsCache.stream()
                     .filter(a -> a.getTitle() != null && a.getTitle().toLowerCase().contains(kw))
-                    .collect(Collectors.toList());
-            albumComboBox.getItems().setAll(matched.isEmpty() ? allAlbumsCache : matched);
-            if (!matched.isEmpty()) {
-                albumComboBox.getSelectionModel().selectFirst();
-            }
+                    .findFirst()
+                    .ifPresent(a -> albumComboBox.getSelectionModel().select(a));
             if ("album".equals(type)) showTab(tabAlbums, albumsView);
         });
     }
 
     //════════════════════Private methods════════════════════
     private void addSongToTable(GridPane table, int index, Songs s, String artistName, String albumName, String dateAdded) {
+        addSongToTable(table, index, s, artistName, albumName, dateAdded, 0);
+    }
+
+    private void addSongToTable(GridPane table, int index, Songs s, String artistName, String albumName, String dateAdded, int playlistId) {
         //Index
         Label lblIndex = new Label(String.format("%02d", index));
         lblIndex.getStyleClass().add("table-text");
@@ -531,10 +567,20 @@ public class LibraryController {
         int seconds = s.getDurationSeconds() % 60;
         Label lblDuration = new Label(String.format("%02dp%ds", minutes, seconds));
         lblDuration.getStyleClass().add("table-text");
-        //Download button
-        Button btnDownload = new Button("⬇");
-        btnDownload.getStyleClass().add("download-btn");
-        btnDownload.setOnAction(e -> new Thread(() -> {
+        //Actions cell
+        HBox actionsBox = new HBox(4);
+        actionsBox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+
+        Label lblLike = new Label("♡");
+        lblLike.getStyleClass().addAll("row-action", "like-btn");
+
+        Label lblAddToPlaylist = new Label("+");
+        lblAddToPlaylist.getStyleClass().addAll("row-action", "add-to-playlist-btn");
+        lblAddToPlaylist.setOnMouseClicked(e -> showAddToPlaylistDialog());
+
+        Label lblDownload = new Label("↓");
+        lblDownload.getStyleClass().addAll("row-action", "download-btn");
+        lblDownload.setOnMouseClicked(e -> new Thread(() -> {
             try {
                 HttpResponse<String> resp = ApiClient.get("songs/" + s.getId());
                 if (resp.statusCode() != 200) return;
@@ -575,11 +621,19 @@ public class LibraryController {
             }
         }).start());
 
+        actionsBox.getChildren().addAll(lblLike, lblAddToPlaylist, lblDownload);
+
+        if (playlistId > 0) {
+            Label lblRemove = new Label("✕");
+            lblRemove.getStyleClass().addAll("row-action", "playlist-remove-song-btn");
+            actionsBox.getChildren().add(lblRemove);
+        }
+
         table.add(lblIndex, 0, index);
         table.add(lblAlbum, 2, index);
         table.add(lblDate, 3, index);
         table.add(lblDuration, 4, index);
-        table.add(btnDownload, 5, index);
+        table.add(actionsBox, 5, index);
     }
 
     private void showFavouriteSongs(JsonNode content) {
@@ -620,15 +674,15 @@ public class LibraryController {
         ColumnConstraints c0 = new ColumnConstraints();
         c0.setPercentWidth(8);
         ColumnConstraints c1 = new ColumnConstraints();
-        c1.setPercentWidth(28);
+        c1.setPercentWidth(26);
         ColumnConstraints c2 = new ColumnConstraints();
-        c2.setPercentWidth(28);
+        c2.setPercentWidth(26);
         ColumnConstraints c3 = new ColumnConstraints();
         c3.setPercentWidth(22);
         ColumnConstraints c4 = new ColumnConstraints();
         c4.setPercentWidth(8);
         ColumnConstraints c5 = new ColumnConstraints();
-        c5.setPercentWidth(6);
+        c5.setPercentWidth(10);
         table.getColumnConstraints().addAll(c0, c1, c2, c3, c4, c5);
         Label lblIdx = new Label("#");
         lblIdx.getStyleClass().add("table-head");
@@ -648,5 +702,74 @@ public class LibraryController {
         table.add(lblDate, 3, 0);
         table.add(lblDuration, 4, 0);
         table.add(lblActions, 5, 0);
+    }
+
+    //════════════════════Playlist dialogs════════════════════
+    private void showPlaylistAddDialog() {
+        openDialog("/com.sportt5/view/users/playlist-add-dialog.fxml", "#cancelBtn", "#createBtn");
+    }
+
+    private void showAddToPlaylistDialog() {
+        openDialog("/com.sportt5/view/users/playlist-select-dialog.fxml", "#cancelBtn", "#addBtn");
+    }
+
+    private void showPlaylistEditDialog() {
+        openDialog("/com.sportt5/view/users/playlist-edit-dialog.fxml", "#cancelBtn", "#saveBtn");
+    }
+
+    private void openDialog(String fxmlPath, String... closeButtonIds) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            DialogPane pane = loader.load();
+            pane.getButtonTypes().add(ButtonType.CLOSE);
+            Node closeNode = pane.lookupButton(ButtonType.CLOSE);
+            closeNode.setVisible(false);
+            closeNode.setManaged(false);
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.setOnShown(e -> pane.getScene().getStylesheets()
+                .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+
+            for (String id : closeButtonIds) {
+                Button btn = (Button) pane.lookup(id);
+                if (btn != null) btn.setOnAction(e -> dialog.close());
+            }
+
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showPlaylistDeleteConfirm(String playlistTitle) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/com.sportt5/view/users/playlist-delete-confirm.fxml"));
+            DialogPane pane = loader.load();
+            pane.getButtonTypes().add(ButtonType.CLOSE);
+            Node closeNode = pane.lookupButton(ButtonType.CLOSE);
+            closeNode.setVisible(false);
+            closeNode.setManaged(false);
+
+            Label msg = (Label) pane.lookup("#confirmMessage");
+            if (msg != null) msg.setText("Bạn có chắc muốn xóa playlist \"" + playlistTitle + "\"? Hành động này không thể hoàn tác.");
+
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.setOnShown(e -> pane.getScene().getStylesheets()
+                .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+
+            Button cancelBtn = (Button) pane.lookup("#cancelBtn");
+            Button deleteBtn = (Button) pane.lookup("#deleteBtn");
+            if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
+            if (deleteBtn != null) deleteBtn.setOnAction(e -> dialog.close());
+
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
