@@ -253,3 +253,46 @@
 .suggestion-item:hover {
     -fx-background-color: #333;
 }
+
+.home-body .album-card {
+    -fx-min-width: 0;
+    -fx-max-width: 9999px;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: default;
+}
+
+.home-body .section-title {
+    -fx-text-fill: -c-text-heading;
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+    -fx-font-family: inherit;
+}
+
+.home-body .album-artist {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 10px;
+    -fx-font-family: inherit;
+}
+
+.home-body .track-row {
+    -fx-min-height: 42px;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: default;
+}
+
+.home-body .track-title {
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-font-family: inherit;
+}
+
+.home-body .track-artist {
+    -fx-text-fill: -c-text-muted;
+    -fx-font-size: 10px;
+    -fx-font-family: inherit;
+}

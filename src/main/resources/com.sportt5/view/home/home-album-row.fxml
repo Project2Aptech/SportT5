@@ -29,5 +29,6 @@
     </VBox>
     <Region HBox.hgrow="ALWAYS" />
     <Label text="♡" styleClass="row-action" />
+    <Label text="•••" styleClass="row-action" />
 </HBox>
 
