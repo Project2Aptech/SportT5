@@ -95,6 +95,18 @@ public class ApiClient {
         return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
+    public static HttpResponse<String> postMultipart(String endpoint, String boundary, byte[] body)
+            throws IOException, InterruptedException {
+        HttpRequest.Builder b = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + endpoint))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary);
+        UserSession session = UserSession.getInstance();
+        if (session != null && session.getToken() != null && !session.getToken().isBlank())
+            b.header("Authorization", "Bearer " + session.getToken());
+        return client.send(b.POST(HttpRequest.BodyPublishers.ofByteArray(body)).build(),
+                HttpResponse.BodyHandlers.ofString());
+    }
+
     // ── Internal ─────────────────────────────────────────────────────────────
 
     private static HttpRequest.Builder builder(String endpoint) {

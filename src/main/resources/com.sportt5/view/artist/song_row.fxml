@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:id="root" fx:controller="com.sportt5.controller.components.ArtistSongRowController"
+      spacing="10.0" styleClass="song-row">
+
+    <!-- Row header: index + remove -->
+    <HBox alignment="CENTER_LEFT" spacing="8.0">
+        <Label text="Track" styleClass="field-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="✕" styleClass="remove-button" onAction="#handleRemove"/>
+    </HBox>
+
+    <!-- Title -->
+    <Label text="TRACK TITLE" styleClass="field-label"/>
+    <TextField fx:id="titleField" promptText="Enter track title..." styleClass="auth-input"/>
+
+    <!-- Audio + Cover side by side -->
+    <HBox spacing="12.0">
+
+        <!-- Audio drop zone -->
+        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+            <Label text="AUDIO FILE" styleClass="field-label"/>
+            <StackPane prefHeight="90.0" styleClass="upload-drop-zone" onMouseClicked="#handleAudioPick">
+                <Label fx:id="audioLabel" text="Drop audio or click to browse" styleClass="admin-subtitle"/>
+            </StackPane>
+        </VBox>
+
+        <!-- Cover drop zone -->
+        <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+            <Label text="COVER IMAGE" styleClass="field-label"/>
+            <StackPane fx:id="coverZone" prefHeight="90.0" styleClass="upload-drop-zone"
+                       onMouseClicked="#handleCoverPick">
+                <Label fx:id="coverLabel" text="Drop cover or click to browse" styleClass="admin-subtitle"/>
+                <ImageView fx:id="coverPreview" fitWidth="90.0" fitHeight="90.0"
+                           preserveRatio="true" visible="false" managed="false"/>
+            </StackPane>
+        </VBox>
+
+    </HBox>
+
+    <!-- Progress bar (hidden until upload starts) -->
+    <ProgressBar fx:id="progressBar" maxWidth="Infinity"
+                 visible="false" managed="false" styleClass="upload-progress"/>
+    <Label fx:id="statusLabel" text="" styleClass="field-label"
+           visible="false" managed="false"/>
+
+</VBox>

@@ -14,6 +14,9 @@ import javafx.scene.layout.HBox;
 
 public class AppController {
 
+    private static AppController instance;
+    public static AppController getInstance() { return instance; }
+
     // ── Main shell ───────────────────────────────────────────────────────────
     @FXML private HBox homeView;
 
@@ -54,6 +57,7 @@ public class AppController {
 
     @FXML
     public void initialize() {
+        instance = this;
         sidebarController.setAppController(this);
         if (artistSidebarController != null) artistSidebarController.setAppController(this);
         if (adminSidebarController  != null) adminSidebarController.setAppController(this);

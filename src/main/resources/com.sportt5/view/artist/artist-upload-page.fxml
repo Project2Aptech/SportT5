@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 
 <ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sportt5.controller.components.UploadController"
             visible="false" managed="false"
             fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="home-scroll">
     <VBox spacing="18.0" styleClass="admin-body">
+
+        <!-- Header -->
         <HBox alignment="CENTER_LEFT">
-            <Label text="Upload Music" styleClass="admin-title" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Button text="Submit" styleClass="upload-button" />
+            <Label text="Upload Music" styleClass="admin-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Submit" styleClass="upload-button" onAction="#handleSubmit"/>
         </HBox>
 
+        <!-- Album selector -->
         <VBox spacing="14.0" styleClass="admin-panel">
-            <Label text="Track Details" styleClass="panel-title" />
-            <VBox spacing="10.0">
-                <Label text="TRACK TITLE" styleClass="field-label" />
-                <TextField promptText="Enter track title..." styleClass="auth-input" />
-            </VBox>
-            <VBox spacing="10.0">
-                <Label text="ALBUM / SINGLE" styleClass="field-label" />
-                <TextField promptText="Album name or Single" styleClass="auth-input" />
-            </VBox>
-            <StackPane prefHeight="120.0" styleClass="upload-drop-zone">
-                <Label text="Drop audio file here or click to browse" styleClass="admin-subtitle" />
-            </StackPane>
+            <Label text="Album" styleClass="panel-title"/>
+            <ComboBox fx:id="albumCombo" promptText="Select album..." maxWidth="Infinity"
+                      styleClass="dark-combo"/>
         </VBox>
+
+        <!-- Song rows container -->
+        <VBox fx:id="songRowsContainer" spacing="14.0" styleClass="admin-panel">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Tracks" styleClass="panel-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="+ Add Track" styleClass="add-track-button" onAction="#handleAddTrack"/>
+            </HBox>
+            <!-- Song rows injected here by controller -->
+        </VBox>
+
     </VBox>
 </ScrollPane>
