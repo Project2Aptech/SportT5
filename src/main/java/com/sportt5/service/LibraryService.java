@@ -160,9 +160,6 @@ public class LibraryService {
     //════════════════════Private methods to get API response════════════════════
     private <T> List<T> getResponseWithToken(HttpRequest request, Class<T> c) throws IOException, InterruptedException {
         HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
-//        System.out.println("Status = " + response.statusCode());
-//        System.out.println("Body   = " + response.body());
-
         if (response.statusCode() == 200) {
             JavaType type = mapper.getTypeFactory().constructParametricType(PageResponse.class, c);
             PageResponse<T> page = mapper.readValue(response.body(), type);

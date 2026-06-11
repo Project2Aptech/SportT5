@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -27,17 +28,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class HomeSongRowController {
+    //Row ids
     @FXML private HBox rowRoot;
     @FXML private Label lblIndex;
     @FXML private ImageView imgTrackCover;
     @FXML private Label lblTitle;
     @FXML private Label lblArtist;
     @FXML private Label lockBadge;
-    private Songs currentSong;
-    private HomeService homeService = new HomeService();
+    @FXML private Label likeBtn;
+    //User session
+    private final UserSession session = UserSession.getInstance();
+    //Mapper
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    //Current song
+    private Songs currentSong;
+    //Service
+    private final HomeService homeService = new HomeService();
 
     @FXML
     public void downloadSongs(ActionEvent event) {
@@ -85,8 +93,6 @@ public class HomeSongRowController {
         }).start();
     }
 
-
-
     public void setSong(int index, Songs song, String artistName) {
         this.currentSong = song;
 
@@ -128,7 +134,6 @@ public class HomeSongRowController {
 
     // NORMAL(0) < PRO(1) < PREMIUM(2) — so sánh theo ordinal
     private boolean canAccess(Songs song) {
-        UserSession session = UserSession.getInstance();
         if (session == null) return true;
         Users user = session.getCurrentUser();
         if (user == null) return true;
@@ -137,5 +142,42 @@ public class HomeSongRowController {
         RequiredAccountType required = song.getRequiredAccountType() != null ? song.getRequiredAccountType() : RequiredAccountType.NORMAL;
 
         return userType.ordinal() >= required.ordinal();
+    }
+
+    public void likedSongActions() {
+        if (session == null || session.getCurrentUserId() == -1) return;
+        new Thread(() -> {
+            try {
+                boolean likedStatus = homeService.checkSongLikedStatus(currentSong.getId());
+                Platform.runLater(() -> {
+                    if (canAccess(currentSong)) {
+                        if (likedStatus) {
+                            likeBtn.setText("♥");
+                            likeBtn.setOnMouseClicked(e -> {
+                                try {
+                                    likeBtn.setText("♡");
+                                    boolean result = homeService.unlikeASong(currentSong.getId());
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            });
+                        } else {
+                            likeBtn.setText("♡");
+                            likeBtn.setOnMouseClicked(e -> {
+                                try {
+                                    likeBtn.setText("♥");
+                                    boolean result = homeService.likeASong(currentSong.getId());
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            });
+                        }
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }

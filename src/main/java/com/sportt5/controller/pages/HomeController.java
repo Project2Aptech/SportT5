@@ -110,6 +110,7 @@ public class HomeController {
                             HomeSongRowController ctrl = loader.getController();
                             Songs s = songs.get(i);
                             ctrl.setSong(i + 1, s, artistMap.getOrDefault(s.getArtistId(), "Unknown"));
+                            ctrl.likedSongActions();
                             row.setOnMouseClicked(e -> {
                                 if (PlayerBarController.getInstance() != null) PlayerBarController.getInstance().playSong(s);
                             });
