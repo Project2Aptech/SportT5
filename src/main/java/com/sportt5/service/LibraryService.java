@@ -10,7 +10,9 @@ import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
@@ -72,6 +74,13 @@ public class LibraryService {
 
     public List<Songs> getAllSongs() throws IOException, InterruptedException {
         List<Songs> songs = getResponseWithoutToken("songs?size=1000", Songs.class);
+        if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
+        return songs;
+    }
+
+    public List<Songs> searchSongs(String keyword) throws IOException, InterruptedException {
+        String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
+        List<Songs> songs =   getResponseWithoutToken("songs/search?title=" + encodedKeyword + "&size=50", Songs.class);
         if (songs == null || songs.isEmpty()) return java.util.Collections.emptyList();
         return songs;
     }

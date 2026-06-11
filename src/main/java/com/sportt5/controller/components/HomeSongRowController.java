@@ -1,5 +1,8 @@
 package com.sportt5.controller.components;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sportt5.model.Songs;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.AccountType;
@@ -7,6 +10,7 @@ import com.sportt5.model.enums.RequiredAccountType;
 import com.sportt5.service.HomeService;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -15,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -30,38 +35,54 @@ public class HomeSongRowController {
     @FXML private Label lockBadge;
     private Songs currentSong;
     private HomeService homeService = new HomeService();
+    private final ObjectMapper mapper = new ObjectMapper()
+            .registerModule(new JavaTimeModule())
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
     @FXML
     public void downloadSongs(ActionEvent event) {
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request =
-                    homeService.createDownloadRequest(currentSong);
+        new Thread(() -> {
+            try {
+                HttpResponse<String> resp = ApiClient.get("songs/" + currentSong.getId());
+                if (resp.statusCode() != 200) return;
+                Songs full = mapper.readValue(resp.body(), Songs.class);
 
-            String fileName = currentSong.getTitle()
-                    .replaceAll("[\\\\/:*?\"<>|]", "_")
-                    + ".mp3";
+                AccountType userType = UserSession.getInstance().getCurrentUser() != null
+                        && UserSession.getInstance().getCurrentUser().getAccountType() != null
+                        ? UserSession.getInstance().getCurrentUser().getAccountType() : AccountType.NORMAL;
+                RequiredAccountType required = full.getRequiredAccountType() != null
+                        ? full.getRequiredAccountType() : RequiredAccountType.NORMAL;
 
-            Path path = Paths.get(
-                    System.getProperty("user.home"),
-                    "Downloads",
-                    fileName
-            );
+                if (userType.ordinal() < required.ordinal()) {
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Access Denied");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cần tài khoản " + required.name() + " để download bài này");
+                        alert.showAndWait();
+                    });
+                    return;
+                }
 
-            client.send(
-                    request,
-                    HttpResponse.BodyHandlers.ofFile(path)
-            );
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(full.getFileUrl()))
+                        .GET().build();
+                String fileName = full.getTitle().replaceAll("[\\\\/:*?\"<>|]", "_") + ".mp3";
+                Path path = Paths.get(System.getProperty("user.home"), "Downloads", fileName);
+                client.send(request, HttpResponse.BodyHandlers.ofFile(path));
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Download");
-            alert.setHeaderText(null);
-            alert.setContentText("Downloaded done :\n" + path);
-            alert.showAndWait();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Download");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Downloaded:\n" + path);
+                    alert.showAndWait();
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
 

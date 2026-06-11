@@ -5,6 +5,7 @@ import com.sportt5.controller.components.TopBarController;
 import com.sportt5.controller.pages.HomeController;
 import com.sportt5.controller.pages.LibraryController;
 import com.sportt5.util.ThemeManager;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -57,6 +58,7 @@ public class AppController {
         if (artistSidebarController != null) artistSidebarController.setAppController(this);
         if (adminSidebarController  != null) adminSidebarController.setAppController(this);
         topBarController.setAppController(this);
+        if (homePageController != null) homePageController.setAppController(this);
         showHomePage();
     }
 
@@ -83,6 +85,29 @@ public class AppController {
         }
         showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryItem());
     }
+
+    public void showLibraryPageWithSearch(String keyword, String type) {
+        if (libraryPageController != null) {
+            libraryPageController.clearAllBox();
+            libraryPageController.loadPlaylists();
+            libraryPageController.loadFavouritesSongs();
+            libraryPageController.filterSongs();
+            libraryPageController.filterAlbums();
+            libraryPageController.filterArtist();
+        }
+        showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryItem());
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {}
+
+            Platform.runLater(() -> {
+                if (libraryPageController != null) libraryPageController.searchByKeyword(keyword, type);
+            });
+        }).start();
+    }
+
     @FXML public void showAccountPage() { showPage(accountPage, topBarController.getAccountTopBar(), sidebarController.getAccountNavItem()); }
 
     // ════════════════════════════════════════════════════════════════════════

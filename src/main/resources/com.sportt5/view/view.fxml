@@ -25,7 +25,7 @@
                     <fx:include fx:id="topBar" source="components/topbars.fxml"/>
                     <fx:include fx:id="adminTopBar" source="admin/admin-topbar.fxml"/>
                     <HBox fx:id="globalControls" StackPane.alignment="TOP_RIGHT"
-                          spacing="6" styleClass="global-controls">
+                          spacing="6" styleClass="global-controls" pickOnBounds="false">
                         <Button fx:id="langBtn"  text="EN" onAction="#toggleLanguage" styleClass="global-control-btn"/>
                         <Button fx:id="themeBtn" text="🌙" onAction="#toggleTheme"    styleClass="global-control-btn"/>
                     </HBox>

@@ -223,7 +223,33 @@
 }
 
 .download-btn:hover {
-    -fx-text-fill: -c-text-body;
-    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: -c-accent;
+    -fx-background-color: rgba(73, 238, 120, 0.14);
     -fx-background-radius: 6;
+    -fx-border-color: transparent;
+}
+
+.search-popup {
+    -fx-background-color: #1e1e2e;
+    -fx-border-color: #444;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 4;
+}
+
+.suggestion-header {
+    -fx-text-fill: #888;
+    -fx-font-size: 11px;
+    -fx-padding: 6 8 2 8;
+}
+
+.suggestion-item {
+    -fx-text-fill: #eee;
+    -fx-font-size: 13px;
+    -fx-padding: 5 8;
+    -fx-cursor: hand;
+}
+
+.suggestion-item:hover {
+    -fx-background-color: #333;
 }

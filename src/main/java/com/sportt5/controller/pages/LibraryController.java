@@ -10,12 +10,16 @@ import com.sportt5.model.Albums;
 import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;
 import com.sportt5.model.Users;
+import com.sportt5.model.enums.AccountType;
+import com.sportt5.model.enums.RequiredAccountType;
 import com.sportt5.service.LibraryService;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -24,7 +28,14 @@ import javafx.scene.layout.*;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static javafx.geometry.Pos.BOTTOM_LEFT;
 
@@ -66,6 +77,10 @@ public class LibraryController {
     private final UserSession session = UserSession.getInstance();
     //Others
     private final Set<Integer> selectedGenreIds = new HashSet<>();
+
+    private List<Users> allArtistCache = new ArrayList<>();
+    private List<Albums> allAlbumsCache = new ArrayList<>();
+
 
     public LibraryController() throws IOException, InterruptedException {}
 
@@ -431,6 +446,59 @@ public class LibraryController {
             }
         }).start();
     }
+
+    public void searchByKeyword(String keyword, String type) {
+        String kw = keyword.toLowerCase();
+
+        //Songs
+        new Thread (() -> {
+            try {
+                List<Songs> rs = libraryService.searchSongs(keyword);
+                Platform.runLater(() -> {
+                    notEmptyList(songListTable);
+                    songCountLabel.setText(rs.size() == 1 ? "01 song" : String.format(("%02d songs"), rs.size()));
+                    songListTable.getChildren().removeIf(n -> GridPane.getRowIndex(n) != null && GridPane.getRowIndex(n) > 0);
+                    int row = 0;
+                    for (Songs s : rs) {
+                        row++;
+                        addSongToTable(songListTable, row, s,
+                                usersMap.getOrDefault(s.getArtistId(), "Unknown"),
+                                albumsMap.getOrDefault(s.getAlbumId(), "Unknown"), "");
+                    }
+                    if (!"artist".equals(type) && !"album".equals(type)) showTab(tabSongs, songsView);
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        //Artists
+        Platform.runLater(() -> {
+            if (allArtistCache.isEmpty()) allArtistCache = new ArrayList<>(artistComboBox.getItems());
+            List<Users> matched = allArtistCache.stream()
+                        .filter(u -> u.getDisplayName() != null && u.getDisplayName().toLowerCase().contains(kw))
+                        .collect(Collectors.toList());
+            artistComboBox.getItems().setAll(matched.isEmpty() ? allArtistCache : matched);
+            if (!matched.isEmpty()) {
+                artistComboBox.getSelectionModel().selectFirst();
+            }
+            if ("artist".equals(type)) showTab(tabArtists, artistsView);
+        });
+
+        //Albums
+        Platform.runLater(() -> {
+            if (allAlbumsCache.isEmpty()) allAlbumsCache = new ArrayList<>(albumComboBox.getItems());
+            List<Albums> matched = allAlbumsCache.stream()
+                    .filter(a -> a.getTitle() != null && a.getTitle().toLowerCase().contains(kw))
+                    .collect(Collectors.toList());
+            albumComboBox.getItems().setAll(matched.isEmpty() ? allAlbumsCache : matched);
+            if (!matched.isEmpty()) {
+                albumComboBox.getSelectionModel().selectFirst();
+            }
+            if ("album".equals(type)) showTab(tabAlbums, albumsView);
+        });
+    }
+
     //════════════════════Private methods════════════════════
     private void addSongToTable(GridPane table, int index, Songs s, String artistName, String albumName, String dateAdded) {
         //Index
@@ -463,15 +531,55 @@ public class LibraryController {
         int seconds = s.getDurationSeconds() % 60;
         Label lblDuration = new Label(String.format("%02dp%ds", minutes, seconds));
         lblDuration.getStyleClass().add("table-text");
-        //Action
-        Label lblAction = new Label("•••");
-        lblAction.getStyleClass().add("row-action");
+        //Download button
+        Button btnDownload = new Button("⬇");
+        btnDownload.getStyleClass().add("download-btn");
+        btnDownload.setOnAction(e -> new Thread(() -> {
+            try {
+                HttpResponse<String> resp = ApiClient.get("songs/" + s.getId());
+                if (resp.statusCode() != 200) return;
+                Songs full = mapper.readValue(resp.body(), Songs.class);
+
+                AccountType userType = session.getCurrentUser() != null && session.getCurrentUser().getAccountType() != null
+                        ? session.getCurrentUser().getAccountType() : AccountType.NORMAL;
+                RequiredAccountType required = full.getRequiredAccountType() != null
+                        ? full.getRequiredAccountType() : RequiredAccountType.NORMAL;
+
+                if (userType.ordinal() < required.ordinal()) {
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Access Denied");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cần tài khoản " + required.name() + " để download bài này");
+                        alert.showAndWait();
+                    });
+                    return;
+                }
+
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(full.getFileUrl()))
+                        .GET().build();
+                String fileName = full.getTitle().replaceAll("[\\\\/:*?\"<>|]", "_") + ".mp3";
+                Path path = Paths.get(System.getProperty("user.home"), "Downloads", fileName);
+                client.send(request, HttpResponse.BodyHandlers.ofFile(path));
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Download");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Downloaded:\n" + path);
+                    alert.showAndWait();
+                });
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }).start());
 
         table.add(lblIndex, 0, index);
         table.add(lblAlbum, 2, index);
         table.add(lblDate, 3, index);
         table.add(lblDuration, 4, index);
-        table.add(lblAction, 5, index);
+        table.add(btnDownload, 5, index);
     }
 
     private void showFavouriteSongs(JsonNode content) {

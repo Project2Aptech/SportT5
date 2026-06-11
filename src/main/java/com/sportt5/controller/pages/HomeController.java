@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sportt5.controller.AppController;
 import com.sportt5.controller.components.HomeAlbumCardController;
 import com.sportt5.controller.components.HomeAlbumRowController;
 import com.sportt5.controller.components.HomeSongRowController;
@@ -33,7 +34,12 @@ public class HomeController {
     @FXML private VBox homeSingleBox;
     @FXML private VBox homeAlbumBox2;
 
+    private AppController appController;
     private final HomeService homeService = new HomeService();
+
+    public void setAppController(AppController appController) {
+        this.appController = appController;
+    }
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -56,7 +62,11 @@ public class HomeController {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.sportt5/view/home/home-album-card.fxml"));
                             VBox card = loader.load();
                             HomeAlbumCardController ctrl = loader.getController();
-                            ctrl.setAlbum(albums.get(i));
+                            Albums a = albums.get(i);
+                            ctrl.setAlbum(a);
+                            card.setOnMouseClicked(e -> {
+                                if (appController != null) appController.showLibraryPageWithSearch(a.getTitle(), "album");
+                            });
                             homeAlbumBox.getChildren().add(card);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -133,6 +143,9 @@ public class HomeController {
                             HomeAlbumRowController ctrl = loader.getController();
                             Albums a = albums.get(i);
                             ctrl.setAlbum(i + 1, a);
+                            row.setOnMouseClicked(e -> {
+                                if (appController != null) appController.showLibraryPageWithSearch(a.getTitle(), "album");
+                            });
                             homeAlbumBox2.getChildren().add(row);
                         } catch (IOException e) {
                             e.printStackTrace();

@@ -13,15 +13,15 @@
            fx:controller="com.sportt5.controller.components.TopBarController">
     <StackPane fx:id="homeHero" prefHeight="300.0" minHeight="300.0" maxHeight="300.0" styleClass="home-hero">
         <Pane styleClass="beam-layer" />
-        <TextField promptText="Search for tracks, artists..." prefWidth="320.0" maxWidth="320.0" prefHeight="30.0" styleClass="home-search" StackPane.alignment="TOP_CENTER" />
         <VBox alignment="CENTER_LEFT" spacing="14.0" maxWidth="610.0" StackPane.alignment="CENTER_LEFT" styleClass="hero-copy-box">
             <Label text="WHAT'S NEW?" styleClass="home-hero-title" />
             <Label text="Experience the latest sonic landscape curated just for you. From underground beats to chart-topping anthems, dive into the pulse of the contemporary music scene." wrapText="true" styleClass="home-hero-copy" />
             <Button text="▶  START LISTENING" styleClass="listen-button" />
         </VBox>
+        <TextField fx:id="homeSearchField" promptText="Search for tracks, artists..." prefWidth="320.0" maxWidth="320.0" prefHeight="30.0" styleClass="home-search" StackPane.alignment="TOP_CENTER" />
     </StackPane>
     <HBox fx:id="libraryTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
-        <TextField promptText="Search in library..." prefWidth="320.0" maxWidth="320.0" styleClass="store-search" />
+        <TextField fx:id="librarySearchField" promptText="Search in library..." prefWidth="320.0" maxWidth="320.0" styleClass="store-search" />
         <Region HBox.hgrow="ALWAYS" />
     </HBox>
 <HBox fx:id="accountTopBar" visible="false" managed="false" alignment="CENTER_LEFT" prefHeight="58.0" minHeight="58.0" maxHeight="58.0" styleClass="store-topbar">
