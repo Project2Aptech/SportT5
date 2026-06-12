@@ -11,7 +11,6 @@ import com.sportt5.util.ApiClient;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
@@ -41,9 +40,8 @@ public class HomeService {
         return songs;
     }
 
-    public boolean likeASong(int id) throws IOException, InterruptedException {
+    public void likeASong(int id) throws IOException, InterruptedException {
         HttpResponse<String> response = ApiClient.post(String.format("liked-songs/%d", id));
-        return response.statusCode() == 200;
     }
 
     public boolean checkSongLikedStatus(int id) throws IOException, InterruptedException {
@@ -52,9 +50,8 @@ public class HomeService {
         return false;
     }
 
-    public boolean unlikeASong(int id) throws IOException, InterruptedException {
+    public void unlikeASong(int id) throws IOException, InterruptedException {
         HttpResponse<String> response = ApiClient.delete(String.format("liked-songs/%d", id));
-        return response.statusCode() == 200;
     }
 
     //════════════════════Private methods to get API response════════════════════

@@ -25,6 +25,7 @@ public class LibraryService {
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
+    //════════════════════Main methods for controller════════════════════
     public JsonNode getLikedSongs() throws IOException, InterruptedException {
         String token = UserSession.getInstance().getToken();
 
@@ -117,6 +118,32 @@ public class LibraryService {
         return albums.size();
     }
 
+    public boolean addSongToPlaylist(int id, int songId) throws IOException, InterruptedException {
+        HttpResponse<String> response = ApiClient.post(String.format("playlists/%d/songs/%d", id, songId));
+        return response.statusCode() == 200 || response.statusCode() == 204;
+    }
+
+    public boolean removeSongFromPlaylist(int id, int songId) throws IOException, InterruptedException {
+        HttpResponse<String> response = ApiClient.delete(String.format("playlists/%d/songs/%d", id, songId));
+        return response.statusCode() == 200 || response.statusCode() == 204;
+    }
+
+    public boolean addPlaylist(String title, boolean isPublic) throws IOException, InterruptedException {
+        String jsonBody = String.format("{\"title\":\"%s\",\"description\":\"My favorite songs\",\"isPublic\":%b}", title, isPublic);
+        HttpResponse<String> response = ApiClient.post("playlists", jsonBody);
+        return response.statusCode() == 200 || response.statusCode() == 201;
+    }
+
+    public boolean updatePlaylist(int id, String title, boolean isPublic) throws IOException, InterruptedException {
+        String jsonBody = String.format("{\"title\":\"%s\",\"isPublic\":%b}", title, isPublic);
+        HttpResponse<String> response = ApiClient.patch(String.format("playlists/%d", id), jsonBody);
+        return response.statusCode() == 200 || response.statusCode() == 204;
+    }
+
+    public boolean deletePlaylist(int id) throws IOException, InterruptedException {
+        HttpResponse<String> response = ApiClient.delete(String.format("playlists/%d", id));
+        return response.statusCode() == 200 || response.statusCode() == 204;
+    }
     //════════════════════Supporting methods to get song details════════════════════
     public Map<Integer, String> getUsersMap() throws IOException, InterruptedException {
         List<Users> users = getResponseWithoutToken("users", Users.class);

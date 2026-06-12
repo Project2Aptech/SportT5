@@ -20,17 +20,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
 
 import java.io.IOException;
@@ -100,7 +95,7 @@ public class LibraryController {
             tabAlbums.setOnMouseClicked(e -> showTab(tabAlbums, albumsView));
         }
         if (addPlaylistBtn != null) {
-            addPlaylistBtn.setOnAction(e -> showPlaylistAddDialog());
+            addPlaylistBtn.setOnMouseClicked(e -> showPlaylistAddDialog());
         }
     }
 
@@ -201,14 +196,14 @@ public class LibraryController {
                             editBtn.getStyleClass().add("playlist-action-btn");
                             editBtn.setOnMouseClicked(e -> {
                                 e.consume();
-                                showPlaylistEditDialog();
+                                showPlaylistEditDialog(p);
                             });
 
                             Label deleteBtn = new Label("🗑");
                             deleteBtn.getStyleClass().addAll("playlist-action-btn", "playlist-delete-btn");
                             deleteBtn.setOnMouseClicked(e -> {
                                 e.consume();
-                                showPlaylistDeleteConfirm(p.getTitle());
+                                showPlaylistDeleteConfirm(p);
                             });
 
                             actionsOverlay.getChildren().addAll(editBtn, deleteBtn);
@@ -530,7 +525,6 @@ public class LibraryController {
             if ("album".equals(type)) showTab(tabAlbums, albumsView);
         });
     }
-
     //════════════════════Private methods════════════════════
     private void addSongToTable(GridPane table, int index, Songs s, String artistName, String albumName, String dateAdded) {
         addSongToTable(table, index, s, artistName, albumName, dateAdded, 0);
@@ -576,52 +570,17 @@ public class LibraryController {
 
         Label lblAddToPlaylist = new Label("+");
         lblAddToPlaylist.getStyleClass().addAll("row-action", "add-to-playlist-btn");
-        lblAddToPlaylist.setOnMouseClicked(e -> showAddToPlaylistDialog());
+        lblAddToPlaylist.setOnMouseClicked(e -> showAddToPlaylistDialog(s));
 
         Label lblDownload = new Label("↓");
         lblDownload.getStyleClass().addAll("row-action", "download-btn");
-        lblDownload.setOnMouseClicked(e -> new Thread(() -> {
-            try {
-                HttpResponse<String> resp = ApiClient.get("songs/" + s.getId());
-                if (resp.statusCode() != 200) return;
-                Songs full = mapper.readValue(resp.body(), Songs.class);
+        setDownloadBtn(lblDownload, s);
 
-                AccountType userType = session.getCurrentUser() != null && session.getCurrentUser().getAccountType() != null
-                        ? session.getCurrentUser().getAccountType() : AccountType.NORMAL;
-                RequiredAccountType required = full.getRequiredAccountType() != null
-                        ? full.getRequiredAccountType() : RequiredAccountType.NORMAL;
-
-                if (userType.ordinal() < required.ordinal()) {
-                    Platform.runLater(() -> {
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Access Denied");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Cần tài khoản " + required.name() + " để download bài này");
-                        alert.showAndWait();
-                    });
-                    return;
-                }
-
-                HttpClient client = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create(full.getFileUrl()))
-                        .GET().build();
-                String fileName = full.getTitle().replaceAll("[\\\\/:*?\"<>|]", "_") + ".mp3";
-                Path path = Paths.get(System.getProperty("user.home"), "Downloads", fileName);
-                client.send(request, HttpResponse.BodyHandlers.ofFile(path));
-                Platform.runLater(() -> {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Download");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Downloaded:\n" + path);
-                    alert.showAndWait();
-                });
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }).start());
-
-        actionsBox.getChildren().addAll(lblLike, lblAddToPlaylist, lblDownload);
+        if (playlistSongsTitle.getText().equalsIgnoreCase("Liked songs")) {
+            actionsBox.getChildren().addAll(lblAddToPlaylist, lblDownload);
+        } else {
+            actionsBox.getChildren().addAll(lblLike, lblAddToPlaylist, lblDownload);
+        }
 
         if (playlistId > 0) {
             Label lblRemove = new Label("✕");
@@ -704,46 +663,206 @@ public class LibraryController {
         table.add(lblActions, 5, 0);
     }
 
+    private void setDownloadBtn(Label btn, Songs s) {
+        btn.setOnMouseClicked(e -> new Thread(() -> {
+            try {
+                HttpResponse<String> resp = ApiClient.get("songs/" + s.getId());
+                if (resp.statusCode() != 200) return;
+                Songs full = mapper.readValue(resp.body(), Songs.class);
+
+                AccountType userType = session.getCurrentUser() != null && session.getCurrentUser().getAccountType() != null
+                        ? session.getCurrentUser().getAccountType() : AccountType.NORMAL;
+                RequiredAccountType required = full.getRequiredAccountType() != null
+                        ? full.getRequiredAccountType() : RequiredAccountType.NORMAL;
+
+                if (userType.ordinal() < required.ordinal()) {
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Access Denied");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Cần tài khoản " + required.name() + " để download bài này");
+                        alert.showAndWait();
+                    });
+                    return;
+                }
+
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(full.getFileUrl()))
+                        .GET().build();
+                String fileName = full.getTitle().replaceAll("[\\\\/:*?\"<>|]", "_") + ".mp3";
+                Path path = Paths.get(System.getProperty("user.home"), "Downloads", fileName);
+                client.send(request, HttpResponse.BodyHandlers.ofFile(path));
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Download");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Downloaded:\n" + path);
+                    alert.showAndWait();
+                });
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }).start());
+    }
     //════════════════════Playlist dialogs════════════════════
     private void showPlaylistAddDialog() {
-        openDialog("/com.sportt5/view/users/playlist-add-dialog.fxml", "#cancelBtn", "#createBtn");
-    }
-
-    private void showAddToPlaylistDialog() {
-        openDialog("/com.sportt5/view/users/playlist-select-dialog.fxml", "#cancelBtn", "#addBtn");
-    }
-
-    private void showPlaylistEditDialog() {
-        openDialog("/com.sportt5/view/users/playlist-edit-dialog.fxml", "#cancelBtn", "#saveBtn");
-    }
-
-    private void openDialog(String fxmlPath, String... closeButtonIds) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.sportt5/view/users/playlist-add-dialog.fxml"));
             DialogPane pane = loader.load();
             pane.getButtonTypes().add(ButtonType.CLOSE);
             Node closeNode = pane.lookupButton(ButtonType.CLOSE);
             closeNode.setVisible(false);
             closeNode.setManaged(false);
-
+            //Hide the window close (X) btn, add CSS
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(pane);
+            dialog.initStyle(StageStyle.UNDECORATED);
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.setOnShown(e -> pane.getScene().getStylesheets()
-                .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
-
-            for (String id : closeButtonIds) {
-                Button btn = (Button) pane.lookup(id);
-                if (btn != null) btn.setOnAction(e -> dialog.close());
+                    .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+            //UI component lookup
+            TextField nameInput = (TextField) pane.lookup("#nameField");
+            Button createBtn = (Button) pane.lookup("#createBtn");
+            Button cancelBtn = (Button) pane.lookup("#cancelBtn");
+            //Set actions into field and buttons
+            if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
+            if (createBtn != null) {
+                createBtn.setOnAction(e -> {
+                    String name = nameInput != null ? nameInput.getText().trim() : "New playlist";
+                    if (name.isEmpty()) return;
+                    new Thread(() -> {
+                        try {
+                            boolean result = libraryService.addPlaylist(name, false);
+                            if (result) {
+                                Platform.runLater(() -> {
+                                    dialog.close();
+                                    playlistCardsBox.getChildren().clear();
+                                    loadPlaylists();
+                                });
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }).start();
+                });
             }
-
             dialog.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void showPlaylistDeleteConfirm(String playlistTitle) {
+    @SuppressWarnings("unchecked")
+    private void showAddToPlaylistDialog(Songs s) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.sportt5/view/users/playlist-select-dialog.fxml"));
+            DialogPane pane = loader.load();
+            pane.getButtonTypes().add(ButtonType.CLOSE);
+            Node closeNode = pane.lookupButton(ButtonType.CLOSE);
+            closeNode.setVisible(false);
+            closeNode.setManaged(false);
+            //Hide the window close (X) btn, add CSS
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.setOnShown(e -> pane.getScene().getStylesheets()
+                    .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+            //UI components lookup
+            ComboBox<Playlists> playlistsComboBox = (ComboBox<Playlists>) pane.lookup("#playlistComboBox");
+            Button addBtn = (Button) pane.lookup("#addBtn");
+            Button cancelBtn = (Button) pane.lookup("#cancelBtn");
+            //Set actions into buttons
+            List<Playlists> playlists = libraryService.getUserPlaylists();
+            Platform.runLater(() -> {
+                if (!playlists.isEmpty()) {
+                    playlistsComboBox.getItems().addAll(playlists);
+                    playlistsComboBox.setConverter(new StringConverter<Playlists>() {
+                        @Override
+                        public String toString(Playlists playlists) {
+                            return (playlists == null) ? "Unknown playlist" : playlists.getTitle();
+                        }
+
+                        @Override
+                        public Playlists fromString(String s) {
+                            return null;
+                        }
+                    });
+                }
+            });
+            if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
+            if (addBtn != null) {
+                addBtn.setOnAction(e -> {
+                    Playlists selected = playlistsComboBox.getValue();
+                    if (selected == null) return;
+                    new Thread(() -> {
+                        try {
+                            boolean success = libraryService.addSongToPlaylist(selected.getId(), s.getId());
+                            if (success) {
+                                Platform.runLater(dialog::close);
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }).start();
+                });
+            }
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showPlaylistEditDialog(Playlists p) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.sportt5/view/users/playlist-edit-dialog.fxml"));
+            DialogPane pane = loader.load();
+            pane.getButtonTypes().add(ButtonType.CLOSE);
+            Node closeNode = pane.lookupButton(ButtonType.CLOSE);
+            closeNode.setVisible(false);
+            closeNode.setManaged(false);
+            //Hide the window close (X) btn, add CSS
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.setOnShown(e -> pane.getScene().getStylesheets()
+                    .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+            //UI components lookup
+            TextField nameInput = (TextField) pane.lookup("#nameField");
+            Button saveBtn = (Button) pane.lookup("#saveBtn");
+            Button cancelBtn = (Button) pane.lookup("#cancelBtn");
+            //Set old data and actions into field and buttons
+            if (nameInput != null) nameInput.setText(p.getTitle());
+            if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
+            if (saveBtn != null) {
+                saveBtn.setOnAction(e -> {
+                    String newName = nameInput != null ? nameInput.getText().trim() : p.getTitle();
+                    if (newName.isEmpty()) return;
+                    new Thread(() -> {
+                        try {
+                            boolean result = libraryService.updatePlaylist(p.getId(), newName, false);
+                            if (result) {
+                                Platform.runLater(() -> {
+                                    dialog.close();
+                                    playlistCardsBox.getChildren().clear();
+                                    loadPlaylists();
+                                });
+                            }
+                        } catch (Exception ex){
+                            ex.printStackTrace();
+                        }
+                    }).start();
+                });
+            }
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showPlaylistDeleteConfirm(Playlists p) {
         try {
             FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("/com.sportt5/view/users/playlist-delete-confirm.fxml"));
@@ -752,20 +871,38 @@ public class LibraryController {
             Node closeNode = pane.lookupButton(ButtonType.CLOSE);
             closeNode.setVisible(false);
             closeNode.setManaged(false);
-
-            Label msg = (Label) pane.lookup("#confirmMessage");
-            if (msg != null) msg.setText("Bạn có chắc muốn xóa playlist \"" + playlistTitle + "\"? Hành động này không thể hoàn tác.");
-
+            //Hide the window close (X) btn, add CSS
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(pane);
+            dialog.initStyle(StageStyle.UNDECORATED);
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.setOnShown(e -> pane.getScene().getStylesheets()
-                .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+                    .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+
+            Label msg = (Label) pane.lookup("#confirmMessage");
+            if (msg != null) msg.setText("Are you sure you want to delete the playlist \"" + p.getTitle() + "\"? \n" + "This action cannot be undone.");
 
             Button cancelBtn = (Button) pane.lookup("#cancelBtn");
             Button deleteBtn = (Button) pane.lookup("#deleteBtn");
             if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
-            if (deleteBtn != null) deleteBtn.setOnAction(e -> dialog.close());
+            if (deleteBtn != null) {
+                deleteBtn.setOnAction(e -> {
+                    new Thread(() -> {
+                        try {
+                            boolean result = libraryService.deletePlaylist(p.getId());
+                            if (result) {
+                                Platform.runLater(() -> {
+                                    dialog.close();
+                                    playlistCardsBox.getChildren().clear();
+                                    loadPlaylists();
+                                });
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }).start();
+                });
+            }
 
             dialog.showAndWait();
         } catch (Exception e) {

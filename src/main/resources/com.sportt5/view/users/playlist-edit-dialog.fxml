@@ -15,20 +15,9 @@
 
             <!-- Cover preview -->
             <HBox spacing="18" alignment="CENTER_LEFT">
-                <StackPane styleClass="pl-cover-frame" prefWidth="90" prefHeight="90"
-                           minWidth="90" minHeight="90">
-                    <ImageView fx:id="coverPreview" fitWidth="90" fitHeight="90"
-                               preserveRatio="false" />
-                    <Label text="♪" styleClass="pl-cover-placeholder" />
-                </StackPane>
-
                 <VBox spacing="10" HBox.hgrow="ALWAYS">
                     <Label text="Playlist Name" styleClass="pl-field-label" />
                     <TextField fx:id="nameField" promptText="Enter playlist name..."
-                               styleClass="pl-text-field" />
-
-                    <Label text="Cover URL" styleClass="pl-field-label" />
-                    <TextField fx:id="coverUrlField" promptText="https://..."
                                styleClass="pl-text-field" />
                 </VBox>
             </HBox>
