@@ -442,6 +442,8 @@
     -fx-padding: 2 5 2 5;
     -fx-cursor: hand;
     -fx-background-radius: 4;
+    -fx-text-overrun: CLIP;
+    -fx-min-width: 20;
 }
 .playlist-remove-song-btn:hover {
     -fx-background-color: rgba(200, 30, 30, 0.15);

@@ -151,7 +151,8 @@ public class LibraryController {
 
                 Platform.runLater(() -> {
                     if (favSongContent.isEmpty() || !favSongContent.isArray()) {
-                        emptyList(playlistSongsTable);
+                        favouritesCount.setText("0 songs");
+                        playlistSongsTable.getChildren().removeIf(n -> GridPane.getRowIndex(n) != null && GridPane.getRowIndex(n) > 0);
                     } else if (favSongContent.isArray()) {
                         //Set count of liked songs
                         if (favSongContent.isEmpty()) favouritesCount.setText("0 songs");
@@ -606,8 +607,8 @@ public class LibraryController {
         lblDownload.getStyleClass().addAll("row-action", "download-btn");
         setDownloadBtn(lblDownload, s);
 
-        if (playlistId >  0 || playlistSongsTitle.getText().equalsIgnoreCase("Playlist's Songs")) {
-            Label lblRemove = new Label("✕");
+        if (playlistId > 0) {
+            Label lblRemove = new Label("×");
             lblRemove.getStyleClass().addAll("row-action", "playlist-remove-song-btn");
             lblRemove.setOnMouseClicked(e -> {
                 new Thread(() -> {
