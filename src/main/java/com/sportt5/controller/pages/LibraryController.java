@@ -576,16 +576,30 @@ public class LibraryController {
         lblDownload.getStyleClass().addAll("row-action", "download-btn");
         setDownloadBtn(lblDownload, s);
 
+        if (playlistId >  0 || playlistSongsTitle.getText().equalsIgnoreCase("Playlist's Songs")) {
+            Label lblRemove = new Label("✕");
+            lblRemove.getStyleClass().addAll("row-action", "playlist-remove-song-btn");
+            lblRemove.setOnMouseClicked(e -> {
+                new Thread(() -> {
+                    try {
+                        boolean result = libraryService.removeSongFromPlaylist(playlistId, s.getId());
+                        if (result) {
+                            Platform.runLater(() -> {
+                                table.getChildren().removeIf(node -> GridPane.getRowIndex(node) != null && GridPane.getRowIndex(node) == index);
+                            });
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }).start();
+            });
+            actionsBox.getChildren().add(lblRemove);
+        }
+
         if (playlistSongsTitle.getText().equalsIgnoreCase("Liked songs")) {
             actionsBox.getChildren().addAll(lblAddToPlaylist, lblDownload);
         } else {
             actionsBox.getChildren().addAll(lblLike, lblAddToPlaylist, lblDownload);
-        }
-
-        if (playlistId > 0) {
-            Label lblRemove = new Label("✕");
-            lblRemove.getStyleClass().addAll("row-action", "playlist-remove-song-btn");
-            actionsBox.getChildren().add(lblRemove);
         }
 
         table.add(lblIndex, 0, index);
@@ -706,53 +720,6 @@ public class LibraryController {
         }).start());
     }
     //════════════════════Playlist dialogs════════════════════
-    private void showPlaylistAddDialog() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.sportt5/view/users/playlist-add-dialog.fxml"));
-            DialogPane pane = loader.load();
-            pane.getButtonTypes().add(ButtonType.CLOSE);
-            Node closeNode = pane.lookupButton(ButtonType.CLOSE);
-            closeNode.setVisible(false);
-            closeNode.setManaged(false);
-            //Hide the window close (X) btn, add CSS
-            Dialog<ButtonType> dialog = new Dialog<>();
-            dialog.setDialogPane(pane);
-            dialog.initStyle(StageStyle.UNDECORATED);
-            dialog.initModality(Modality.APPLICATION_MODAL);
-            dialog.setOnShown(e -> pane.getScene().getStylesheets()
-                    .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
-            //UI component lookup
-            TextField nameInput = (TextField) pane.lookup("#nameField");
-            Button createBtn = (Button) pane.lookup("#createBtn");
-            Button cancelBtn = (Button) pane.lookup("#cancelBtn");
-            //Set actions into field and buttons
-            if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
-            if (createBtn != null) {
-                createBtn.setOnAction(e -> {
-                    String name = nameInput != null ? nameInput.getText().trim() : "New playlist";
-                    if (name.isEmpty()) return;
-                    new Thread(() -> {
-                        try {
-                            boolean result = libraryService.addPlaylist(name, false);
-                            if (result) {
-                                Platform.runLater(() -> {
-                                    dialog.close();
-                                    playlistCardsBox.getChildren().clear();
-                                    loadPlaylists();
-                                });
-                            }
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                    }).start();
-                });
-            }
-            dialog.showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @SuppressWarnings("unchecked")
     private void showAddToPlaylistDialog(Songs s) {
         try {
@@ -801,6 +768,53 @@ public class LibraryController {
                             boolean success = libraryService.addSongToPlaylist(selected.getId(), s.getId());
                             if (success) {
                                 Platform.runLater(dialog::close);
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }).start();
+                });
+            }
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showPlaylistAddDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com.sportt5/view/users/playlist-add-dialog.fxml"));
+            DialogPane pane = loader.load();
+            pane.getButtonTypes().add(ButtonType.CLOSE);
+            Node closeNode = pane.lookupButton(ButtonType.CLOSE);
+            closeNode.setVisible(false);
+            closeNode.setManaged(false);
+            //Hide the window close (X) btn, add CSS
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.setDialogPane(pane);
+            dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.setOnShown(e -> pane.getScene().getStylesheets()
+                    .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
+            //UI component lookup
+            TextField nameInput = (TextField) pane.lookup("#nameField");
+            Button createBtn = (Button) pane.lookup("#createBtn");
+            Button cancelBtn = (Button) pane.lookup("#cancelBtn");
+            //Set actions into field and buttons
+            if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
+            if (createBtn != null) {
+                createBtn.setOnAction(e -> {
+                    String name = nameInput != null ? nameInput.getText().trim() : "New playlist";
+                    if (name.isEmpty()) return;
+                    new Thread(() -> {
+                        try {
+                            boolean result = libraryService.addPlaylist(name, false);
+                            if (result) {
+                                Platform.runLater(() -> {
+                                    dialog.close();
+                                    playlistCardsBox.getChildren().clear();
+                                    loadPlaylists();
+                                });
                             }
                         } catch (Exception ex) {
                             ex.printStackTrace();
