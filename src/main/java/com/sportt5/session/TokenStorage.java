@@ -9,7 +9,6 @@ public class TokenStorage {
 
 
     public static void saveToken(String token) {
-        System.out.println("File " + FILE);
         try {
             Files.writeString(Path.of(FILE), token);
         } catch (Exception e) {

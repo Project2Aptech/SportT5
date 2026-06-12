@@ -34,7 +34,6 @@ public class SubscriptionController {
     }
     private void highlightCurrentPlan() {
         String tier = (currentUser.getAccountType() != null) ? currentUser.getAccountType().name() : "NORMAL";
-        System.out.println(tier);
         normalBtn.setText("Buy");
         proBtn.setText("Buy");
         premiumBtn.setText("Buy");
@@ -82,7 +81,6 @@ public class SubscriptionController {
     }
 
     private void openPaymentDialog(String tierName, String price) {
-        System.out.println("[DEBUG] openPaymentDialog called for tier=" + tierName + " price=" + price);
         try {
             new Thread(() -> {
                 try {

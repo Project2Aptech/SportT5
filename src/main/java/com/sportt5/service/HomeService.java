@@ -10,8 +10,6 @@ import com.sportt5.model.Songs;
 import com.sportt5.util.ApiClient;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
@@ -20,13 +18,6 @@ public class HomeService {
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
-    public HttpRequest createDownloadRequest(Songs song) {
-        return HttpRequest.newBuilder()
-                .uri(URI.create(song.getFileUrl()))
-                .GET()
-                .build();
-    }
 
     public List<Albums> getHomeAlbums() throws IOException, InterruptedException {
         List<Albums> albums = getResponseWithoutToken("albums?size=10", Albums.class);
@@ -55,16 +46,6 @@ public class HomeService {
     }
 
     //════════════════════Private methods to get API response════════════════════
-    private <T> List<T> getResponseWithToken(HttpRequest request, Class<T> c) throws IOException, InterruptedException {
-        HttpResponse<String> response = ApiClient.getClient().send(request, HttpResponse.BodyHandlers.ofString());
-        if (response.statusCode() == 200) {
-            JavaType type = mapper.getTypeFactory().constructParametricType(PageResponse.class, c);
-            PageResponse<T> page = mapper.readValue(response.body(), type);
-            return page.getContent();
-        }
-        throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
-    }
-
     private <T> List<T> getResponseWithoutToken(String s, Class<T> c) throws IOException, InterruptedException {
         //For multiple objects {}
         HttpResponse<String> response = ApiClient.get(s);
@@ -76,20 +57,4 @@ public class HomeService {
         throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
     }
 
-    private <T> List<T> getResponseWithoutToken2(String s, Class<T> c) throws IOException, InterruptedException {
-        //For arrays []
-        HttpResponse<String> response = ApiClient.get(s);
-        if (response.statusCode() == 200) {
-            JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, c);
-            return mapper.readValue(response.body(), type);
-        }
-        throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
-    }
-
-    private <T> T getResponseWithoutToken3(String s, Class<T> c) throws IOException, InterruptedException {
-        //For a single object {}
-        HttpResponse<String> response = ApiClient.get(s);
-        if (response.statusCode() == 200) return mapper.readValue(response.body(), c);
-        throw new RuntimeException(mapper.readTree(response.body()).get("message").asText());
-    }
 }

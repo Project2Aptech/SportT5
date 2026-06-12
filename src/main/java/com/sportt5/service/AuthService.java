@@ -33,9 +33,7 @@ public class AuthService {
                 "email":"%s"
             }
             """, email);
-        System.out.println(jsonPayload);
         HttpResponse<String> response = ApiClient.post(endpoint,jsonPayload);
-        System.out.println(response.body());
         return response;
     }
 
@@ -64,9 +62,6 @@ public class AuthService {
 
         HttpResponse<String> response = ApiClient.post(endpoint);
         JsonNode node = mapper.readTree(response.body());
-
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
 
         if (response.statusCode() == 200) {
             JsonNode paymentUrlNode = node.get("paymentUrl");
@@ -130,10 +125,6 @@ public class AuthService {
         HttpResponse<String> response = ApiClient.get(endpoint);
         JsonNode node = mapper.readTree(response.body());
 
-        System.out.println("=== GET /users/" + id + " ===");
-        System.out.println("Status = " + response.statusCode());
-        System.out.println("Body   = " + response.body());
-
         if(response.statusCode() == 200){
             if (node == null) {
                 throw new RuntimeException("User data not found");
@@ -149,8 +140,6 @@ public class AuthService {
         String endpoint = "users/me";
         HttpResponse<String> response = ApiClient.get(endpoint);
         JsonNode node = mapper.readTree(response.body());
-
-        System.out.println("Body   = " + response.body());
 
         if(response.statusCode() == 200){
             if (node == null) {

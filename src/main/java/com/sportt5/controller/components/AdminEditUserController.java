@@ -53,10 +53,7 @@ public class AdminEditUserController {
             AccountType accountType = accountTypeBox.getValue();
             Roles role = roleTypeBox.getValue();
 
-            if (accountType == null || role == null) {
-                System.out.println("Please select account type and role");
-                return;
-            }
+            if (accountType == null || role == null) return;
 
             boolean success = adminService.updateUserRole(
                     userId,
@@ -65,12 +62,8 @@ public class AdminEditUserController {
             );
 
             if (success) {
-                System.out.println("Update user success");
-
                 Stage stage = (Stage) usernameField.getScene().getWindow();
                 stage.close();
-            } else {
-                System.out.println("Update failed");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

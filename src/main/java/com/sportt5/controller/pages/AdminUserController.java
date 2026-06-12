@@ -49,11 +49,6 @@ public class AdminUserController {
             try {
                 UserResponse response = adminService.getUser();
                 List<Users> users = response.getContent();
-                users.forEach(u ->
-                        System.out.println("Test"+
-                                u.getUsername() + " -> " + u.isActive()
-                        )
-                );
                 Platform.runLater(() -> {
                     renderUsers(users);
                 });
@@ -163,10 +158,7 @@ public class AdminUserController {
 
 
         private void renderUsers(List<Users> users) {
-        if (userGrid == null) {
-            System.out.println("userGrid chưa inject xong!");
-            return;
-        }
+        if (userGrid == null) return;
 
         userGrid.getChildren().removeIf(node -> {
             Integer row = GridPane.getRowIndex(node);

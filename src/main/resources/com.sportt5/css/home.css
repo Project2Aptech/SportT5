@@ -241,6 +241,13 @@
     -fx-text-fill: #ff5c8a;
     -fx-background-color: rgba(255, 92, 138, 0.14);
 }
+.like-btn-active {
+    -fx-text-fill: #ff5c8a;
+    -fx-background-color: rgba(255, 92, 138, 0.10);
+}
+.like-btn-active:hover {
+    -fx-background-color: rgba(255, 92, 138, 0.22);
+}
 
 .add-to-playlist-btn {
     -fx-background-color: transparent;
@@ -296,13 +303,11 @@
     -fx-text-fill: -c-text-heading;
     -fx-font-size: 20px;
     -fx-font-weight: 800;
-    -fx-font-family: inherit;
 }
 
 .home-body .album-artist {
     -fx-text-fill: -c-text-muted;
     -fx-font-size: 10px;
-    -fx-font-family: inherit;
 }
 
 .home-body .track-row {
@@ -317,11 +322,9 @@
     -fx-text-fill: -c-text-primary;
     -fx-font-size: 10px;
     -fx-font-weight: 800;
-    -fx-font-family: inherit;
 }
 
 .home-body .track-artist {
     -fx-text-fill: -c-text-muted;
     -fx-font-size: 10px;
-    -fx-font-family: inherit;
 }

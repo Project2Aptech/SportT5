@@ -76,10 +76,7 @@ public class SongService {
             body.put("status", status);
 
             String json = mapper.writeValueAsString(body);
-            System.out.println("PUT /songs/" + songId + " → " + json);
-
             var response = ApiClient.put("songs/" + songId, json);
-            System.out.println("Response: " + response.statusCode() + " " + response.body());
             return response.statusCode() == 200;
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,8 +122,6 @@ public class SongService {
             out.write(("--" + boundary + "--\r\n").getBytes());
 
             var response = ApiClient.postMultipart("songs", boundary, out.toByteArray());
-            System.out.println("createSong → " + response.statusCode() + " " + response.body());
-
             if (response.statusCode() == 200 || response.statusCode() == 201) {
                 JsonNode root = new ObjectMapper().readTree(response.body());
                 return root.path("id").asInt(-1);
@@ -158,7 +153,6 @@ public class SongService {
 
             var response = ApiClient.postMultipart("songs/" + songId + "/cover",
                     boundary, out.toByteArray());
-            System.out.println("uploadCover → " + response.statusCode());
             return response.statusCode() == 200 || response.statusCode() == 204;
         } catch (Exception e) {
             e.printStackTrace();

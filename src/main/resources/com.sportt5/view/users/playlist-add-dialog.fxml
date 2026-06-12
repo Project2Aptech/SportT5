@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
 <DialogPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             styleClass="pl-dialog-pane">
 
     <content>
-        <VBox spacing="18" prefWidth="380" styleClass="pl-dialog-body">
+        <VBox styleClass="pl-dialog-body">
 
-            <Label text="New Playlist" styleClass="pl-dialog-title" />
-
-            <!-- Cover preview -->
-            <StackPane alignment="CENTER">
-                <StackPane styleClass="pl-cover-frame pl-cover-frame-large"
-                           prefWidth="120" prefHeight="120"
-                           minWidth="120" minHeight="120">
-                    <ImageView fx:id="coverPreview" fitWidth="120" fitHeight="120"
-                               preserveRatio="false" />
-                    <Label text="♪" styleClass="pl-cover-placeholder pl-cover-placeholder-large" />
+            <!-- Header -->
+            <VBox styleClass="pl-dialog-header" alignment="CENTER">
+                <StackPane styleClass="pl-dialog-icon-wrap">
+                    <Label text="♪" styleClass="pl-dialog-icon" />
                 </StackPane>
-            </StackPane>
+                <Label text="New Playlist" styleClass="pl-dialog-title" />
+                <Label text="Give your playlist a name to get started."
+                       styleClass="pl-dialog-subtitle" wrapText="true" />
+            </VBox>
+
+            <!-- Divider -->
+            <Region styleClass="pl-dialog-divider" />
 
             <!-- Fields -->
-            <VBox spacing="10">
-                <Label text="Playlist Name" styleClass="pl-field-label" />
-                <TextField fx:id="nameField" promptText="Enter playlist name..."
-                           styleClass="pl-text-field" />
-
-                <Label text="Cover URL" styleClass="pl-field-label" />
-                <TextField fx:id="coverUrlField" promptText="https://..."
+            <VBox styleClass="pl-dialog-fields" spacing="6">
+                <Label text="PLAYLIST NAME" styleClass="pl-field-label" />
+                <TextField fx:id="nameField" promptText="My Playlist..."
                            styleClass="pl-text-field" />
             </VBox>
 
-            <!-- Action buttons -->
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Button text="Cancel" styleClass="pl-btn-cancel" fx:id="cancelBtn" />
-                <Button text="Create" styleClass="pl-btn-save" fx:id="createBtn" />
+            <!-- Buttons -->
+            <HBox styleClass="pl-dialog-actions" spacing="10">
+                <Button text="Cancel" styleClass="pl-btn-cancel" fx:id="cancelBtn"
+                        maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+                <Button text="Create" styleClass="pl-btn-save" fx:id="createBtn"
+                        maxWidth="Infinity" HBox.hgrow="ALWAYS" />
             </HBox>
 
         </VBox>

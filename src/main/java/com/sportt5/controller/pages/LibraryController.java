@@ -12,6 +12,7 @@ import com.sportt5.model.Songs;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.AccountType;
 import com.sportt5.model.enums.RequiredAccountType;
+import com.sportt5.service.HomeService;
 import com.sportt5.service.LibraryService;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
@@ -69,9 +70,10 @@ public class LibraryController {
     @FXML private GridPane albumSongTable;
     //Map for convenience
     private final LibraryService libraryService = new LibraryService();
-    private final Map<Integer, String> usersMap = libraryService.getUsersMap();
-    private final Map<Integer, String> albumsMap = libraryService.getAlbumsMap();
-    private final Map<Integer, String> genresMap = libraryService.getGenresMap();
+    private final HomeService homeService = new HomeService();
+    private Map<Integer, String> usersMap;
+    private Map<Integer, String> albumsMap;
+    private Map<Integer, String> genresMap;
     private final ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -84,10 +86,18 @@ public class LibraryController {
     private List<Albums> allAlbumsCache = new ArrayList<>();
 
 
-    public LibraryController() throws IOException, InterruptedException {}
-
     @FXML
     public void initialize() {
+        try {
+            usersMap = libraryService.getUsersMap();
+            albumsMap = libraryService.getAlbumsMap();
+            genresMap = libraryService.getGenresMap();
+        } catch (Exception e) {
+            e.printStackTrace();
+            usersMap = new HashMap<>();
+            albumsMap = new HashMap<>();
+            genresMap = new HashMap<>();
+        }
         if (tabPlaylists != null) {
             tabPlaylists.setOnMouseClicked(e -> showTab(tabPlaylists, playlistsView));
             tabSongs.setOnMouseClicked(e -> showTab(tabSongs, songsView));
@@ -115,6 +125,10 @@ public class LibraryController {
         if (node == null) return;
         node.setVisible(visible);
         node.setManaged(visible);
+    }
+
+    public void showSongsTab() {
+        if (tabSongs != null) showTab(tabSongs, songsView);
     }
 
     public void clearAllBox() {
@@ -169,9 +183,11 @@ public class LibraryController {
                             card.setPrefWidth(130);
                             card.setPrefHeight(130);
                             //Set image
-                            Image coverImg = new Image(ApiClient.resolveUrl(p.getCoverUrl()), true);
                             ImageView imgView = new ImageView();
-                            imgView.setImage(coverImg);
+                            String coverUrl = p.getCoverUrl();
+                            if (coverUrl != null && !coverUrl.isBlank()) {
+                                imgView.setImage(new Image(ApiClient.resolveUrl(coverUrl), true));
+                            }
                             imgView.setFitWidth(130);
                             imgView.setFitHeight(130);
                             imgView.setPreserveRatio(false);
@@ -567,6 +583,20 @@ public class LibraryController {
 
         Label lblLike = new Label("♡");
         lblLike.getStyleClass().addAll("row-action", "like-btn");
+        new Thread(() -> {
+            try {
+                boolean liked = homeService.checkSongLikedStatus(s.getId());
+                Platform.runLater(() -> setLibraryLikeState(lblLike, liked));
+            } catch (Exception ex) { ex.printStackTrace(); }
+        }).start();
+        lblLike.setOnMouseClicked(e -> new Thread(() -> {
+            try {
+                boolean liked = homeService.checkSongLikedStatus(s.getId());
+                if (liked) homeService.unlikeASong(s.getId());
+                else homeService.likeASong(s.getId());
+                Platform.runLater(() -> setLibraryLikeState(lblLike, !liked));
+            } catch (Exception ex) { ex.printStackTrace(); }
+        }).start());
 
         Label lblAddToPlaylist = new Label("+");
         lblAddToPlaylist.getStyleClass().addAll("row-action", "add-to-playlist-btn");
@@ -677,6 +707,16 @@ public class LibraryController {
         table.add(lblActions, 5, 0);
     }
 
+    private void setLibraryLikeState(Label btn, boolean liked) {
+        if (liked) {
+            btn.setText("♥");
+            btn.getStyleClass().add("like-btn-active");
+        } else {
+            btn.setText("♡");
+            btn.getStyleClass().remove("like-btn-active");
+        }
+    }
+
     private void setDownloadBtn(Label btn, Songs s) {
         btn.setOnMouseClicked(e -> new Thread(() -> {
             try {
@@ -729,35 +769,15 @@ public class LibraryController {
             Node closeNode = pane.lookupButton(ButtonType.CLOSE);
             closeNode.setVisible(false);
             closeNode.setManaged(false);
-            //Hide the window close (X) btn, add CSS
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(pane);
             dialog.initStyle(StageStyle.UNDECORATED);
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.setOnShown(e -> pane.getScene().getStylesheets()
                     .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
-            //UI components lookup
             ComboBox<Playlists> playlistsComboBox = (ComboBox<Playlists>) pane.lookup("#playlistComboBox");
             Button addBtn = (Button) pane.lookup("#addBtn");
             Button cancelBtn = (Button) pane.lookup("#cancelBtn");
-            //Set actions into buttons
-            List<Playlists> playlists = libraryService.getUserPlaylists();
-            Platform.runLater(() -> {
-                if (!playlists.isEmpty()) {
-                    playlistsComboBox.getItems().addAll(playlists);
-                    playlistsComboBox.setConverter(new StringConverter<Playlists>() {
-                        @Override
-                        public String toString(Playlists playlists) {
-                            return (playlists == null) ? "Unknown playlist" : playlists.getTitle();
-                        }
-
-                        @Override
-                        public Playlists fromString(String s) {
-                            return null;
-                        }
-                    });
-                }
-            });
             if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
             if (addBtn != null) {
                 addBtn.setOnAction(e -> {
@@ -766,15 +786,54 @@ public class LibraryController {
                     new Thread(() -> {
                         try {
                             boolean success = libraryService.addSongToPlaylist(selected.getId(), s.getId());
-                            if (success) {
-                                Platform.runLater(dialog::close);
-                            }
+                            if (success) Platform.runLater(dialog::close);
                         } catch (Exception ex) {
                             ex.printStackTrace();
                         }
                     }).start();
                 });
             }
+            // Load playlists + check which already contain this song in background
+            new Thread(() -> {
+                try {
+                    List<Playlists> playlists = libraryService.getUserPlaylists();
+                    Set<Integer> alreadyAdded = new HashSet<>();
+                    for (Playlists p : playlists) {
+                        List<Songs> existing = libraryService.getPlaylistSongs(p.getId());
+                        if (existing.stream().anyMatch(song -> song.getId() == s.getId())) {
+                            alreadyAdded.add(p.getId());
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        if (playlistsComboBox == null) return;
+                        playlistsComboBox.getItems().addAll(playlists);
+                        playlistsComboBox.setConverter(new StringConverter<>() {
+                            @Override public String toString(Playlists p) {
+                                return p == null ? "Unknown playlist" : p.getTitle();
+                            }
+                            @Override public Playlists fromString(String str) { return null; }
+                        });
+                        playlistsComboBox.setCellFactory(lv -> new ListCell<>() {
+                            @Override
+                            protected void updateItem(Playlists item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty || item == null) {
+                                    setText(null);
+                                    setDisable(false);
+                                    setOpacity(1.0);
+                                } else {
+                                    boolean taken = alreadyAdded.contains(item.getId());
+                                    setText(item.getTitle() + (taken ? " ✓" : ""));
+                                    setDisable(taken);
+                                    setOpacity(taken ? 0.5 : 1.0);
+                                }
+                            }
+                        });
+                    });
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }).start();
             dialog.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();

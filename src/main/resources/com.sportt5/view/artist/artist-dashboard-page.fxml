@@ -79,7 +79,7 @@
                 </HBox>
                 <Label text="FOLLOWERS GROWTH" styleClass="metric-label" />
                 <Label fx:id="lblFollowersGrowth" text="—" styleClass="metric-value" />
-                <HBox fx:id="followersBarChart" alignment="BOTTOM_LEFT" spacing="7.0" styleClass="followers-bars">
+                <HBox alignment="BOTTOM_LEFT" spacing="7.0" styleClass="followers-bars">
                     <Region prefWidth="7.0" prefHeight="13.0" />
                     <Region prefWidth="7.0" prefHeight="22.0" />
                     <Region prefWidth="7.0" prefHeight="30.0" />

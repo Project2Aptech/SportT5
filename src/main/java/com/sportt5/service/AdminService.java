@@ -55,7 +55,6 @@ public class AdminService {
     public boolean deleteSong(int songId) throws IOException, InterruptedException {
         String endpoint = String.format("admin/songs/%d", songId);
         HttpResponse<String> response = ApiClient.delete(endpoint);
-        System.out.println("Delete Song Response: "+response);
         return response.statusCode() == 204;
     }
 
@@ -63,9 +62,6 @@ public class AdminService {
         String endpoint = "admin/subscriptions";
         HttpResponse<String> response = ApiClient.get(endpoint);
         JsonNode node = mapper.readTree(response.body());
-
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
 
         if(response.statusCode() == 200){
             if (node == null) {
@@ -84,9 +80,6 @@ public class AdminService {
         String endpoint = "admin/users";
         HttpResponse<String> response = ApiClient.get(endpoint);
         JsonNode node = mapper.readTree(response.body());
-
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
 
         if(response.statusCode() == 200){
             if (node == null) {

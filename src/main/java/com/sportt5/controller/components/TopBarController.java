@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 public class TopBarController {
 
     @FXML private StackPane homeHero;
+    @FXML private Button listenButton;
     @FXML private HBox libraryTopBar;
     @FXML private HBox accountTopBar;
     @FXML private HBox artistTopBar;
@@ -66,6 +68,8 @@ public class TopBarController {
             }
         }).start();
 
+        if (listenButton != null)
+            listenButton.setOnAction(e -> { if (appController != null) appController.showLibrarySongsAll(); });
         if (homeSearchField != null) setupSearchField(homeSearchField);
         if (librarySearchField != null) setupSearchField(librarySearchField);
     }

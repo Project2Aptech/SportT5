@@ -102,7 +102,6 @@ public class SidebarController {
 
         Users user = UserSession.getInstance().getCurrentUser();
         Roles role = user != null ? user.getRole() : null;
-        System.out.println("Slide bar " + user);
 
         loadProfile(user);
 

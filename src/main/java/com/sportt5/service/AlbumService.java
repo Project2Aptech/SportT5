@@ -67,8 +67,6 @@ public class AlbumService {
 
             String json = mapper.writeValueAsString(body);
             var response = ApiClient.post("albums", json);
-            System.out.println("createAlbum → " + response.statusCode() + " " + response.body());
-
             if (response.statusCode() == 200 || response.statusCode() == 201) {
                 return mapper.readValue(response.body(), Albums.class);
             }
@@ -99,7 +97,6 @@ public class AlbumService {
 
             var response = ApiClient.postMultipart(
                     "albums/" + albumId + "/cover", boundary, out.toByteArray());
-            System.out.println("uploadAlbumCover → " + response.statusCode());
             return response.statusCode() == 200 || response.statusCode() == 204;
         } catch (Exception e) {
             e.printStackTrace();

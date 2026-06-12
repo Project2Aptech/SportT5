@@ -480,22 +480,159 @@
 
 /* ── Playlist dialogs ── */
 .pl-dialog-pane {
-    -fx-background-color: #161616;
-    -fx-background-radius: 14;
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 16;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 30, 0, 0, 8);
 }
 .pl-dialog-pane .content {
-    -fx-background-color: #161616;
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.pl-dialog-pane > .button-bar {
+    -fx-padding: 0;
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
 }
 .pl-dialog-body {
-    -fx-padding: 8 4 4 4;
-}
-.pl-dialog-title {
-    -fx-font-size: 20px;
-    -fx-font-weight: 900;
-    -fx-text-fill: -c-text-heading;
+    -fx-min-width: 360;
+    -fx-max-width: 360;
+    -fx-spacing: 0;
 }
 
-/* Cover frame */
+/* Header */
+.pl-dialog-header {
+    -fx-alignment: CENTER;
+    -fx-spacing: 8;
+    -fx-padding: 32 28 24 28;
+    -fx-background-color: linear-gradient(to bottom, rgba(73,238,120,0.07), transparent);
+    -fx-background-radius: 16 16 0 0;
+}
+.pl-dialog-icon-wrap {
+    -fx-background-color: -c-accent-subtle;
+    -fx-background-radius: 50;
+    -fx-min-width: 60;
+    -fx-min-height: 60;
+    -fx-max-width: 60;
+    -fx-max-height: 60;
+}
+.pl-dialog-icon {
+    -fx-font-size: 28px;
+    -fx-text-fill: -c-accent;
+}
+.pl-dialog-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -c-text-heading;
+    -fx-padding: 6 0 0 0;
+}
+.pl-dialog-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: -c-text-muted;
+    -fx-alignment: CENTER;
+    -fx-text-alignment: CENTER;
+}
+
+/* Divider */
+.pl-dialog-divider {
+    -fx-min-height: 1;
+    -fx-max-height: 1;
+    -fx-background-color: rgba(255,255,255,0.06);
+}
+
+/* Fields */
+.pl-dialog-fields {
+    -fx-padding: 20 24 16 24;
+}
+.pl-field-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -c-text-muted;
+    -fx-padding: 0 0 2 2;
+}
+.pl-text-field {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(255,255,255,0.1);
+    -fx-border-radius: 8;
+    -fx-text-fill: -c-text-primary;
+    -fx-prompt-text-fill: -c-text-faint;
+    -fx-font-size: 13px;
+    -fx-padding: 10 14;
+}
+.pl-text-field:focused {
+    -fx-border-color: -c-accent;
+    -fx-background-color: rgba(73,238,120,0.04);
+}
+.pl-text-area {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(255,255,255,0.1);
+    -fx-border-radius: 8;
+    -fx-text-fill: -c-text-primary;
+    -fx-prompt-text-fill: -c-text-faint;
+    -fx-font-size: 13px;
+}
+.pl-text-area:focused {
+    -fx-border-color: -c-accent;
+}
+
+/* Buttons */
+.pl-dialog-actions {
+    -fx-padding: 0 24 24 24;
+    -fx-alignment: CENTER;
+}
+.pl-btn-cancel {
+    -fx-background-color: rgba(255,255,255,0.06);
+    -fx-background-radius: 8;
+    -fx-text-fill: -c-text-primary;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-padding: 10 0;
+    -fx-cursor: hand;
+}
+.pl-btn-cancel:hover {
+    -fx-background-color: rgba(255,255,255,0.1);
+}
+.pl-btn-save {
+    -fx-background-color: -c-accent;
+    -fx-background-radius: 8;
+    -fx-text-fill: -c-accent-on;
+    -fx-font-size: 12px;
+    -fx-font-weight: 900;
+    -fx-padding: 10 0;
+    -fx-cursor: hand;
+}
+.pl-btn-save:hover {
+    -fx-background-color: -c-accent-alt;
+}
+
+/* Delete dialog */
+.pl-delete-icon {
+    -fx-font-size: 40px;
+}
+.pl-delete-desc {
+    -fx-font-size: 12px;
+    -fx-text-fill: -c-text-muted;
+    -fx-max-width: 280;
+}
+.pl-btn-delete {
+    -fx-background-color: #c0392b;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 900;
+    -fx-padding: 10 0;
+    -fx-cursor: hand;
+}
+.pl-btn-delete:hover {
+    -fx-background-color: #e74c3c;
+}
+
+/* Cover frame (dùng ở các dialog khác) */
 .pl-cover-frame {
     -fx-background-color: -c-bg-overlay;
     -fx-background-radius: 8;
@@ -526,84 +663,4 @@
     -fx-font-size: 10px;
     -fx-font-weight: 900;
     -fx-text-fill: white;
-}
-
-/* Fields */
-.pl-field-label {
-    -fx-font-size: 10px;
-    -fx-font-weight: 800;
-    -fx-text-fill: -c-text-muted;
-}
-.pl-text-field {
-    -fx-background-color: -c-bg-card;
-    -fx-background-radius: 7;
-    -fx-border-color: -c-border;
-    -fx-border-radius: 7;
-    -fx-text-fill: -c-text-primary;
-    -fx-prompt-text-fill: -c-text-muted;
-    -fx-font-size: 12px;
-    -fx-padding: 8 12 8 12;
-}
-.pl-text-field:focused {
-    -fx-border-color: -c-accent;
-}
-.pl-text-area {
-    -fx-background-color: -c-bg-card;
-    -fx-background-radius: 7;
-    -fx-border-color: -c-border;
-    -fx-border-radius: 7;
-    -fx-text-fill: -c-text-primary;
-    -fx-prompt-text-fill: -c-text-muted;
-    -fx-font-size: 12px;
-}
-.pl-text-area:focused {
-    -fx-border-color: -c-accent;
-}
-
-/* Buttons */
-.pl-btn-cancel {
-    -fx-background-color: -c-bg-card;
-    -fx-background-radius: 20;
-    -fx-text-fill: -c-text-primary;
-    -fx-font-size: 11px;
-    -fx-font-weight: 700;
-    -fx-padding: 8 22 8 22;
-    -fx-cursor: hand;
-}
-.pl-btn-cancel:hover {
-    -fx-background-color: -c-bg-card-hover;
-}
-.pl-btn-save {
-    -fx-background-color: -c-accent;
-    -fx-background-radius: 20;
-    -fx-text-fill: -c-accent-on;
-    -fx-font-size: 11px;
-    -fx-font-weight: 900;
-    -fx-padding: 8 22 8 22;
-    -fx-cursor: hand;
-}
-.pl-btn-save:hover {
-    -fx-opacity: 0.85;
-}
-
-/* Delete dialog */
-.pl-delete-icon {
-    -fx-font-size: 40px;
-}
-.pl-delete-desc {
-    -fx-font-size: 12px;
-    -fx-text-fill: -c-text-muted;
-    -fx-max-width: 280;
-}
-.pl-btn-delete {
-    -fx-background-color: #c0392b;
-    -fx-background-radius: 20;
-    -fx-text-fill: white;
-    -fx-font-size: 11px;
-    -fx-font-weight: 900;
-    -fx-padding: 8 22 8 22;
-    -fx-cursor: hand;
-}
-.pl-btn-delete:hover {
-    -fx-background-color: #e74c3c;
 }

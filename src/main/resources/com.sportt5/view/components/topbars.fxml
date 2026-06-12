@@ -16,7 +16,7 @@
         <VBox alignment="CENTER_LEFT" spacing="14.0" maxWidth="610.0" StackPane.alignment="CENTER_LEFT" styleClass="hero-copy-box">
             <Label text="WHAT'S NEW?" styleClass="home-hero-title" />
             <Label text="Experience the latest sonic landscape curated just for you. From underground beats to chart-topping anthems, dive into the pulse of the contemporary music scene." wrapText="true" styleClass="home-hero-copy" />
-            <Button text="▶  START LISTENING" styleClass="listen-button" />
+            <Button fx:id="listenButton" text="▶  START LISTENING" styleClass="listen-button" />
         </VBox>
         <TextField fx:id="homeSearchField" promptText="Search for tracks, artists..." prefWidth="320.0" maxWidth="320.0" prefHeight="30.0" styleClass="home-search" StackPane.alignment="TOP_CENTER" />
     </StackPane>

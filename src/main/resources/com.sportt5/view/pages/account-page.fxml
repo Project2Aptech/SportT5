@@ -33,8 +33,7 @@
                 </HBox>
             </VBox>
             <Region HBox.hgrow="ALWAYS" />
-            <Button fx:id="signOutButton"
-                    onAction="#handleSignOut"
+            <Button onAction="#handleSignOut"
                     text="Sign Out"
                     styleClass="edit-profile-button"/>
             <Button onAction="#handleEditProfile" text="Edit Profile" styleClass="edit-profile-button" />

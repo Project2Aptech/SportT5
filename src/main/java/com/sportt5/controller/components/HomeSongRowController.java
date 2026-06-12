@@ -3,11 +3,13 @@ package com.sportt5.controller.components;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sportt5.model.Playlists;
 import com.sportt5.model.Songs;
 import com.sportt5.model.Users;
 import com.sportt5.model.enums.AccountType;
 import com.sportt5.model.enums.RequiredAccountType;
 import com.sportt5.service.HomeService;
+import com.sportt5.service.LibraryService;
 import com.sportt5.session.UserSession;
 import com.sportt5.util.ApiClient;
 import javafx.application.Platform;
@@ -18,13 +20,16 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URI;
@@ -33,6 +38,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class HomeSongRowController {
     //Row ids
@@ -52,8 +60,9 @@ public class HomeSongRowController {
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     //Current song
     private Songs currentSong;
-    //Service
+    //Services
     private final HomeService homeService = new HomeService();
+    private final LibraryService libraryService = new LibraryService();
 
     @FXML
     public void downloadSongs(ActionEvent event) {
@@ -155,6 +164,7 @@ public class HomeSongRowController {
         return userType.ordinal() >= required.ordinal();
     }
 
+    @SuppressWarnings("unchecked")
     private void showAddToPlaylistDialog() {
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -171,10 +181,65 @@ public class HomeSongRowController {
             dialog.setOnShown(e -> pane.getScene().getStylesheets()
                 .add(getClass().getResource("/com.sportt5/css/style.css").toExternalForm()));
 
+            ComboBox<Playlists> playlistsComboBox = (ComboBox<Playlists>) pane.lookup("#playlistComboBox");
             Button cancelBtn = (Button) pane.lookup("#cancelBtn");
             Button addBtn    = (Button) pane.lookup("#addBtn");
             if (cancelBtn != null) cancelBtn.setOnAction(e -> dialog.close());
-            if (addBtn    != null) addBtn.setOnAction(e -> dialog.close());
+            if (addBtn != null) {
+                addBtn.setOnAction(e -> {
+                    Playlists selected = playlistsComboBox.getValue();
+                    if (selected == null) return;
+                    new Thread(() -> {
+                        try {
+                            boolean success = libraryService.addSongToPlaylist(selected.getId(), currentSong.getId());
+                            if (success) Platform.runLater(dialog::close);
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    }).start();
+                });
+            }
+
+            new Thread(() -> {
+                try {
+                    List<Playlists> playlists = libraryService.getUserPlaylists();
+                    Set<Integer> alreadyAdded = new HashSet<>();
+                    for (Playlists p : playlists) {
+                        List<Songs> existing = libraryService.getPlaylistSongs(p.getId());
+                        if (existing.stream().anyMatch(song -> song.getId() == currentSong.getId())) {
+                            alreadyAdded.add(p.getId());
+                        }
+                    }
+                    Platform.runLater(() -> {
+                        if (playlistsComboBox == null) return;
+                        playlistsComboBox.getItems().addAll(playlists);
+                        playlistsComboBox.setConverter(new StringConverter<>() {
+                            @Override public String toString(Playlists p) {
+                                return p == null ? "Unknown playlist" : p.getTitle();
+                            }
+                            @Override public Playlists fromString(String str) { return null; }
+                        });
+                        playlistsComboBox.setCellFactory(lv -> new ListCell<>() {
+                            @Override
+                            protected void updateItem(Playlists item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty || item == null) {
+                                    setText(null);
+                                    setDisable(false);
+                                    setOpacity(1.0);
+                                } else {
+                                    boolean taken = alreadyAdded.contains(item.getId());
+                                    setText(item.getTitle() + (taken ? " ✓" : ""));
+                                    setDisable(taken);
+                                    setOpacity(taken ? 0.5 : 1.0);
+                                }
+                            }
+                        });
+                    });
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }).start();
 
             dialog.showAndWait();
         } catch (Exception e) {
@@ -201,6 +266,7 @@ public class HomeSongRowController {
     private void setLikeState(boolean liked) {
         if (liked) {
             likeBtn.setText("♥");
+            likeBtn.getStyleClass().add("like-btn-active");
             likeBtn.setOnMouseClicked(e -> {
                 try {
                     homeService.unlikeASong(currentSong.getId());
@@ -211,6 +277,7 @@ public class HomeSongRowController {
             });
         } else {
             likeBtn.setText("♡");
+            likeBtn.getStyleClass().remove("like-btn-active");
             likeBtn.setOnMouseClicked(e -> {
                 try {
                     homeService.likeASong(currentSong.getId());

@@ -56,7 +56,4 @@ public final class UserSession {
         return (currentUser != null) ? currentUser.getId() : -1;
     }
 
-//    public static String loadSavedToken() {
-//        return PREFS.get(PREF_TOKEN_KEY, null);
-//    }
 }

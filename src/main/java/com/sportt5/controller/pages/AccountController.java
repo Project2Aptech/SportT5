@@ -102,7 +102,6 @@ public class AccountController {
             loadUserProfile();
         } catch (Exception e) {
             showError("Error " + e.getMessage());
-            System.out.println(e.getMessage());
         }
     }
 
@@ -153,7 +152,6 @@ public class AccountController {
     private void bindToUi(Users u) {
         displayNameLabel.setText((u.getDisplayName() != null ?  u.getDisplayName() : u.getUsername()));
 
-        System.out.println("Avatar URL = " + u.getAvatarUrl());
         String avatarUrl = ApiClient.resolveUrl(u.getAvatarUrl());
         if (avatarUrl != null) {
             avatarImageView.setImage(new Image(avatarUrl, true));

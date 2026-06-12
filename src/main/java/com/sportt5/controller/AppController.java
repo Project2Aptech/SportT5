@@ -90,6 +90,11 @@ public class AppController {
         showPage(libraryPage, topBarController.getLibraryTopBar(), sidebarController.getLibraryItem());
     }
 
+    public void showLibrarySongsAll() {
+        showLibraryPage();
+        if (libraryPageController != null) libraryPageController.showSongsTab();
+    }
+
     public void showLibraryPageWithSearch(String keyword, String type) {
         if (libraryPageController != null) {
             libraryPageController.clearAllBox();
@@ -242,6 +247,4 @@ setVisible(topBarController.getArtistTopBar(),  false);
         langBtn.setText(langBtn.getText().equals("EN") ? "VI" : "EN");
     }
 
-    // kept for backward-compat if referenced elsewhere
-    public static class AuthController {}
 }
