@@ -167,8 +167,11 @@ public class AdminUserController {
 
 
         int row = 1;
+        int currentUserId = UserSession.getInstance().getCurrentUserId();
 
         for (Users user : users) {
+            boolean isSelf = user.getId() == currentUserId;
+
             HBox nameBox = new HBox(12);
             VBox infoBox = new VBox(2);
 
@@ -223,22 +226,30 @@ public class AdminUserController {
 
             HBox actionBox = new HBox(8);
 
-            Button editBtn = new Button("️Edit");
-            Button statusBtn = new Button(
-                    user.isActive() ? "🚫" : "🔓"
-            );
+            if (isSelf) {
+                Label youLabel = new Label("(You)");
+                youLabel.getStyleClass().add("table-text");
+                youLabel.setStyle("-fx-opacity: 0.45;");
+                actionBox.getChildren().add(youLabel);
+            } else {
+                Button editBtn = new Button("✏");
+                Button statusBtn = new Button(user.isActive() ? "⊘" : "✓");
+                Button deleteBtn = new Button("×");
 
-            Button deleteBtn = new Button("Delete️");
+                editBtn.getStyleClass().add("action-edit-btn");
+                statusBtn.getStyleClass().add(user.isActive() ? "action-deactivate-btn" : "action-activate-btn");
+                deleteBtn.getStyleClass().add("action-delete-btn");
 
-            editBtn.getStyleClass().add("action-edit-btn");
-            statusBtn.getStyleClass().add("action-deactivate-btn");
-            deleteBtn.getStyleClass().add("action-delete-btn");
+                editBtn.setTooltip(new Tooltip("Edit"));
+                statusBtn.setTooltip(new Tooltip(user.isActive() ? "Deactivate" : "Activate"));
+                deleteBtn.setTooltip(new Tooltip("Delete"));
 
-            statusBtn.setOnAction(e -> statusUser (user));
-            editBtn.setOnAction(e -> openEditUserDialog(user));
-            deleteBtn.setOnAction(e -> handleDeleteUser(user));
+                editBtn.setOnAction(e -> openEditUserDialog(user));
+                statusBtn.setOnAction(e -> statusUser(user));
+                deleteBtn.setOnAction(e -> handleDeleteUser(user));
 
-            actionBox.getChildren().addAll(editBtn,statusBtn, deleteBtn);
+                actionBox.getChildren().addAll(editBtn, statusBtn, deleteBtn);
+            }
 
             emailLabel.getStyleClass().add("table-text");
             joinedLabel.getStyleClass().add("table-text");
@@ -250,6 +261,13 @@ public class AdminUserController {
             userGrid.add(planLabel, 4, row);
             userGrid.add(joinedLabel, 5, row);
             userGrid.add(actionBox, 6, row);
+
+            if (isSelf) {
+                final int r = row;
+                userGrid.getChildren().stream()
+                        .filter(n -> Integer.valueOf(r).equals(GridPane.getRowIndex(n)))
+                        .forEach(n -> n.setStyle("-fx-opacity: 0.45;"));
+            }
 
             row++;
         }

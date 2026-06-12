@@ -115,7 +115,8 @@ public class AuthService {
             return mapper.readValue(response.body(), Users.class);
         }
         else {
-            String message = node.get("message").asText();
+            JsonNode msgNode = node.get("message");
+            String message = msgNode != null ? msgNode.asText() : "Update failed (status " + response.statusCode() + ")";
             throw new RuntimeException(message);
         }
     }
@@ -132,7 +133,8 @@ public class AuthService {
             return mapper.treeToValue(node, Users.class);
         }
         else {
-            String message = node.get("message").asText();
+            JsonNode msgNode = node.get("message");
+            String message = msgNode != null ? msgNode.asText() : "Get user failed (status " + response.statusCode() + ")";
             throw new RuntimeException(message);
         }
     }

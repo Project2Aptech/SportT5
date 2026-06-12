@@ -225,22 +225,53 @@
     -fx-background-color: -c-accent-subtle2;
     -fx-text-fill: -c-accent;
 }
+.action-edit-btn,
+.action-deactivate-btn,
+.action-activate-btn,
+.action-delete-btn,
+.action-publish-btn {
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-font-size: 13px;
+    -fx-pref-width: 30;
+    -fx-pref-height: 28;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
 .action-edit-btn {
     -fx-background-color: #1db954;
-    -fx-text-fill: white;
-    -fx-background-radius: 8;
+}
+.action-edit-btn:hover {
+    -fx-background-color: #17a347;
 }
 
 .action-deactivate-btn {
     -fx-background-color: #f59e0b;
-    -fx-text-fill: white;
-    -fx-background-radius: 8;
+}
+.action-deactivate-btn:hover {
+    -fx-background-color: #d97706;
+}
+
+.action-activate-btn {
+    -fx-background-color: #3b82f6;
+}
+.action-activate-btn:hover {
+    -fx-background-color: #2563eb;
 }
 
 .action-delete-btn {
     -fx-background-color: #ef4444;
-    -fx-text-fill: white;
-    -fx-background-radius: 8;
+}
+.action-delete-btn:hover {
+    -fx-background-color: #dc2626;
+}
+
+.action-publish-btn {
+    -fx-background-color: #1db954;
+}
+.action-publish-btn:hover {
+    -fx-background-color: #17a347;
 }
 .role-user,
 .role-artist,

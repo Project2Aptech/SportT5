@@ -10,10 +10,7 @@ import com.sportt5.service.AdminService;
 import com.sportt5.session.UserSession;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -195,12 +192,14 @@ public class AdminSongController {
             // ACTION
             HBox actionBox = new HBox(8);
 
-            Button publishBtn = new Button("Publish");
+            Button publishBtn = new Button("✔");
+            Button deleteBtn = new Button("×");
 
-            Button deleteBtn = new Button("Delete️");
-
-            publishBtn.getStyleClass().add("action-edit-btn");
+            publishBtn.getStyleClass().add("action-publish-btn");
             deleteBtn.getStyleClass().add("action-delete-btn");
+
+            publishBtn.setTooltip(new Tooltip("Publish"));
+            deleteBtn.setTooltip(new Tooltip("Delete"));
 
             publishBtn.setOnAction(e -> openPublishSong(s));
             deleteBtn.setOnAction(e -> handleDeleteSong(s));
